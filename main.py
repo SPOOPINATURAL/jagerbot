@@ -70,7 +70,7 @@ def load_scores():
 def save_scores(scores):
     os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)
     with open(SCORES_FILE, "w", encoding="utf-8") as f:
-        json.dump(scores, f, indent=4)
+        json.dump(scores, f, indent=2)
 user_scores = load_scores()
 #alerts
 alerts = {}
@@ -205,17 +205,35 @@ class TriviaView(discord.ui.View):
         await self.process_answer(interaction, "D")
 
     async def process_answer(self, interaction, letter):
-        self.answered = True
-        for child in self.children:
-            child.disabled = True
-        if letter == self.correct_letter:
+        try:
+            self.answered = True
+            for child in self.children:
+                child.disabled = True
+
             uid = str(interaction.user.id)
-            user_scores[uid] = user_scores.get(uid, 0) + 1
-            save_scores(user_scores)
-            await interaction.response.edit_message(content=f"✅ Correct! Total score: **{user_scores[interaction.user.id]}**", view=self)
-        else:
-            await interaction.response.edit_message(content=f"❌ Wrong! Correct answer: **{self.correct_answer}**", view=self)
-        self.stop()
+
+            if letter == self.correct_letter:
+                user_scores[uid] = user_scores.get(uid, 0) + 1
+                save_scores(user_scores)
+
+                await interaction.response.edit_message(
+                    content=f"✅ Correct! Total score: **{user_scores[uid]}**",
+                    view=self
+                )
+            else:
+                await interaction.response.edit_message(
+                    content=f"❌ Wrong! Correct answer: **{self.correct_answer}**",
+                    view=self
+                )
+            self.stop()
+
+        except Exception as e:
+            print(f"Error processing trivia answer: {e}")
+            if not interaction.response.is_done():
+                await interaction.response.send_message(
+                    "⚠️ An error occurred while processing your answer.",
+                    ephemeral=True
+                )
 
 #quote list
 quotes = [
