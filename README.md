@@ -1,2 +1,2 @@
-# jagerbot
-spoopi's discord bot
+# JägerBot
+Spoopi's discord bot for VDSMP.
