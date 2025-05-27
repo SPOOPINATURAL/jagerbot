@@ -20,6 +20,20 @@ import tracemalloc
 import warnings
 import webserver
 from discord import ButtonStyle
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+@app.route('/')
+def home():
+    return "Discord bot ok"
+
+def run():
+    app.run(host="0.0.0.0", port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
 
 #files n shi
 load_dotenv()
@@ -307,6 +321,7 @@ clancy_images = [
 class InfoPages(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=120)
+        self.clear_items()
         self.pages = []
         self.current = 0
         self.create_pages()
@@ -441,6 +456,7 @@ def get_weather_emoji(condition):
 @bot.event
 async def on_ready():
     print(f"Ready :)")
+    print(f"Loaded commands: {[cmd.name for cmd in bot.commands]}")
     load_alerts()
     check_alerts.start()
     load_scores()
@@ -1348,5 +1364,7 @@ async def info(ctx):
     view = InfoPages()
     message = await ctx.send(embed=view.pages[0], view=view)
     view.message = message
-webserver.keep_alive()
-bot.run(DISCORD_TOKEN, log_handler=handler, log_level=logging.DEBUG)
+if __name__ == "__main__":
+    import webserver
+    webserver.keep_alive()
+    bot.run(DISCORD_TOKEN, log_handler=handler, log_level=logging.DEBUG)
