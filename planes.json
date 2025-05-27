@@ -1,0 +1,288 @@
+[
+  {
+    "name": "Fokker Dr.I",
+    "nation": "Germany",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Fokker-Dr1_Joachim-Schlichting.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "7.19 m (23 ft, 7 in)",
+      "speed": "180 km/h (110 mph)",
+      "engine": "x1 Oberursel UR.II",
+      "armament": "2 × 7.92 mm Maschinengewehr 08 'Spandau' Machine Guns"
+    }
+  },
+  {
+    "name": "Sopwith Camel",
+    "nation": "United Kingdom",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5f/SopwithCamel.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "8.53 m (28 ft)",
+      "speed": "182 km/h (113 mph)",
+      "engine": "x1 Clerget 9B",
+      "armament": "2 × .303 in Vickers machine guns"
+    }
+  },
+  {
+    "name": "SPAD S.XIII",
+    "nation": "France",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/SPAD_S.XIII_in_flight_c1918.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "8.25 m (27 ft, 1in) or 8.08 m (26.5 ft)",
+      "speed": "211 km/h (131 mph)",
+      "engine": "x1 Hispano-Suiza 8Ba, Bb, or Bd",
+      "armament": "2 × 0.303 in Vickers machine guns or 2 × Marlin M1917 or M1918 machine guns | 4 × 25 lb (11 kg) Cooper bombs"
+    }
+  },
+  {
+    "name": "Albatros D.V",
+    "nation": "Germany",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Albatros_D.Va_1917.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "9.05 m (29 ft, 8 in)",
+      "speed": "186 km/h (116 mph)",
+      "engine": "x1 Mercedes D.IIIaü",
+      "armament": "2 × 7.92 mm LMG 08/15"
+    }
+  },
+  {
+    "name": "Nieuport 17",
+    "nation": "France",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Nieuport_17_C.1.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "8.16 m (26 ft, 9 in)",
+      "speed": "170 km/h (110 mph)",
+      "engine": "x1 Le Rhône 9Ja",
+      "armament": "1 × .303 Vickers or Lewis machine gun"
+    }
+  },
+  {
+    "name": "Supermarine Nighthawk",
+    "nation": "United Kingdom",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Supermarine_P.B.31E_Nighthawk.jpg",
+    "specs": {
+      "crew": "4 (2 pilots, 2 gunners)",
+      "wingspan": "18.3 m (60 ft)",
+      "speed": "121 km/h (75 mph)",
+      "engine": "x2 Anzani 10-cylinders",
+      "armament": "1 × 1½-pdr Davis gun and 1 × Lewis gun above upper wing, 1 × Lewis gun in the nose"
+    }
+  },
+  {
+    "name": "Hansa-Brandenburg C.I",
+    "nation": "Austria-Hungary",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Albatros_Kampfflugzeug._8.9.17._%28BildID_15602045%29.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "12.3 m (40 ft, 4 in)",
+      "speed": "155-163 km/h (96-101 mph)",
+      "engine": "x1 Austro-Daimler",
+      "armament": "1 fixed 8.00 [mm] (0.315 in) Schwarzlose M.7 machine-gun in fairing on top and 1 movable 8.00 [mm] (0.315 in) Schwarzlose M.7 machine-gun for the observer | 132 lbs (60 kg) of bombs"
+    }
+  },
+  {
+    "name": "Vickers Vimy",
+    "nation": "United Kingdom",
+    "year": 1918,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Vickers_Vimy.jpg",
+    "specs": {
+      "crew": "3",
+      "wingspan": "20.47 m (67 ft, 2 in)",
+      "speed": "166 km/h (103 mph)",
+      "engine": "x2 Rolls Royce Eagle VIII",
+      "armament": "1 × .303 in (7.7 mm) Lewis Gun in Scarff ring in nose and 1 × in Scarff ring in mid-fuselage | 2476 lbs (1123 kg) of bombs"
+    }
+  },
+  {
+    "name": "Lebed 12",
+    "nation": "Russia",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Lebe%C4%8F_XII_%28Rossia%29.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "13.15 m (43 ft, 1.75 in)",
+      "speed": "134 km/h (83 mph)",
+      "engine": "x1 Salmson Canton-Unne",
+      "armament": "1 movable 7.62 mm (0.300 in) Colt M1895 machine-gun | 220 lbs (90.7 kg) of bombs"
+    }
+  },
+  {
+    "name": "SAML S.2",
+    "nation": "Italy",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Airplanes_-_Types_-_Airplane_Type._S.A.M.L._motor%2C_Fiat_300_H.P.%2C_Type_1917._Italian_Aviation_Mission_-_NARA_-_17342301.jpg/1200px-Airplanes_-_Types_-_Airplane_Type._S.A.M.L._motor%2C_Fiat_300_H.P.%2C_Type_1917._Italian_Aviation_Mission_-_NARA_-_17342301.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "12.1 m (39 ft, 8.5 in)",
+      "speed": "134 km/h (83 mph)",
+      "engine": "x1 Fiat A12 bis",
+      "armament": "1 fixed 6.50 mm (0.256 in) FIAT Rivelli machine-gun on top and 1 movable 6.50 mm (0.256 in) FIAT Rivelli machine-gun for the observer | 88 lbs (40 kg) of bombs"
+    }
+  },
+  {
+    "name": "Standard E-1",
+    "nation": "United States",
+    "year": 1918,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Standard_E-1_-_NARA_-_55172168.jpg/1920px-Standard_E-1_-_NARA_-_55172168.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "7.32 m (24 ft)",
+      "speed": "161 km/h (100 mph)",
+      "engine": "x1 Gnome rotary or x1 Le Rhône",
+      "armament": "None (trainer plane)"
+    }
+  },
+  {
+    "name": "Bristol Scout",
+    "nation": "United Kingdom",
+    "year": 1915,
+    "image": "https://www.theaerodrome.com/images/aircraft/gbritain/bristol_scout.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "7.49 m (24 ft, 7 in)",
+      "speed": "161 km/h (100 mph)",
+      "engine": "x1 Le Rhône",
+      "armament": "1 Vickers or Lewis machine gun"
+    }
+  },
+  {
+    "name": "Aviatik D.I",
+    "nation": "Austria-Hungary",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/AviatikBergMoFS.JPG/2560px-AviatikBergMoFS.JPG",
+    "specs": {
+      "crew": "1",
+      "wingspan": "8 m (26 ft, 3 in)",
+      "speed": "185 km/h (115 mph)",
+      "engine": "x1 Austro-Daimler",
+      "armament": "2 Schwarzlose 8 mm machine guns"
+    }
+  },
+  {
+    "name": "Thomas-Morse S.4",
+    "nation": "United States",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Thomas_Morse_S-4c_Scout.jpg/1920px-Thomas_Morse_S-4c_Scout.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "8.98 m (26 ft, 6 in)",
+      "speed": "153 km/h (95 mph)",
+      "engine": "x1 Gnôme Monosoupape 9B or x1 Le Rhône 9C rotary",
+      "armament": "1 × .30-cal Marlin machine gun"
+    }
+  },
+  {
+    "name": "Airco D.H.4",
+    "nation": "United Kingdom",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/De_Havilland_DH4_ExCC.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "12.92 m (42 ft, 4.5 in)",
+      "speed": "230 km/h (143 mph)",
+      "engine": "x1 Rolls-Royce Eagle VII or x1 Liberty 12",
+      "armament": "1 forward-firing synchronised Vickers machine gun, either one or two . 303 in (7.7 mm) Lewis guns on a Scarff ring for observer | 460 lbs (208.7 kg) of bombs"
+    }
+  },
+  {
+    "name": "Nieuport 11",
+    "nation": "France",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nieuport_Ni._11.jpg",
+    "specs": {
+      "crew": "1",
+      "wingspan": "5.5 m (24 ft, 8 in)",
+      "speed": "162 km/h (101 mph)",
+      "engine": "x1 Le Rhône 9C rotary",
+      "armament": "1 × .303 Lewis or Hotchkiss machine gun | 8 air to air Le Prieur rockets for use against observation balloons"
+    }
+  },
+  {
+    "name": "Siemens-Schuckert R.VIII",
+    "nation": "Germany",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Riesenflugzeug_Siemens_Schuckert_VIII_1918.jpg",
+    "specs": {
+      "crew": "6+",
+      "wingspan": "48 m (157 ft, 6 in)",
+      "speed": "125 km/h (78 mph) - estimated",
+      "engine": "x6 Basse und Selve BuS.IVa",
+      "armament": "Unknown"
+    }
+  },
+  {
+    "name": "Linke-Hofmann R.I",
+    "nation": "Germany",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/25/Linke-Hofmann_R1.png",
+    "specs": {
+      "crew": "4-5",
+      "wingspan": "33.2 m (108 ft, 11.25 in)",
+      "speed": "125 km/h (78 mph)",
+      "engine": "x4 Mercedes D.IVa",
+      "armament": "3 Machine Guns, Unknown Type"
+    }
+  },
+  {
+    "name": "Blackburn Triplane",
+    "nation": "United Kingdom",
+    "year": 1917,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Blackburn_Triplane.png",
+    "specs": {
+      "crew": "1",
+      "wingspan": "7.32 m (24 ft)",
+      "speed": "145 km/h (90 mph)",
+      "engine": "x1 Clerget 9Z",
+      "armament": "1 Recoilless Davis Gun"
+    }
+  },
+  {
+    "name": "Ufag C.I",
+    "nation": "Austria-Hungary",
+    "year": 1918,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/UFAG_C.I_fortepan_132531.jpg/1920px-UFAG_C.I_fortepan_132531.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "10.69 m (35 ft, 2 in)",
+      "speed": "190 km/h (118 mph)",
+      "engine": "x1 Hiero",
+      "armament": "1 x 8 mm (0.315 in) Schwarzlose machine-gun forward-firing fixed machine guns; 1 x 8 mm (0.315 in) Schwarzlose machine-gun in trainable rear cockpit mounting | 132 lbs (60 kg) of bombs"
+    }
+  },
+  {
+    "name": "Voisin 8",
+    "nation": "France",
+    "year": 1916,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Voisin_VIII_NARA_17342123.jpg/2560px-Voisin_VIII_NARA_17342123.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "18 m (59 ft, 1 in)",
+      "speed": "190 km/h (118 mph)",
+      "engine": "x1 Peugeot 8Aa",
+      "armament": "1 x 37 mm (1.457 in) Hotchkiss cannon"
+    }
+  },
+  {
+    "name": "Pomilio PE",
+    "nation": "Italy",
+    "year": 1918,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Pomilio_PE.jpg",
+    "specs": {
+      "crew": "2",
+      "wingspan": "11.78 m (38 ft, 8.5 in)",
+      "speed": "194 km/h (120 mph)",
+      "engine": "x1 Fiat A12",
+      "armament": "1 x forward-firing 6.5 mm Fiat-Revelli machine-gun above the upper wing, 1 x 6.5 mm Fiat-Revelli machine-gun, rarely 1 or 2 x 7.7 mm (0.303 in) Lewis machine-gun on Scarff ring in rear cockpit"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+discord.py
+python-dotenv
+aiohttp
+pytz
+dateparser
+beautifulsoup4
+python-dateutil
+flask
