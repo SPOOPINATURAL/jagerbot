@@ -446,8 +446,19 @@ async def on_ready():
     load_scores()
     activity = discord.Game(name=">info")
     await bot.change_presence(status=discord.Status.online, activity=activity)
+    global user_scores, alerts, sessions, cooldowns
+    user_scores.clear()
+    alerts.clear()
+    sessions.clear()
+    cooldowns.clear()
 
-@bot.event
+    print("✅ Cleared caches")
+
+    load_alerts()
+    load_scores()
+
+    print(f"Ready as {bot.user}")
+    await bot.change_presence(activity=discord.Game(name=">info"))
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("❌ Command not recognized. Use `>info` to see the list of commands.")
