@@ -621,9 +621,9 @@ async def trivia(ctx):
 
 @bot.command(name='score')
 async def score(ctx):
-    uid = str(ctx.author.id)
+    uid = ctx.author.id
     score = user_scores.get(uid, 0)
-    await ctx.send(f"🏆 {ctx.author.display_name}, your trivia score is: **{scores}**")
+    await ctx.send(f"🏆 {ctx.author.display_name}, your trivia score is: **{score}**")
 
 #timezone conversion
 @bot.command(name='convert')
