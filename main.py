@@ -27,7 +27,7 @@ TRACKER_API_KEY = os.getenv('TRACKER_API_KEY')
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 TIMEZONES = sorted(pytz.all_timezones)
-ALERTS_FILE = "alerts.json"
+ALERTS_FILE = "data/alerts.json"
 tracemalloc.start()
 warnings.simplefilter('always', RuntimeWarning)
 
@@ -86,12 +86,21 @@ def parse_time(time_str):
         return None
 
 #load jsons
-with open("maps.json", "r", encoding="utf-8") as f:
-    r6_maps = json.load(f)
-with open("operators.json", "r", encoding="utf-8") as f:
-    operators = json.load(f)
-with open("planes.json", "r", encoding="utf-8") as f:
-    planes = json.load(f)
+def load_all_json_from_folder(folder="data"):
+    data = {}
+    for filename in os.listdir(folder):
+        if filename.endswith(".json"):
+            path = os.path.join(folder, filename)
+            with open(path, "r", encoding="utf-8") as f:
+                key = os.path.splitext(filename)[0]  # filename without .json
+                data[key] = json.load(f)
+    return data
+all_data = load_all_json_from_folder()
+
+maps = all_data.get("maps",{})
+operators = all_data.get("operators",{})
+planes = all_data.get("planes",[])
+alerts = all_data.get("alerts",{})
 
 #aliases function
 def find_match(data_dict: dict, user_input: str):
@@ -746,9 +755,6 @@ async def listalerts(ctx):
 #r6 op info
 @bot.command(name='operator', aliases=["op"])
 async def operator_command(ctx, *, name: str):
-    with open("operators.json", "r", encoding="utf-8") as f:
-        operators = json.load(f)
-
     op = find_match(operators, name)
     if not op:
         await ctx.send(f"❌ Operator `{name}` not found.")
@@ -778,16 +784,11 @@ async def operator_command(ctx, *, name: str):
 #op list
 @bot.command(name="operatorlist", aliases=["oplist","listops"])
 async def operator_list(ctx):
-    with open("operators.json", "r", encoding="utf-8") as f:
-        operators = json.load(f)
-
-    names = sorted(op_data["name"] for op_data in operators.values())
+    names = sorted(op_data["name"] for op in operators)
 
     columns = [[], [], []]
     for i, name in enumerate(names):
         columns[i % 3].append(name)
-
-    col_text = [ "\n".join(col) for col in columns ]
 
     embed = discord.Embed(
         title="Available Operators",
@@ -803,33 +804,26 @@ async def operator_list(ctx):
 #random op
 @bot.command(name="operatorrandom", aliases=["oprandom", "randomop", "randomoperator"])
 async def r6_operator(ctx, role: str = None):
-    role_aliases = {
-        "attacker": ["attack", "attacker", "atk", "attk"],
-        "defender": ["defense", "defender", "def"],
-    }
-    selected_role = None
-
-    if role:
-        role = role.lower()
-        for key, aliases in role_aliases.items():
-            if role in aliases:
-                selected_role = key
-                break
-        if not selected_role:
-            await ctx.send("❌ Invalid role! Use `attack` or `defense` (or aliases like `atk`, `def`).")
-            return
-
     try:
-        with open("operators.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
+        role_aliases = {
+            "attacker": ["attack", "attacker", "atk", "attk"],
+            "defender": ["defense", "defender", "def"],
+        }
+        selected_role = None
 
-        # data is a dict, get list of operators
-        operators = list(data.values())
+        if role:
+            role = role.lower()
+            for key, aliases in role_aliases.items():
+                if role in aliases:
+                    selected_role = key
+                    break
+            if not selected_role:
+                await ctx.send("❌ Invalid role! Use `attack` or `defense` (or aliases like `atk`, `def`).")
+                return
 
-        if selected_role:
-            filtered = [op for op in operators if op.get("role", "").lower() == selected_role]
-        else:
-            filtered = operators
+        operators_list = list(operators.values()) if isinstance(operators, dict) else operators
+
+        filtered = [op for op in operators_list if op.get("role", "").lower() == selected_role] if selected_role else operators_list
 
         if not filtered:
             await ctx.send("❌ No operators found for that role.")
@@ -864,57 +858,63 @@ async def r6_operator(ctx, role: str = None):
 #map info
 @bot.command(name="map")
 async def map(ctx, *, name: str):
-    with open("maps.json", "r", encoding="utf-8") as f:
-        maps = json.load(f)
+    try:
+        if not isinstance(maps, dict):
+            await ctx.send("❌ Map data is not in the correct format.")
+            return
 
-    m = find_match(maps, name)
-    if not m:
-        await ctx.send(f"❌ Map `{name}` not found.")
-        return
+        m = find_match(maps, name)
+        if not m:
+            await ctx.send(f"❌ Map `{name}` not found.")
+            return
 
-    floors = m["floors"]
-    total = len(floors)
+        floors = m.get("floors", [])
+        total = len(floors)
+        if total == 0:
+            await ctx.send(f"❌ Map `{m.get('name', name)}` has no floors data.")
+            return
 
-    def make_embed(idx: int) -> discord.Embed:
-        fl = floors[idx]
-        embed = discord.Embed(
-            title=f"{m['name']} – {fl['name']}",
-            description=f"Floor {idx+1} / {total}",
-            color=0x8B0000
-        )
-        embed.set_image(url=fl["image"])
-        return embed
+        def make_embed(idx: int) -> discord.Embed:
+            fl = floors[idx]
+            embed = discord.Embed(
+                title=f"{m.get('name', 'Unknown')} – {fl.get('name', 'Floor')}",
+                description=f"Floor {idx+1} / {total}",
+                color=0x8B0000
+            )
+            embed.set_image(url=fl.get("image", ""))
+            return embed
 
-    class FloorView(View):
-        def __init__(self):
-            super().__init__(timeout=60)
-            self.i = 0
+        class FloorView(View):
+            def __init__(self):
+                super().__init__(timeout=60)
+                self.i = 0
 
-        @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
-        async def back(self, interaction: discord.Interaction, button: Button):
-            if self.i > 0:
-                self.i -= 1
+            @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
+            async def back(self, interaction: discord.Interaction, button: Button):
+                self.i = (self.i - 1) % total
                 await interaction.response.edit_message(embed=make_embed(self.i), view=self)
 
-        @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
-        async def forward(self, interaction: discord.Interaction, button: Button):
-            if self.i < total - 1:
-                self.i += 1
+            @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
+            async def forward(self, interaction: discord.Interaction, button: Button):
+                self.i = (self.i + 1) % total
                 await interaction.response.edit_message(embed=make_embed(self.i), view=self)
 
-    await ctx.send(embed=make_embed(0), view=FloorView())
+        await ctx.send(embed=make_embed(0), view=FloorView())
+
+    except Exception as e:
+        await ctx.send(f"❌ Error during map lookup: `{e}`")
 
 #maplist
 @bot.command(name="maplist")
 async def map_list(ctx):
     try:
-        with open("maps.json", "r", encoding="utf-8") as f:
-            maps = json.load(f)
+        if isinstance(maps, dict):
+            map_names = sorted(m["name"] for m in maps.values() if "name" in m)
+        else:
+            map_names = sorted(m["name"] for m in maps if "name" in m)
     except Exception as e:
         await ctx.send(f"❌ Failed to load map data: `{e}`")
         return
-
-    map_names = sorted([key.capitalize() for key in maps.keys()])
 
     half = (len(map_names) + 1) // 2
     col1 = map_names[:half]
@@ -1261,18 +1261,14 @@ async def wfprice(ctx, *, item: str):
 @bot.command(name="plane")
 async def airplane(ctx):
     try:
-        with open("planes.json", "r", encoding="utf-8") as f:
-            planes = json.load(f)
+        if not planes:
+            await ctx.send("❌ No plane data loaded.")
+            return
 
         plane = random.choice(planes)
-        specs = plane.get("specs",{})
-        crew = specs.get("crew", "N/A")
-        wingspan = specs.get("wingspan", "N/A")
-        speed = specs.get("speed", "N/A")
-        engine = specs.get("engine", "N/A")
-        armament = specs.get("armament", "N/A")
+        specs = plane.get("specs", {})
         embed = discord.Embed(
-            title=plane.get("name"),
+            title=plane.get("name", "Unknown"),
             description=(
                 f"**Nation:** {plane.get('nation', 'N/A')}\n"
                 f"**Year:** {plane.get('year', 'N/A')}\n"
@@ -1285,7 +1281,6 @@ async def airplane(ctx):
             color=discord.Color.red()
         )
         embed.set_image(url=plane.get("image", ""))
-        print("Plane image URL:", plane.get("image"))
         embed.set_footer(text="Random WW1 Plane")
 
         await ctx.send(embed=embed)
