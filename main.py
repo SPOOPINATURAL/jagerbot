@@ -405,15 +405,13 @@ class InfoPages(discord.ui.View):
 
     @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
     async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.current > 0:
-            self.current -= 1
-            await self.update_message(interaction)
+        self.current = (self.current - 1) % len(self.pages)
+        await self.update_message(interaction)
 
     @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.current < len(self.pages) - 1:
-            self.current += 1
-            await self.update_message(interaction)
+        self.current = (self.current + 1) % len(self.pages)
+        await self.update_message(interaction)
 
     async def on_timeout(self):
         for child in self.children:
