@@ -28,6 +28,7 @@ TRACKER_API_KEY = os.getenv('TRACKER_API_KEY')
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 TIMEZONES = sorted(pytz.all_timezones)
+DATA_FOLDER = "data"
 ALERTS_FILE = "data/alerts.json"
 SCORES_FILE = "data/trivia_scores.json"
 tracemalloc.start()
@@ -71,7 +72,6 @@ def load_alerts():
     try:
         with open(ALERTS_FILE, "r") as f:
             data = json.load(f)
-            # Convert time strings back to datetime
             for user_id, user_alerts in data.items():
                 for alert in user_alerts:
                     alert['time'] = datetime.fromisoformat(alert['time'])
@@ -80,7 +80,8 @@ def load_alerts():
         alerts = {}
 
 def save_alerts():
-    with open(ALERTS_FILE, "w") as f:
+    os.makedirs(DATA_FOLDER, exist_ok=True)
+    with open(ALERTS_FILE, "w", encoding="utf-8") as f:
         to_save = {}
         for user_id, user_alerts in alerts.items():
             to_save[user_id] = []

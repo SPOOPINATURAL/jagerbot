@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6631a7d-e5bf-498a-ab25-545ca9bb14d1" name="Changes" comment="" />
+    <list default="true" id="d6631a7d-e5bf-498a-ab25-545ca9bb14d1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/alerts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/trivia_scores.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/trivia_scores.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +82,7 @@
       <workItem from="1748326124437" duration="3766000" />
       <workItem from="1748330031422" duration="34000" />
       <workItem from="1748330150765" duration="744000" />
+      <workItem from="1748331177161" duration="230000" />
     </task>
     <servers />
   </component>
