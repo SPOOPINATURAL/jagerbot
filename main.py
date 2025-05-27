@@ -19,6 +19,7 @@ from dateutil.tz import UTC
 import tracemalloc
 import warnings
 import webserver
+from discord import ButtonStyle
 
 #files n shi
 load_dotenv()
@@ -28,6 +29,7 @@ print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 TIMEZONES = sorted(pytz.all_timezones)
 ALERTS_FILE = "data/alerts.json"
+SCORES_FILE = "data/trivia_scores.json"
 tracemalloc.start()
 warnings.simplefilter('always', RuntimeWarning)
 
@@ -49,7 +51,19 @@ async def fetch_json(url):
                 return await resp.json()
             else:
                 return {}
+#load scores
+def load_scores():
+    if os.path.exists(SCORES_FILE):
+        with open(SCORES_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
 
+def save_scores(scores):
+    os.makedirs("data", exist_ok=True)
+    with open(SCORES_FILE, "w", encoding="utf-8") as f:
+        json.dump(scores, f, indent=4)
+
+user_scores = load_scores()
 #alerts
 alerts = {}
 def load_alerts():
@@ -186,7 +200,9 @@ class TriviaView(discord.ui.View):
         for child in self.children:
             child.disabled = True
         if letter == self.correct_letter:
-            user_scores[interaction.user.id] = user_scores.get(interaction.user.id, 0) + 1
+            uid = str(interaction.user.id)
+            user_scores[uid] = user_scores.get(uid, 0) + 1
+            save_scores(user_scores)
             await interaction.response.edit_message(content=f"✅ Correct! Total score: **{user_scores[interaction.user.id]}**", view=self)
         else:
             await interaction.response.edit_message(content=f"❌ Wrong! Correct answer: **{self.correct_answer}**", view=self)
@@ -577,7 +593,8 @@ async def trivia(ctx):
 
 @bot.command(name='score')
 async def score(ctx):
-    scores = user_scores.get(ctx.author.id, 0)
+    uid = str(ctx.author.id)
+    score = user_scores.get(uid, 0)
     await ctx.send(f"🏆 {ctx.author.display_name}, your trivia score is: **{scores}**")
 
 #timezone conversion
