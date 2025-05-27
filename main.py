@@ -427,6 +427,7 @@ async def on_ready():
     print(f"Ready :)")
     load_alerts()
     check_alerts.start()
+    load_scores()
     activity = discord.Game(name=">info")
     await bot.change_presence(status=discord.Status.online, activity=activity)
 
