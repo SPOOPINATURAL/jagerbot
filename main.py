@@ -31,6 +31,7 @@ TIMEZONES = sorted(pytz.all_timezones)
 DATA_FOLDER = "data"
 ALERTS_FILE = "data/alerts.json"
 SCORES_FILE = "data/trivia_scores.json"
+user_scores = {}
 tracemalloc.start()
 warnings.simplefilter('always', RuntimeWarning)
 
@@ -54,16 +55,22 @@ async def fetch_json(url):
                 return {}
 #load scores
 def load_scores():
+    global user_scores
     if os.path.exists(SCORES_FILE):
-        with open(SCORES_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
+        try:
+            with open(SCORES_FILE, "r", encoding="utf-8") as f:
+                user_scores = json.load(f)
+                user_scores = {int(k): v for k, v in user_scores.items()}
+        except json.JSONDecodeError:
+            print("⚠️ Failed to load scores: JSON file is empty or corrupted.")
+            user_scores = {}
+    else:
+        user_scores = {}
 
 def save_scores(scores):
-    os.makedirs("data", exist_ok=True)
+    os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)
     with open(SCORES_FILE, "w", encoding="utf-8") as f:
         json.dump(scores, f, indent=4)
-
 user_scores = load_scores()
 #alerts
 alerts = {}
@@ -116,6 +123,7 @@ maps = all_data.get("maps",{})
 operators = all_data.get("operators",{})
 planes = all_data.get("planes",[])
 alerts = all_data.get("alerts",{})
+user_scores = all_data.get("trivia_scores",{})
 
 #aliases function
 def find_match(data_dict: dict, user_input: str):
