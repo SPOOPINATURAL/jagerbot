@@ -1,39 +1,44 @@
-import discord
-import random
-import aiohttp
-import dateparser
-import html
+import os
+import re
 import json
+import random
 import asyncio
+import logging
+import warnings
+import tracemalloc
+from datetime import datetime, timedelta
+from types import SimpleNamespace
+from typing import List
+
+import discord
 from discord.ext import commands, tasks
 from discord.ui import View, Button
-import logging
-from dotenv import load_dotenv
-import os
-import pytz
-from datetime import datetime, timedelta
-import re
+from discord import ButtonStyle, app_commands
+
+import aiohttp
+import dateparser
 from dateparser.conf import settings as dp_settings
-from types import SimpleNamespace
+import pytz
+from pytz.exceptions import UnknownTimeZoneError
 from dateutil.tz import UTC
-import tracemalloc
-import warnings
-import webserver
-from discord import ButtonStyle
-from discord import app_commands
-from typing import List
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+import webserver
+import config
+from config import (
+    DISCORD_TOKEN,
+    ALLOWED_GUILD_IDS,
+    WEATHER_API_KEY,
+    TRACKER_API_KEY,
+    TIMEZONES,
+    DATA_FOLDER,
+    ALERTS_FILE,
+    SCORES_FILE,
+)
 
 #files n shi
-load_dotenv()
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-TRACKER_API_KEY = os.getenv('TRACKER_API_KEY')
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
-WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
-TIMEZONES = sorted(pytz.all_timezones)
-DATA_FOLDER = "data"
-ALERTS_FILE = "data/alerts.json"
-SCORES_FILE = "data/trivia_scores.json"
 user_scores = {}
 tracemalloc.start()
 warnings.simplefilter('always', RuntimeWarning)
@@ -45,10 +50,17 @@ intents.members = True
 custom_settings = SimpleNamespace(**dp_settings.__dict__)
 custom_settings.RETURN_AS_TIMEZONE_AWARE = False
 timeout = aiohttp.ClientTimeout(total=5)
-ALLOWED_GUILD_IDS = {899978176355266580, 989558855023362110}
 
 bot = commands.Bot(command_prefix='>', intents=intents)
+sessions = {}
+#logs
+logging.basicConfig(
+    level=logging.INFO,  # or DEBUG for more details
+    format="[{asctime}] [{levelname}] {message}",
+    style="{",
+)
 
+logger = logging.getLogger("jagerbot")
 #who is jason and why am i fetching him
 async def fetch_json(url):
     async with aiohttp.ClientSession() as session:
@@ -78,56 +90,9 @@ def save_scores(scores):
 user_scores = load_scores()
 
 #tz stuff
-SUPPORTED_TZ = {
-        # US Timezones
-        "EST": "America/New_York",
-        "EDT": "America/New_York",
-        "CST": "America/Chicago",
-        "CDT": "America/Chicago",
-        "MST": "America/Denver",
-        "MDT": "America/Denver",
-        "PST": "America/Los_Angeles",
-        "PDT": "America/Los_Angeles",
-        "AKST": "America/Anchorage",
-        "AKDT": "America/Anchorage",
-        "HST": "Pacific/Honolulu",
-
-        # Europe
-        "GMT": "Etc/GMT",
-        "BST": "Europe/London",
-        "CET": "Europe/Paris",
-        "CEST": "Europe/Paris",
-        "EET": "Europe/Athens",
-        "EEST": "Europe/Athens",
-        "WET": "Europe/Lisbon",
-        "WEST": "Europe/Lisbon",
-
-        # Asia
-        "IST": "Asia/Kolkata",
-        "KST": "Asia/Seoul",
-        "CST": "Asia/Shanghai",
-        "SGT": "Asia/Singapore",
-        "HKT": "Asia/Hong_Kong",
-
-        # Australia
-        "AEST": "Australia/Sydney",
-        "AEDT": "Australia/Sydney",
-        "ACST": "Australia/Adelaide",
-        "ACDT": "Australia/Adelaide",
-        "AWST": "Australia/Perth",
-
-        # New Zealand
-        "NZST": "Pacific/Auckland",
-        "NZDT": "Pacific/Auckland",
-
-        # Common UTC variants
-        "UTC": "UTC",
-        "Z": "UTC",
-
-    }
 def normalize_tz(tz_str):
     tz_str = tz_str.strip().upper()
-    return SUPPORTED_TZ.get(tz_str, tz_str)
+    return config.SUPPORTED_TZ.get(tz_str, tz_str)
 #alerts
 alerts = {}
 def load_alerts():
@@ -329,74 +294,6 @@ class TriviaView(discord.ui.View):
                     ephemeral=True
                 )
 
-#quote list
-quotes = [
-    "Birthdays. Proposals. These should be surprises. No one wants a grenade to the face.",
-    "Is there sarcasm in this?",
-    "Remember, I can't fix you like I fix your cars.",
-    "I'm an engineer, not a medic!",
-    "You can stop worrying about grenades now!",
-    "Your plan is as good as your intel!",
-    "Before we start, does anyone want to bail out?",
-    "I would not have said it like that, but, it is cool.",
-    "Stay alert and watch for trouble, yes?",
-    "Just let me know when grenades start flying.",
-    "Someone owes me a steak dinner!",
-    "They said it could not be done. They said it was designed for tanks. They said, I could not make it smaller and more accurate. They were wrong.",
-    "One of my better tactical strategies is to stay alive. So far, so good.",
-]
-#images
-image_urls = [
-    "https://i.imgur.com/3ZIBxuh.png",
-    "https://i.imgur.com/fafftDC.jpeg",
-    "https://i.imgur.com/iUjJyba.png",
-    "https://i.imgur.com/wltqqd0.jpeg",
-    "https://i.imgur.com/rC6bxUS.jpeg",
-    "https://i.imgur.com/UAlUh4W.jpeg",
-    "https://i.imgur.com/K60KP2c.jpeg",
-    "https://i.imgur.com/2slTvIy.jpeg",
-    "https://i.imgur.com/tpr9aoW.png",
-    "https://i.imgur.com/wSFVwgg.jpeg",
-    "https://i.imgur.com/y3BlmVT.jpeg",
-    "https://i.imgur.com/MDp5v9G.jpeg",
-    "https://i.imgur.com/OB9X52Y.png",
-    "https://ibb.co/QFzhXkHy",
-    "https://i.imgur.com/jSbZjnG.jpeg",
-    "https://i.imgur.com/AA6zTQ7.jpeg",
-    "https://i.imgur.com/im4dYj2.jpeg",
-    "https://i.imgur.com/sdkffat.png",
-    "https://i.imgur.com/zho3DZM.png",
-    "https://i.imgur.com/4PRVmsz.png",
-    "https://i.imgur.com/yGfu5OD.png",
-    "https://i.imgur.com/KLTuASH.jpeg",
-    "https://i.imgur.com/FDog6KT.png",
-
-]
-
-#images
-clancy_images = [
-    "https://i.imgur.com/1cuthyS.jpeg",
-    "https://i.imgur.com/3QqKqky.jpeg",
-    "https://i.imgur.com/Pypy5Um.jpeg",
-    "https://i.imgur.com/pTxuW0k.jpeg",
-    "https://i.imgur.com/5N5SICy.jpeg",
-    "https://i.imgur.com/lAAkcZv.jpeg",
-    "https://i.imgur.com/1gRZP6B.jpeg",
-    "https://i.imgur.com/1Zmsj69.jpeg",
-    "https://i.imgur.com/T86njLU.jpeg",
-    "https://i.imgur.com/HWqnDQV.jpeg",
-    "https://i.imgur.com/9sRRahk.jpeg",
-    "https://i.imgur.com/FZdxbbg.jpeg",
-    "https://i.imgur.com/k9U1xsD.jpeg",
-    "https://i.imgur.com/Eb57KeJ.jpeg",
-    "https://i.imgur.com/KhiDgPa.jpeg",
-    "https://i.imgur.com/lL9YYDe.jpeg",
-    "https://i.imgur.com/CunLaFJ.jpeg",
-    "https://i.imgur.com/Eo0RxHB.jpeg",
-    "https://i.imgur.com/4ETJuvy.jpeg",
-
-]
-
 # info
 class InfoPages(discord.ui.View):
     def __init__(self):
@@ -549,13 +446,25 @@ async def role_autocomplete(interaction: discord.Interaction, current: str):
         app_commands.Choice(name=role.capitalize(), value=role)
         for role in role_choices if role.startswith(current)
     ]
+#cooldowns
+cooldowns = {}
+
+def check_cooldown(user_id, command_name, cooldown_seconds):
+    key = (user_id, command_name)
+    now = datetime.utcnow()
+    if key in cooldowns:
+        expires = cooldowns[key]
+        if now < expires:
+            return (True, (expires - now).seconds)
+    cooldowns[key] = now + timedelta(seconds=cooldown_seconds)
+    return (False, 0)
 
 #bot start events
 @bot.event
 async def on_ready():
     if not check_alerts.is_running():
         check_alerts.start()
-    print(f"Ready :)")
+    logger.info(f"Ready :)")
     load_alerts()
     load_scores()
     activity = discord.Activity(type=discord.ActivityType.watching, name="Everything")
@@ -566,23 +475,22 @@ async def on_ready():
     alerts.clear()
     sessions.clear()
     cooldowns.clear()
-
-    print("✅ Cleared caches")
+    logger.info("✅ Cleared caches")
 
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Everything"))
 def load_alerts():
-    print("Loaded alerts")
-
+    logger.info("Loaded alerts")
 
 def load_scores():
-    print("Loaded scores")
+    logger.info("Loaded scores")
 
 async def setup_hook():
-    commands = await bot.tree.fetch_commands()
-    for cmd in commands:
-        await bot.tree.delete_command(cmd.id)
-    await bot.tree.sync()
-    print("✅ Slash commands synced")
+    for guild in ALLOWED_GUILD_IDS:
+        commands = await bot.tree.fetch_commands(guild=guild)
+        for cmd in commands:
+            await bot.tree.delete_command(cmd.id)
+        await bot.tree.sync(guild=guild)
+        logger.info(f"✅ Synced slash commands for guild {guild.id}")
 
 #prefix err
 @bot.event
@@ -670,17 +578,17 @@ async def hello(interaction: discord.Interaction):
 #quote
 @bot.tree.command(name='quote', description="Get a random Jäger quote")
 async def quote(interaction: discord.Interaction):
-    selected_quotes = random.choice(quotes)
+    selected_quotes = random.choice(config.quotes)
     await interaction.response.send_message(selected_quotes)
 #images
 @bot.tree.command(name='image', description="Get a random image")
 async def image(interaction: discord.Interaction):
-    images_url = random.choice(image_urls)
+    images_url = random.choice(config.image_urls)
     await interaction.response.send_message(images_url)
 
 @bot.tree.command(name='clancy', description="Obtain a random Clancy image")
 async def clancy(interaction: discord.Interaction):
-    clancy_image = random.choice(clancy_images)
+    clancy_image = random.choice(config.clancy_images)
     await interaction.response.send_message(clancy_image)
 
 @bot.tree.command(name='longo', description="longo")
@@ -757,8 +665,13 @@ async def weather(interaction: discord.Interaction, city: str):
             await interaction.response.send_message(embed=embed)
 
 #trivia
+@commands.cooldown(rate=1, per=10, type=commands.BucketType.user)
 @bot.tree.command(name='trivia', description="Get a trivia question, multiple choice answers")
 async def trivia(interaction: discord.Interaction):
+    on_cooldown, retry_after = check_cooldown(interaction.user.id, "trivia", 10)
+    if on_cooldown:
+        await interaction.response.send_message(f"Please wait {retry_after} seconds before using this command again.", ephemeral=True)
+        return
     url = "https://opentdb.com/api.php?amount=1&type=multiple"
 
     async with aiohttp.ClientSession() as session:
@@ -832,22 +745,20 @@ async def tzconvert(interaction: discord.Interaction, time: str, from_tz: str, t
 
         converted = input_dt.astimezone(to_zone)
 
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"🕒 `{input_dt.strftime('%Y-%m-%d %H:%M')}` in **{from_tz}** is "
             f"`{converted.strftime('%Y-%m-%d %H:%M')}` in **{to_tz}**"
         )
-    except Exception:
-        await interaction.response.send_message(
-            "⚠️ Invalid format or timezone. Try examples like:\n"
-            "`/tzconvert time:now from_tz:UTC to_tz:IST`\n"
-            "`/tzconvert time:15:30 from_tz:UTC to_tz:EST`",
-            ephemeral=True
-        )
-        return
+    except UnknownTimeZoneError:
+        await interaction.followup.send("⚠️ Unknown timezone provided.", ephemeral=True)
+    except ValueError:
+        await interaction.followup.send("⚠️ Invalid time format. Use 'now', 'HH:MM' or 'YYYY-MM-DD HH:MM'.", ephemeral=True)
+    except Exception as e:
+        await interaction.followup.send(f"⚠️ An unexpected error occurred: {e}", ephemeral=True)
 #tzlist
 @bot.tree.command(name='timezones', description='List supported timezones')
 async def timezones(interaction: discord.Interaction):
-    tz_list = [f"**{abbr}** → `{full}`" for abbr, full in SUPPORTED_TZ.items()]
+    tz_list = [f"**{abbr}** → `{full}`" for abbr, full in config.SUPPORTED_TZ.items()]
     tz_text = "\n".join(tz_list)
 
     embed = discord.Embed(
@@ -1643,7 +1554,7 @@ async def airplane(interaction: discord.Interaction):
         await interaction.response.send_message(f"❌ Failed to fetch plane data: {e}")
 
 #help
-@bot.tree.command(name='info')
+@bot.tree.command(name='info', description='Command list')
 async def info(interaction: discord.Interaction):
     view = InfoPages()
     await interaction.response.send_message(embed=view.pages[0], view=view)
