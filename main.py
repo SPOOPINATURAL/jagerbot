@@ -20,6 +20,9 @@ import tracemalloc
 import warnings
 import webserver
 from discord import ButtonStyle
+from discord import app_commands
+from typing import List
+from bs4 import BeautifulSoup
 
 #files n shi
 load_dotenv()
@@ -42,6 +45,7 @@ intents.members = True
 custom_settings = SimpleNamespace(**dp_settings.__dict__)
 custom_settings.RETURN_AS_TIMEZONE_AWARE = False
 timeout = aiohttp.ClientTimeout(total=5)
+ALLOWED_GUILD_IDS = {899978176355266580, 989558855023362110}
 
 bot = commands.Bot(command_prefix='>', intents=intents)
 
@@ -72,6 +76,58 @@ def save_scores(scores):
     with open(SCORES_FILE, "w", encoding="utf-8") as f:
         json.dump(scores, f, indent=2)
 user_scores = load_scores()
+
+#tz stuff
+SUPPORTED_TZ = {
+        # US Timezones
+        "EST": "America/New_York",
+        "EDT": "America/New_York",
+        "CST": "America/Chicago",
+        "CDT": "America/Chicago",
+        "MST": "America/Denver",
+        "MDT": "America/Denver",
+        "PST": "America/Los_Angeles",
+        "PDT": "America/Los_Angeles",
+        "AKST": "America/Anchorage",
+        "AKDT": "America/Anchorage",
+        "HST": "Pacific/Honolulu",
+
+        # Europe
+        "GMT": "Etc/GMT",
+        "BST": "Europe/London",
+        "CET": "Europe/Paris",
+        "CEST": "Europe/Paris",
+        "EET": "Europe/Athens",
+        "EEST": "Europe/Athens",
+        "WET": "Europe/Lisbon",
+        "WEST": "Europe/Lisbon",
+
+        # Asia
+        "IST": "Asia/Kolkata",
+        "KST": "Asia/Seoul",
+        "CST": "Asia/Shanghai",
+        "SGT": "Asia/Singapore",
+        "HKT": "Asia/Hong_Kong",
+
+        # Australia
+        "AEST": "Australia/Sydney",
+        "AEDT": "Australia/Sydney",
+        "ACST": "Australia/Adelaide",
+        "ACDT": "Australia/Adelaide",
+        "AWST": "Australia/Perth",
+
+        # New Zealand
+        "NZST": "Pacific/Auckland",
+        "NZDT": "Pacific/Auckland",
+
+        # Common UTC variants
+        "UTC": "UTC",
+        "Z": "UTC",
+
+    }
+def normalize_tz(tz_str):
+    tz_str = tz_str.strip().upper()
+    return SUPPORTED_TZ.get(tz_str, tz_str)
 #alerts
 alerts = {}
 def load_alerts():
@@ -135,6 +191,19 @@ def find_match(data_dict: dict, user_input: str):
             return entry
     return None
 
+#map autocomplete
+async def map_autocomplete(interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
+    suggestions = []
+    for m in maps.values():
+        if "name" not in m:
+            continue
+        if current.lower() in m["name"].lower():
+            suggestions.append(app_commands.Choice(name=m["name"], value=m["name"]))
+        for alias in m.get("aliases", []):
+            if current.lower() in alias.lower():
+                suggestions.append(app_commands.Choice(name=f"{alias} (alias for {m['name']})", value=m["name"]))
+    return suggestions[:25]
+
 #timezone list
 class TimezonePaginator(discord.ui.View):
     def __init__(self, ctx):
@@ -162,14 +231,18 @@ class TimezonePaginator(discord.ui.View):
 
     @discord.ui.button(label="Previous", style=discord.ButtonStyle.secondary)
     async def prev_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.page > 0:
+        if self.page == 0:
+            self.page = self.max_page
+        else:
             self.page -= 1
             await self.update_message()
         await interaction.response.defer()
 
     @discord.ui.button(label="Next", style=discord.ButtonStyle.secondary)
     async def next_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.page < self.max_page:
+        if self.page == self.max_page:
+            self.page = 0
+        else:
             self.page += 1
             await self.update_message()
         await interaction.response.defer()
@@ -177,16 +250,28 @@ class TimezonePaginator(discord.ui.View):
 #trivia
 user_scores = {}
 class TriviaView(discord.ui.View):
-    def __init__(self, ctx, correct_letter, correct_answer, author_id):
+    def __init__(self, ctx, correct_letter: str, correct_answer: str, author_id: int):
         super().__init__(timeout=15)
         self.ctx = ctx
         self.correct_letter = correct_letter
         self.correct_answer = correct_answer
         self.author_id = author_id
         self.answered = False
+        self.message = None
 
+    async def on_timeout(self):
+        for child in self.children:
+            child.disabled = True
+        if self.message:
+            try:
+                await self.message.edit(content="⌛ Time's up! No answer was submitted.", view=self)
+            except discord.NotFound:
+                pass
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
-        return interaction.user.id == self.author_id
+        if interaction.user.id != self.author_id:
+            await interaction.response.send_message("❌ This is not your trivia question!", ephemeral=True)
+            return False
+        return True
 
     @discord.ui.button(label="A", style=discord.ButtonStyle.primary)
     async def a_button(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -204,27 +289,36 @@ class TriviaView(discord.ui.View):
     async def d_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await self.process_answer(interaction, "D")
 
-    async def process_answer(self, interaction, letter):
+    async def process_answer(self, interaction: discord.Interaction, letter: str):
+        if self.answered:
+            await interaction.response.send_message("❌ You already answered.", ephemeral=True)
+            return
+
+        self.answered = True
+        for child in self.children:
+            child.disabled = True
+
+        uid = interaction.user.id
+
         try:
-            self.answered = True
-            for child in self.children:
-                child.disabled = True
-
-            uid = str(interaction.user.id)
-
             if letter == self.correct_letter:
                 user_scores[uid] = user_scores.get(uid, 0) + 1
-                save_scores(user_scores)
-
-                await interaction.response.edit_message(
-                    content=f"✅ Correct! Total score: **{user_scores[uid]}**",
-                    view=self
-                )
+                await save_scores(user_scores)
+                try:
+                    await interaction.edit_original_response(
+                        content=f"✅ Correct! Total score: **{user_scores[uid]}**",
+                        view=self
+                    )
+                except discord.NotFound:
+                    pass
             else:
-                await interaction.response.edit_message(
-                    content=f"❌ Wrong! Correct answer: **{self.correct_answer}**",
-                    view=self
-                )
+                try:
+                    await interaction.edit_original_response(
+                        content=f"❌ Wrong! Correct answer: **{self.correct_answer}**",
+                        view=self
+                    )
+                except discord.NotFound:
+                    pass
             self.stop()
 
         except Exception as e:
@@ -318,13 +412,13 @@ class InfoPages(discord.ui.View):
             description="**R6 Siege Commands**",
             color=0x8B0000
         )
-        embed1.add_field(name=">r6stats (platform) (username)", value="Fetch R6 Siege stats from a user", inline=False)
-        embed1.add_field(name=">quote", value="Get a random Jäger quote", inline=False)
-        embed1.add_field(name=">operator (operator name)", value="Overview of a Siege Operator.", inline=False)
-        embed1.add_field(name=">operatorlist", value="List of all playable operators.", inline=False)
-        embed1.add_field(name=">operatorrandom (attack of defense)", value="Gives you a random operator.", inline=False)
-        embed1.add_field(name=">map (map name)", value="Get a floorplan of a ranked map.", inline=False)
-        embed1.add_field(name=">maplist", value="List of ranked maps", inline=False)
+        embed1.add_field(name="/r6stats (platform) (username)", value="Fetch R6 Siege stats from a user", inline=False)
+        embed1.add_field(name="/quote", value="Get a random Jäger quote", inline=False)
+        embed1.add_field(name="/op (operator name)", value="Overview of a Siege Operator.", inline=False)
+        embed1.add_field(name="/oplist", value="List of all playable operators.", inline=False)
+        embed1.add_field(name="/oprandom (attack / defense)", value="Gives you a random operator.", inline=False)
+        embed1.add_field(name="/map (map name)", value="Get a floorplan of a ranked map.", inline=False)
+        embed1.add_field(name="/maplist", value="List of ranked maps", inline=False)
         self.pages.append(embed1)
 
         # Page 2: Minecraft
@@ -333,14 +427,16 @@ class InfoPages(discord.ui.View):
             description="**Minecraft Commands**",
             color=0x8B0000
         )
-        embed2.add_field(name=">mcwiki (search term)", value="Search Minecraft Wiki.", inline=False)
-        embed2.add_field(name=">mcrecipe (item)", value="Look up a crafting recipe.", inline=False)
-        embed2.add_field(name=">mcadvancement (name)", value="Info on advancements.", inline=False)
-        embed2.add_field(name=">mcenchant (name)", value="Minecraft enchantment info.", inline=False)
-        embed2.add_field(name=">mcbiome (name)", value="Info about biomes.", inline=False)
-        embed2.add_field(name=">mcstructure (name)", value="Info about structures.", inline=False)
-        embed2.add_field(name=">mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
-        embed2.add_field(name=">mcserverstatus", value="Check VDSMP server status.", inline=False)
+        embed2.add_field(name="/mcwiki (search term)", value="Search Minecraft Wiki.", inline=False)
+        embed2.add_field(name="/mcrecipe (item)", value="Look up a crafting recipe.", inline=False)
+        embed2.add_field(name="/mcadvancement (name)", value="Info on advancements.", inline=False)
+        embed2.add_field(name="/mcenchant (name)", value="Minecraft enchantment info.", inline=False)
+        embed2.add_field(name="/mcbiome (name)", value="Info about biomes.", inline=False)
+        embed2.add_field(name="/mcstructure (name)", value="Info about structures.", inline=False)
+        embed2.add_field(name="/mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
+        if guild_id in ALLOWED_GUILDS_FOR_MCSTATUS:
+            embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
+        self.pages.append(embed2)
         self.pages.append(embed2)
 
         # Page 3: Fun
@@ -349,16 +445,16 @@ class InfoPages(discord.ui.View):
             description="**Fun / Stupid Stuff**",
             color=0x8B0000
         )
-        embed3.add_field(name=">image", value="Get a random image.", inline=False)
-        embed3.add_field(name=">longo", value="longo", inline=False)
-        embed3.add_field(name=">clancy", value="Obtain a random Clancy image.", inline=False)
-        embed3.add_field(name=">trivia", value="Play some trivia.", inline=False)
-        embed3.add_field(name=">score", value="Your trivia score.", inline=False)
-        embed3.add_field(name=">xkcd", value="Get a random xkcd comic.", inline=False)
-        embed3.add_field(name=">8ball (question)", value="8ball makes a decision for you (ex. '>8ball should i take a walk').", inline=False)
-        embed3.add_field(name=">d20", value="Roll a d20.", inline=False)
-        embed3.add_field(name=">rps", value="Play Rock, Paper, Scissors.", inline=False)
-        embed3.add_field(name=">plane", value="Gives a random WW1 plane with specs.", inline=False)
+        embed3.add_field(name="/image", value="Get a random image.", inline=False)
+        embed3.add_field(name="/longo", value="longo", inline=False)
+        embed3.add_field(name="/clancy", value="Obtain a random Clancy image.", inline=False)
+        embed3.add_field(name="/trivia", value="Play some trivia.", inline=False)
+        embed3.add_field(name="/score", value="Your trivia score.", inline=False)
+        embed3.add_field(name="/xkcd", value="Get a random xkcd comic.", inline=False)
+        embed3.add_field(name="/8ball (question)", value="8ball makes a decision for you (ex. '/8ball should i take a walk').", inline=False)
+        embed3.add_field(name="/d20", value="Roll a d20.", inline=False)
+        embed3.add_field(name="/rps", value="Play Rock, Paper, Scissors.", inline=False)
+        embed3.add_field(name="/plane", value="Gives a random WW1 plane with specs.", inline=False)
         self.pages.append(embed3)
         # Page 4: Utility
         embed4 = discord.Embed(
@@ -366,21 +462,21 @@ class InfoPages(discord.ui.View):
             description="**Utility Commands**",
             color=0x8B0000
         )
-        embed4.add_field(name=">weather (city)",
-                         value="Tells you the current weather in a city (ex.'>weather seattle').", inline=False)
-        embed4.add_field(name=">convert (time) (timezone a) to (timezone b)",
-                         value="Converts one timezone to another (ex. '>convert now UTC to IST').", inline=False)
-        embed4.add_field(name=">timezones", value="Lists every timezone.", inline=False)
-        embed4.add_field(name=">date (timezone)", value="Tells you the day and calendar date. Timezone optional.",
+        embed4.add_field(name="/weather (city)",
+                         value="Tells you the current weather in a city (ex.'/weather seattle').", inline=False)
+        embed4.add_field(name="/tzconvert (time) (timezone a) to (timezone b)",
+                         value="Converts one timezone to another (ex. '/tzconvert now UTC to IST').", inline=False)
+        embed4.add_field(name="/timezones", value="Lists every timezone.", inline=False)
+        embed4.add_field(name="/date (timezone)", value="Tells you the day and calendar date. Timezone optional.",
                          inline=False)
-        embed4.add_field(name=">currency (amount) (currency a) (currency b)",
-                         value="Converts one currency to another (ex. '>currency 100 USD EUR').", inline=False)
-        embed4.add_field(name=">alert (activity) (time)",
-                         value="Creates an alert, bot will DM you when it’s time. Use 'recurring' for repeated alerts (ex.'>alert Event in 10minutes' or '>alert Reminder 2025-06-01 18:00 PST recurring 24h').",
+        embed4.add_field(name="/currency (amount) (currency a) (currency b)",
+                         value="Converts one currency to another (ex. '/currency 100 USD EUR').", inline=False)
+        embed4.add_field(name="/alert (activity) (time)",
+                         value="Creates an alert, bot will DM you when it’s time. Use 'recurring' for repeated alerts (ex.'/alert Event in 10minutes' or '/alert Reminder 2025-06-01 18:00 PST recurring 24h').",
                          inline=False)
-        embed4.add_field(name=">listalerts", value="Lists all your alerts.", inline=False)
-        embed4.add_field(name=">cancelalerts", value="Cancels all your alerts.", inline=False)
-        embed4.add_field(name=">credits", value="See who made/helped with the bot.", inline=False)
+        embed4.add_field(name="/listalerts", value="Lists all your alerts.", inline=False)
+        embed4.add_field(name="/cancelalerts", value="Cancels all your alerts.", inline=False)
+        embed4.add_field(name="/credits", value="See who made / helped with the bot.", inline=False)
         self.pages.append(embed4)
 
         # Page 5: Warframe
@@ -389,14 +485,12 @@ class InfoPages(discord.ui.View):
             description="**Warframe Commands**",
             color=0x8B0000
         )
-        embed5.add_field(name=">wfbaro",
+        embed5.add_field(name="/wfbaro",
                          value="Tells you when Baro will arrive and where he is.", inline=False)
-        embed5.add_field(name=">wfnews",
+        embed5.add_field(name="/wfnews",
                          value="Latest Warframe news.", inline=False)
-        embed5.add_field(name=">wfnightwave", value="Warframe Nightwave quests.", inline=False)
-        embed5.add_field(name=">date (timezone)", value="Tells you the day and calendar date. Timezone optional.",
-                         inline=False)
-        embed5.add_field(name=">wfprice",
+        embed5.add_field(name="/wfnightwave", value="Warframe Nightwave quests.", inline=False)
+        embed5.add_field(name="/wfprice",
                          value="warframe.market item price.", inline=False)
         self.pages.append(embed5)
 
@@ -437,15 +531,36 @@ def get_weather_emoji(condition):
         return "🌫️"
     else:
         return "🌈"
+#ops autocomplete
+operator_names = [op['name'] for op in operators.values()]
+async def operator_autocomplete(interaction: discord.Interaction, current: str):
+    current = current.lower()
+    return [
+        app_commands.Choice(name=op_name, value=op_name)
+        for op_name in operator_names
+        if op_name.lower().startswith(current)
+    ][:25]
+#op list autocompl
+role_choices = ["attacker", "defender"]
 
+async def role_autocomplete(interaction: discord.Interaction, current: str):
+    current = current.lower()
+    return [
+        app_commands.Choice(name=role.capitalize(), value=role)
+        for role in role_choices if role.startswith(current)
+    ]
+
+#bot start events
 @bot.event
 async def on_ready():
+    if not check_alerts.is_running():
+        check_alerts.start()
     print(f"Ready :)")
     load_alerts()
-    check_alerts.start()
     load_scores()
-    activity = discord.Game(name=">info")
+    activity = discord.Activity(type=discord.ActivityType.watching, name="Everything")
     await bot.change_presence(status=discord.Status.online, activity=activity)
+    #cache clear
     global user_scores, alerts, sessions, cooldowns
     user_scores.clear()
     alerts.clear()
@@ -454,16 +569,69 @@ async def on_ready():
 
     print("✅ Cleared caches")
 
-    load_alerts()
-    load_scores()
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Everything"))
+def load_alerts():
+    print("Loaded alerts")
 
-    print(f"Ready as {bot.user}")
-    await bot.change_presence(activity=discord.Game(name=">info"))
+
+def load_scores():
+    print("Loaded scores")
+
+async def setup_hook():
+    commands = await bot.tree.fetch_commands()
+    for cmd in commands:
+        await bot.tree.delete_command(cmd.id)
+    await bot.tree.sync()
+    print("✅ Slash commands synced")
+
+#prefix err
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send("❌ Command not recognized. Use `>info` to see the list of commands.")
+        await ctx.send("❌ Command not recognized. Use `/help` or `/info` to see available commands.")
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(f"⚠️ Missing argument: `{error.param.name}`")
+    elif isinstance(error, commands.BadArgument):
+        await ctx.send("❌ Invalid argument type. Please check your input.")
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.send("🚫 You don't have permission to run this command.")
+    elif isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.")
+    elif isinstance(error, commands.BotMissingPermissions):
+        await ctx.send("⚠️ I’m missing the necessary permissions to run that command.")
     else:
+        print(f"Unhandled prefix command error: {error}")
         raise error
+
+# / err
+@bot.tree.error
+async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
+    if isinstance(error, app_commands.CommandOnCooldown):
+        await interaction.response.send_message(
+            f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.", ephemeral=True
+        )
+    elif isinstance(error, app_commands.MissingPermissions):
+        await interaction.response.send_message(
+            "🚫 You don't have permission to use this command.", ephemeral=True
+        )
+    elif isinstance(error, app_commands.BotMissingPermissions):
+        await interaction.response.send_message(
+            "⚠️ I’m missing the required permissions to do that.", ephemeral=True
+        )
+    elif isinstance(error, app_commands.CommandNotFound):
+        await interaction.response.send_message(
+            "❌ Slash command not found.", ephemeral=True
+        )
+    elif isinstance(error, app_commands.TransformerError):
+        await interaction.response.send_message(
+            "❌ Invalid input. Please check your command options.", ephemeral=True
+        )
+    else:
+        print(f"Unhandled slash command error: {error}")
+        try:
+            await interaction.response.send_message("❌ An unexpected error occurred.", ephemeral=True)
+        except discord.InteractionResponded:
+            await interaction.followup.send("❌ An unexpected error occurred.", ephemeral=True)
 
 #alerts and stuff
 @tasks.loop(seconds=30)
@@ -471,65 +639,61 @@ async def check_alerts():
     now = datetime.now(UTC)
     to_remove = []
 
-    for user_id, user_alerts in list (alerts.items()):
+    for user_id, user_alerts in list(alerts.items()):
         user = bot.get_user(int(user_id))
         if not user:
             continue
         for alarm in list(user_alerts):
             if alarm['time'] <= now:
-                user = bot.get_user(int(user_id))
-                if user:
-                    try:
-                        await user.send(f"⏰ Reminder: **{alarm['event']}**")
-                    except Exception:
-                        # Could not DM
-                        pass
+                try:
+                    await user.send(f"⏰ Reminder: **{alarm['event']}**")
+                except Exception:
+                    pass  # Could not DM
                 if alarm.get('recurring'):
-                    # Reschedule alert
                     seconds = parse_time(alarm['recurring'])
                     if seconds:
-                        alarm['time'] = alarm['time'] + timedelta(seconds=seconds)
+                        alarm['time'] += timedelta(seconds=seconds)
                 else:
                     to_remove.append((user_id, alarm))
 
     for user_id, alarm in to_remove:
         alerts[user_id].remove(alarm)
-        if len(alerts[user_id]) == 0:
+        if not alerts[user_id]:
             del alerts[user_id]
 
     save_alerts()
 
-
-@bot.command()
-async def hello(ctx):
-    await ctx.send(f"Hallo {ctx.author.mention} :)")
+@bot.tree.command(name='hello', description="Hello!")
+async def hello(interaction: discord.Interaction):
+    await interaction.response.send_message(f"Hallo {interaction.user.mention} :)")
 
 #quote
-@bot.command(name='quote')
-async def quote(ctx):
+@bot.tree.command(name='quote', description="Get a random Jäger quote")
+async def quote(interaction: discord.Interaction):
     selected_quotes = random.choice(quotes)
-    await ctx.send(selected_quotes)
+    await interaction.response.send_message(selected_quotes)
 #images
-@bot.command(name='image')
-async def image(ctx):
+@bot.tree.command(name='image', description="Get a random image")
+async def image(interaction: discord.Interaction):
     images_url = random.choice(image_urls)
-    await ctx.send(images_url)
+    await interaction.response.send_message(images_url)
 
-@bot.command(name='clancy')
-async def clancy(ctx):
+@bot.tree.command(name='clancy', description="Obtain a random Clancy image")
+async def clancy(interaction: discord.Interaction):
     clancy_image = random.choice(clancy_images)
-    await ctx.send(clancy_image)
+    await interaction.response.send_message(clancy_image)
 
-@bot.command(name='longo')
-async def longo(ctx):
+@bot.tree.command(name='longo', description="longo")
+async def longo(interaction: discord.Interaction):
     image_url = "https://i.imgur.com/J1P7g5f.jpeg"
     embed = discord.Embed(title="longo")
     embed.set_image(url=image_url)
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #r6stats
-@bot.command(name='r6stats')
-async def r6stats(ctx, platform: str, *, username: str):
+@bot.tree.command(name='r6stats', description="Get R6 stats for a player")
+@app_commands.describe(platform="e.g., uplay, xbox, psn", username="Your R6 username")
+async def r6stats(interaction: discord.Interaction, platform: str, username: str):
     url = f"https://public-api.tracker.gg/v2/r6/standard/profile/{platform}/{username}"
     headers = {
         "TRN-Api-Key": TRACKER_API_KEY
@@ -542,7 +706,7 @@ async def r6stats(ctx, platform: str, *, username: str):
             print(f"[DEBUG] Status: {resp.status}")
             print(f"[DEBUG] Response: {await resp.text()}")
             if resp.status != 200:
-                await ctx.send(f"Could not find stats for `{username}` on `{platform}`.")
+                await interaction.response.send_message(f"Could not find stats for `{username}` on `{platform}`.")
                 return
             data = await resp.json()
 
@@ -557,17 +721,17 @@ async def r6stats(ctx, platform: str, *, username: str):
     embed.add_field(name="K/D Ratio", value=kd, inline=True)
     embed.add_field(name="Win/Loss Ratio", value=win, inline=True)
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #weather
-@bot.command(name='weather')
-async def weather(ctx, *, city: str):
+@bot.tree.command(name='weather', description="Get the current weather in a city")
+@app_commands.describe(city="Name of the city (e.g. London, Tokyo)")
+async def weather(interaction: discord.Interaction, city: str):
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={WEATHER_API_KEY}&units=metric"
-
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             if resp.status != 200:
-                await ctx.send(f"❌ Could not find weather for `{city}`.")
+                await interaction.response.send_message(f"❌ Could not find weather for `{city}`.")
                 return
 
             data = await resp.json()
@@ -590,11 +754,11 @@ async def weather(ctx, *, city: str):
             embed.add_field(name="Humidity", value=f"{humidity}%", inline=True)
             embed.add_field(name="Wind Speed", value=f"{wind_mps} m/s /{wind_mph} mph", inline=True)
 
-            await ctx.send(embed=embed)
+            await interaction.response.send_message(embed=embed)
 
 #trivia
-@bot.command(name='trivia')
-async def trivia(ctx):
+@bot.tree.command(name='trivia', description="Get a trivia question, multiple choice answers")
+async def trivia(interaction: discord.Interaction):
     url = "https://opentdb.com/api.php?amount=1&type=multiple"
 
     async with aiohttp.ClientSession() as session:
@@ -617,84 +781,90 @@ async def trivia(ctx):
         embed.add_field(name=letter, value=answer, inline=False)
     embed.set_footer(text="Click the button that matches your answer.")
 
-    view = TriviaView(ctx, correct_letter, correct, ctx.author.id)
-    message = await ctx.send(embed=embed, view=view)
-
+    view = TriviaView(interaction, correct_letter, correct, interaction.user.id)
+    await interaction.response.send_message(embed=embed, view=view)
+    view.message = await interaction.original_response()
     await view.wait()
 
     if not view.answered:
         for child in view.children:
             child.disabled = True
-        await message.edit(content=f"⏰ Time's up! The correct answer was **{correct}**.", view=view)
+        try:
+            await view.message.edit(
+                content=f"⏰ Time's up! The correct answer was **{correct}**.",
+                view=view
+            )
+        except discord.NotFound:
+            pass
 
-
-@bot.command(name='score')
-async def score(ctx):
-    uid = ctx.author.id
+@bot.tree.command(name='score', description="Get your trivia score")
+async def score(interaction: discord.Interaction):
+    uid = interaction.user.id
     score = user_scores.get(uid, 0)
-    await ctx.send(f"🏆 {ctx.author.display_name}, your trivia score is: **{score}**")
+    await interaction.response.send_message(f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**")
 
 #timezone conversion
-@bot.command(name='convert')
-async def convert(ctx, *args):
+@bot.tree.command(name='tzconvert', description="Convert a time from one timezone to another")
+@app_commands.describe(
+    time="Time to convert (now, HH:MM, or YYYY-MM-DD HH:MM)",
+    from_tz="Source timezone",
+    to_tz="Target timezone"
+)
+async def tzconvert(interaction: discord.Interaction, time: str, from_tz: str, to_tz: str):
+    await interaction.response.defer()
     try:
-        args = list(args)
-        if "to" not in args:
-            return await ctx.send("⚠️ Usage: `!convert [now|HH:MM|YYYY-MM-DD HH:MM] FROM_TZ to TO_TZ`")
+        from_tz = normalize_tz(from_tz)
+        to_tz = normalize_tz(to_tz)
 
-        to_index = args.index("to")
-        from_tz = args[to_index - 1].upper()
-        to_tz = args[to_index + 1].upper()
+        from_zone = pytz.timezone(from_tz)
+        to_zone = pytz.timezone(to_tz)
 
-        if args[0].lower() == "now":
-            base_dt = datetime.now(UTC)
-            input_dt = base_dt
-            from_zone = pytz.timezone(from_tz)
-            input_dt = pytz.utc.localize(base_dt).astimezone(from_zone)
+        if time.lower() == "now":
+            input_dt = datetime.now(from_zone)
         else:
-            time_part = args[0]
-            date_part = None
-            if re.match(r"\d{4}-\d{2}-\d{2}", args[0]):
-                date_part = args[0]
-                time_part = args[1]
-                from_tz = args[2].upper()
-                to_tz = args[4].upper()
-
-            if date_part:
-                dt_str = f"{date_part} {time_part}"
-                input_dt = datetime.strptime(dt_str, "%Y-%m-%d %H:%M")
+            if re.match(r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}", time):
+                native_dt = datetime.strptime(time, "%Y-%m-%d %H:%M")
             else:
                 today = datetime.now().strftime("%Y-%m-%d")
-                input_dt = datetime.strptime(f"{today} {time_part}", "%Y-%m-%d %H:%M")
+                native_dt = datetime.strptime(f"{today} {time}", "%Y-%m-%d %H:%M")
 
-            from_zone = pytz.timezone(from_tz)
-            input_dt = from_zone.localize(input_dt)
+            input_dt = from_zone.localize(native_dt)
 
-        to_zone = pytz.timezone(to_tz)
         converted = input_dt.astimezone(to_zone)
 
-        await ctx.send(
+        await interaction.response.send_message(
             f"🕒 `{input_dt.strftime('%Y-%m-%d %H:%M')}` in **{from_tz}** is "
             f"`{converted.strftime('%Y-%m-%d %H:%M')}` in **{to_tz}**"
         )
+    except Exception:
+        await interaction.response.send_message(
+            "⚠️ Invalid format or timezone. Try examples like:\n"
+            "`/tzconvert time:now from_tz:UTC to_tz:IST`\n"
+            "`/tzconvert time:15:30 from_tz:UTC to_tz:EST`",
+            ephemeral=True
+        )
+        return
+#tzlist
+@bot.tree.command(name='timezones', description='List supported timezones')
+async def timezones(interaction: discord.Interaction):
+    tz_list = [f"**{abbr}** → `{full}`" for abbr, full in SUPPORTED_TZ.items()]
+    tz_text = "\n".join(tz_list)
 
-    except Exception as e:
-        await ctx.send("⚠️ Invalid format or timezone. Try: `!convert now UTC to IST`, `!convert 15:30 UTC to EST`")
-
-#tz list
-@bot.command(name='timezones')
-async def timezones(ctx):
-    paginator = TimezonePaginator(ctx)
     embed = discord.Embed(
-        title=f"Timezones (Page 1/{paginator.max_page + 1})",
-        description="\n".join(TIMEZONES[:paginator.items_per_page]),
-        color=0x3498db,
+        title="🕒 Supported Timezones",
+        description=tz_text,
+        color=0x8B0000,
     )
-    paginator.message = await ctx.send(embed=embed, view=paginator)
+    await interaction.response.send_message(embed=embed)
 
 #currency
-@bot.command(name='currency')
-async def currency(ctx, amount: float, from_currency: str, to_currency: str):
+@bot.tree.command(name='currency',description="Get the current exchange rate for a currency")
+@app_commands.describe(
+    amount="Amount of money to convert",
+    from_currency="Currency code to convert from (e.g., USD)",
+    to_currency="Currency code to convert to (e.g., EUR)"
+)
+async def currency(interaction: discord.Interaction, amount: float, from_currency: str, to_currency: str):
     from_currency = from_currency.upper()
     to_currency = to_currency.upper()
 
@@ -704,28 +874,29 @@ async def currency(ctx, amount: float, from_currency: str, to_currency: str):
         try:
             async with session.get(url) as resp:
                 if resp.status != 200:
-                    await ctx.send(f"❌ API request failed with status code: {resp.status}")
+                    await interaction.response.send_message(f"❌ API request failed with status code: {resp.status}")
                     return
                 data = await resp.json()
         except Exception as e:
-            await ctx.send(f"❌ Error fetching exchange rate: {e}")
+            await interaction.response.send_message(f"❌ Error fetching exchange rate: {e}")
             return
 
     if data.get("result") != "success":
-        await ctx.send(f"❌ API error: {data.get('error-type', 'Unknown error.')}")
+        await interaction.response.send_message(f"❌ API error: {data.get('error-type', 'Unknown error.')}")
         return
 
     rates = data.get("rates", {})
     if to_currency not in rates:
-        await ctx.send(f"❌ Unsupported or invalid currency: `{to_currency}`")
+        await interaction.response.send_message(f"❌ Unsupported or invalid currency: `{to_currency}`")
         return
 
     converted = amount * rates[to_currency]
-    await ctx.send(f"💱 {amount} {from_currency} = {converted:.2f} {to_currency}")
+    await interaction.response.send_message(f"💱 {amount} {from_currency} = {converted:.2f} {to_currency}")
 
 #alert commands
-@bot.command(name="alert")
-async def alert(ctx, *, input_str: str):
+@bot.tree.command(name="alert", description="Set an alert for a specific event")
+@app_commands.describe(input_str="Alert details, e.g. 'Meeting at 15:00 recurring 1h'")
+async def alert(interaction: discord.Interaction, *, input_str: str):
     recurring = None
     if "recurring" in input_str:
         parts = input_str.rsplit("recurring", 1)
@@ -733,7 +904,7 @@ async def alert(ctx, *, input_str: str):
         recurring = parts[1].strip()
 
         if parse_time(recurring) is None:
-            await ctx.send("❌ Invalid recurring time format! Use number + s/m/h.")
+            await interaction.response.send_message("❌ Invalid recurring time format! Use number + s/m/h.")
             return
 
     keywords = [' in ', ' at ', ' on ', ' tomorrow', ' today', ' next ', ' this ']
@@ -756,15 +927,15 @@ async def alert(ctx, *, input_str: str):
     date = dateparser.parse(datetime_str, settings={'RETURN_AS_TIMEZONE_AWARE': True, 'TO_TIMEZONE': 'UTC'})
 
     if date is None:
-        await ctx.send("❌ Couldn't parse the date/time. Try a different format.")
+        await interaction.response.send_message("❌ Couldn't parse the date/time. Try a different format.")
         return
 
     now = datetime.now(UTC)
     if date < now:
-        await ctx.send("❌ The specified time is in the past.")
+        await interaction.response.send_message("❌ The specified time is in the past.")
         return
 
-    user_id = str(ctx.author.id)
+    user_id = str(interaction.user.id)
     if user_id not in alerts:
         alerts[user_id] = []
 
@@ -776,27 +947,27 @@ async def alert(ctx, *, input_str: str):
 
     save_alerts()
 
-    await ctx.send(f"✅ Alert for **{event}** set at {date.strftime('%Y-%m-%d %H:%M:%S %Z')}"
+    await interaction.response.send_message(f"✅ Alert for **{event}** set at {date.strftime('%Y-%m-%d %H:%M:%S %Z')}"
                    + (f", recurring every {recurring}" if recurring else "") + ".")
 
-@bot.command(name="cancelalerts")
-async def cancelalerts(ctx):
-    user_id = str(ctx.author.id)
+@bot.tree.command(name="cancelalerts", description="Cancel all your active alerts")
+async def cancelalerts(interaction: discord.Interaction):
+    user_id = str(interaction.user.id)
     if user_id in alerts:
         del alerts[user_id]
         save_alerts()
-        await ctx.send("🛑 All your alerts have been cancelled.")
+        await interaction.response.send_message("🛑 All your alerts have been cancelled.")
     else:
-        await ctx.send("ℹ️ You have no active alerts.")
+        await interaction.response.send_message("ℹ️ You have no active alerts.")
 
-@bot.command(name="listalerts")
-async def listalerts(ctx):
-    user_id = str(ctx.author.id)
+@bot.tree.command(name="listalerts", description="List all your active alerts")
+async def listalerts(interaction: discord.Interaction):
+    user_id = str(interaction.user.id)
     if user_id not in alerts or len(alerts[user_id]) == 0:
-        await ctx.send("ℹ️ You have no active alerts.")
+        await interaction.response.send_message("ℹ️ You have no active alerts.")
         return
 
-    embed = discord.Embed(title=f"{ctx.author.name}'s Alerts", color=0x2ecc71)
+    embed = discord.Embed(title=f"{interaction.user.name}'s Alerts", color=0x2ecc71)
     for i, alert in enumerate(alerts[user_id], 1):
         time_left = alert['time'] - datetime.now(UTC)
         minutes, seconds = divmod(int(time_left.total_seconds()), 60)
@@ -805,13 +976,15 @@ async def listalerts(ctx):
         recur = f" (recurring every {alert['recurring']})" if alert.get('recurring') else ""
         embed.add_field(name=f"{i}. {alert['event']}", value=f"Triggers in {time_str}{recur}", inline=False)
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 #r6 op info
-@bot.command(name='operator', aliases=["op"])
-async def operator_command(ctx, *, name: str):
+@bot.tree.command(name='op', description="Get information about an R6 operator")
+@app_commands.describe(name="Name of the operator")
+@app_commands.autocomplete(name=operator_autocomplete)
+async def operator_command(interaction: discord.Interaction, name: str):
     op = find_match(operators, name)
     if not op:
-        await ctx.send(f"❌ Operator `{name}` not found.")
+        await interaction.response.send_message(f"❌ Operator `{name}` not found.", ephemeral=True)
         return
 
     embed = discord.Embed(
@@ -833,31 +1006,40 @@ async def operator_command(ctx, *, name: str):
     if op.get('icon_url'):
         embed.set_thumbnail(url=op['icon_url'])
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #op list
-@bot.command(name="operatorlist", aliases=["oplist","listops"])
-async def operator_list(ctx):
-    names = sorted(op_data["name"] for op in operators)
+@bot.tree.command(name="oplist", description="List all R6 operators")
+async def operator_list(interaction: discord.Interaction):
+    json_path = os.path.join("data", "operators.json")
+    try:
+        with open(json_path, "r", encoding="utf-8") as f:
+            op_data = json.load(f)
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Failed to load operator data: {e}", ephemeral=True)
+        return
+    names = sorted(op_data.keys())
 
     columns = [[], [], []]
     for i, name in enumerate(names):
         columns[i % 3].append(name)
-
+    col_text = ["\n".join(col) for col in columns]
     embed = discord.Embed(
         title="Available Operators",
-        description="Use `>operator [name]` to view detailed info.",
+        description="Use `/op [name]` to view detailed info.",
         color=0x8B0000
     )
     embed.add_field(name="Operators A–H", value=col_text[0] or "None", inline=True)
     embed.add_field(name="Operators I–R", value=col_text[1] or "None", inline=True)
     embed.add_field(name="Operators S–Z", value=col_text[2] or "None", inline=True)
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #random op
-@bot.command(name="operatorrandom", aliases=["oprandom", "randomop", "randomoperator"])
-async def r6_operator(ctx, role: str = None):
+@bot.tree.command(name="oprandom", description="Get a random R6 operator")
+@app_commands.describe(role="Filter by role: attacker or defender")
+@app_commands.autocomplete(role=role_autocomplete)
+async def r6_operator(interaction: discord.Interaction, role: str = None):
     try:
         role_aliases = {
             "attacker": ["attack", "attacker", "atk", "attk"],
@@ -872,7 +1054,7 @@ async def r6_operator(ctx, role: str = None):
                     selected_role = key
                     break
             if not selected_role:
-                await ctx.send("❌ Invalid role! Use `attack` or `defense` (or aliases like `atk`, `def`).")
+                await interaction.response.send_message("❌ Invalid role! Use `attack` or `defense` (or aliases like `atk`, `def`).")
                 return
 
         operators_list = list(operators.values()) if isinstance(operators, dict) else operators
@@ -880,7 +1062,7 @@ async def r6_operator(ctx, role: str = None):
         filtered = [op for op in operators_list if op.get("role", "").lower() == selected_role] if selected_role else operators_list
 
         if not filtered:
-            await ctx.send("❌ No operators found for that role.")
+            await interaction.response.send_message("❌ No operators found for that role.")
             return
 
         op = random.choice(filtered)
@@ -904,70 +1086,83 @@ async def r6_operator(ctx, role: str = None):
         if op.get('icon_url'):
             embed.set_thumbnail(url=op['icon_url'])
 
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
     except Exception as e:
-        await ctx.send(f"❌ Failed to load operator: {e}")
+        await interaction.response.send_message(f"❌ Failed to load operator: {e}")
 
 #map info
-@bot.command(name="map")
-async def map(ctx, *, name: str):
+@bot.tree.command(name="map", description="Get information about a R6 map")
+@app_commands.describe(name="Name of the map to lookup")
+@app_commands.autocomplete(name=map_autocomplete)
+async def map(interaction: discord.Interaction, name: str):
     try:
         if not isinstance(maps, dict):
-            await ctx.send("❌ Map data is not in the correct format.")
+            await interaction.response.send_message("❌ Map data is not in the correct format.")
             return
 
         m = find_match(maps, name)
         if not m:
-            await ctx.send(f"❌ Map `{name}` not found.")
+            await interaction.response.send_message(f"❌ Map `{name}` not found.")
             return
 
         floors = m.get("floors", [])
         total = len(floors)
         if total == 0:
-            await ctx.send(f"❌ Map `{m.get('name', name)}` has no floors data.")
+            await interaction.response.send_message(f"❌ Map `{m.get('name', name)}` has no floors data.")
             return
 
         def make_embed(idx: int) -> discord.Embed:
             fl = floors[idx]
             embed = discord.Embed(
                 title=f"{m.get('name', 'Unknown')} – {fl.get('name', 'Floor')}",
-                description=f"Floor {idx+1} / {total}",
+                description=f"Floor {idx + 1} / {total}",
                 color=0x8B0000
             )
             embed.set_image(url=fl.get("image", ""))
             return embed
 
-        class FloorView(View):
+        class FloorView(discord.ui.View):
             def __init__(self):
                 super().__init__(timeout=60)
                 self.i = 0
+                self.message = None
 
             @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
-            async def back(self, interaction: discord.Interaction, button: Button):
+            async def back(self, interaction: discord.Interaction, button: discord.ui.Button):
                 self.i = (self.i - 1) % total
-                await interaction.response.edit_message(embed=make_embed(self.i), view=self)
+                await interaction.response.defer()
+                await interaction.edit_original_response(embed=make_embed(self.i), view=self)
 
             @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
-            async def forward(self, interaction: discord.Interaction, button: Button):
+            async def forward(self, interaction: discord.Interaction, button: discord.ui.Button):
                 self.i = (self.i + 1) % total
-                await interaction.response.edit_message(embed=make_embed(self.i), view=self)
+                await interaction.response.defer()
+                await interaction.edit_original_response(embed=make_embed(self.i), view=self)
 
-        await ctx.send(embed=make_embed(0), view=FloorView())
+            async def on_timeout(self):
+                for child in self.children:
+                    child.disabled = True
+                if self.message:
+                    await self.message.edit(view=self)
+
+        view = FloorView()
+        await interaction.response.send_message(embed=make_embed(0), view=view)
+        view.message = await interaction.original_response()
 
     except Exception as e:
-        await ctx.send(f"❌ Error during map lookup: `{e}`")
+        await interaction.response.send_message(f"❌ Error during map lookup: `{e}`", ephemeral=True)
 
 #maplist
-@bot.command(name="maplist")
-async def map_list(ctx):
+@bot.tree.command(name="maplist", description="List all ranked R6 maps")
+async def map_list(interaction: discord.Interaction):
     try:
         if isinstance(maps, dict):
             map_names = sorted(m["name"] for m in maps.values() if "name" in m)
         else:
             map_names = sorted(m["name"] for m in maps if "name" in m)
     except Exception as e:
-        await ctx.send(f"❌ Failed to load map data: `{e}`")
+        await interaction.response.send_message(f"❌ Failed to load map data: `{e}`", ephemeral=True)
         return
 
     half = (len(map_names) + 1) // 2
@@ -976,17 +1171,18 @@ async def map_list(ctx):
 
     embed = discord.Embed(
         title="Available Ranked Maps",
-        description="Use `>map <name>` to view floorplans.",
+        description="Use `/map (name)` to view floorplans.",
         color=0x8B0000
     )
     embed.add_field(name="Maps A–M", value="\n".join(col1) or "—", inline=True)
     embed.add_field(name="Maps N–Z", value="\n".join(col2) or "—", inline=True)
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #8ball
-@bot.command(name="8ball")
-async def eight_ball(ctx, *, question: str):
+@bot.tree.command(name="8ball", description="Ask the magic 8ball a question")
+@app_commands.describe(question="Your yes/no question")
+async def eight_ball(interaction: discord.Interaction, question: str):
     responses = [
         "🎱 Yes, definitely.",
         "🎱 It is certain.",
@@ -1009,25 +1205,25 @@ async def eight_ball(ctx, *, question: str):
         description=f"**Question:** {question}\n**Answer:** {response}",
         color=0x8B0000
     )
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #xkcd
-@bot.command(name="xkcd")
-async def random_xkcd(ctx):
+@bot.tree.command(name="xkcd", description="Get a random XKCD comic")
+async def random_xkcd(interaction: discord.Interaction):
     async with aiohttp.ClientSession() as session:
         async with session.get("https://c.xkcd.com/random/comic/", allow_redirects=False) as resp:
             if resp.status != 302:
-                await ctx.send("Couldn't fetch a random XKCD comic.")
+                await interaction.response.send_message("Couldn't fetch a random XKCD comic.",ephemeral=True)
                 return
             location = resp.headers.get("Location")
             if not location:
-                await ctx.send("Couldn't get the comic URL.")
+                await interaction.response.send_message("Couldn't get the comic URL.",ephemeral=True)
                 return
 
         json_url = location + "info.0.json"
         async with session.get(json_url) as resp:
             if resp.status != 200:
-                await ctx.send("Couldn't fetch XKCD comic info.")
+                await interaction.response.send_message("Couldn't fetch XKCD comic info.",ephemeral=True)
                 return
             comic = await resp.json()
 
@@ -1039,10 +1235,10 @@ async def random_xkcd(ctx):
     embed.set_image(url=comic["img"])
     embed.set_footer(text=f"Comic #{comic['num']}")
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 #credits
-@bot.command(name="credits")
-async def credit(ctx):
+@bot.tree.command(name="credits",description="Get the credits for this bot")
+async def credit(interaction: discord.Interaction):
     embed = discord.Embed(
         title="Bot Credits",
         description="Made by **SPOOPINATURAL**",
@@ -1074,54 +1270,49 @@ async def credit(ctx):
         inline=True
     )
 
-    # Icon
+    #icon
     embed.set_thumbnail(url="https://i.imgur.com/BxmePJZ.png")
 
-    # Banner
+    #banner
     embed.set_image(url="https://i.imgur.com/x6DzWEK.png")
 
     embed.set_footer(text="Thank you for using the bot!")
 
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 #dice
-@bot.command(name="d20")
-async def roll_d20(ctx):
+@bot.tree.command(name="d20", description="Roll d20")
+async def roll_d20(interaction: discord.Interaction):
     result = random.randint(1, 20)
-
     embed = discord.Embed(
         title="🎲 D20 Roll",
         description=f"You rolled a **{result}**!",
         color=0x8B0000
     )
-
-    # Optional: special messages for crit success/fail
-    if result == 20:
-        embed.add_field(name="Critical Success!", value="🎉 You nailed it!", inline=False)
-    elif result == 1:
-        embed.add_field(name="Critical Fail!", value="💀 Oof... try again!", inline=False)
-
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
 #rps
-@bot.command(name="rps")
-async def rps_command(ctx):
+@bot.tree.command(name="rps", description="Play Rock, Paper, Scissors")
+async def rps_command(interaction: discord.Interaction):
     class RPSView(View):
         def __init__(self):
             super().__init__(timeout=15)
 
         @discord.ui.button(label="🪨 Rock", style=discord.ButtonStyle.secondary)
-        async def rock(self, interaction: discord.Interaction, button: Button):
-            await handle_choice(interaction, "rock")
+        async def rock(self, interaction2: discord.Interaction, button: Button):
+            await handle_choice(interaction2, "rock")
 
         @discord.ui.button(label="📄 Paper", style=discord.ButtonStyle.secondary)
-        async def paper(self, interaction: discord.Interaction, button: Button):
-            await handle_choice(interaction, "paper")
+        async def paper(self, interaction2: discord.Interaction, button: Button):
+            await handle_choice(interaction2, "paper")
 
         @discord.ui.button(label="✂️ Scissors", style=discord.ButtonStyle.secondary)
-        async def scissors(self, interaction: discord.Interaction, button: Button):
-            await handle_choice(interaction, "scissors")
+        async def scissors(self, interaction2: discord.Interaction, button: Button):
+            await handle_choice(interaction2, "scissors")
 
-    async def handle_choice(interaction, user_choice):
+    async def handle_choice(interaction2, user_choice):
+        if interaction2.user.id != interaction.user.id:
+            await interaction2.response.send_message("You're not the original player!", ephemeral=True)
+            return
         bot_choice = random.choice(["rock", "paper", "scissors"])
 
         if user_choice == bot_choice:
@@ -1131,26 +1322,27 @@ async def rps_command(ctx):
             (user_choice == "paper" and bot_choice == "rock") or
             (user_choice == "scissors" and bot_choice == "paper")
         ):
-            result = "You win! 🎉"
+            result = "You win!"
         else:
-            result = "You lose! 💀"
+            result = "You lose!"
 
         embed = discord.Embed(
             title="🪨📄✂️ Rock Paper Scissors",
             description=f"**You:** {user_choice.capitalize()}\n**Bot:** {bot_choice.capitalize()}\n\n**{result}**",
             color=0x8B0000
         )
-        await interaction.response.edit_message(embed=embed, view=None)
+        await interaction2.response.edit_message(embed=embed, view=None)
 
-    await ctx.send("Choose your move:", view=RPSView())
+    await interaction.response.send_message("Choose your move:", view=RPSView())
 
 #date
-@bot.command(name="date")
-async def date_command(ctx, tz: str = "UTC"):
+@bot.tree.command(name="date", description="Get the current date")
+@app_commands.describe(tz="Timezone name (e.g. Europe/London). Defaults to UTC.")
+async def date_command(interaction: discord.Interaction, tz: str = None):
     try:
-        timezone = pytz.timezone(tz)
+        timezone = pytz.timezone(tz) if tz else pytz.UTC
     except pytz.UnknownTimeZoneError:
-        await ctx.send(f"❌ Unknown timezone: `{tz}`. Use `>timezones` for a list.")
+        await interaction.response.send_message(f"❌ Unknown timezone: `{tz}`. Use `/timezones` for a list.")
         return
 
     now = datetime.now(timezone)
@@ -1163,57 +1355,144 @@ async def date_command(ctx, tz: str = "UTC"):
         description=f"**{day}**, {date_str} — {time_str} ({tz})",
         color=0x8B0000
     )
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
+
 #mcwiki search
-@bot.command(name="mcwiki")
-async def mcwiki(ctx, *, query: str):
+@bot.tree.command(name="mcwiki", description="Search Minecraft Wiki")
+@app_commands.describe(query="The wiki page to search")
+async def mcwiki(interaction: discord.Interaction, query: str):
     search = query.replace(" ", "_")
     url = f"https://minecraft.wiki/w/{search}"
     embed = discord.Embed(
-        title=f"Minecraft Wiki: {query.title()}",
+        title=f"📖 Minecraft Wiki: {query.title()}",
         description=f"[Click here to view the wiki page]({url})",
         color=0x55a630
     )
-    await ctx.send(embed=embed)
+    await interaction.response.send_message(embed=embed)
 
-# >mcrecipe [item]
-@bot.command(name="mcrecipe")
-async def mcrecipe(ctx, *, item: str):
-    await ctx.send(f"🔧 Crafting recipe for **{item.title()}**: [View on wiki](https://minecraft.wiki/w/{item.replace(' ', '_')})")
+@bot.tree.command(name="mcrecipe", description="Get crafting recipe from Minecraft Wiki")
+@app_commands.describe(item="The item to get recipe for")
+async def mcrecipe(interaction: discord.Interaction, item: str):
+    await interaction.response.defer()  # Acknowledge and allow more time
 
-# >mcadvancement [name]
-@bot.command(name="mcadvancement")
-async def mcadvancement(ctx, *, name: str):
-    await ctx.send(f"🏆 Info on advancement **{name.title()}**: [View on wiki](https://minecraft.wiki/w/{name.replace(' ', '_')})")
+    item_name = item.replace(" ", "_").title()
+    wiki_url = f"https://minecraft.wiki/w/{item_name}"
 
-# >mcenchant [name]
-@bot.command(name="mcenchant")
-async def mcenchant(ctx, *, name: str):
-    await ctx.send(f"✨ Enchantment **{name.title()}** details: [View on wiki](https://minecraft.wiki/w/{name.replace(' ', '_')})")
+    recipe_image_url = None
 
-# >mcbiome [name]
-@bot.command(name="mcbiome")
-async def mcbiome(ctx, *, name: str):
-    await ctx.send(f"🌲 Biome **{name.title()}** info: [View on wiki](https://minecraft.wiki/w/{name.replace(' ', '_')})")
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.get(wiki_url) as resp:
+                if resp.status != 200:
+                    await interaction.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
+                    return
+                html = await resp.text()
+                soup = BeautifulSoup(html, "html.parser")
 
-# >mcstructure [name]
-@bot.command(name="mcstructure")
-async def mcstructure(ctx, *, name: str):
-    await ctx.send(f"🏛️ Structure **{name.title()}**: [View on wiki](https://minecraft.wiki/w/{name.replace(' ', '_')})")
+                crafting_table = soup.find("table", class_="crafting-table")
+                if crafting_table:
+                    img = crafting_table.find("img")
+                    if img and img.has_attr("src"):
+                        recipe_image_url = img["src"]
 
+                # fallback
+                if not recipe_image_url:
+                    crafting_div = soup.find(lambda tag: tag.name == "div" and ("crafting" in tag.get("id", "") or "crafting" in tag.get("class", [])))
+                    if crafting_div:
+                        img = crafting_div.find("img")
+                        if img and img.has_attr("src"):
+                            recipe_image_url = img["src"]
+
+                # fallback2
+                if not recipe_image_url:
+                    img = soup.find("img")
+                    if img and img.has_attr("src"):
+                        recipe_image_url = img["src"]
+
+                # url normalize
+                if recipe_image_url and recipe_image_url.startswith("//"):
+                    recipe_image_url = "https:" + recipe_image_url
+                elif recipe_image_url and recipe_image_url.startswith("/"):
+                    recipe_image_url = "https://minecraft.wiki" + recipe_image_url
+
+        except Exception:
+            recipe_image_url = None
+
+    embed = discord.Embed(
+        title=f"Crafting Recipe for {item.title()}",
+        url=wiki_url,
+        color=0x55a630,
+        description=f"[View full page on Minecraft Wiki]({wiki_url})"
+    )
+    if recipe_image_url:
+        embed.set_image(url=recipe_image_url)
+    else:
+        embed.set_footer(text="Recipe image not found, please check the wiki page link.")
+
+    await interaction.followup.send(embed=embed)
+
+@bot.tree.command(name="mcadvancement", description="Get advancement info from Minecraft Wiki")
+@app_commands.describe(name="Advancement name")
+async def mcadvancement(interaction: discord.Interaction, name: str):
+    search = name.replace(" ", "_")
+    url = f"https://minecraft.wiki/w/{search}"
+    embed = discord.Embed(
+        title=f"🏆 Info on advancement {name.title()}",
+        description=f"[View on wiki]({url})",
+        color=0x55a630
+    )
+    await interaction.response.send_message(embed=embed)
+
+@bot.tree.command(name="mcenchant", description="Get enchantment info from Minecraft Wiki")
+@app_commands.describe(name="Enchantment name")
+async def mcenchant(interaction: discord.Interaction, name: str):
+    search = name.replace(" ", "_")
+    url = f"https://minecraft.wiki/w/{search}"
+    embed = discord.Embed(
+        title=f"✨ Enchantment {name.title()} details",
+        description=f"[View on wiki]({url})",
+        color=0x55a630
+    )
+    await interaction.response.send_message(embed=embed)
+
+@bot.tree.command(name="mcbiome", description="Get biome info from Minecraft Wiki")
+@app_commands.describe(name="Biome name")
+async def mcbiome(interaction: discord.Interaction, name: str):
+    search = name.replace(" ", "_")
+    url = f"https://minecraft.wiki/w/{search}"
+    embed = discord.Embed(
+        title=f"🌲 Biome {name.title()} info",
+        description=f"[View on wiki]({url})",
+        color=0x55a630
+    )
+    await interaction.response.send_message(embed=embed)
+
+@bot.tree.command(name="mcstructure", description="Get structure info from Minecraft Wiki")
+@app_commands.describe(name="Structure name")
+async def mcstructure(interaction: discord.Interaction, name: str):
+    search = name.replace(" ", "_")
+    url = f"https://minecraft.wiki/w/{search}"
+    embed = discord.Embed(
+        title=f"🏛️ Structure {name.title()}",
+        description=f"[View on wiki]({url})",
+        color=0x55a630
+    )
+    await interaction.response.send_message(embed=embed)
 # >mcplayer [username]
-@bot.command(name="mcplayer")
-async def mcplayer(ctx, username: str):
+@bot.tree.command(name="mcplayer",description="Get Minecraft player info")
+@app_commands.describe(username="Minecraft IGN")
+async def mcplayer(interaction: discord.Interaction, username: str):
     try:
+        await interaction.response.defer()
         async with aiohttp.ClientSession() as session:
             headers = {"User-Agent": "Mozilla/5.0"}
             async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{username}", headers=headers) as resp:
                 if resp.status != 200:
-                    await ctx.send("❌ Could not find that player.")
+                    await interaction.followup.send("❌ Could not find that player.")
                     return
                 data = await resp.json()
                 uuid = data["id"]
-        head_url = f"https://visage.surgeplay.com/head/128/{uuid}.png"
+        head_url = f"https://minotar.net/helm/{uuid}/128.png"
         skin_url = f"https://visage.surgeplay.com/full/512/{uuid}.png"
 
         embed = discord.Embed(
@@ -1223,25 +1502,32 @@ async def mcplayer(ctx, username: str):
         )
         embed.set_image(url=skin_url)
         embed.set_thumbnail(url=head_url)
-        await ctx.send(embed=embed)
+        await interaction.followup.send(embed=embed)
     except Exception as e:
-        await ctx.send(f"❌ Error: `{e}`")
+        await interaction.followup.send(f"❌ Error: `{e}`")
 
 #mcserverstatus
-@bot.command(name="mcserverstatus")
-async def mcserverstatus(ctx):
+@bot.tree.command(name="mcserverstatus", description="Get the status of the VDSMP")
+async def mcserverstatus(interaction: discord.Interaction):
+    if interaction.guild_id not in ALLOWED_GUILD_IDS:
+        await interaction.response.send_message(
+            "❌ This command is not available in this server.",
+            ephemeral=True
+        )
+        return
+    await interaction.response.defer()
     try:
         server_ip = "vdsmp.mc.gg"
 
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
                 if resp.status != 200:
-                    await ctx.send("❌ Error contacting the status API.")
+                    await interaction.response.send_message("❌ Error contacting the status API.")
                     return
                 data = await resp.json()
 
         if not data.get("online"):
-            await ctx.send("❌ The server is currently **offline**.")
+            await interaction.response.send_message("❌ The server is currently **offline**.")
             return
 
         motd = " ".join(data["motd"]["clean"]) if "motd" in data else "No MOTD"
@@ -1261,17 +1547,23 @@ async def mcserverstatus(ctx):
 
         icon = data.get("icon")
         if icon and icon.startswith("data:image/png;base64,"):
-            pass  # Skip setting the thumbnail because Discord doesn't support base64
+            pass
         elif icon:
             embed.set_thumbnail(url=icon)
 
-        await ctx.send(embed=embed)
+        await interaction.followup.send(embed=embed)
     except Exception as e:
-        await ctx.send(f"❌ Error in mcserverstatus: `{e}`")
+        await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
 
 #wf baro
-@bot.command(name="wfbaro")
-async def wfbaro(ctx):
+@bot.tree.command(name="wfbaro", description="Warframe Baro status")
+async def wfbaro(interaction: discord.Interaction):
+    await interaction.response.defer()
+
+    async def fetch_json(url):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                return await resp.json()
     data = await fetch_json("https://api.warframestat.us/pc/voidTrader")
     if data.get("active"):
         inventory = "\n".join([f"{item['item']} - {item['ducats']} Ducats, {item['credits']} Cr" for item in data["inventory"]])
@@ -1279,44 +1571,52 @@ async def wfbaro(ctx):
     else:
         msg = f"**Baro is not here right now.** Next visit: {data['startString']}"
 
-    await ctx.send(msg)
+    await interaction.followup.send(msg)
 
 #wfnews
-@bot.command(name="wfnews")
-async def wfnews(ctx):
+@bot.tree.command(name="wfnews", description="Warframe News")
+async def wfnews(interaction: discord.Interaction):
+    async def fetch_json(url):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                return await resp.json()
     news = await fetch_json("https://api.warframestat.us/pc/news")
-    items = [f"**{n['message']}**\n<n{n['link']}>" for n in news[:5]]
-    await ctx.send("\n\n".join(items))
+    items = [f"**{n['message']}**\n<{n['link']}>" for n in news[:5]]
+    await interaction.response.send_message("\n\n".join(items))
 
 #wf nightwave
-@bot.command(name="wfnightwave")
-async def wfnightwave(ctx):
+@bot.tree.command(name="wfnightwave", description="Warframe Nightwave status")
+async def wfnightwave(interaction: discord.Interaction):
+    async def fetch_json(url):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                return await resp.json()
     data = await fetch_json("https://api.warframestat.us/pc/nightwave")
     missions = [f"**{m['title']}** - {m['reputation']} Rep" for m in data.get("activeChallenges", [])]
-    await ctx.send("**Nightwave Challenges:**\n" + "\n".join(missions))
+    await interaction.response.send_message("**Nightwave Challenges:**\n" + "\n".join(missions))
 
 #wf prices
-@bot.command(name="wfprice")
-async def wfprice(ctx, *, item: str):
+@bot.tree.command(name="wfprice",description="Warframe prices from warframe.market")
+async def wfprice(interaction: discord.Interaction, item: str):
     item_url = item.replace(" ", "_").lower()
     async with aiohttp.ClientSession() as session:
         async with session.get(f"https://api.warframe.market/v1/items/{item_url}/orders") as resp:
             if resp.status != 200:
-                await ctx.send("❌ Item not found or API issue.")
+                await interaction.response.send_message("❌ Item not found or API issue.")
                 return
             data = await resp.json()
             sell_orders = [o for o in data["payload"]["orders"] if o["order_type"] == "sell" and o["user"]["status"] == "ingame"]
             if sell_orders:
                 cheapest = sorted(sell_orders, key=lambda x: x["platinum"])[0]
-                await ctx.send(f"💰 Cheapest in-game seller: {cheapest['platinum']}p ({cheapest['user']['ingame_name']})")
+                await interaction.response.send_message(f"💰 Cheapest in-game seller: {cheapest['platinum']}p ({cheapest['user']['ingame_name']})")
             else:
-                await ctx.send("❌ No in-game sellers found.")
+                await interaction.response.send_message("❌ No in-game sellers found.")
 #random plane
-@bot.command(name="plane")
-async def airplane(ctx):
+@bot.tree.command(name="plane",description="Get a random WW1 plane")
+async def airplane(interaction: discord.Interaction):
     try:
         if not planes:
-            await ctx.send("❌ No plane data loaded.")
+            await interaction.response.send_message("❌ No plane data loaded.")
             return
 
         plane = random.choice(planes)
@@ -1337,17 +1637,18 @@ async def airplane(ctx):
         embed.set_image(url=plane.get("image", ""))
         embed.set_footer(text="Random WW1 Plane")
 
-        await ctx.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
     except Exception as e:
-        await ctx.send(f"❌ Failed to fetch plane data: {e}")
+        await interaction.response.send_message(f"❌ Failed to fetch plane data: {e}")
 
 #help
-@bot.command(name='info')
-async def info(ctx):
+@bot.tree.command(name='info')
+async def info(interaction: discord.Interaction):
     view = InfoPages()
-    message = await ctx.send(embed=view.pages[0], view=view)
-    view.message = message
+    await interaction.response.send_message(embed=view.pages[0], view=view)
+    msg = await interaction.original_response()
+    view.message = msg
 if __name__ == "__main__":
     webserver.keep_alive()
     bot.run(DISCORD_TOKEN, log_handler=handler, log_level=logging.DEBUG)
