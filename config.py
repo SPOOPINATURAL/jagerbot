@@ -9,8 +9,8 @@ ALLOWED_GUILD_IDS = {899978176355266580, 989558855023362110}
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 TIMEZONES = sorted(pytz.all_timezones)
 DATA_FOLDER = "data"
-ALERTS_FILE = "data/alerts.json"
-SCORES_FILE = "data/trivia_scores.json"
+ALERTS_FILE = f"{DATA_FOLDER}/alerts.json"
+SCORES_FILE = f"{DATA_FOLDER}/trivia_scores.json"
 
 SUPPORTED_TZ = {
         # US Timezones

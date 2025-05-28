@@ -1,29 +1,24 @@
-import os
-import re
-import json
-import random
-import asyncio
-import logging
-import warnings
-import tracemalloc
+#standard stuff
+import os, re, json, random, asyncio, logging, warnings, tracemalloc
 from datetime import datetime, timedelta
 from types import SimpleNamespace
 from typing import List
 
+#3rd party
 import discord
 from discord.ext import commands, tasks
 from discord.ui import View, Button
 from discord import ButtonStyle, app_commands
-
 import aiohttp
 import dateparser
-from dateparser.conf import settings as dp_settings
 import pytz
 from pytz.exceptions import UnknownTimeZoneError
 from dateutil.tz import UTC
 from bs4 import BeautifulSoup
+from dateparser.conf import settings as dp_settings
 from dotenv import load_dotenv
 
+#local
 import webserver
 import config
 from config import (
@@ -36,6 +31,9 @@ from config import (
     ALERTS_FILE,
     SCORES_FILE,
 )
+from views.trivia import TriviaView
+from views.rps import RPSView
+from commands.r6 import r6, operators, maps
 
 #files n shi
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
@@ -87,7 +85,7 @@ def save_scores(scores):
     os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)
     with open(SCORES_FILE, "w", encoding="utf-8") as f:
         json.dump(scores, f, indent=2)
-user_scores = load_scores()
+load_scores()
 
 #tz stuff
 def normalize_tz(tz_str):
@@ -140,8 +138,8 @@ def load_all_json_from_folder(folder="data"):
     return data
 all_data = load_all_json_from_folder()
 
-maps = all_data.get("maps",{})
-operators = all_data.get("operators",{})
+r6.operators.update(all_data.get("operators", {}))
+r6.maps.update(all_data.get("maps", {}))
 planes = all_data.get("planes",[])
 alerts = all_data.get("alerts",{})
 user_scores = all_data.get("trivia_scores",{})
@@ -155,19 +153,6 @@ def find_match(data_dict: dict, user_input: str):
         if "aliases" in entry and user_input in [a.lower() for a in entry["aliases"]]:
             return entry
     return None
-
-#map autocomplete
-async def map_autocomplete(interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
-    suggestions = []
-    for m in maps.values():
-        if "name" not in m:
-            continue
-        if current.lower() in m["name"].lower():
-            suggestions.append(app_commands.Choice(name=m["name"], value=m["name"]))
-        for alias in m.get("aliases", []):
-            if current.lower() in alias.lower():
-                suggestions.append(app_commands.Choice(name=f"{alias} (alias for {m['name']})", value=m["name"]))
-    return suggestions[:25]
 
 #timezone list
 class TimezonePaginator(discord.ui.View):
@@ -214,92 +199,13 @@ class TimezonePaginator(discord.ui.View):
 
 #trivia
 user_scores = {}
-class TriviaView(discord.ui.View):
-    def __init__(self, ctx, correct_letter: str, correct_answer: str, author_id: int):
-        super().__init__(timeout=15)
-        self.ctx = ctx
-        self.correct_letter = correct_letter
-        self.correct_answer = correct_answer
-        self.author_id = author_id
-        self.answered = False
-        self.message = None
-
-    async def on_timeout(self):
-        for child in self.children:
-            child.disabled = True
-        if self.message:
-            try:
-                await self.message.edit(content="⌛ Time's up! No answer was submitted.", view=self)
-            except discord.NotFound:
-                pass
-    async def interaction_check(self, interaction: discord.Interaction) -> bool:
-        if interaction.user.id != self.author_id:
-            await interaction.response.send_message("❌ This is not your trivia question!", ephemeral=True)
-            return False
-        return True
-
-    @discord.ui.button(label="A", style=discord.ButtonStyle.primary)
-    async def a_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self.process_answer(interaction, "A")
-
-    @discord.ui.button(label="B", style=discord.ButtonStyle.primary)
-    async def b_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self.process_answer(interaction, "B")
-
-    @discord.ui.button(label="C", style=discord.ButtonStyle.primary)
-    async def c_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self.process_answer(interaction, "C")
-
-    @discord.ui.button(label="D", style=discord.ButtonStyle.primary)
-    async def d_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self.process_answer(interaction, "D")
-
-    async def process_answer(self, interaction: discord.Interaction, letter: str):
-        if self.answered:
-            await interaction.response.send_message("❌ You already answered.", ephemeral=True)
-            return
-
-        self.answered = True
-        for child in self.children:
-            child.disabled = True
-
-        uid = interaction.user.id
-
-        try:
-            if letter == self.correct_letter:
-                user_scores[uid] = user_scores.get(uid, 0) + 1
-                await save_scores(user_scores)
-                try:
-                    await interaction.edit_original_response(
-                        content=f"✅ Correct! Total score: **{user_scores[uid]}**",
-                        view=self
-                    )
-                except discord.NotFound:
-                    pass
-            else:
-                try:
-                    await interaction.edit_original_response(
-                        content=f"❌ Wrong! Correct answer: **{self.correct_answer}**",
-                        view=self
-                    )
-                except discord.NotFound:
-                    pass
-            self.stop()
-
-        except Exception as e:
-            print(f"Error processing trivia answer: {e}")
-            if not interaction.response.is_done():
-                await interaction.response.send_message(
-                    "⚠️ An error occurred while processing your answer.",
-                    ephemeral=True
-                )
-
 # info
 class InfoPages(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=120)
         self.pages = []
         self.current = 0
+        self.guild_id = guild_id
         self.create_pages()
 
     def create_pages(self):
@@ -331,9 +237,8 @@ class InfoPages(discord.ui.View):
         embed2.add_field(name="/mcbiome (name)", value="Info about biomes.", inline=False)
         embed2.add_field(name="/mcstructure (name)", value="Info about structures.", inline=False)
         embed2.add_field(name="/mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
-        if guild_id in ALLOWED_GUILD_IDS:
+        if self.guild_id in config.ALLOWED_GUILD_IDS:
             embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
-        self.pages.append(embed2)
         self.pages.append(embed2)
 
         # Page 3: Fun
@@ -470,9 +375,7 @@ async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.watching, name="Everything")
     await bot.change_presence(status=discord.Status.online, activity=activity)
     #cache clear
-    global user_scores, alerts, sessions, cooldowns
-    user_scores.clear()
-    alerts.clear()
+    global sessions, cooldowns
     sessions.clear()
     cooldowns.clear()
     logger.info("✅ Cleared caches")
@@ -485,12 +388,9 @@ def load_scores():
     logger.info("Loaded scores")
 
 async def setup_hook():
-    for guild in ALLOWED_GUILD_IDS:
-        commands = await bot.tree.fetch_commands(guild=guild)
-        for cmd in commands:
-            await bot.tree.delete_command(cmd.id)
-        await bot.tree.sync(guild=guild)
-        logger.info(f"✅ Synced slash commands for guild {guild.id}")
+    await bot.tree.sync()
+    await bot.tree.add_command(r6)
+    logger.info(f"✅ Synced slash commands")
 
 #prefix err
 @bot.event
@@ -598,39 +498,6 @@ async def longo(interaction: discord.Interaction):
     embed.set_image(url=image_url)
     await interaction.response.send_message(embed=embed)
 
-#r6stats
-@bot.tree.command(name='r6stats', description="Get R6 stats for a player")
-@app_commands.describe(platform="e.g., uplay, xbox, psn", username="Your R6 username")
-async def r6stats(interaction: discord.Interaction, platform: str, username: str):
-    url = f"https://public-api.tracker.gg/v2/r6/standard/profile/{platform}/{username}"
-    headers = {
-        "TRN-Api-Key": TRACKER_API_KEY
-    }
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, headers=headers) as resp:
-            status = resp.status
-            text = await resp.text()
-            print(f"[DEBUG] Status: {resp.status}")
-            print(f"[DEBUG] Response: {await resp.text()}")
-            if resp.status != 200:
-                await interaction.response.send_message(f"Could not find stats for `{username}` on `{platform}`.")
-                return
-            data = await resp.json()
-
-    stats = data['data']['segments'][0]['stats']
-    rank = stats.get('rankedRank', {}).get('displayValue', 'N/A')
-    kd = stats.get('killsDeathRatio', {}).get('displayValue', 'N/A')
-    win = stats.get('winLossRatio', {}).get('displayValue', 'N/A')
-
-    embed = discord.Embed(title=f"R6 Stats for {username}", color=0x00ff00)
-    embed.add_field(name="Platform", value=platform.upper(), inline=True)
-    embed.add_field(name="Rank", value=rank, inline=True)
-    embed.add_field(name="K/D Ratio", value=kd, inline=True)
-    embed.add_field(name="Win/Loss Ratio", value=win, inline=True)
-
-    await interaction.response.send_message(embed=embed)
-
 #weather
 @bot.tree.command(name='weather', description="Get the current weather in a city")
 @app_commands.describe(city="Name of the city (e.g. London, Tokyo)")
@@ -694,7 +561,12 @@ async def trivia(interaction: discord.Interaction):
         embed.add_field(name=letter, value=answer, inline=False)
     embed.set_footer(text="Click the button that matches your answer.")
 
-    view = TriviaView(interaction, correct_letter, correct, interaction.user.id)
+    view = TriviaView(
+        author_id=interaction.user.id,
+        correct_letter=correct_letter,
+        correct_answer=correct,
+        answer_callback=handle_trivia_answer
+    )
     await interaction.response.send_message(embed=embed, view=view)
     view.message = await interaction.original_response()
     await view.wait()
@@ -703,12 +575,12 @@ async def trivia(interaction: discord.Interaction):
         for child in view.children:
             child.disabled = True
         try:
-            await view.message.edit(
-                content=f"⏰ Time's up! The correct answer was **{correct}**.",
-                view=view
-            )
+            await view.message.edit(content=f"⏰ Time's up! The correct answer was **{correct}**.", view=view)
         except discord.NotFound:
             pass
+async def handle_trivia_answer(user_id: int, is_correct: bool):
+    user_scores[user_id] = user_scores.get(user_id, 0) + int(is_correct)
+    save_scores(user_scores)
 
 @bot.tree.command(name='score', description="Get your trivia score")
 async def score(interaction: discord.Interaction):
@@ -919,177 +791,6 @@ async def operator_command(interaction: discord.Interaction, name: str):
 
     await interaction.response.send_message(embed=embed)
 
-#op list
-@bot.tree.command(name="oplist", description="List all R6 operators")
-async def operator_list(interaction: discord.Interaction):
-    json_path = os.path.join("data", "operators.json")
-    try:
-        with open(json_path, "r", encoding="utf-8") as f:
-            op_data = json.load(f)
-    except Exception as e:
-        await interaction.response.send_message(f"❌ Failed to load operator data: {e}", ephemeral=True)
-        return
-    names = sorted(op_data.keys())
-
-    columns = [[], [], []]
-    for i, name in enumerate(names):
-        columns[i % 3].append(name)
-    col_text = ["\n".join(col) for col in columns]
-    embed = discord.Embed(
-        title="Available Operators",
-        description="Use `/op [name]` to view detailed info.",
-        color=0x8B0000
-    )
-    embed.add_field(name="Operators A–H", value=col_text[0] or "None", inline=True)
-    embed.add_field(name="Operators I–R", value=col_text[1] or "None", inline=True)
-    embed.add_field(name="Operators S–Z", value=col_text[2] or "None", inline=True)
-
-    await interaction.response.send_message(embed=embed)
-
-#random op
-@bot.tree.command(name="oprandom", description="Get a random R6 operator")
-@app_commands.describe(role="Filter by role: attacker or defender")
-@app_commands.autocomplete(role=role_autocomplete)
-async def r6_operator(interaction: discord.Interaction, role: str = None):
-    try:
-        role_aliases = {
-            "attacker": ["attack", "attacker", "atk", "attk"],
-            "defender": ["defense", "defender", "def"],
-        }
-        selected_role = None
-
-        if role:
-            role = role.lower()
-            for key, aliases in role_aliases.items():
-                if role in aliases:
-                    selected_role = key
-                    break
-            if not selected_role:
-                await interaction.response.send_message("❌ Invalid role! Use `attack` or `defense` (or aliases like `atk`, `def`).")
-                return
-
-        operators_list = list(operators.values()) if isinstance(operators, dict) else operators
-
-        filtered = [op for op in operators_list if op.get("role", "").lower() == selected_role] if selected_role else operators_list
-
-        if not filtered:
-            await interaction.response.send_message("❌ No operators found for that role.")
-            return
-
-        op = random.choice(filtered)
-
-        embed = discord.Embed(
-            title=op.get('name', 'Unknown'),
-            description=op.get('bio', 'No bio available.'),
-            color=0x8B0000
-        )
-        embed.add_field(name="Role", value=op.get('role', 'N/A'), inline=True)
-        embed.add_field(name="Health", value=op.get('health', 'N/A'), inline=True)
-        embed.add_field(name="Speed", value=op.get('speed', 'N/A'), inline=True)
-        embed.add_field(name="Squad", value=op.get('squad', 'N/A'), inline=True)
-        embed.add_field(name="Primary Weapons", value=", ".join(op.get('primary_weapons', [])), inline=False)
-        embed.add_field(name="Secondary Weapons", value=", ".join(op.get('secondary_weapons', [])), inline=False)
-        embed.add_field(name="Primary Gadget", value=op.get('primary_gadget', 'N/A'), inline=False)
-        embed.add_field(name="Secondary Gadgets", value=", ".join(op.get('secondary_gadgets', [])), inline=False)
-
-        if op.get('image_url'):
-            embed.set_image(url=op['image_url'])
-        if op.get('icon_url'):
-            embed.set_thumbnail(url=op['icon_url'])
-
-        await interaction.response.send_message(embed=embed)
-
-    except Exception as e:
-        await interaction.response.send_message(f"❌ Failed to load operator: {e}")
-
-#map info
-@bot.tree.command(name="map", description="Get information about a R6 map")
-@app_commands.describe(name="Name of the map to lookup")
-@app_commands.autocomplete(name=map_autocomplete)
-async def map(interaction: discord.Interaction, name: str):
-    try:
-        if not isinstance(maps, dict):
-            await interaction.response.send_message("❌ Map data is not in the correct format.")
-            return
-
-        m = find_match(maps, name)
-        if not m:
-            await interaction.response.send_message(f"❌ Map `{name}` not found.")
-            return
-
-        floors = m.get("floors", [])
-        total = len(floors)
-        if total == 0:
-            await interaction.response.send_message(f"❌ Map `{m.get('name', name)}` has no floors data.")
-            return
-
-        def make_embed(idx: int) -> discord.Embed:
-            fl = floors[idx]
-            embed = discord.Embed(
-                title=f"{m.get('name', 'Unknown')} – {fl.get('name', 'Floor')}",
-                description=f"Floor {idx + 1} / {total}",
-                color=0x8B0000
-            )
-            embed.set_image(url=fl.get("image", ""))
-            return embed
-
-        class FloorView(discord.ui.View):
-            def __init__(self):
-                super().__init__(timeout=60)
-                self.i = 0
-                self.message = None
-
-            @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
-            async def back(self, interaction: discord.Interaction, button: discord.ui.Button):
-                self.i = (self.i - 1) % total
-                await interaction.response.defer()
-                await interaction.edit_original_response(embed=make_embed(self.i), view=self)
-
-            @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
-            async def forward(self, interaction: discord.Interaction, button: discord.ui.Button):
-                self.i = (self.i + 1) % total
-                await interaction.response.defer()
-                await interaction.edit_original_response(embed=make_embed(self.i), view=self)
-
-            async def on_timeout(self):
-                for child in self.children:
-                    child.disabled = True
-                if self.message:
-                    await self.message.edit(view=self)
-
-        view = FloorView()
-        await interaction.response.send_message(embed=make_embed(0), view=view)
-        view.message = await interaction.original_response()
-
-    except Exception as e:
-        await interaction.response.send_message(f"❌ Error during map lookup: `{e}`", ephemeral=True)
-
-#maplist
-@bot.tree.command(name="maplist", description="List all ranked R6 maps")
-async def map_list(interaction: discord.Interaction):
-    try:
-        if isinstance(maps, dict):
-            map_names = sorted(m["name"] for m in maps.values() if "name" in m)
-        else:
-            map_names = sorted(m["name"] for m in maps if "name" in m)
-    except Exception as e:
-        await interaction.response.send_message(f"❌ Failed to load map data: `{e}`", ephemeral=True)
-        return
-
-    half = (len(map_names) + 1) // 2
-    col1 = map_names[:half]
-    col2 = map_names[half:]
-
-    embed = discord.Embed(
-        title="Available Ranked Maps",
-        description="Use `/map (name)` to view floorplans.",
-        color=0x8B0000
-    )
-    embed.add_field(name="Maps A–M", value="\n".join(col1) or "—", inline=True)
-    embed.add_field(name="Maps N–Z", value="\n".join(col2) or "—", inline=True)
-
-    await interaction.response.send_message(embed=embed)
-
 #8ball
 @bot.tree.command(name="8ball", description="Ask the magic 8ball a question")
 @app_commands.describe(question="Your yes/no question")
@@ -1204,47 +905,8 @@ async def roll_d20(interaction: discord.Interaction):
 #rps
 @bot.tree.command(name="rps", description="Play Rock, Paper, Scissors")
 async def rps_command(interaction: discord.Interaction):
-    class RPSView(View):
-        def __init__(self):
-            super().__init__(timeout=15)
-
-        @discord.ui.button(label="🪨 Rock", style=discord.ButtonStyle.secondary)
-        async def rock(self, interaction2: discord.Interaction, button: Button):
-            await handle_choice(interaction2, "rock")
-
-        @discord.ui.button(label="📄 Paper", style=discord.ButtonStyle.secondary)
-        async def paper(self, interaction2: discord.Interaction, button: Button):
-            await handle_choice(interaction2, "paper")
-
-        @discord.ui.button(label="✂️ Scissors", style=discord.ButtonStyle.secondary)
-        async def scissors(self, interaction2: discord.Interaction, button: Button):
-            await handle_choice(interaction2, "scissors")
-
-    async def handle_choice(interaction2, user_choice):
-        if interaction2.user.id != interaction.user.id:
-            await interaction2.response.send_message("You're not the original player!", ephemeral=True)
-            return
-        bot_choice = random.choice(["rock", "paper", "scissors"])
-
-        if user_choice == bot_choice:
-            result = "It's a draw!"
-        elif (
-            (user_choice == "rock" and bot_choice == "scissors") or
-            (user_choice == "paper" and bot_choice == "rock") or
-            (user_choice == "scissors" and bot_choice == "paper")
-        ):
-            result = "You win!"
-        else:
-            result = "You lose!"
-
-        embed = discord.Embed(
-            title="🪨📄✂️ Rock Paper Scissors",
-            description=f"**You:** {user_choice.capitalize()}\n**Bot:** {bot_choice.capitalize()}\n\n**{result}**",
-            color=0x8B0000
-        )
-        await interaction2.response.edit_message(embed=embed, view=None)
-
-    await interaction.response.send_message("Choose your move:", view=RPSView())
+    view = RPSView(player_id=interaction.user.id)
+    await interaction.response.send_message("Choose your move:", view=view)
 
 #date
 @bot.tree.command(name="date", description="Get the current date")
@@ -1556,10 +1218,8 @@ async def airplane(interaction: discord.Interaction):
 #help
 @bot.tree.command(name='info', description='Command list')
 async def info(interaction: discord.Interaction):
-    view = InfoPages()
-    await interaction.response.send_message(embed=view.pages[0], view=view)
-    msg = await interaction.original_response()
-    view.message = msg
+    view = InfoPages(interaction.guild_id if interaction.guild_id else 0)
+    view.message = await interaction.response.send_message(embed=view.pages[0], view=view)
 if __name__ == "__main__":
     webserver.keep_alive()
-    bot.run(DISCORD_TOKEN, log_handler=handler, log_level=logging.DEBUG)
+    bot.run(config.DISCORD_TOKEN, log_handler=handler, log_level=logging.INFO)
