@@ -434,7 +434,7 @@ class InfoPages(discord.ui.View):
         embed2.add_field(name="/mcbiome (name)", value="Info about biomes.", inline=False)
         embed2.add_field(name="/mcstructure (name)", value="Info about structures.", inline=False)
         embed2.add_field(name="/mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
-        if guild_id in ALLOWED_GUILDS_FOR_MCSTATUS:
+        if guild_id in ALLOWED_GUILD_IDS:
             embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
         self.pages.append(embed2)
         self.pages.append(embed2)
