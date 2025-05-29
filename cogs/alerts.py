@@ -7,10 +7,9 @@ import discord
 logger = logging.getLogger(__name__)
 
 class AlertCog(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-        self.alerts = load_alerts()
-        self.check_alerts.start()
+    async def cog_load(self):
+        if not self.check_alerts.is_running():
+            self.check_alerts.start()
 
     @tasks.loop(seconds=30)
     async def check_alerts(self):

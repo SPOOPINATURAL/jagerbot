@@ -164,7 +164,7 @@ class R6Cog(commands.Cog):
 
 async def setup(bot: commands.Bot):
     cog = R6Cog(bot)
-    bot.tree.add_command(app_commands.Group(name="r6", description="Rainbow Six Siege commands"))
+    bot.tree.add_command(app_commands.Group(name="r6", description="Rainbow Six Siege cogs"))
     bot.tree.add_command(cog.stats, parent=bot.tree.get_command("r6"))
     bot.tree.add_command(cog.op_command, parent=bot.tree.get_command("r6"))
     bot.tree.add_command(cog.oprandom, parent=bot.tree.get_command("r6"))

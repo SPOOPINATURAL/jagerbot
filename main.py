@@ -1,42 +1,32 @@
 #standard stuff
-import os, re, json, random, asyncio, logging, warnings, tracemalloc
-from datetime import datetime, timedelta
+import os, re, random, logging, warnings, tracemalloc
+from datetime import datetime
 from types import SimpleNamespace
-from typing import List
 
 #3rd party
 import discord
-from discord.ext import commands, tasks
-from discord.ui import View, Button
-from discord import ButtonStyle, app_commands
+from discord.ext import commands
+from discord import app_commands
 import aiohttp
 import dateparser
 import pytz
 from pytz.exceptions import UnknownTimeZoneError
 from dateutil.tz import UTC
-from bs4 import BeautifulSoup
 from dateparser.conf import settings as dp_settings
-from dotenv import load_dotenv
 
 #local
 import webserver
 import config
 from config import (
     DISCORD_TOKEN,
-    ALLOWED_GUILD_IDS,
     WEATHER_API_KEY,
     TRACKER_API_KEY,
-    TIMEZONES,
-    DATA_FOLDER,
-    ALERTS_FILE,
-    SCORES_FILE,
 )
 from views.trivia import TriviaView
 from views.rps import RPSView
-from commands.r6 import r6, operators, maps
+from cogs.r6 import r6, operators, maps
 import utils.helpers as helpers
-from utils.alerts import AlertChecker
-from views.timezone_paginator import TimezonePaginator
+from cogs.alerts import AlertChecker
 from views.info_pages import InfoPages
 
 #files n shi
@@ -70,91 +60,62 @@ user_scores = all_data.get("trivia_scores",{})
 UTC = pytz.UTC
 alert_checker = AlertChecker(bot, alerts, UTC, parse_time, save_alerts)
 
-#trivia
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 user_scores = {}
 
 
 #bot start events
-@bot.event
-async def on_ready():
-    logger.info("Bot is ready, loading alerts and scores...")
+class JagerBot(commands.Bot):
+    def __init__(self):
+        intents = discord.Intents.default()
+        intents.message_content = True
 
-    load_alerts()
-    load_scores()
-
-    if not check_alerts.is_running():
-        check_alerts.start()
-
-    activity = discord.Activity(type=discord.ActivityType.watching, name="Everything")
-    await bot.change_presence(status=discord.Status.online, activity=activity)
-
-    global sessions, cooldowns
-    sessions.clear()
-    cooldowns.clear()
-    logger.info("✅ Cleared caches")
-
-    logger.info("Ready :)")
-
-def load_alerts():
-    logger.info("Loaded alerts")
-
-def load_scores():
-    logger.info("Loaded scores")
-
-async def setup_hook():
-    await bot.tree.sync()
-    await bot.tree.add_command(r6)
-    logger.info(f"✅ Synced slash commands")
-
-#prefix err
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("❌ Command not recognized. Use `/help` or `/info` to see available commands.")
-    elif isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send(f"⚠️ Missing argument: `{error.param.name}`")
-    elif isinstance(error, commands.BadArgument):
-        await ctx.send("❌ Invalid argument type. Please check your input.")
-    elif isinstance(error, commands.MissingPermissions):
-        await ctx.send("🚫 You don't have permission to run this command.")
-    elif isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.")
-    elif isinstance(error, commands.BotMissingPermissions):
-        await ctx.send("⚠️ I’m missing the necessary permissions to run that command.")
-    else:
-        print(f"Unhandled prefix command error: {error}")
-        raise error
-
-# / err
-@bot.tree.error
-async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
-    if isinstance(error, app_commands.CommandOnCooldown):
-        await interaction.response.send_message(
-            f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.", ephemeral=True
+        super().__init__(
+            command_prefix=">",
+            intents=intents,
+            help_command = None
         )
-    elif isinstance(error, app_commands.MissingPermissions):
-        await interaction.response.send_message(
-            "🚫 You don't have permission to use this command.", ephemeral=True
-        )
-    elif isinstance(error, app_commands.BotMissingPermissions):
-        await interaction.response.send_message(
-            "⚠️ I’m missing the required permissions to do that.", ephemeral=True
-        )
-    elif isinstance(error, app_commands.CommandNotFound):
-        await interaction.response.send_message(
-            "❌ Slash command not found.", ephemeral=True
-        )
-    elif isinstance(error, app_commands.TransformerError):
-        await interaction.response.send_message(
-            "❌ Invalid input. Please check your command options.", ephemeral=True
-        )
-    else:
-        print(f"Unhandled slash command error: {error}")
-        try:
-            await interaction.response.send_message("❌ An unexpected error occurred.", ephemeral=True)
-        except discord.InteractionResponded:
-            await interaction.followup.send("❌ An unexpected error occurred.", ephemeral=True)
 
+    async def setup_hook(self):
+        # cogs
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py") and not filename.startswith("_"):
+                await self.load_extension(f"cogs.{filename[:-3]}")
+        await self.tree.sync()
+        logger.info("✅ Synced slash commands")
+
+        # bg tasks
+        if not self.check_alerts.is_running():
+            self.check_alerts.start()
+
+    async def on_ready(self):
+        logger.info("Bot is ready, loading alerts and scores...")
+        self.load_alerts()
+        self.load_scores()
+
+        await self.change_presence(
+            status=discord.Status.online,
+            activity=discord.Activity(type=discord.ActivityType.watching, name="Everything")
+        )
+
+        sessions.clear()
+        cooldowns.clear()
+        logger.info("✅ Cleared caches")
+        logger.info("Ready :)")
+
+    def load_alerts(self):
+        logger.info("Loaded alerts")
+
+    def load_scores(self):
+        logger.info("Loaded scores")
+
+#entrypoint
+if __name__ == "__main__":
+    bot = JagerBot()
+
+    import asyncio
+    asyncio.run(bot.start(DISCORD_TOKEN))
 
 @bot.tree.command(name='hello', description="Hello!")
 async def hello(interaction: discord.Interaction):
@@ -170,12 +131,12 @@ async def quote(interaction: discord.Interaction):
 async def image(interaction: discord.Interaction):
     images_url = random.choice(config.image_urls)
     await interaction.response.send_message(images_url)
-
+#clanc
 @bot.tree.command(name='clancy', description="Obtain a random Clancy image")
 async def clancy(interaction: discord.Interaction):
     clancy_image = random.choice(config.clancy_images)
     await interaction.response.send_message(clancy_image)
-
+#longo
 @bot.tree.command(name='longo', description="longo")
 async def longo(interaction: discord.Interaction):
     image_url = "https://i.imgur.com/J1P7g5f.jpeg"
@@ -361,121 +322,6 @@ async def currency(interaction: discord.Interaction, amount: float, from_currenc
     converted = amount * rates[to_currency]
     await interaction.response.send_message(f"💱 {amount} {from_currency} = {converted:.2f} {to_currency}")
 
-#alert commands
-@bot.tree.command(name="alert", description="Set an alert for a specific event")
-@app_commands.describe(input_str="Alert details, e.g. 'Meeting at 15:00 recurring 1h'")
-async def alert(interaction: discord.Interaction, *, input_str: str):
-    recurring = None
-    if "recurring" in input_str:
-        parts = input_str.rsplit("recurring", 1)
-        input_str = parts[0].strip()
-        recurring = parts[1].strip()
-
-        if parse_time(recurring) is None:
-            await interaction.response.send_message("❌ Invalid recurring time format! Use number + s/m/h.")
-            return
-
-    keywords = [' in ', ' at ', ' on ', ' tomorrow', ' today', ' next ', ' this ']
-    split_pos = None
-    for kw in keywords:
-        pos = input_str.lower().find(kw)
-        if pos != -1:
-            split_pos = pos
-            break
-
-    if split_pos is not None:
-        event = input_str[:split_pos].strip()
-        datetime_str = input_str[split_pos:].strip()
-    else:
-        # fallback
-        parts = input_str.split(maxsplit=1)
-        event = parts[0]
-        datetime_str = parts[1] if len(parts) > 1 else ""
-
-    date = dateparser.parse(datetime_str, settings={'RETURN_AS_TIMEZONE_AWARE': True, 'TO_TIMEZONE': 'UTC'})
-
-    if date is None:
-        await interaction.response.send_message("❌ Couldn't parse the date/time. Try a different format.")
-        return
-
-    now = datetime.now(UTC)
-    if date < now:
-        await interaction.response.send_message("❌ The specified time is in the past.")
-        return
-
-    user_id = str(interaction.user.id)
-    if user_id not in alerts:
-        alerts[user_id] = []
-
-    alerts[user_id].append({
-        "event": event,
-        "time": date,
-        "recurring": recurring
-    })
-
-    save_alerts()
-
-    await interaction.response.send_message(f"✅ Alert for **{event}** set at {date.strftime('%Y-%m-%d %H:%M:%S %Z')}"
-                   + (f", recurring every {recurring}" if recurring else "") + ".")
-
-@bot.tree.command(name="cancelalerts", description="Cancel all your active alerts")
-async def cancelalerts(interaction: discord.Interaction):
-    user_id = str(interaction.user.id)
-    if user_id in alerts:
-        del alerts[user_id]
-        save_alerts()
-        await interaction.response.send_message("🛑 All your alerts have been cancelled.")
-    else:
-        await interaction.response.send_message("ℹ️ You have no active alerts.")
-
-@bot.tree.command(name="listalerts", description="List all your active alerts")
-async def listalerts(interaction: discord.Interaction):
-    user_id = str(interaction.user.id)
-    if user_id not in alerts or len(alerts[user_id]) == 0:
-        await interaction.response.send_message("ℹ️ You have no active alerts.")
-        return
-
-    embed = discord.Embed(title=f"{interaction.user.name}'s Alerts", color=0x2ecc71)
-    for i, alert in enumerate(alerts[user_id], 1):
-        time_left = alert['time'] - datetime.now(UTC)
-        minutes, seconds = divmod(int(time_left.total_seconds()), 60)
-        hours, minutes = divmod(minutes, 60)
-        time_str = f"{hours}h {minutes}m {seconds}s" if hours else f"{minutes}m {seconds}s"
-        recur = f" (recurring every {alert['recurring']})" if alert.get('recurring') else ""
-        embed.add_field(name=f"{i}. {alert['event']}", value=f"Triggers in {time_str}{recur}", inline=False)
-
-    await interaction.response.send_message(embed=embed)
-#r6 op info
-@bot.tree.command(name='op', description="Get information about an R6 operator")
-@app_commands.describe(name="Name of the operator")
-@app_commands.autocomplete(name=operator_autocomplete)
-async def operator_command(interaction: discord.Interaction, name: str):
-    op = find_match(operators, name)
-    if not op:
-        await interaction.response.send_message(f"❌ Operator `{name}` not found.", ephemeral=True)
-        return
-
-    embed = discord.Embed(
-        title=op['name'],
-        description=op['bio'],
-        color=0x8B0000
-    )
-    embed.add_field(name="Role", value=op['role'], inline=True)
-    embed.add_field(name="Health", value=op['health'], inline=True)
-    embed.add_field(name="Speed", value=op['speed'], inline=True)
-    embed.add_field(name="Squad", value=op['squad'], inline=True)
-    embed.add_field(name="Primary Weapons", value=", ".join(op['primary_weapons']), inline=False)
-    embed.add_field(name="Secondary Weapons", value=", ".join(op['secondary_weapons']), inline=False)
-    embed.add_field(name="Primary Gadget", value=op['primary_gadget'], inline=False)
-    embed.add_field(name="Secondary Gadgets", value=", ".join(op['secondary_gadgets']), inline=False)
-
-    if op.get('image_url'):
-        embed.set_image(url=op['image_url'])
-    if op.get('icon_url'):
-        embed.set_thumbnail(url=op['icon_url'])
-
-    await interaction.response.send_message(embed=embed)
-
 #8ball
 @bot.tree.command(name="8ball", description="Ask the magic 8ball a question")
 @app_commands.describe(question="Your yes/no question")
@@ -615,260 +461,6 @@ async def date_command(interaction: discord.Interaction, tz: str = None):
     )
     await interaction.response.send_message(embed=embed)
 
-#mcwiki search
-@bot.tree.command(name="mcwiki", description="Search Minecraft Wiki")
-@app_commands.describe(query="The wiki page to search")
-async def mcwiki(interaction: discord.Interaction, query: str):
-    search = query.replace(" ", "_")
-    url = f"https://minecraft.wiki/w/{search}"
-    embed = discord.Embed(
-        title=f"📖 Minecraft Wiki: {query.title()}",
-        description=f"[Click here to view the wiki page]({url})",
-        color=0x55a630
-    )
-    await interaction.response.send_message(embed=embed)
-
-@bot.tree.command(name="mcrecipe", description="Get crafting recipe from Minecraft Wiki")
-@app_commands.describe(item="The item to get recipe for")
-async def mcrecipe(interaction: discord.Interaction, item: str):
-    await interaction.response.defer()  # Acknowledge and allow more time
-
-    item_name = item.replace(" ", "_").title()
-    wiki_url = f"https://minecraft.wiki/w/{item_name}"
-
-    recipe_image_url = None
-
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(wiki_url) as resp:
-                if resp.status != 200:
-                    await interaction.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
-                    return
-                html = await resp.text()
-                soup = BeautifulSoup(html, "html.parser")
-
-                crafting_table = soup.find("table", class_="crafting-table")
-                if crafting_table:
-                    img = crafting_table.find("img")
-                    if img and img.has_attr("src"):
-                        recipe_image_url = img["src"]
-
-                # fallback
-                if not recipe_image_url:
-                    crafting_div = soup.find(lambda tag: tag.name == "div" and ("crafting" in tag.get("id", "") or "crafting" in tag.get("class", [])))
-                    if crafting_div:
-                        img = crafting_div.find("img")
-                        if img and img.has_attr("src"):
-                            recipe_image_url = img["src"]
-
-                # fallback2
-                if not recipe_image_url:
-                    img = soup.find("img")
-                    if img and img.has_attr("src"):
-                        recipe_image_url = img["src"]
-
-                # url normalize
-                if recipe_image_url and recipe_image_url.startswith("//"):
-                    recipe_image_url = "https:" + recipe_image_url
-                elif recipe_image_url and recipe_image_url.startswith("/"):
-                    recipe_image_url = "https://minecraft.wiki" + recipe_image_url
-
-        except Exception:
-            recipe_image_url = None
-
-    embed = discord.Embed(
-        title=f"Crafting Recipe for {item.title()}",
-        url=wiki_url,
-        color=0x55a630,
-        description=f"[View full page on Minecraft Wiki]({wiki_url})"
-    )
-    if recipe_image_url:
-        embed.set_image(url=recipe_image_url)
-    else:
-        embed.set_footer(text="Recipe image not found, please check the wiki page link.")
-
-    await interaction.followup.send(embed=embed)
-
-@bot.tree.command(name="mcadvancement", description="Get advancement info from Minecraft Wiki")
-@app_commands.describe(name="Advancement name")
-async def mcadvancement(interaction: discord.Interaction, name: str):
-    search = name.replace(" ", "_")
-    url = f"https://minecraft.wiki/w/{search}"
-    embed = discord.Embed(
-        title=f"🏆 Info on advancement {name.title()}",
-        description=f"[View on wiki]({url})",
-        color=0x55a630
-    )
-    await interaction.response.send_message(embed=embed)
-
-@bot.tree.command(name="mcenchant", description="Get enchantment info from Minecraft Wiki")
-@app_commands.describe(name="Enchantment name")
-async def mcenchant(interaction: discord.Interaction, name: str):
-    search = name.replace(" ", "_")
-    url = f"https://minecraft.wiki/w/{search}"
-    embed = discord.Embed(
-        title=f"✨ Enchantment {name.title()} details",
-        description=f"[View on wiki]({url})",
-        color=0x55a630
-    )
-    await interaction.response.send_message(embed=embed)
-
-@bot.tree.command(name="mcbiome", description="Get biome info from Minecraft Wiki")
-@app_commands.describe(name="Biome name")
-async def mcbiome(interaction: discord.Interaction, name: str):
-    search = name.replace(" ", "_")
-    url = f"https://minecraft.wiki/w/{search}"
-    embed = discord.Embed(
-        title=f"🌲 Biome {name.title()} info",
-        description=f"[View on wiki]({url})",
-        color=0x55a630
-    )
-    await interaction.response.send_message(embed=embed)
-
-@bot.tree.command(name="mcstructure", description="Get structure info from Minecraft Wiki")
-@app_commands.describe(name="Structure name")
-async def mcstructure(interaction: discord.Interaction, name: str):
-    search = name.replace(" ", "_")
-    url = f"https://minecraft.wiki/w/{search}"
-    embed = discord.Embed(
-        title=f"🏛️ Structure {name.title()}",
-        description=f"[View on wiki]({url})",
-        color=0x55a630
-    )
-    await interaction.response.send_message(embed=embed)
-# >mcplayer [username]
-@bot.tree.command(name="mcplayer",description="Get Minecraft player info")
-@app_commands.describe(username="Minecraft IGN")
-async def mcplayer(interaction: discord.Interaction, username: str):
-    try:
-        await interaction.response.defer()
-        async with aiohttp.ClientSession() as session:
-            headers = {"User-Agent": "Mozilla/5.0"}
-            async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{username}", headers=headers) as resp:
-                if resp.status != 200:
-                    await interaction.followup.send("❌ Could not find that player.")
-                    return
-                data = await resp.json()
-                uuid = data["id"]
-        head_url = f"https://minotar.net/helm/{uuid}/128.png"
-        skin_url = f"https://visage.surgeplay.com/full/512/{uuid}.png"
-
-        embed = discord.Embed(
-            title=f"Minecraft Player: {username}",
-            description=f"UUID: `{uuid}`",
-            color=0x8B0000
-        )
-        embed.set_image(url=skin_url)
-        embed.set_thumbnail(url=head_url)
-        await interaction.followup.send(embed=embed)
-    except Exception as e:
-        await interaction.followup.send(f"❌ Error: `{e}`")
-
-#mcserverstatus
-@bot.tree.command(name="mcserverstatus", description="Get the status of the VDSMP")
-async def mcserverstatus(interaction: discord.Interaction):
-    if interaction.guild_id not in ALLOWED_GUILD_IDS:
-        await interaction.response.send_message(
-            "❌ This command is not available in this server.",
-            ephemeral=True
-        )
-        return
-    await interaction.response.defer()
-    try:
-        server_ip = "vdsmp.mc.gg"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
-                if resp.status != 200:
-                    await interaction.response.send_message("❌ Error contacting the status API.")
-                    return
-                data = await resp.json()
-
-        if not data.get("online"):
-            await interaction.response.send_message("❌ The server is currently **offline**.")
-            return
-
-        motd = " ".join(data["motd"]["clean"]) if "motd" in data else "No MOTD"
-        players = data.get("players", {})
-        online = players.get("online", 0)
-        max_players = players.get("max", 0)
-        version = data.get("version", "Unknown")
-
-        embed = discord.Embed(
-            title="🌐 Minecraft Server Status",
-            description="Your private server is **online** ✅",
-            color=0x00cc66
-        )
-        embed.add_field(name="📃 MOTD", value=motd, inline=False)
-        embed.add_field(name="👥 Players", value=f"{online}/{max_players}", inline=True)
-        embed.add_field(name="🛠 Version", value=version, inline=True)
-
-        icon = data.get("icon")
-        if icon and icon.startswith("data:image/png;base64,"):
-            pass
-        elif icon:
-            embed.set_thumbnail(url=icon)
-
-        await interaction.followup.send(embed=embed)
-    except Exception as e:
-        await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
-
-#wf baro
-@bot.tree.command(name="wfbaro", description="Warframe Baro status")
-async def wfbaro(interaction: discord.Interaction):
-    await interaction.response.defer()
-
-    async def fetch_json(url):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                return await resp.json()
-    data = await fetch_json("https://api.warframestat.us/pc/voidTrader")
-    if data.get("active"):
-        inventory = "\n".join([f"{item['item']} - {item['ducats']} Ducats, {item['credits']} Cr" for item in data["inventory"]])
-        msg = f"**Baro Ki'Teer is at {data['location']} until {data['endString']}**\n\n{inventory}"
-    else:
-        msg = f"**Baro is not here right now.** Next visit: {data['startString']}"
-
-    await interaction.followup.send(msg)
-
-#wfnews
-@bot.tree.command(name="wfnews", description="Warframe News")
-async def wfnews(interaction: discord.Interaction):
-    async def fetch_json(url):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                return await resp.json()
-    news = await fetch_json("https://api.warframestat.us/pc/news")
-    items = [f"**{n['message']}**\n<{n['link']}>" for n in news[:5]]
-    await interaction.response.send_message("\n\n".join(items))
-
-#wf nightwave
-@bot.tree.command(name="wfnightwave", description="Warframe Nightwave status")
-async def wfnightwave(interaction: discord.Interaction):
-    async def fetch_json(url):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                return await resp.json()
-    data = await fetch_json("https://api.warframestat.us/pc/nightwave")
-    missions = [f"**{m['title']}** - {m['reputation']} Rep" for m in data.get("activeChallenges", [])]
-    await interaction.response.send_message("**Nightwave Challenges:**\n" + "\n".join(missions))
-
-#wf prices
-@bot.tree.command(name="wfprice",description="Warframe prices from warframe.market")
-async def wfprice(interaction: discord.Interaction, item: str):
-    item_url = item.replace(" ", "_").lower()
-    async with aiohttp.ClientSession() as session:
-        async with session.get(f"https://api.warframe.market/v1/items/{item_url}/orders") as resp:
-            if resp.status != 200:
-                await interaction.response.send_message("❌ Item not found or API issue.")
-                return
-            data = await resp.json()
-            sell_orders = [o for o in data["payload"]["orders"] if o["order_type"] == "sell" and o["user"]["status"] == "ingame"]
-            if sell_orders:
-                cheapest = sorted(sell_orders, key=lambda x: x["platinum"])[0]
-                await interaction.response.send_message(f"💰 Cheapest in-game seller: {cheapest['platinum']}p ({cheapest['user']['ingame_name']})")
-            else:
-                await interaction.response.send_message("❌ No in-game sellers found.")
 #random plane
 @bot.tree.command(name="plane",description="Get a random WW1 plane")
 async def airplane(interaction: discord.Interaction):
