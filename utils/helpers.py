@@ -5,6 +5,7 @@ import aiohttp
 import asyncio
 from datetime import datetime, timedelta
 import config
+from collections import defaultdict
 
 # jsons
 
@@ -105,30 +106,40 @@ async def fetch_json(url: str, timeout: int = 5):
             return {}
 
 #alerts
-alerts = {}
+alerts = defaultdict(list)
 def load_alerts():
     global alerts
     try:
-        with open(config.ALERTS_FILE, "r") as f:
-            data = json.load(f)
+        with open(config.ALERTS_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            if not content:
+                return {}
+            try:
+                data = json.loads(content)
+            except json.JSONDecodeError:
+                print("alerts.json is corrupted")
+                return{}
+            alerts = defaultdict(list)
             for user_id, user_alerts in data.items():
                 for alert in user_alerts:
                     alert['time'] = datetime.fromisoformat(alert['time'])
-            alerts = data
+                alerts[user_id] = user_alerts
+        return alerts
     except FileNotFoundError:
-        alerts = {}
+        return {}
 
-def save_alerts():
+def save_alerts(alerts_dict: dict):
     os.makedirs(config.DATA_FOLDER, exist_ok=True)
     with open(config.ALERTS_FILE, "w", encoding="utf-8") as f:
         to_save = {}
-        for user_id, user_alerts in alerts.items():
+        for user_id, user_alerts in alerts_dict.items():
             to_save[user_id] = []
             for alert in user_alerts:
                 a = alert.copy()
                 a['time'] = a['time'].isoformat()
                 to_save[user_id].append(a)
         json.dump(to_save, f, indent=2)
+        pass
 
 #load jsons
 def load_all_json_from_folder(folder="data"):

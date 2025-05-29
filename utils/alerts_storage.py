@@ -1,16 +1,18 @@
 import json
+import copy
 from pathlib import Path
-from config import ALERTS_FILE
+from config import ALERTS_FILE as ALERTS_FILE_STR
+from dateutil.parser import isoparse
 
+ALERTS_FILE = Path(ALERTS_FILE_STR)
 alerts = {}
 
 def load_alerts():
     global alerts
     if ALERTS_FILE.exists():
         try:
-            with open(ALERTS_FILE, "r") as f:
+            with open(ALERTS_FILE, "r", encoding="utf-8") as f:
                 alerts = json.load(f)
-            from dateutil.parser import isoparse
             for user_id in alerts:
                 for alert in alerts[user_id]:
                     alert['time'] = isoparse(alert['time'])
@@ -23,12 +25,14 @@ def load_alerts():
 
 def save_alerts():
     try:
-        import copy
         to_save = copy.deepcopy(alerts)
         for user_id in to_save:
             for alert in to_save[user_id]:
                 alert['time'] = alert['time'].isoformat()
-        with open(ALERTS_FILE, "w") as f:
+        ALERTS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(ALERTS_FILE, "w", encoding="utf-8") as f:
             json.dump(to_save, f, indent=2)
     except Exception as e:
         print(f"Failed to save alerts: {e}")
+
+

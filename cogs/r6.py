@@ -1,6 +1,7 @@
 import discord
 import random
 import aiohttp
+import json
 
 from discord import app_commands
 from discord.ext import commands
@@ -13,6 +14,21 @@ class R6Cog(commands.Cog):
         self.bot = bot
         self.operators = {}
         self.maps = {}
+        try:
+            with open("data/operators.json", "r", encoding="utf-8") as f:
+                self.operators = json.load(f)
+        except FileNotFoundError:
+            print("operators.json not found.")
+        except json.JSONDecodeError:
+            print("operators.json is corrupted.")
+
+        try:
+            with open("data/maps.json", "r", encoding="utf-8") as f:
+                self.maps = json.load(f)
+        except FileNotFoundError:
+            print("maps.json not found.")
+        except json.JSONDecodeError:
+            print("maps.json is corrupted.")
 
     r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
     @staticmethod
