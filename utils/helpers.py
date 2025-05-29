@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import aiohttp
 import asyncio
@@ -25,44 +26,46 @@ def save_json_file(path: str, data):
 
 cooldowns = {}
 
-def check_cooldown(user_id, command_name, cooldown_seconds):
+def check_cooldown(user_id: int, command_name: str) -> (bool, int):
     key = (user_id, command_name)
     now = datetime.now()
     if key in cooldowns:
         expires = cooldowns[key]
-        if now < expires:
-            return True, (expires - now).seconds
-    cooldowns[key] = now + timedelta(seconds=cooldown_seconds)
+        if expires and now < expires:
+            return True, int((expires - now).total_seconds())
     return False, 0
 
-async def start_cooldown_timer(user_id, command_name, cooldown_seconds, callback=None):
+async def start_cooldown(user_id: int, command_name: str, cooldown_seconds: int):
     key = (user_id, command_name)
     cooldowns[key] = datetime.now() + timedelta(seconds=cooldown_seconds)
     await asyncio.sleep(cooldown_seconds)
     if key in cooldowns:
         del cooldowns[key]
-    if callback:
-        await callback()
 
 # tz stuff
-
 def normalize_tz(tz_str):
     tz_str = tz_str.strip().upper()
     return config.SUPPORTED_TZ.get(tz_str, tz_str)
 
 # parsing
-
-def parse_time(time_str: str):
-    units = {"s": 1, "m": 60, "h": 3600}
-    try:
-        amount = int(time_str[:-1])
-        unit = time_str[-1].lower()
-        return amount * units[unit]
-    except (ValueError, KeyError):
+def parse_time(time_str: str) -> int | None:
+    time_str = time_str.strip().lower()
+    pattern = re.fullmatch(r"(\d+)([smh])", time_str)
+    if not pattern:
         return None
 
-# weather
+    value, unit = pattern.groups()
+    value = int(value)
 
+    if unit == "s":
+        return value
+    elif unit == "m":
+        return value * 60
+    elif unit == "h":
+        return value * 3600
+    return None
+
+# weather
 def get_weather_emoji(condition: str) -> str:
     condition = condition.lower()
     if "clear" in condition:

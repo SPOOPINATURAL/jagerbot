@@ -33,7 +33,7 @@ class AlertCommands(commands.Cog):
             if date.tzinfo is None:
                 date = date.replace(tzinfo=UTC)
 
-            recurring = recurring_str if recurring_str else None
+            recurring = recurring_str.strip().lower() if recurring_str else None
             if recurring and parse_time(recurring) is None:
                 await interaction.response.send_message("❌ Invalid recurring time format! Use e.g. 10m, 1h.", ephemeral=True)
                 return
@@ -105,6 +105,9 @@ class AlertCommands(commands.Cog):
 
     async def cancel_alert(self, interaction: discord.Interaction, _button: discord.ui.Button, alert_index: int):
         user_id = str(interaction.user.id)
+        if user_id not in alerts or alert_index >= len(alerts[user_id]):
+            await interaction.response.send_message("⚠️ That alert no longer exists.", ephemeral=True)
+            return
         user_alerts = alerts.get(user_id, [])
         if 0 <= alert_index < len(user_alerts):
             alert = user_alerts.pop(alert_index)
@@ -112,6 +115,12 @@ class AlertCommands(commands.Cog):
             await interaction.response.send_message(f"🛑 Cancelled alert **{alert['event']}**.", ephemeral=True)
         else:
             await interaction.response.send_message("❌ Invalid alert index.", ephemeral=True)
+        removed_alert = alerts[user_id].pop(alert_index)
+        if not alerts[user_id]:
+            del alerts[user_id]
+
+        save_alerts()
+        await interaction.response.send_message(f"🗑️ Canceled alert: **{removed_alert['event']}**", ephemeral=True)
 
     async def snooze_alert(self, interaction: discord.Interaction, alert_index: int):
         user_id = str(interaction.user.id)

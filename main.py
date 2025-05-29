@@ -18,11 +18,6 @@ import html
 #local
 import webserver
 import config
-from config import (
-    DISCORD_TOKEN,
-    WEATHER_API_KEY,
-    TRACKER_API_KEY,
-)
 from views.trivia import TriviaView
 from views.rps import RPSView
 import utils.helpers as helpers
@@ -30,7 +25,6 @@ from views.info_pages import InfoPages
 
 #files n shi
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
-user_scores = {}
 tracemalloc.start()
 warnings.simplefilter('always', RuntimeWarning)
 
@@ -61,7 +55,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 user_scores = {}
 
-
+bot.config = config
 #bot start events
 class JagerBot(commands.Bot):
     def __init__(self):
@@ -73,9 +67,6 @@ class JagerBot(commands.Bot):
             intents=intents,
             help_command = None
         )
-        self.user_scores = {}
-        self.alerts = {}
-        self.planes = []
 
     async def setup_hook(self):
         # cogs
@@ -86,51 +77,11 @@ class JagerBot(commands.Bot):
         logger.info("✅ Synced slash commands")
 
     async def on_ready(self):
-        logger.info("Bot is ready, loading alerts and scores...")
-        self.load_alerts()
-        self.load_scores()
-        sessions.clear()
-        cooldowns.clear()
+        logger.info(f"Ready :) as {self.user}")
         await self.change_presence(
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="Everything")
         )
-        logger.info("✅ Cleared caches")
-        logger.info("Ready :)")
-
-    def load_alerts(self):
-        logger.info("Loaded alerts")
-
-    def load_scores(self):
-        logger.info("Loaded scores")
-bot = JagerBot()
-@bot.tree.command(name='hello', description="Hello!")
-async def hello(interaction: discord.Interaction):
-    await interaction.response.send_message(f"Hallo {interaction.user.mention} :)")
-
-#quote
-@bot.tree.command(name='quote', description="Get a random Jäger quote")
-async def quote(interaction: discord.Interaction):
-    selected_quotes = random.choice(config.quotes)
-    await interaction.response.send_message(selected_quotes)
-#images
-@bot.tree.command(name='image', description="Get a random image")
-async def image(interaction: discord.Interaction):
-    images_url = random.choice(config.image_urls)
-    await interaction.response.send_message(images_url)
-#clanc
-@bot.tree.command(name='clancy', description="Obtain a random Clancy image")
-async def clancy(interaction: discord.Interaction):
-    clancy_image = random.choice(config.clancy_images)
-    await interaction.response.send_message(clancy_image)
-#longo
-@bot.tree.command(name='longo', description="longo")
-async def longo(interaction: discord.Interaction):
-    image_url = "https://i.imgur.com/J1P7g5f.jpeg"
-    embed = discord.Embed(title="longo")
-    embed.set_image(url=image_url)
-    await interaction.response.send_message(embed=embed)
-
 #weather
 @bot.tree.command(name='weather', description="Get the current weather in a city")
 @app_commands.describe(city="Name of the city (e.g. London, Tokyo)")
@@ -163,63 +114,6 @@ async def weather(interaction: discord.Interaction, city: str):
             embed.add_field(name="Wind Speed", value=f"{wind_mps} m/s /{wind_mph} mph", inline=True)
 
             await interaction.response.send_message(embed=embed)
-
-#trivia
-@commands.cooldown(rate=1, per=10, type=commands.BucketType.user)
-@bot.tree.command(name='trivia', description="Get a trivia question, multiple choice answers")
-async def trivia(interaction: discord.Interaction):
-    on_cooldown, retry_after = check_cooldown(interaction.user.id, "trivia", 10)
-    if on_cooldown:
-        await interaction.response.send_message(f"Please wait {retry_after} seconds before using this command again.", ephemeral=True)
-        return
-    url = "https://opentdb.com/api.php?amount=1&type=multiple"
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            data = await resp.json()
-
-    question_data = data["results"][0]
-    question = html.unescape(question_data["question"])
-    correct = html.unescape(question_data["correct_answer"])
-    incorrect = [html.unescape(ans) for ans in question_data["incorrect_answers"]]
-    all_answers = incorrect + [correct]
-    random.shuffle(all_answers)
-
-    letters = ['A', 'B', 'C', 'D']
-    answer_map = dict(zip(letters, all_answers))
-    correct_letter = next(k for k, v in answer_map.items() if v == correct)
-
-    embed = discord.Embed(title="🧠 Trivia", description=question, color=0x8B0000)
-    for letter, answer in answer_map.items():
-        embed.add_field(name=letter, value=answer, inline=False)
-    embed.set_footer(text="Click the button that matches your answer.")
-
-    view = TriviaView(
-        author_id=interaction.user.id,
-        correct_letter=correct_letter,
-        correct_answer=correct,
-        answer_callback=handle_trivia_answer
-    )
-    await interaction.response.send_message(embed=embed, view=view)
-    view.message = await interaction.original_response()
-    await view.wait()
-
-    if not view.answered:
-        for child in view.children:
-            child.disabled = True
-        try:
-            await view.message.edit(content=f"⏰ Time's up! The correct answer was **{correct}**.", view=view)
-        except discord.NotFound:
-            pass
-async def handle_trivia_answer(user_id: int, is_correct: bool):
-    user_scores[user_id] = user_scores.get(user_id, 0) + int(is_correct)
-    save_scores(user_scores)
-
-@bot.tree.command(name='score', description="Get your trivia score")
-async def score(interaction: discord.Interaction):
-    uid = interaction.user.id
-    score = user_scores.get(uid, 0)
-    await interaction.response.send_message(f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**")
 
 #timezone conversion
 @bot.tree.command(name='tzconvert', description="Convert a time from one timezone to another")
@@ -309,63 +203,7 @@ async def currency(interaction: discord.Interaction, amount: float, from_currenc
     converted = amount * rates[to_currency]
     await interaction.response.send_message(f"💱 {amount} {from_currency} = {converted:.2f} {to_currency}")
 
-#8ball
-@bot.tree.command(name="8ball", description="Ask the magic 8ball a question")
-@app_commands.describe(question="Your yes/no question")
-async def eight_ball(interaction: discord.Interaction, question: str):
-    responses = [
-        "🎱 Yes, definitely.",
-        "🎱 It is certain.",
-        "🎱 Without a doubt.",
-        "🎱 Most likely.",
-        "🎱 Outlook good.",
-        "🎱 Signs point to yes.",
-        "🎱 Ask again later.",
-        "🎱 Cannot predict now.",
-        "🎱 Don't count on it.",
-        "🎱 My reply is no.",
-        "🎱 Very doubtful.",
-        "🎱 Absolutely not.",
-    ]
 
-    response = random.choice(responses)
-
-    embed = discord.Embed(
-        title="🎱 Magic 8-Ball",
-        description=f"**Question:** {question}\n**Answer:** {response}",
-        color=0x8B0000
-    )
-    await interaction.response.send_message(embed=embed)
-
-#xkcd
-@bot.tree.command(name="xkcd", description="Get a random XKCD comic")
-async def random_xkcd(interaction: discord.Interaction):
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://c.xkcd.com/random/comic/", allow_redirects=False) as resp:
-            if resp.status != 302:
-                await interaction.response.send_message("Couldn't fetch a random XKCD comic.",ephemeral=True)
-                return
-            location = resp.headers.get("Location")
-            if not location:
-                await interaction.response.send_message("Couldn't get the comic URL.",ephemeral=True)
-                return
-
-        json_url = location + "info.0.json"
-        async with session.get(json_url) as resp:
-            if resp.status != 200:
-                await interaction.response.send_message("Couldn't fetch XKCD comic info.",ephemeral=True)
-                return
-            comic = await resp.json()
-
-    embed = discord.Embed(
-        title=comic["title"],
-        url=f"https://xkcd.com/{comic['num']}",
-        color=0x8B0000,
-    )
-    embed.set_image(url=comic["img"])
-    embed.set_footer(text=f"Comic #{comic['num']}")
-
-    await interaction.response.send_message(embed=embed)
 #credits
 @bot.tree.command(name="credits",description="Get the credits for this bot")
 async def credit(interaction: discord.Interaction):
@@ -487,4 +325,5 @@ async def info(interaction: discord.Interaction):
     view.message = await interaction.response.send_message(embed=view.pages[0], view=view)
 if __name__ == "__main__":
     webserver.keep_alive()
+    bot = JagerBot()
     bot.run(config.DISCORD_TOKEN, log_handler=handler, log_level=logging.INFO)
