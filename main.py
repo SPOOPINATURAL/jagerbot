@@ -34,6 +34,10 @@ from config import (
 from views.trivia import TriviaView
 from views.rps import RPSView
 from commands.r6 import r6, operators, maps
+import utils.helpers as helpers
+from utils.alerts import AlertChecker
+from views.timezone_paginator import TimezonePaginator
+from views.info_pages import InfoPages
 
 #files n shi
 print(f"[DEBUG] API Key: {TRACKER_API_KEY}")
@@ -51,91 +55,10 @@ timeout = aiohttp.ClientTimeout(total=5)
 
 bot = commands.Bot(command_prefix='>', intents=intents)
 sessions = {}
-#logs
-logging.basicConfig(
-    level=logging.INFO,  # or DEBUG for more details
-    format="[{asctime}] [{levelname}] {message}",
-    style="{",
-)
 
-logger = logging.getLogger("jagerbot")
-#who is jason and why am i fetching him
-async def fetch_json(url):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            if resp.status == 200:
-                return await resp.json()
-            else:
-                return {}
-#load scores
-def load_scores():
-    global user_scores
-    if os.path.exists(SCORES_FILE):
-        try:
-            with open(SCORES_FILE, "r", encoding="utf-8") as f:
-                user_scores = json.load(f)
-                user_scores = {int(k): v for k, v in user_scores.items()}
-        except json.JSONDecodeError:
-            print("⚠️ Failed to load scores: JSON file is empty or corrupted.")
-            user_scores = {}
-    else:
-        user_scores = {}
+alerts = helpers.load_alerts()
+helpers.save_alerts(alerts)
 
-def save_scores(scores):
-    os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)
-    with open(SCORES_FILE, "w", encoding="utf-8") as f:
-        json.dump(scores, f, indent=2)
-load_scores()
-
-#tz stuff
-def normalize_tz(tz_str):
-    tz_str = tz_str.strip().upper()
-    return config.SUPPORTED_TZ.get(tz_str, tz_str)
-#alerts
-alerts = {}
-def load_alerts():
-    global alerts
-    try:
-        with open(ALERTS_FILE, "r") as f:
-            data = json.load(f)
-            for user_id, user_alerts in data.items():
-                for alert in user_alerts:
-                    alert['time'] = datetime.fromisoformat(alert['time'])
-            alerts = data
-    except FileNotFoundError:
-        alerts = {}
-
-def save_alerts():
-    os.makedirs(DATA_FOLDER, exist_ok=True)
-    with open(ALERTS_FILE, "w", encoding="utf-8") as f:
-        to_save = {}
-        for user_id, user_alerts in alerts.items():
-            to_save[user_id] = []
-            for alert in user_alerts:
-                a = alert.copy()
-                a['time'] = a['time'].isoformat()
-                to_save[user_id].append(a)
-        json.dump(to_save, f, indent=2)
-
-def parse_time(time_str):
-    units = {"s": 1, "m": 60, "h": 3600}
-    try:
-        amount = int(time_str[:-1])
-        unit = time_str[-1].lower()
-        return amount * units[unit]
-    except (ValueError, KeyError):
-        return None
-
-#load jsons
-def load_all_json_from_folder(folder="data"):
-    data = {}
-    for filename in os.listdir(folder):
-        if filename.endswith(".json"):
-            path = os.path.join(folder, filename)
-            with open(path, "r", encoding="utf-8") as f:
-                key = os.path.splitext(filename)[0]  # filename without .json
-                data[key] = json.load(f)
-    return data
 all_data = load_all_json_from_folder()
 
 r6.operators.update(all_data.get("operators", {}))
@@ -144,243 +67,34 @@ planes = all_data.get("planes",[])
 alerts = all_data.get("alerts",{})
 user_scores = all_data.get("trivia_scores",{})
 
-#aliases function
-def find_match(data_dict: dict, user_input: str):
-    user_input = user_input.lower()
-    for key, entry in data_dict.items():
-        if user_input == key:
-            return entry
-        if "aliases" in entry and user_input in [a.lower() for a in entry["aliases"]]:
-            return entry
-    return None
-
-#timezone list
-class TimezonePaginator(discord.ui.View):
-    def __init__(self, ctx):
-        super().__init__(timeout=60)
-        self.ctx = ctx
-        self.page = 0
-        self.items_per_page = 10
-        self.max_page = len(TIMEZONES) // self.items_per_page
-        self.message = None
-
-    def get_page_content(self):
-        start = self.page * self.items_per_page
-        end = start + self.items_per_page
-        page_items = TIMEZONES[start:end]
-        desc = "\n".join(page_items)
-        return desc
-
-    async def update_message(self):
-        embed = discord.Embed(
-            title=f"Timezones (Page {self.page + 1}/{self.max_page + 1})",
-            description=self.get_page_content(),
-            color=0x3498db,
-        )
-        await self.message.edit(embed=embed, view=self)
-
-    @discord.ui.button(label="Previous", style=discord.ButtonStyle.secondary)
-    async def prev_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.page == 0:
-            self.page = self.max_page
-        else:
-            self.page -= 1
-            await self.update_message()
-        await interaction.response.defer()
-
-    @discord.ui.button(label="Next", style=discord.ButtonStyle.secondary)
-    async def next_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if self.page == self.max_page:
-            self.page = 0
-        else:
-            self.page += 1
-            await self.update_message()
-        await interaction.response.defer()
+UTC = pytz.UTC
+alert_checker = AlertChecker(bot, alerts, UTC, parse_time, save_alerts)
 
 #trivia
 user_scores = {}
-# info
-class InfoPages(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=120)
-        self.pages = []
-        self.current = 0
-        self.guild_id = guild_id
-        self.create_pages()
 
-    def create_pages(self):
-        # Page 1: R6 Siege
-        embed1 = discord.Embed(
-            title="JägerBot Commands List (Page 1/5)",
-            description="**R6 Siege Commands**",
-            color=0x8B0000
-        )
-        embed1.add_field(name="/r6stats (platform) (username)", value="Fetch R6 Siege stats from a user", inline=False)
-        embed1.add_field(name="/quote", value="Get a random Jäger quote", inline=False)
-        embed1.add_field(name="/op (operator name)", value="Overview of a Siege Operator.", inline=False)
-        embed1.add_field(name="/oplist", value="List of all playable operators.", inline=False)
-        embed1.add_field(name="/oprandom (attack / defense)", value="Gives you a random operator.", inline=False)
-        embed1.add_field(name="/map (map name)", value="Get a floorplan of a ranked map.", inline=False)
-        embed1.add_field(name="/maplist", value="List of ranked maps", inline=False)
-        self.pages.append(embed1)
-
-        # Page 2: Minecraft
-        embed2 = discord.Embed(
-            title="JägerBot Commands List (Page 2/5)",
-            description="**Minecraft Commands**",
-            color=0x8B0000
-        )
-        embed2.add_field(name="/mcwiki (search term)", value="Search Minecraft Wiki.", inline=False)
-        embed2.add_field(name="/mcrecipe (item)", value="Look up a crafting recipe.", inline=False)
-        embed2.add_field(name="/mcadvancement (name)", value="Info on advancements.", inline=False)
-        embed2.add_field(name="/mcenchant (name)", value="Minecraft enchantment info.", inline=False)
-        embed2.add_field(name="/mcbiome (name)", value="Info about biomes.", inline=False)
-        embed2.add_field(name="/mcstructure (name)", value="Info about structures.", inline=False)
-        embed2.add_field(name="/mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
-        if self.guild_id in config.ALLOWED_GUILD_IDS:
-            embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
-        self.pages.append(embed2)
-
-        # Page 3: Fun
-        embed3 = discord.Embed(
-            title="JägerBot Commands List (Page 3/5)",
-            description="**Fun / Stupid Stuff**",
-            color=0x8B0000
-        )
-        embed3.add_field(name="/image", value="Get a random image.", inline=False)
-        embed3.add_field(name="/longo", value="longo", inline=False)
-        embed3.add_field(name="/clancy", value="Obtain a random Clancy image.", inline=False)
-        embed3.add_field(name="/trivia", value="Play some trivia.", inline=False)
-        embed3.add_field(name="/score", value="Your trivia score.", inline=False)
-        embed3.add_field(name="/xkcd", value="Get a random xkcd comic.", inline=False)
-        embed3.add_field(name="/8ball (question)", value="8ball makes a decision for you (ex. '/8ball should i take a walk').", inline=False)
-        embed3.add_field(name="/d20", value="Roll a d20.", inline=False)
-        embed3.add_field(name="/rps", value="Play Rock, Paper, Scissors.", inline=False)
-        embed3.add_field(name="/plane", value="Gives a random WW1 plane with specs.", inline=False)
-        self.pages.append(embed3)
-        # Page 4: Utility
-        embed4 = discord.Embed(
-            title="JägerBot Commands List (Page 4/5)",
-            description="**Utility Commands**",
-            color=0x8B0000
-        )
-        embed4.add_field(name="/weather (city)",
-                         value="Tells you the current weather in a city (ex.'/weather seattle').", inline=False)
-        embed4.add_field(name="/tzconvert (time) (timezone a) to (timezone b)",
-                         value="Converts one timezone to another (ex. '/tzconvert now UTC to IST').", inline=False)
-        embed4.add_field(name="/timezones", value="Lists every timezone.", inline=False)
-        embed4.add_field(name="/date (timezone)", value="Tells you the day and calendar date. Timezone optional.",
-                         inline=False)
-        embed4.add_field(name="/currency (amount) (currency a) (currency b)",
-                         value="Converts one currency to another (ex. '/currency 100 USD EUR').", inline=False)
-        embed4.add_field(name="/alert (activity) (time)",
-                         value="Creates an alert, bot will DM you when it’s time. Use 'recurring' for repeated alerts (ex.'/alert Event in 10minutes' or '/alert Reminder 2025-06-01 18:00 PST recurring 24h').",
-                         inline=False)
-        embed4.add_field(name="/listalerts", value="Lists all your alerts.", inline=False)
-        embed4.add_field(name="/cancelalerts", value="Cancels all your alerts.", inline=False)
-        embed4.add_field(name="/credits", value="See who made / helped with the bot.", inline=False)
-        self.pages.append(embed4)
-
-        # Page 5: Warframe
-        embed5 = discord.Embed(
-            title="JägerBot Commands List (Page 5/5)",
-            description="**Warframe Commands**",
-            color=0x8B0000
-        )
-        embed5.add_field(name="/wfbaro",
-                         value="Tells you when Baro will arrive and where he is.", inline=False)
-        embed5.add_field(name="/wfnews",
-                         value="Latest Warframe news.", inline=False)
-        embed5.add_field(name="/wfnightwave", value="Warframe Nightwave quests.", inline=False)
-        embed5.add_field(name="/wfprice",
-                         value="warframe.market item price.", inline=False)
-        self.pages.append(embed5)
-
-    async def update_message(self, interaction):
-        await interaction.response.edit_message(embed=self.pages[self.current], view=self)
-
-    @discord.ui.button(label="⬅️", style=discord.ButtonStyle.secondary)
-    async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self.current = (self.current - 1) % len(self.pages)
-        await self.update_message(interaction)
-
-    @discord.ui.button(label="➡️", style=discord.ButtonStyle.secondary)
-    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
-        self.current = (self.current + 1) % len(self.pages)
-        await self.update_message(interaction)
-
-    async def on_timeout(self):
-        for child in self.children:
-            child.disabled = True
-        try:
-            await self.message.edit(view=self)
-        except Exception:
-            pass
-#weather
-def get_weather_emoji(condition):
-    condition = condition.lower()
-    if "clear" in condition:
-        return "☀️"
-    elif "cloud" in condition:
-        return "☁️"
-    elif "rain" in condition:
-        return "🌧️"
-    elif "storm" in condition or "thunder" in condition:
-        return "⛈️"
-    elif "snow" in condition:
-        return "❄️"
-    elif "fog" in condition or "mist" in condition:
-        return "🌫️"
-    else:
-        return "🌈"
-#ops autocomplete
-operator_names = [op['name'] for op in operators.values()]
-async def operator_autocomplete(interaction: discord.Interaction, current: str):
-    current = current.lower()
-    return [
-        app_commands.Choice(name=op_name, value=op_name)
-        for op_name in operator_names
-        if op_name.lower().startswith(current)
-    ][:25]
-#op list autocompl
-role_choices = ["attacker", "defender"]
-
-async def role_autocomplete(interaction: discord.Interaction, current: str):
-    current = current.lower()
-    return [
-        app_commands.Choice(name=role.capitalize(), value=role)
-        for role in role_choices if role.startswith(current)
-    ]
-#cooldowns
-cooldowns = {}
-
-def check_cooldown(user_id, command_name, cooldown_seconds):
-    key = (user_id, command_name)
-    now = datetime.utcnow()
-    if key in cooldowns:
-        expires = cooldowns[key]
-        if now < expires:
-            return (True, (expires - now).seconds)
-    cooldowns[key] = now + timedelta(seconds=cooldown_seconds)
-    return (False, 0)
 
 #bot start events
 @bot.event
 async def on_ready():
-    if not check_alerts.is_running():
-        check_alerts.start()
-    logger.info(f"Ready :)")
+    logger.info("Bot is ready, loading alerts and scores...")
+
     load_alerts()
     load_scores()
+
+    if not check_alerts.is_running():
+        check_alerts.start()
+
     activity = discord.Activity(type=discord.ActivityType.watching, name="Everything")
     await bot.change_presence(status=discord.Status.online, activity=activity)
-    #cache clear
+
     global sessions, cooldowns
     sessions.clear()
     cooldowns.clear()
     logger.info("✅ Cleared caches")
 
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Everything"))
+    logger.info("Ready :)")
+
 def load_alerts():
     logger.info("Loaded alerts")
 
@@ -441,35 +155,6 @@ async def on_app_command_error(interaction: discord.Interaction, error: app_comm
         except discord.InteractionResponded:
             await interaction.followup.send("❌ An unexpected error occurred.", ephemeral=True)
 
-#alerts and stuff
-@tasks.loop(seconds=30)
-async def check_alerts():
-    now = datetime.now(UTC)
-    to_remove = []
-
-    for user_id, user_alerts in list(alerts.items()):
-        user = bot.get_user(int(user_id))
-        if not user:
-            continue
-        for alarm in list(user_alerts):
-            if alarm['time'] <= now:
-                try:
-                    await user.send(f"⏰ Reminder: **{alarm['event']}**")
-                except Exception:
-                    pass  # Could not DM
-                if alarm.get('recurring'):
-                    seconds = parse_time(alarm['recurring'])
-                    if seconds:
-                        alarm['time'] += timedelta(seconds=seconds)
-                else:
-                    to_remove.append((user_id, alarm))
-
-    for user_id, alarm in to_remove:
-        alerts[user_id].remove(alarm)
-        if not alerts[user_id]:
-            del alerts[user_id]
-
-    save_alerts()
 
 @bot.tree.command(name='hello', description="Hello!")
 async def hello(interaction: discord.Interaction):
@@ -1218,7 +903,8 @@ async def airplane(interaction: discord.Interaction):
 #help
 @bot.tree.command(name='info', description='Command list')
 async def info(interaction: discord.Interaction):
-    view = InfoPages(interaction.guild_id if interaction.guild_id else 0)
+    guild_id = interaction.guild.id if interaction.guild.id else 0
+    view = InfoPages(guild_id)
     view.message = await interaction.response.send_message(embed=view.pages[0], view=view)
 if __name__ == "__main__":
     webserver.keep_alive()
