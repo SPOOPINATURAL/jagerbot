@@ -1,0 +1,10 @@
+2025-05-29 14:01:43,839 INFO discord.client: logging in using static token
+2025-05-29 14:01:43,859 INFO werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-29 14:01:43,859 INFO werkzeug: [33mPress CTRL+C to quit[0m
+2025-05-29 14:01:45,059 INFO bot: ✅ Synced slash commands
+2025-05-29 14:01:45,328 INFO discord.gateway: Shard ID None has connected to Gateway (Session ID: 33124fe2b1f54158b8666567422b1c6d).
+2025-05-29 14:01:47,342 INFO bot: Ready :) as JägerBot#6929
+2025-05-29 14:01:47,343 INFO bot: Registered slash commands: ['alert', 'listalerts', 'cancelalerts', 'weather', 'tzconvert', 'timezones', 'credits', 'date', 'plane', 'currency', 'info', 'hello', 'quote', 'image', 'clancy', 'longo', '8ball', 'xkcd', 'd20', 'rps', 'trivia', 'score', 'mc', 'r6', 'warframe']

@@ -48,7 +48,7 @@ class TriviaView(discord.ui.View):
             f"✅ Correct! 🎉" if is_correct else
             f"❌ Wrong! The correct answer was **{self.correct_answer}**."
         )
-
+        await interaction.response.defer()
         try:
             await interaction.edit_original_response(content=response_text, view=self)
         except discord.NotFound:

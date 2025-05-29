@@ -203,4 +203,3 @@ class MinecraftCog(commands.Cog):
 async def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
     await bot.add_cog(cog)
-    bot.tree.add_command(cog.mc_group)

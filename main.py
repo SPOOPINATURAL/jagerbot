@@ -20,7 +20,7 @@ import config
 import utils.helpers as helpers
 from views.info_pages import InfoPages
 from bot import JagerBot
-from utils.alert_checker import AlertChecker
+from cogs.alerts import AlertCog
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -54,7 +54,7 @@ bot.alerts = all_data.get("alerts", {})
 bot.user_scores = all_data.get("trivia_scores", {})
 
 UTC = pytz.UTC
-alert_checker = AlertChecker(bot, bot.alerts, UTC, helpers.parse_time, helpers.save_alerts)
+alert_checker = AlertCog(bot)
 
 # logs
 logging.basicConfig(

@@ -48,7 +48,7 @@ class R6Cog(commands.Cog):
             embed.set_thumbnail(url=op['icon_url'])
         return embed
 
-    async def operator_autocomplete(self, current: str):
+    async def operator_autocomplete(self, _interaction: discord.Interaction, current: str):
         current = current.lower()
         return [
             app_commands.Choice(name=op["name"], value=op["name"])
@@ -56,7 +56,7 @@ class R6Cog(commands.Cog):
             if op["name"].lower().startswith(current)
         ][:25]
 
-    async def map_autocomplete(self, current: str) -> List[app_commands.Choice[str]]:
+    async def map_autocomplete(self, _interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
         suggestions = []
         for m in self.maps.values():
             if "name" in m and current.lower() in m["name"].lower():
@@ -183,4 +183,3 @@ class R6Cog(commands.Cog):
 async def setup(bot: commands.Bot):
     cog = R6Cog(bot)
     await bot.add_cog(cog)
-    bot.tree.add_command(cog.r6_group)

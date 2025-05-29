@@ -127,7 +127,7 @@ class Fun(commands.Cog):
         await interaction.response.send_message("Choose your move:", view=view)
 
     @app_commands.command(name='trivia', description="Get a trivia question, multiple choice answers")
-    async def trivia(interaction: discord.Interaction):
+    async def trivia(self, interaction: discord.Interaction):
         on_cooldown, retry_after = check_cooldown(interaction.user.id, "trivia")
         if on_cooldown:
             await interaction.response.send_message(
