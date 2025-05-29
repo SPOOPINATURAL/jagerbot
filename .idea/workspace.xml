@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6631a7d-e5bf-498a-ab25-545ca9bb14d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/alerts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/info_pages.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/timezone_paginator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/r6.py" beforeDir="false" afterPath="$PROJECT_DIR$/commands/r6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/alerts.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/alerts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +97,7 @@
       <workItem from="1748408241284" duration="6693000" />
       <workItem from="1748415254083" duration="62000" />
       <workItem from="1748415438513" duration="2842000" />
-      <workItem from="1748447482467" duration="11997000" />
+      <workItem from="1748447482467" duration="13845000" />
     </task>
     <servers />
   </component>
