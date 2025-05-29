@@ -7,12 +7,14 @@ class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def fetch_json(self, url):
+    wf_group = app_commands.Group(name="warframe", description="Warframe commands")
+    @staticmethod
+    async def fetch_json(url: str):
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:
                 return await resp.json()
 
-    @app_commands.command(name="wfbaro", description="Warframe Baro status")
+    @wf_group.command(name="baro", description="Warframe Baro status")
     async def wfbaro(self, interaction: discord.Interaction):
         await interaction.response.defer()
         data = await self.fetch_json("https://api.warframestat.us/pc/voidTrader")
@@ -26,19 +28,19 @@ class WarframeCog(commands.Cog):
             msg = f"**Baro is not here right now.** Next visit: {data['startString']}"
         await interaction.followup.send(msg)
 
-    @app_commands.command(name="wfnews", description="Warframe News")
+    @wf_group.command(name="news", description="Warframe News")
     async def wfnews(self, interaction: discord.Interaction):
         news = await self.fetch_json("https://api.warframestat.us/pc/news")
         items = [f"**{n['message']}**\n<{n['link']}>" for n in news[:5]]
         await interaction.response.send_message("\n\n".join(items))
 
-    @app_commands.command(name="wfnightwave", description="Warframe Nightwave status")
+    @wf_group.command(name="nightwave", description="Warframe Nightwave status")
     async def wfnightwave(self, interaction: discord.Interaction):
         data = await self.fetch_json("https://api.warframestat.us/pc/nightwave")
         missions = [f"**{m['title']}** - {m['reputation']} Rep" for m in data.get("activeChallenges", [])]
         await interaction.response.send_message("**Nightwave Challenges:**\n" + "\n".join(missions))
 
-    @app_commands.command(name="wfprice", description="Warframe prices from warframe.market")
+    @wf_group.command(name="price", description="Warframe prices from warframe.market")
     @app_commands.describe(item="Item name")
     async def wfprice(self, interaction: discord.Interaction, item: str):
         item_url = item.replace(" ", "_").lower()
@@ -60,5 +62,7 @@ class WarframeCog(commands.Cog):
                 else:
                     await interaction.response.send_message("❌ No in-game sellers found.")
 
-async def setup(bot):
-    await bot.add_cog(WarframeCog(bot))
+async def setup(bot: commands.Bot):
+    cog = WarframeCog(bot)
+    await bot.add_cog(cog)
+    bot.tree.add_command(cog.wf_group)

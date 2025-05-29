@@ -8,8 +8,9 @@ from config import ALLOWED_GUILD_IDS
 class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+    mc_group = app_commands.Group(name="mc", description="Minecraft commands")
 
-    @app_commands.command(name="mcwiki", description="Search Minecraft Wiki")
+    @mc_group.command(name="wiki", description="Search Minecraft Wiki")
     @app_commands.describe(query="The wiki page to search")
     async def mcwiki(self, interaction: discord.Interaction, query: str):
         search = query.replace(" ", "_")
@@ -21,7 +22,7 @@ class MinecraftCog(commands.Cog):
         )
         await interaction.response.send_message(embed=embed)
 
-    @app_commands.command(name="mcrecipe", description="Get crafting recipe from Minecraft Wiki")
+    @mc_group.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
     @app_commands.describe(item="The item to get recipe for")
     async def mcrecipe(self, interaction: discord.Interaction, item: str):
         await interaction.response.defer()
@@ -75,7 +76,7 @@ class MinecraftCog(commands.Cog):
             embed.set_footer(text="Recipe image not found, please check the wiki page link.")
         await interaction.followup.send(embed=embed)
 
-    @app_commands.command(name="mcadvancement", description="Get advancement info from Minecraft Wiki")
+    @mc_group.command(name="advancement", description="Get advancement info from Minecraft Wiki")
     @app_commands.describe(name="Advancement name")
     async def mcadvancement(self, interaction: discord.Interaction, name: str):
         search = name.replace(" ", "_")
@@ -87,7 +88,7 @@ class MinecraftCog(commands.Cog):
         )
         await interaction.response.send_message(embed=embed)
 
-    @app_commands.command(name="mcenchant", description="Get enchantment info from Minecraft Wiki")
+    @mc_group.command(name="enchant", description="Get enchantment info from Minecraft Wiki")
     @app_commands.describe(name="Enchantment name")
     async def mcenchant(self, interaction: discord.Interaction, name: str):
         search = name.replace(" ", "_")
@@ -99,7 +100,7 @@ class MinecraftCog(commands.Cog):
         )
         await interaction.response.send_message(embed=embed)
 
-    @app_commands.command(name="mcbiome", description="Get biome info from Minecraft Wiki")
+    @mc_group.command(name="biome", description="Get biome info from Minecraft Wiki")
     @app_commands.describe(name="Biome name")
     async def mcbiome(self, interaction: discord.Interaction, name: str):
         search = name.replace(" ", "_")
@@ -111,7 +112,7 @@ class MinecraftCog(commands.Cog):
         )
         await interaction.response.send_message(embed=embed)
 
-    @app_commands.command(name="mcstructure", description="Get structure info from Minecraft Wiki")
+    @mc_group.command(name="structure", description="Get structure info from Minecraft Wiki")
     @app_commands.describe(name="Structure name")
     async def mcstructure(self, interaction: discord.Interaction, name: str):
         search = name.replace(" ", "_")
@@ -123,7 +124,7 @@ class MinecraftCog(commands.Cog):
         )
         await interaction.response.send_message(embed=embed)
 
-    @app_commands.command(name="mcplayer", description="Get Minecraft player info")
+    @mc_group.command(name="player", description="Get Minecraft player info")
     @app_commands.describe(username="Minecraft IGN")
     async def mcplayer(self, interaction: discord.Interaction, username: str):
         try:
@@ -151,7 +152,7 @@ class MinecraftCog(commands.Cog):
         except Exception as e:
             await interaction.followup.send(f"❌ Error: `{e}`")
 
-    @app_commands.command(name="mcserverstatus", description="Get the status of the VDSMP")
+    @mc_group.command(name="serverstatus", description="Get the status of the VDSMP")
     async def mcserverstatus(self, interaction: discord.Interaction):
         if interaction.guild_id not in ALLOWED_GUILD_IDS:
             await interaction.response.send_message(
@@ -199,6 +200,7 @@ class MinecraftCog(commands.Cog):
         except Exception as e:
             await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
 
-
 async def setup(bot: commands.Bot):
-    await bot.add_cog(MinecraftCog(bot))
+    cog = MinecraftCog(bot)
+    await bot.add_cog(cog)
+    bot.tree.add_command(cog.mc_group)

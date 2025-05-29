@@ -1,95 +1,73 @@
 import discord
+import dateparser
 from discord import app_commands
 from discord.ext import commands
-from datetime import datetime
+from datetime import datetime, timedelta
 from dateutil import parser as dateparser
-from utils.alerts_storage import alerts, save_alerts
-from utils.helpers import parse_time
 from pytz import UTC
+from functools import partial
+
+from utils.helpers import parse_time
+from utils.alerts_storage import alerts, save_alerts
+
+from views.alert_modal import AlertModal
+from views.alert_view import AlertItemView
 
 class AlertCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="alert", description="Set an alert for a specific event")
-    @app_commands.describe(input_str="Alert details, e.g. 'Meeting at 15:00 recurring 1h'")
-    async def alert(self, interaction: discord.Interaction, *, input_str: str):
-        recurring = None
-        if "recurring" in input_str:
-            parts = input_str.rsplit("recurring", 1)
-            input_str = parts[0].strip()
-            recurring = parts[1].strip()
-
-            if parse_time(recurring) is None:
-                await interaction.response.send_message("❌ Invalid recurring time format! Use number + s/m/h.")
+    @app_commands.command(name="alert", description="Set an alert via interactive modal")
+    async def alert(self, interaction: discord.Interaction):
+        async def on_submit(interaction, event, time_str, recurring_str):
+            #parse
+            try:
+                date = dateparser.parse(time_str, settings={'RETURN_AS_TIMEZONE_AWARE': True, 'TO_TIMEZONE': 'UTC', 'TIMEZONE': 'UTC'}) # type: ignore
+            except Exception:
+                await interaction.response.send_message("❌ Couldn't parse the date/time.", ephemeral=True)
                 return
 
-        keywords = [' in ', ' at ', ' on ', ' tomorrow', ' today', ' next ', ' this ']
-        split_pos = None
-        for kw in keywords:
-            pos = input_str.lower().find(kw)
-            if pos != -1:
-                split_pos = pos
-                break
+            if date is None or date < datetime.now(UTC):
+                await interaction.response.send_message("❌ Time is invalid or in the past.", ephemeral=True)
+                return
+            if date.tzinfo is None:
+                date = date.replace(tzinfo=UTC)
 
-        if split_pos is not None:
-            event = input_str[:split_pos].strip()
-            datetime_str = input_str[split_pos:].strip()
-        else:
-            parts = input_str.split(maxsplit=1)
-            event = parts[0]
-            datetime_str = parts[1] if len(parts) > 1 else ""
+            recurring = recurring_str if recurring_str else None
+            if recurring and parse_time(recurring) is None:
+                await interaction.response.send_message("❌ Invalid recurring time format! Use e.g. 10m, 1h.", ephemeral=True)
+                return
 
-        date = dateparser.parse(datetime_str, settings={'RETURN_AS_TIMEZONE_AWARE': True, 'TO_TIMEZONE': 'UTC'})
-        if date is None:
-            await interaction.response.send_message("❌ Couldn't parse the date/time. Try a different format.")
-            return
+            # Save alert
+            user_id = str(interaction.user.id)
+            if user_id not in alerts:
+                alerts[user_id] = []
 
-        now = datetime.now(UTC)
-        if date < now:
-            await interaction.response.send_message("❌ The specified time is in the past.")
-            return
-
-        user_id = str(interaction.user.id)
-        if user_id not in alerts:
-            alerts[user_id] = []
-
-        alerts[user_id].append({
-            "event": event,
-            "time": date,
-            "recurring": recurring
-        })
-
-        save_alerts()
-
-        await interaction.response.send_message(
-            f"✅ Alert for **{event}** set at {date.strftime('%Y-%m-%d %H:%M:%S %Z')}"
-            + (f", recurring every {recurring}" if recurring else "") + "."
-        )
-
-    @app_commands.command(name="cancelalerts", description="Cancel all your active alerts")
-    async def cancelalerts(self, interaction: discord.Interaction):
-        user_id = str(interaction.user.id)
-        if user_id in alerts:
-            del alerts[user_id]
+            alerts[user_id].append({
+                "event": event or "Unnamed Event",
+                "time": date,
+                "recurring": recurring
+            })
             save_alerts()
-            await interaction.response.send_message("🛑 All your alerts have been cancelled.")
-        else:
-            await interaction.response.send_message("ℹ️ You have no active alerts.")
 
-    @app_commands.command(name="listalerts", description="List all your active alerts")
+            await interaction.response.send_message(
+                f"✅ Alert for **{event or 'Unnamed Event'}** set at {date.strftime('%Y-%m-%d %H:%M:%S %Z')}"
+                + (f", recurring every {recurring}" if recurring else "") + ".",
+                ephemeral=True
+            )
+
+        await interaction.response.send_modal(AlertModal(on_submit))
+
+    @app_commands.command(name="listalerts", description="List your active alerts with controls")
     async def listalerts(self, interaction: discord.Interaction):
         user_id = str(interaction.user.id)
-        if user_id not in alerts or len(alerts[user_id]) == 0:
-            await interaction.response.send_message("ℹ️ You have no active alerts.")
+        user_alerts = alerts.get(user_id, [])
+        if not user_alerts:
+            await interaction.response.send_message("ℹ️ You have no active alerts.", ephemeral=True)
             return
 
-        embed = discord.Embed(title=f"{interaction.user.name}'s Alerts", color=0x2ecc71)
-        from datetime import datetime
-        from pytz import UTC
-
         now = datetime.now(UTC)
-        for i, alert in enumerate(alerts[user_id], 1):
+        for i, alert in enumerate(user_alerts):
             time_left = alert['time'] - now
             total_seconds = int(time_left.total_seconds())
             if total_seconds < 0:
@@ -98,9 +76,53 @@ class AlertCommands(commands.Cog):
             hours, minutes = divmod(minutes, 60)
             time_str = f"{hours}h {minutes}m {seconds}s" if hours else f"{minutes}m {seconds}s"
             recur = f" (recurring every {alert['recurring']})" if alert.get('recurring') else ""
-            embed.add_field(name=f"{i}. {alert['event']}", value=f"Triggers in {time_str}{recur}", inline=False)
 
-        await interaction.response.send_message(embed=embed)
+            embed = discord.Embed(
+                title=f"Alert {i+1}: {alert['event']}",
+                description=f"Triggers in {time_str}{recur}",
+                color=0x2ecc71
+            )
+
+            view = AlertItemView(
+                cog=self,
+                alert=alerts[user_id][i],
+                alert_index=i,
+                on_cancel=partial(self.cancel_alert, alert_index=i),
+                on_snooze=partial(self.snooze_alert, alert_index=i)
+            )
+
+            await interaction.followup.send(embed=embed, view=view)
+
+    @app_commands.command(name="cancelalerts", description="Cancel all your active alerts")
+    async def cancelalerts(self, interaction: discord.Interaction):
+        user_id = str(interaction.user.id)
+        if user_id in alerts:
+            del alerts[user_id]
+            save_alerts()
+            await interaction.response.send_message("🛑 All your alerts have been cancelled.", ephemeral=True)
+        else:
+            await interaction.response.send_message("ℹ️ You have no active alerts.", ephemeral=True)
+
+    async def cancel_alert(self, interaction: discord.Interaction, _button: discord.ui.Button, alert_index: int):
+        user_id = str(interaction.user.id)
+        user_alerts = alerts.get(user_id, [])
+        if 0 <= alert_index < len(user_alerts):
+            alert = user_alerts.pop(alert_index)
+            save_alerts()
+            await interaction.response.send_message(f"🛑 Cancelled alert **{alert['event']}**.", ephemeral=True)
+        else:
+            await interaction.response.send_message("❌ Invalid alert index.", ephemeral=True)
+
+    async def snooze_alert(self, interaction: discord.Interaction, alert_index: int):
+        user_id = str(interaction.user.id)
+        user_alerts = alerts.get(user_id, [])
+        if 0 <= alert_index < len(user_alerts):
+            alert = user_alerts[alert_index]
+            alert['time'] += timedelta(minutes=10)  # Snooze 10 minutes
+            save_alerts()
+            await interaction.response.send_message(f"😴 Snoozed alert **{alert['event']}** by 10 minutes.", ephemeral=True)
+        else:
+            await interaction.response.send_message("❌ Invalid alert index.", ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(AlertCommands(bot))

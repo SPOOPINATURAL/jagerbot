@@ -11,6 +11,10 @@ class AlertCog(commands.Cog):
         if not self.check_alerts.is_running():
             self.check_alerts.start()
 
+    def __init__(self, bot):
+        self.bot = bot
+        self.alerts = load_alerts()
+
     @tasks.loop(seconds=30)
     async def check_alerts(self):
         now = datetime.now()
@@ -44,5 +48,5 @@ class AlertCog(commands.Cog):
     async def before_check_alerts(self):
         await self.bot.wait_until_ready()
 
-def setup(bot):
-    bot.add_cog(AlertCog(bot))
+async def setup(bot):
+    await bot.add_cog(AlertCog(bot))

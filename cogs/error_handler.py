@@ -5,13 +5,12 @@ from discord import app_commands
 class ErrorHandlerCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        # Register app command error handler
         self.bot.tree.error(self.on_app_command_error)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send("❌ Command not recognized. Use `/help` or `/info` to see available cogs.")
+            await ctx.send("❌ Command not recognized. Use `/info` to see available cogs.")
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(f"⚠️ Missing argument: `{error.param.name}`")
         elif isinstance(error, commands.BadArgument):

@@ -14,7 +14,9 @@ class R6Cog(commands.Cog):
         self.operators = {}
         self.maps = {}
 
-    def create_op_embed(self, op: dict) -> discord.Embed:
+    r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
+    @staticmethod
+    def create_op_embed(op: dict) -> discord.Embed:
         embed = discord.Embed(title=op['name'], description=op['bio'], color=0x8B0000)
         embed.add_field(name="Role", value=op['role'], inline=True)
         embed.add_field(name="Health", value=op['health'], inline=True)
@@ -30,7 +32,7 @@ class R6Cog(commands.Cog):
             embed.set_thumbnail(url=op['icon_url'])
         return embed
 
-    async def operator_autocomplete(self, interaction: discord.Interaction, current: str):
+    async def operator_autocomplete(self, current: str):
         current = current.lower()
         return [
             app_commands.Choice(name=op["name"], value=op["name"])
@@ -38,7 +40,7 @@ class R6Cog(commands.Cog):
             if op["name"].lower().startswith(current)
         ][:25]
 
-    async def map_autocomplete(self, interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
+    async def map_autocomplete(self, current: str) -> List[app_commands.Choice[str]]:
         suggestions = []
         for m in self.maps.values():
             if "name" in m and current.lower() in m["name"].lower():
@@ -48,7 +50,7 @@ class R6Cog(commands.Cog):
                     suggestions.append(app_commands.Choice(name=f"{alias} (alias for {m['name']})", value=m["name"]))
         return suggestions[:25]
 
-    @app_commands.command(name="stats", description="Get R6 stats for a player")
+    @r6_group.command(name="stats", description="Get R6 stats for a player")
     @app_commands.describe(platform="uplay / xbox / psn", username="Player username")
     async def stats(self, interaction: discord.Interaction, platform: str, username: str):
         url = f"https://public-api.tracker.gg/v2/r6/standard/profile/{platform}/{username}"
@@ -70,7 +72,7 @@ class R6Cog(commands.Cog):
 
         await interaction.followup.send(embed=embed)
 
-    @app_commands.command(name="op", description="Get information about an R6 operator")
+    @r6_group.command(name="op", description="Get information about an R6 operator")
     @app_commands.describe(name="Name of the operator")
     @app_commands.autocomplete(name=operator_autocomplete)
     async def op_command(self, interaction: discord.Interaction, name: str):
@@ -81,7 +83,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await interaction.followup.send(embed=embed)
 
-    @app_commands.command(name="oprandom", description="Get a random R6 operator")
+    @r6_group.command(name="oprandom", description="Get a random R6 operator")
     @app_commands.describe(role="Optional: attacker or defender")
     async def oprandom(self, interaction: discord.Interaction, role: str = None):
         role = role.lower() if role else None
@@ -93,7 +95,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await interaction.followup.send(embed=embed)
 
-    @app_commands.command(name="oplist", description="List all R6 operators")
+    @r6_group.command(name="oplist", description="List all R6 operators")
     async def oplist(self, interaction: discord.Interaction):
         names = sorted(op["name"] for op in self.operators.values())
         columns = [[], [], []]
@@ -108,7 +110,7 @@ class R6Cog(commands.Cog):
             embed.add_field(name=f"Column {i+1}", value="\n".join(col), inline=True)
         await interaction.followup.send(embed=embed)
 
-    @app_commands.command(name="map", description="Get info about a map")
+    @r6_group.command(name="map", description="Get info about a map")
     @app_commands.describe(name="Map name")
     @app_commands.autocomplete(name=map_autocomplete)
     async def map_lookup(self, interaction: discord.Interaction, name: str):
@@ -149,7 +151,7 @@ class R6Cog(commands.Cog):
         await interaction.followup.send(embed=make_embed(0), view=view)
         view.message = await interaction.original_response()
 
-    @app_commands.command(name="maplist", description="List all ranked maps")
+    @r6_group.command(name="maplist", description="List all ranked maps")
     async def maplist(self, interaction: discord.Interaction):
         names = sorted(m["name"] for m in self.maps.values())
         half = len(names) // 2
@@ -164,11 +166,5 @@ class R6Cog(commands.Cog):
 
 async def setup(bot: commands.Bot):
     cog = R6Cog(bot)
-    bot.tree.add_command(app_commands.Group(name="r6", description="Rainbow Six Siege cogs"))
-    bot.tree.add_command(cog.stats, parent=bot.tree.get_command("r6"))
-    bot.tree.add_command(cog.op_command, parent=bot.tree.get_command("r6"))
-    bot.tree.add_command(cog.oprandom, parent=bot.tree.get_command("r6"))
-    bot.tree.add_command(cog.oplist, parent=bot.tree.get_command("r6"))
-    bot.tree.add_command(cog.map_lookup, parent=bot.tree.get_command("r6"))
-    bot.tree.add_command(cog.maplist, parent=bot.tree.get_command("r6"))
     await bot.add_cog(cog)
+    bot.tree.add_command(cog.r6_group)

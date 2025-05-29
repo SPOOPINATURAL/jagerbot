@@ -13,6 +13,7 @@ import pytz
 from pytz.exceptions import UnknownTimeZoneError
 from dateutil.tz import UTC
 from dateparser.conf import settings as dp_settings
+import html
 
 #local
 import webserver
@@ -24,9 +25,7 @@ from config import (
 )
 from views.trivia import TriviaView
 from views.rps import RPSView
-from cogs.r6 import r6, operators, maps
 import utils.helpers as helpers
-from cogs.alerts import AlertChecker
 from views.info_pages import InfoPages
 
 #files n shi
@@ -42,8 +41,6 @@ intents.members = True
 custom_settings = SimpleNamespace(**dp_settings.__dict__)
 custom_settings.RETURN_AS_TIMEZONE_AWARE = False
 timeout = aiohttp.ClientTimeout(total=5)
-
-bot = commands.Bot(command_prefix='>', intents=intents)
 sessions = {}
 
 alerts = helpers.load_alerts()
@@ -76,6 +73,9 @@ class JagerBot(commands.Bot):
             intents=intents,
             help_command = None
         )
+        self.user_scores = {}
+        self.alerts = {}
+        self.planes = []
 
     async def setup_hook(self):
         # cogs
@@ -85,22 +85,16 @@ class JagerBot(commands.Bot):
         await self.tree.sync()
         logger.info("✅ Synced slash commands")
 
-        # bg tasks
-        if not self.check_alerts.is_running():
-            self.check_alerts.start()
-
     async def on_ready(self):
         logger.info("Bot is ready, loading alerts and scores...")
         self.load_alerts()
         self.load_scores()
-
+        sessions.clear()
+        cooldowns.clear()
         await self.change_presence(
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="Everything")
         )
-
-        sessions.clear()
-        cooldowns.clear()
         logger.info("✅ Cleared caches")
         logger.info("Ready :)")
 
@@ -109,14 +103,7 @@ class JagerBot(commands.Bot):
 
     def load_scores(self):
         logger.info("Loaded scores")
-
-#entrypoint
-if __name__ == "__main__":
-    bot = JagerBot()
-
-    import asyncio
-    asyncio.run(bot.start(DISCORD_TOKEN))
-
+bot = JagerBot()
 @bot.tree.command(name='hello', description="Hello!")
 async def hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hallo {interaction.user.mention} :)")
