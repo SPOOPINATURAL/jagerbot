@@ -92,6 +92,7 @@ class R6Cog(commands.Cog):
     @app_commands.describe(name="Name of the operator")
     @app_commands.autocomplete(name=operator_autocomplete)
     async def op_command(self, interaction: discord.Interaction, name: str):
+        await interaction.response.defer()
         op_data = find_match(self.operators, name)
         if not op_data:
             await interaction.followup.send(f"❌ Operator `{name}` not found.", ephemeral=True)
@@ -124,7 +125,7 @@ class R6Cog(commands.Cog):
         )
         for i, col in enumerate(columns):
             embed.add_field(name=f"Column {i+1}", value="\n".join(col), inline=True)
-        await interaction.followup.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
     @r6_group.command(name="map", description="Get info about a map")
     @app_commands.describe(name="Map name")
@@ -132,11 +133,11 @@ class R6Cog(commands.Cog):
     async def map_lookup(self, interaction: discord.Interaction, name: str):
         m = find_match(self.maps, name)
         if not m:
-            await interaction.followup.send(f"❌ Map `{name}` not found.")
+            await interaction.response.send_message(f"❌ Map `{name}` not found.")
             return
         floors = m.get("floors", [])
         if not floors:
-            await interaction.followup.send("❌ No floor data.")
+            await interaction.response.send_message("❌ No floor data.")
             return
 
         def make_embed(idx):
@@ -164,7 +165,7 @@ class R6Cog(commands.Cog):
                 await interaction2.response.edit_message(embed=make_embed(self.i), view=self)
 
         view = FloorView()
-        await interaction.followup.send(embed=make_embed(0), view=view)
+        await interaction.response.send_message(embed=make_embed(0), view=view)
         view.message = await interaction.original_response()
 
     @r6_group.command(name="maplist", description="List all ranked maps")
@@ -178,7 +179,7 @@ class R6Cog(commands.Cog):
         )
         embed.add_field(name="Maps A–M", value="\n".join(names[:half]) or "—", inline=True)
         embed.add_field(name="Maps N–Z", value="\n".join(names[half:]) or "—", inline=True)
-        await interaction.followup.send(embed=embed)
+        await interaction.response.send_message(embed=embed)
 
 async def setup(bot: commands.Bot):
     cog = R6Cog(bot)

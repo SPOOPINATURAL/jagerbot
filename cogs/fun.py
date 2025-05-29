@@ -12,10 +12,12 @@ from views.trivia import TriviaView
 
 user_scores = {}
 def load_scores():
+    global user_scores
     if not os.path.exists(SCORES_FILE):
-        return {}
+        user_scores = {}
+        return
     with open(SCORES_FILE, "r") as f:
-        return json.load(f)
+        user_scores = json.load(f)
 
 def save_scores(scores):
     os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)

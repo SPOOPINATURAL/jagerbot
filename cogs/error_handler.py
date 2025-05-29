@@ -27,30 +27,50 @@ class ErrorHandlerCog(commands.Cog):
 
     async def on_app_command_error(self, interaction: discord.Interaction, error: app_commands.AppCommandError):
         if isinstance(error, app_commands.CommandOnCooldown):
-            await interaction.response.send_message(
-                f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.", ephemeral=True
-            )
+            if not interaction.response.is_done():
+                await interaction.response.send_message(
+                    f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.", ephemeral=True
+                )
+            else:
+                await interaction.followup.send(
+                    f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds.", ephemeral=True
+                )
         elif isinstance(error, app_commands.MissingPermissions):
-            await interaction.response.send_message(
-                "🚫 You don't have permission to use this command.", ephemeral=True
-            )
+            if not interaction.response.is_done():
+                await interaction.response.send_message(
+                    "🚫 You don't have permission to use this command.", ephemeral=True
+                )
+            else:
+                await interaction.followup.send(
+                    "🚫 You don't have permission to use this command.", ephemeral=True
+                )
         elif isinstance(error, app_commands.BotMissingPermissions):
             await interaction.response.send_message(
                 "⚠️ I’m missing the required permissions to do that.", ephemeral=True
             )
         elif isinstance(error, app_commands.CommandNotFound):
-            await interaction.response.send_message(
-                "❌ Slash command not found.", ephemeral=True
-            )
+            if not interaction.response.is_done():
+                await interaction.response.send_message(
+                    "❌ Slash command not found.", ephemeral=True
+                )
+            else:
+                await interaction.followup.send(
+                    "⚠️ I’m missing the required permissions to do that.", ephemeral=True
+                )
         elif isinstance(error, app_commands.TransformerError):
-            await interaction.response.send_message(
-                "❌ Invalid input. Please check your command options.", ephemeral=True
-            )
+            if not interaction.response.is_done():
+                await interaction.response.send_message(
+                    "❌ Invalid input. Please check your command options.", ephemeral=True
+                )
+            else:
+                await interaction.followup.send(
+                    "❌ Invalid input. Please check your command options.", ephemeral=True
+                )
         else:
             print(f"Unhandled slash command error: {error}")
-            try:
+            if not interaction.response.is_done():
                 await interaction.response.send_message("❌ An unexpected error occurred.", ephemeral=True)
-            except discord.InteractionResponded:
+            else:
                 await interaction.followup.send("❌ An unexpected error occurred.", ephemeral=True)
 
 async def setup(bot):

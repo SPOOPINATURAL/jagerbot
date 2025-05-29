@@ -13,10 +13,13 @@ class AlertCog(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.alerts = load_alerts()
+        global alerts
+        alerts = load_alerts()
+        self.alerts = alerts
 
     @tasks.loop(seconds=30)
     async def check_alerts(self):
+        global alerts
         now = datetime.now()
         to_remove = []
 
