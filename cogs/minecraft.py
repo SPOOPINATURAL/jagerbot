@@ -4,11 +4,11 @@ from discord import app_commands
 import aiohttp
 from bs4 import BeautifulSoup
 from config import ALLOWED_GUILD_IDS
-
+TEST_GUILD_ID = 989558855023362110
+mc_group = app_commands.Group(name="mc", description="Minecraft commands")
 class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    mc_group = app_commands.Group(name="mc", description="Minecraft commands")
 
     @mc_group.command(name="wiki", description="Search Minecraft Wiki")
     @app_commands.describe(query="The wiki page to search")
@@ -201,5 +201,7 @@ class MinecraftCog(commands.Cog):
             await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
 
 async def setup(bot: commands.Bot):
-    cog = MinecraftCog(bot)
-    await bot.add_cog(cog)
+    await bot.add_cog(MinecraftCog(bot))
+    bot.tree.add_command(mc_group)
+    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+    print("Added mc_group to command tree")

@@ -6,3 +6,4 @@ dateparser
 beautifulsoup4
 python-dateutil
 flask
+feedparser

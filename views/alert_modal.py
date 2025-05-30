@@ -1,8 +1,8 @@
 import discord
 
-class AlertModal(discord.ui.Modal, title="Set a New Alert"):
+class AlertModal(discord.ui.Modal):
     def __init__(self, on_submit):
-        super().__init__()
+        super().__init__(title="Set a New Alert")
         self.on_submit_callback = on_submit
         self.event = discord.ui.TextInput(label="Event", placeholder="Meeting, homework, etc.", required=True)
         self.time = discord.ui.TextInput(label="Time", placeholder="e.g., 15:00, tomorrow at noon", required=True)

@@ -2,12 +2,11 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import aiohttp
-
+TEST_GUILD_ID = 989558855023362110
+wf_group = app_commands.Group(name="wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    wf_group = app_commands.Group(name="warframe", description="Warframe commands")
     @staticmethod
     async def fetch_json(url: str):
         async with aiohttp.ClientSession() as session:
@@ -62,6 +61,47 @@ class WarframeCog(commands.Cog):
                 else:
                     await interaction.response.send_message("❌ No in-game sellers found.")
 
+    @wf_group.command(name="streams", description="List upcoming and active Warframe streams with drops")
+    async def streams(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True)
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://api.warframestreams.lol/v1/streams/upcoming") as resp_upcoming:
+                upcoming_data = await resp_upcoming.json() if resp_upcoming.status == 200 else []
+
+            async with session.get("https://api.warframestreams.lol/v1/streams/active") as resp_active:
+                active_data = await resp_active.json() if resp_active.status == 200 else []
+
+        embed = discord.Embed(title="Warframe Streams", color=0x00FF00)
+
+        if upcoming_data:
+            upcoming_lines = []
+            for stream in upcoming_data[:5]:
+                title = stream.get('title', 'No Title')
+                drops = stream.get('drops', [])
+                drops_str = ", ".join(drops) if drops else "No Drops"
+                start_time = stream.get('startTime', 'Unknown Time')
+                upcoming_lines.append(f"**{title}**\nDrops: {drops_str}\nStart: {start_time}\n")
+            embed.add_field(name="Upcoming Streams", value="\n".join(upcoming_lines), inline=False)
+        else:
+            embed.add_field(name="Upcoming Streams", value="No upcoming streams found.", inline=False)
+
+        if active_data:
+            active_lines = []
+            for stream in active_data[:5]:
+                title = stream.get('title', 'No Title')
+                drops = stream.get('drops', [])
+                drops_str = ", ".join(drops) if drops else "No Drops"
+                url = stream.get('url', '#')
+                active_lines.append(f"[{title}]({url})\nDrops: {drops_str}\n")
+            embed.add_field(name="Active Streams", value="\n".join(active_lines), inline=False)
+        else:
+            embed.add_field(name="Active Streams", value="No active streams found.", inline=False)
+
+        await interaction.followup.send(embed=embed)
+
 async def setup(bot: commands.Bot):
-    cog = WarframeCog(bot)
-    await bot.add_cog(cog)
+    await bot.add_cog(WarframeCog(bot))
+    bot.tree.add_command(wf_group)
+    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+    print("Added wf_group to command tree")

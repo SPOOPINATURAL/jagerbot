@@ -2,13 +2,15 @@ import discord
 import random
 import aiohttp
 import json
+import feedparser
 
 from discord import app_commands
 from discord.ext import commands
 from config import TRACKER_API_KEY
 from typing import List
 from utils.helpers import find_match
-
+TEST_GUILD_ID = 989558855023362110
+r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
 class R6Cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -29,8 +31,6 @@ class R6Cog(commands.Cog):
             print("maps.json not found.")
         except json.JSONDecodeError:
             print("maps.json is corrupted.")
-
-    r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
     @staticmethod
     def create_op_embed(op: dict) -> discord.Embed:
         embed = discord.Embed(title=op['name'], description=op['bio'], color=0x8B0000)
@@ -50,11 +50,20 @@ class R6Cog(commands.Cog):
 
     async def operator_autocomplete(self, _interaction: discord.Interaction, current: str):
         current = current.lower()
-        return [
-            app_commands.Choice(name=op["name"], value=op["name"])
-            for op in self.operators.values()
-            if op["name"].lower().startswith(current)
-        ][:25]
+        suggestions = []
+        for op in self.operators.values():
+            name_match = op["name"].lower().startswith(current)
+            alias_match = any(current in alias.lower() for alias in op.get("aliases", []))
+
+            if name_match:
+                suggestions.append(app_commands.Choice(name=op["name"], value=op["name"]))
+            elif alias_match:
+                suggestions.append(app_commands.Choice(
+                    name=f"{op['aliases'][0]} (alias for {op['name']})",
+                    value=op["name"]
+            ))
+
+        return suggestions[:25]
 
     async def map_autocomplete(self, _interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
         suggestions = []
@@ -69,22 +78,31 @@ class R6Cog(commands.Cog):
     @r6_group.command(name="stats", description="Get R6 stats for a player")
     @app_commands.describe(platform="uplay / xbox / psn", username="Player username")
     async def stats(self, interaction: discord.Interaction, platform: str, username: str):
+        await interaction.response.defer(thinking=True)
         url = f"https://public-api.tracker.gg/v2/r6/standard/profile/{platform}/{username}"
         headers = {"TRN-Api-Key": TRACKER_API_KEY}
 
         async with aiohttp.ClientSession() as session:
             async with session.get(url, headers=headers) as resp:
                 if resp.status != 200:
-                    await interaction.followup.send(f"❌ Could not find stats for `{username}` on `{platform}`.")
+                    await interaction.followup.send(f"❌ Could not find stats for `{username}` on `{platform}`.", ephemeral=True)
                     return
                 data = await resp.json()
 
         stats = data['data']['segments'][0]['stats']
+        rank_data = stats.get('rankedRank', {})
+        rank_value = rank_data.get('displayValue', 'N/A')
+        rank_icon = rank_data.get('metadata', {}).get('iconUrl')
+
+        stats = data['data']['segments'][0]['stats']
         embed = discord.Embed(title=f"R6 Stats for {username}", color=0x00ff00)
         embed.add_field(name="Platform", value=platform.upper(), inline=True)
-        embed.add_field(name="Rank", value=stats.get('rankedRank', {}).get('displayValue', 'N/A'), inline=True)
+        embed.add_field(name="Rank", value=rank_value, inline=True)
         embed.add_field(name="K/D Ratio", value=stats.get('killsDeathRatio', {}).get('displayValue', 'N/A'), inline=True)
         embed.add_field(name="Win/Loss Ratio", value=stats.get('winLossRatio', {}).get('displayValue', 'N/A'), inline=True)
+
+        if rank_icon:
+            embed.set_thumbnail(url=rank_icon)
 
         await interaction.followup.send(embed=embed)
 
@@ -103,6 +121,7 @@ class R6Cog(commands.Cog):
     @r6_group.command(name="oprandom", description="Get a random R6 operator")
     @app_commands.describe(role="Optional: attacker or defender")
     async def oprandom(self, interaction: discord.Interaction, role: str = None):
+        await interaction.response.defer()
         role = role.lower() if role else None
         filtered = [op for op in self.operators.values() if not role or op["role"].lower() == role]
         if not filtered:
@@ -181,6 +200,36 @@ class R6Cog(commands.Cog):
         embed.add_field(name="Maps N–Z", value="\n".join(names[half:]) or "—", inline=True)
         await interaction.response.send_message(embed=embed)
 
+    @r6_group.command(name="news", description="Get the latest Rainbow Six Siege news from Steam")
+    async def news(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True)
+
+        feed_url = "https://steamcommunity.com/games/359550/rss/"
+        feed = feedparser.parse(feed_url)
+
+        if not feed.entries:
+            await interaction.followup.send("❌ Could not fetch R6 news right now. Please try again later.", ephemeral=True)
+            return
+
+        embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x00aff0)
+
+        for entry in feed.entries[:3]:
+            title = entry.title
+            link = entry.link
+            published = entry.published
+            summary = entry.summary[:200] + "..." if len(entry.summary) > 200 else entry.summary
+
+            embed.add_field(
+                name=f"{title} ({published})",
+                value=f"{summary}\n[Read more]({link})",
+                inline=False
+            )
+
+        embed.set_footer(text="Source: Steam News")
+        await interaction.followup.send(embed=embed)
+
 async def setup(bot: commands.Bot):
-    cog = R6Cog(bot)
-    await bot.add_cog(cog)
+    await bot.add_cog(R6Cog(bot))
+    bot.tree.add_command(r6_group)
+    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+    print("Added r6_group to command tree")

@@ -13,24 +13,34 @@ from views.trivia import TriviaView
 user_scores = {}
 def load_scores():
     global user_scores
-    if not os.path.exists(SCORES_FILE):
+    if os.path.exists(SCORES_FILE):
+        try:
+            with open(SCORES_FILE, "r", encoding="utf-8") as f:
+                user_scores = json.load(f)
+        except Exception as e:
+            print(f"Failed to load scores: {e}")
+            user_scores = {}
+    else:
         user_scores = {}
-        return
-    with open(SCORES_FILE, "r") as f:
-        user_scores = json.load(f)
+    print(f"Loaded scores: {user_scores}")
 
-def save_scores(scores):
-    os.makedirs(os.path.dirname(SCORES_FILE), exist_ok=True)
-    with open(SCORES_FILE, "w") as f:
-        json.dump(scores, f, indent=4)
+def save_scores():
+    try:
+        with open(SCORES_FILE, "w", encoding="utf-8") as f:
+            json.dump(user_scores, f, indent=2)
+    except Exception as e:
+        print(f"Failed to save scores: {e}")
+    print(f"Saved scores: {user_scores}")
 
 async def handle_trivia_answer(user_id: int, is_correct: bool):
-    user_scores[user_id] = user_scores.get(user_id, 0) + int(is_correct)
-    save_scores(user_scores)
+    uid = str(user_id)
+    user_scores[uid] = user_scores.get(uid, 0) + int(is_correct)
+    save_scores()
 
 class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        load_scores()
 
     @app_commands.command(name='hello', description="Hello!")
     async def hello(self, interaction: discord.Interaction):
@@ -169,7 +179,7 @@ class Fun(commands.Cog):
 
     @app_commands.command(name='score', description="Get your trivia score")
     async def score(self, interaction: discord.Interaction):
-        uid = interaction.user.id
+        uid = str(interaction.user.id)
         score = user_scores.get(uid, 0)
         await interaction.response.send_message(
             f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**"

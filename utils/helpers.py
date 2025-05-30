@@ -51,20 +51,24 @@ def normalize_tz(tz_str):
 # parsing
 def parse_time(time_str: str) -> int | None:
     time_str = time_str.strip().lower()
-    pattern = re.fullmatch(r"(\d+)([smh])", time_str)
+    pattern = re.findall(r"(\d+)([wdsmh])", time_str)
     if not pattern:
         return None
+    total_seconds = 0
+    unit_multipliers = {
+        'w': 7 * 24 * 60 * 60,  # weeks to seconds
+        'd': 24 * 60 * 60,  # days to seconds
+        'h': 60 * 60,  # hours to seconds
+        'm': 60,  # minutes to seconds
+        's': 1,  # seconds
+    }
+    for value, unit in pattern:
+        if unit in unit_multipliers:
+            total_seconds += int(value) * unit_multipliers[unit]
+        else:
+            return None
 
-    value, unit = pattern.groups()
-    value = int(value)
-
-    if unit == "s":
-        return value
-    elif unit == "m":
-        return value * 60
-    elif unit == "h":
-        return value * 3600
-    return None
+    return total_seconds if total_seconds > 0 else None
 
 # weather
 def get_weather_emoji(condition: str) -> str:

@@ -24,12 +24,20 @@ class AlertCommands(commands.Cog):
             try:
                 date = dateparser.parse(time_str, settings={'RETURN_AS_TIMEZONE_AWARE': True, 'TO_TIMEZONE': 'UTC', 'TIMEZONE': 'UTC'}) # type: ignore
             except Exception:
+                date = None
+
+            if date is None:
+                seconds = parse_time(time_str)
+                if seconds:
+                    date = datetime.now(UTC) + timedelta(seconds=seconds)
+
+            if date is None:
                 await interaction.response.send_message("❌ Couldn't parse the date/time.", ephemeral=True)
                 return
-
-            if date is None or date < datetime.now(UTC):
+            if date < datetime.now(UTC):
                 await interaction.response.send_message("❌ Time is invalid or in the past.", ephemeral=True)
                 return
+
             if date.tzinfo is None:
                 date = date.replace(tzinfo=UTC)
 
@@ -55,10 +63,12 @@ class AlertCommands(commands.Cog):
                 ephemeral=True
             )
 
-        await interaction.response.send_modal(AlertModal(on_submit))
+        modal = AlertModal(on_submit)
+        await interaction.response.send_modal(modal)
 
     @app_commands.command(name="listalerts", description="List your active alerts with controls")
     async def listalerts(self, interaction: discord.Interaction):
+        await interaction.response.defer(ephemeral=True)
         user_id = str(interaction.user.id)
         user_alerts = alerts.get(user_id, [])
         if not user_alerts:
@@ -86,8 +96,8 @@ class AlertCommands(commands.Cog):
                 cog=self,
                 alert=alerts[user_id][i],
                 alert_index=i,
-                on_cancel=partial(self.cancel_alert, alert_index=i),
-                on_snooze=partial(self.snooze_alert, alert_index=i)
+                on_cancel=lambda interaction, idx=i: self.cancel_alert(interaction, idx),
+                on_snooze=lambda interaction, idx=i: self.snooze_alert(interaction, idx)
             )
 
             await interaction.followup.send(embed=embed, view=view)

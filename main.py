@@ -13,6 +13,7 @@ import pytz
 from pytz.exceptions import UnknownTimeZoneError
 from dateparser.conf import settings as dp_settings
 import html
+import asyncio
 
 #local
 import webserver
@@ -66,7 +67,6 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
-
 if __name__ == "__main__":
     webserver.keep_alive()
     bot.run(config.DISCORD_TOKEN)
