@@ -1,4 +1,5 @@
-
+import os
+import psutil
 from discord.ext import commands
 from discord import Interaction
 from discord.app_commands import AppCommandError, CommandOnCooldown, MissingPermissions, BotMissingPermissions, CommandNotFound, TransformerError
@@ -50,6 +51,20 @@ class ErrorHandlerCog(commands.Cog):
 
         except NotFound:
             pass
+
+    def check_for_multiple_instances():
+        current_pid = os.getpid()
+        count = 0
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+            if 'python' in proc.info['name'].lower() and 'your_bot_script_name.py' in ' '.join(proc.info['cmdline']):
+                count += 1
+        if count > 1:
+            print("Warning: Multiple instances of bot detected!")
+            return True
+        return False
+
+    if check_for_multiple_instances():
+        exit(1)  # Or handle as needed
 
 async def setup(bot):
     await bot.add_cog(ErrorHandlerCog(bot))

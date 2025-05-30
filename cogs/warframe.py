@@ -7,11 +7,16 @@ wf_group = app_commands.Group(name="wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
+
+    async def cog_unload(self):
+        if self.session:
+            await self.session.close()
+
     @staticmethod
-    async def fetch_json(url: str):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                return await resp.json()
+    async def fetch_json(self, url: str):
+        async with self.session.get(url) as resp:
+            return await resp.json()
 
     @wf_group.command(name="baro", description="Warframe Baro status")
     async def wfbaro(self, interaction: discord.Interaction):
@@ -101,7 +106,7 @@ class WarframeCog(commands.Cog):
         await interaction.followup.send(embed=embed)
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(WarframeCog(bot))
     bot.tree.add_command(wf_group)
+    await bot.add_cog(WarframeCog(bot))
     await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
     print("Added wf_group to command tree")

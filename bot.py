@@ -41,18 +41,8 @@ class JagerBot(commands.Bot):
             )
         )
 
-        # ✅ Fetch and log what Discord actually sees
         guild = discord.Object(id=TEST_GUILD_ID) if self.is_dev else None
         commands = await self.tree.fetch_commands(guild=guild)
         print("Fetched commands from Discord:")
         for cmd in commands:
             print(f"- {cmd.name}")
-
-
-intents = discord.Intents.default()
-intents.message_content = True  # Needed if you use on_message, etc.
-
-bot = JagerBot(command_prefix=">", intents=intents)
-
-# You must point to your token in a `.env` file like: DISCORD_TOKEN=your_token_here
-bot.run(os.getenv("DISCORD_TOKEN"))

@@ -42,7 +42,7 @@ warnings.simplefilter('always', RuntimeWarning)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 custom_settings = SimpleNamespace(**dp_settings.__dict__)
 custom_settings.RETURN_AS_TIMEZONE_AWARE = False
-timeout = aiohttp.ClientTimeout(total=5)
+timeout = aiohttp.ClientTimeout(total=10)
 sessions = {}
 
 # data load

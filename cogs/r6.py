@@ -229,7 +229,7 @@ class R6Cog(commands.Cog):
         await interaction.followup.send(embed=embed)
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(R6Cog(bot))
     bot.tree.add_command(r6_group)
+    await bot.add_cog(R6Cog(bot))
     await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
     print("Added r6_group to command tree")
