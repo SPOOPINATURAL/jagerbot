@@ -225,14 +225,22 @@ class MinecraftCog(BaseCog):
 
 async def setup(bot: commands.Bot):
     try:
+        try:
+            bot.tree.remove_command("mc")
+        except:
+            pass
+        
         cog = MinecraftCog(bot)
         await bot.add_cog(cog)
-        if not hasattr(bot, 'app_commands_added'):
-            bot.app_commands_added = set()
-        if 'mc' not in bot.app_commands_added:
+        
+        if not hasattr(bot, 'added_command_groups'):
+            bot.added_command_groups = set()
+            
+        if "mc" not in bot.added_command_groups:
             bot.tree.add_command(mc_group)
-            bot.app_commands_added.add('mc')
-        logger.info("MinecraftCog loaded successfully")
+            bot.added_command_groups.add("mc")
+            
+        logger.info(f"{cog.__class__.__name__} loaded and commands synced")
     except Exception as e:
-        logger.error(f"Failed to setup MinecraftCog: {e}")
+        logger.error(f"Failed to setup {cog.__class__.__name__}: {e}")
         raise

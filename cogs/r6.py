@@ -178,6 +178,21 @@ class R6Cog(BaseCog, AutocompleteMixin):
             alias_dict=self._operator_aliases,
             cache_prefix="op_autocomplete"
         )
+    def create_op_embed(self, op_data: dict) -> discord.Embed:
+        embed = discord.Embed(
+            title=f"Operator: {op_data['name']}",
+            color=0x8B0000
+        )
+        embed.add_field(name="Role", value=op_data['role'], inline=True)
+        embed.add_field(name="Squad", value=op_data['squad'], inline=True)
+        embed.add_field(name="Stats", value=f"Health: {op_data['health']}\nSpeed: {op_data['speed']}", inline=True)
+
+        embed.add_field(name="Primary Weapons", value="\n".join(op_data['primary_weapons']) or "—", inline=False)
+        embed.add_field(name="Secondary Weapons", value="\n".join(op_data['secondary_weapons']) or "—", inline=False)
+        embed.add_field(name="Primary Gadget", value=op_data['primary_gadget'] or "—", inline=False)
+        embed.add_field(name="Secondary Gadgets", value="\n".join(op_data['secondary_gadgets']) or "—", inline=False)
+
+        return embed
 
     @r6_group.command(name="map", description="Look up map information")
     @app_commands.describe(name="Name of the map")
@@ -312,9 +327,16 @@ class R6Cog(BaseCog, AutocompleteMixin):
 async def setup(bot: commands.Bot):
     try:
         cog = R6Cog(bot)
-        bot.tree.add_command(r6_group)
         await bot.add_cog(cog)
-        logger.info("R6Cog loaded successfully")
+        
+        if not hasattr(bot, 'added_command_groups'):
+            bot.added_command_groups = set()
+        
+        if "r6" not in bot.added_command_groups:
+            bot.tree.add_command(r6_group)
+            bot.added_command_groups.add("r6")
+        
+        logger.info("R6Cog loaded and commands synced")
     except Exception as e:
         logger.error(f"Failed to setup R6Cog: {e}")
         raise

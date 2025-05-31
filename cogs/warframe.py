@@ -194,13 +194,22 @@ class WarframeCog(commands.Cog):
 
 async def setup(bot: commands.Bot):
     try:
+        try:
+            bot.tree.remove_command("wf")
+        except:
+            pass
+
         cog = WarframeCog(bot)
-        
-        bot.tree.add_command(wf_group)
-        
         await bot.add_cog(cog)
-        
-        logger.info("WarframeCog loaded successfully")
+
+        if not hasattr(bot, 'added_command_groups'):
+            bot.added_command_groups = set()
+            
+        if "wf" not in bot.added_command_groups:
+            bot.tree.add_command(wf_group)
+            bot.added_command_groups.add("wf")
+            
+        logger.info(f"{cog.__class__.__name__} loaded and commands synced")
     except Exception as e:
-        logger.error(f"Failed to setup WarframeCog: {e}")
+        logger.error(f"Failed to setup {cog.__class__.__name__}: {e}")
         raise

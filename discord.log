@@ -1338,3 +1338,370 @@ Traceback (most recent call last):
     raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
 TypeError: autocomplete parameter expected a bound self parameter but one was not provided
 2025-05-31 16:12:21,688 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 16:14:54,957 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 16:14:54,958 - discord.client - INFO - logging in using static token
+2025-05-31 16:14:54,970 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 16:14:54,970 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 16:14:55,560 - bot - INFO - Starting setup hook...
+2025-05-31 16:14:55,598 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000018079186C30>
+2025-05-31 16:14:55,599 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 16:14:55,599 - cogs.r6 - INFO - R6Cog loaded successfully
+2025-05-31 16:14:55,599 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 16:14:55,655 - cogs.minecraft - INFO - MinecraftCog loaded successfully
+2025-05-31 16:14:55,655 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 16:14:55,655 - cogs.warframe - INFO - WarframeCog loaded successfully
+2025-05-31 16:14:55,655 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 16:14:55,659 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 16:14:55,659 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 16:14:55,661 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 16:14:55,662 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 16:14:55,663 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 16:14:57,751 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 16:14:57,752 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 16:14:59,092 - bot - INFO - Synced 25 commands to test guild
+2025-05-31 16:14:59,092 - bot - INFO -   • mc
+2025-05-31 16:14:59,092 - bot - INFO -   • wf
+2025-05-31 16:14:59,092 - bot - INFO -   • hello
+2025-05-31 16:14:59,092 - bot - INFO -   • quote
+2025-05-31 16:14:59,093 - bot - INFO -   • image
+2025-05-31 16:14:59,093 - bot - INFO -   • clancy
+2025-05-31 16:14:59,093 - bot - INFO -   • longo
+2025-05-31 16:14:59,093 - bot - INFO -   • 8ball
+2025-05-31 16:14:59,093 - bot - INFO -   • xkcd
+2025-05-31 16:14:59,093 - bot - INFO -   • d20
+2025-05-31 16:14:59,093 - bot - INFO -   • rps
+2025-05-31 16:14:59,093 - bot - INFO -   • trivia
+2025-05-31 16:14:59,093 - bot - INFO -   • score
+2025-05-31 16:14:59,093 - bot - INFO -   • alert
+2025-05-31 16:14:59,093 - bot - INFO -   • listalerts
+2025-05-31 16:14:59,093 - bot - INFO -   • cancelalerts
+2025-05-31 16:14:59,094 - bot - INFO -   • weather
+2025-05-31 16:14:59,094 - bot - INFO -   • tzconvert
+2025-05-31 16:14:59,094 - bot - INFO -   • timezones
+2025-05-31 16:14:59,094 - bot - INFO -   • credits
+2025-05-31 16:14:59,094 - bot - INFO -   • date
+2025-05-31 16:14:59,094 - bot - INFO -   • plane
+2025-05-31 16:14:59,094 - bot - INFO -   • currency
+2025-05-31 16:14:59,094 - bot - INFO -   • info
+2025-05-31 16:14:59,094 - bot - INFO -   • r6
+2025-05-31 16:14:59,340 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 9fd5c3da7bf35812fd8813da8edd2cf0).
+2025-05-31 16:14:59,340 - bot - INFO - Connected to Discord
+2025-05-31 16:15:01,346 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 16:15:01,584 - bot - INFO - Registered Commands (25):
+2025-05-31 16:15:01,584 - bot - INFO -   • mc
+2025-05-31 16:15:01,584 - bot - INFO -   • wf
+2025-05-31 16:15:01,584 - bot - INFO -   • hello
+2025-05-31 16:15:01,584 - bot - INFO -   • quote
+2025-05-31 16:15:01,584 - bot - INFO -   • image
+2025-05-31 16:15:01,584 - bot - INFO -   • clancy
+2025-05-31 16:15:01,584 - bot - INFO -   • longo
+2025-05-31 16:15:01,584 - bot - INFO -   • 8ball
+2025-05-31 16:15:01,584 - bot - INFO -   • xkcd
+2025-05-31 16:15:01,584 - bot - INFO -   • d20
+2025-05-31 16:15:01,584 - bot - INFO -   • rps
+2025-05-31 16:15:01,584 - bot - INFO -   • trivia
+2025-05-31 16:15:01,584 - bot - INFO -   • score
+2025-05-31 16:15:01,584 - bot - INFO -   • alert
+2025-05-31 16:15:01,584 - bot - INFO -   • listalerts
+2025-05-31 16:15:01,584 - bot - INFO -   • cancelalerts
+2025-05-31 16:15:01,584 - bot - INFO -   • weather
+2025-05-31 16:15:01,584 - bot - INFO -   • tzconvert
+2025-05-31 16:15:01,584 - bot - INFO -   • timezones
+2025-05-31 16:15:01,584 - bot - INFO -   • credits
+2025-05-31 16:15:01,584 - bot - INFO -   • date
+2025-05-31 16:15:01,584 - bot - INFO -   • plane
+2025-05-31 16:15:01,585 - bot - INFO -   • currency
+2025-05-31 16:15:01,585 - bot - INFO -   • info
+2025-05-31 16:15:01,585 - bot - INFO -   • r6
+2025-05-31 16:15:58,628 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:16:00,454 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:16:01,344 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:18:56,169 - cogs.owner - INFO - Starting global command sync...
+2025-05-31 16:18:56,738 - cogs.owner - INFO - Synced 25 commands globally
+2025-05-31 16:19:39,703 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:19:42,224 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:19:42,849 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:20:10,243 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:20:11,965 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:20:12,601 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 16:25:56,802 - cogs.owner - INFO - Starting global command sync...
+2025-05-31 16:25:57,375 - cogs.owner - INFO - Synced 25 commands globally
+2025-05-31 16:27:38,252 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 16:45:45,940 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 16:45:45,941 - discord.client - INFO - logging in using static token
+2025-05-31 16:45:45,952 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 16:45:45,952 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 16:45:46,425 - bot - INFO - Setup hook started
+2025-05-31 16:45:46,472 - bot - ERROR - Failed to load cogs.r6: Extension 'cogs.r6' has no 'setup' function.
+2025-05-31 16:45:46,528 - cogs.minecraft - INFO - MinecraftCog loaded and commands synced
+2025-05-31 16:45:46,529 - bot - INFO - Loaded cog: cogs.minecraft
+2025-05-31 16:45:46,532 - cogs.warframe - INFO - WarframeCog loaded and commands synced
+2025-05-31 16:45:46,532 - bot - INFO - Loaded cog: cogs.warframe
+2025-05-31 16:45:46,542 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 16:45:46,543 - bot - INFO - Loaded cog: cogs.fun
+2025-05-31 16:45:46,546 - bot - INFO - Loaded cog: cogs.alerts
+2025-05-31 16:45:46,553 - bot - INFO - Loaded cog: cogs.alert_cmd
+2025-05-31 16:45:46,559 - bot - INFO - Loaded cog: cogs.core
+2025-05-31 16:45:48,301 - bot - INFO - Loaded cog: cogs.error_handler
+2025-05-31 16:45:48,304 - bot - INFO - Loaded cog: cogs.owner
+2025-05-31 16:45:48,304 - bot - INFO - Finished loading cogs
+2025-05-31 16:45:48,304 - bot - INFO - Starting command tree sync
+2025-05-31 16:45:48,454 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 16:45:48,667 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: fcf1e8fc21051b29326f5c969663d458).
+2025-05-31 16:45:48,667 - bot - INFO - Connected to Discord
+2025-05-31 16:45:50,672 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 16:46:33,337 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='CommandTree-invoker' coro=<CommandTree._from_interaction.<locals>.wrapper() done, defined at C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py:1149> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn type: Value must be one of {8}.')>
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'r6' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1153, in wrapper
+    await self._dispatch_error(interaction, e)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1146, in _dispatch_error
+    await self.on_error(interaction, error)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\error_handler.py", line 58, in on_app_command_error
+    await interaction.response.send_message(msg, ephemeral=True)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In type: Value must be one of {8}.
+2025-05-31 16:46:34,936 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='CommandTree-invoker' coro=<CommandTree._from_interaction.<locals>.wrapper() done, defined at C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py:1149> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn type: Value must be one of {8}.')>
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'r6' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1153, in wrapper
+    await self._dispatch_error(interaction, e)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1146, in _dispatch_error
+    await self.on_error(interaction, error)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\error_handler.py", line 58, in on_app_command_error
+    await interaction.response.send_message(msg, ephemeral=True)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In type: Value must be one of {8}.
+2025-05-31 16:46:36,041 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='CommandTree-invoker' coro=<CommandTree._from_interaction.<locals>.wrapper() done, defined at C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py:1149> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn type: Value must be one of {8}.')>
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'r6' not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1153, in wrapper
+    await self._dispatch_error(interaction, e)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1146, in _dispatch_error
+    await self.on_error(interaction, error)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\error_handler.py", line 58, in on_app_command_error
+    await interaction.response.send_message(msg, ephemeral=True)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In type: Value must be one of {8}.
+2025-05-31 16:46:54,840 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 16:51:23,392 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 16:51:23,394 - discord.client - INFO - logging in using static token
+2025-05-31 16:51:23,405 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 16:51:23,405 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 16:51:23,759 - bot - INFO - Setup hook started
+2025-05-31 16:51:23,817 - bot - ERROR - Failed to load cogs.r6: Extension 'cogs.r6' has no 'setup' function.
+2025-05-31 16:51:23,898 - cogs.minecraft - INFO - MinecraftCog loaded and commands synced
+2025-05-31 16:51:23,898 - bot - INFO - Loaded cog: cogs.minecraft
+2025-05-31 16:51:23,899 - cogs.warframe - INFO - WarframeCog loaded and commands synced
+2025-05-31 16:51:23,899 - bot - INFO - Loaded cog: cogs.warframe
+2025-05-31 16:51:23,903 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 16:51:23,903 - bot - INFO - Loaded cog: cogs.fun
+2025-05-31 16:51:23,904 - bot - INFO - Loaded cog: cogs.alerts
+2025-05-31 16:51:23,906 - bot - INFO - Loaded cog: cogs.alert_cmd
+2025-05-31 16:51:23,908 - bot - INFO - Loaded cog: cogs.core
+2025-05-31 16:51:25,624 - bot - INFO - Loaded cog: cogs.error_handler
+2025-05-31 16:51:25,626 - bot - INFO - Loaded cog: cogs.owner
+2025-05-31 16:51:25,626 - bot - INFO - Finished loading cogs
+2025-05-31 16:51:25,626 - bot - INFO - Starting command tree sync
+2025-05-31 16:51:25,772 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 16:51:25,772 - bot - INFO - Finished loading cogs
+2025-05-31 16:51:25,772 - bot - INFO - Force syncing commands...
+2025-05-31 16:52:25,750 - bot - INFO - Force synced commands to test guild
+2025-05-31 16:52:25,951 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e6e01f2e470ca8e4df7a29d14318f5c1).
+2025-05-31 16:52:25,951 - bot - INFO - Connected to Discord
+2025-05-31 16:52:27,965 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 17:09:07,145 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 17:21:22,846 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 17:21:22,848 - discord.client - INFO - logging in using static token
+2025-05-31 17:21:22,860 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 17:21:22,860 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 17:21:23,191 - bot - INFO - Setup hook started
+2025-05-31 17:21:23,242 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001543100B9B0>
+2025-05-31 17:21:23,243 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 17:21:23,243 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 17:21:23,243 - bot - INFO - Loaded cog: cogs.r6
+2025-05-31 17:21:23,304 - cogs.minecraft - INFO - MinecraftCog loaded and commands synced
+2025-05-31 17:21:23,304 - bot - INFO - Loaded cog: cogs.minecraft
+2025-05-31 17:21:23,308 - cogs.warframe - INFO - WarframeCog loaded and commands synced
+2025-05-31 17:21:23,308 - bot - INFO - Loaded cog: cogs.warframe
+2025-05-31 17:21:23,319 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 17:21:23,319 - bot - INFO - Loaded cog: cogs.fun
+2025-05-31 17:21:23,322 - bot - INFO - Loaded cog: cogs.alerts
+2025-05-31 17:21:23,330 - bot - INFO - Loaded cog: cogs.alert_cmd
+2025-05-31 17:21:23,336 - bot - INFO - Loaded cog: cogs.core
+2025-05-31 17:21:25,087 - bot - INFO - Loaded cog: cogs.error_handler
+2025-05-31 17:21:25,089 - bot - INFO - Loaded cog: cogs.owner
+2025-05-31 17:21:25,089 - bot - INFO - Finished loading cogs
+2025-05-31 17:21:25,089 - bot - INFO - Starting command tree sync
+2025-05-31 17:21:25,089 - bot - INFO - Syncing commands...
+2025-05-31 17:21:25,349 - bot - INFO - Commands synced to test guild
+2025-05-31 17:21:25,548 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4bae528863056d695e9a552c9f861153).
+2025-05-31 17:21:25,548 - bot - INFO - Connected to Discord
+2025-05-31 17:21:27,557 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 17:21:27,823 - bot - INFO - Registered Commands (25):
+2025-05-31 17:21:27,823 - bot - INFO -   • r6
+2025-05-31 17:21:27,823 - bot - INFO -   • mc
+2025-05-31 17:21:27,823 - bot - INFO -   • wf
+2025-05-31 17:21:27,823 - bot - INFO -   • hello
+2025-05-31 17:21:27,824 - bot - INFO -   • quote
+2025-05-31 17:21:27,824 - bot - INFO -   • image
+2025-05-31 17:21:27,824 - bot - INFO -   • clancy
+2025-05-31 17:21:27,824 - bot - INFO -   • longo
+2025-05-31 17:21:27,824 - bot - INFO -   • 8ball
+2025-05-31 17:21:27,824 - bot - INFO -   • xkcd
+2025-05-31 17:21:27,824 - bot - INFO -   • d20
+2025-05-31 17:21:27,824 - bot - INFO -   • rps
+2025-05-31 17:21:27,824 - bot - INFO -   • trivia
+2025-05-31 17:21:27,824 - bot - INFO -   • score
+2025-05-31 17:21:27,824 - bot - INFO -   • alert
+2025-05-31 17:21:27,824 - bot - INFO -   • listalerts
+2025-05-31 17:21:27,824 - bot - INFO -   • cancelalerts
+2025-05-31 17:21:27,824 - bot - INFO -   • weather
+2025-05-31 17:21:27,824 - bot - INFO -   • tzconvert
+2025-05-31 17:21:27,824 - bot - INFO -   • timezones
+2025-05-31 17:21:27,824 - bot - INFO -   • credits
+2025-05-31 17:21:27,824 - bot - INFO -   • date
+2025-05-31 17:21:27,824 - bot - INFO -   • plane
+2025-05-31 17:21:27,824 - bot - INFO -   • currency
+2025-05-31 17:21:27,824 - bot - INFO -   • info
+2025-05-31 17:22:23,537 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 17:22:25,219 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 17:22:26,250 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 17:22:33,589 - __main__ - INFO - Cleaning up 1 remaining tasks...

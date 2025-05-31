@@ -4,12 +4,11 @@ from discord.ext import commands
 from discord import app_commands
 import logging
 import asyncio
-from typing import List, Optional
+from typing import List, Optional, Set
 from dotenv import load_dotenv
 import config
 
 load_dotenv()
-
 logger = logging.getLogger(__name__)
 
 class JagerBot(commands.Bot):
@@ -20,96 +19,87 @@ class JagerBot(commands.Bot):
         self._synced: bool = False
         self._sync_lock = asyncio.Lock()
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
+        self.added_command_groups: Set[str] = set()
 
     @property
     def is_dev(self) -> bool:
         return self._dev_mode
-    
-    async def sync_commands(self):
+
+    async def sync_commands(self, force: bool = False) -> None:
+
         async with self._sync_lock:
+            if self._synced and not force:
+                return
+            
+            logger.info(f"{'Force ' if force else ''}Syncing commands...")
             try:
-                await asyncio.sleep(1)
-                
                 if self.is_dev:
                     guild = discord.Object(id=self.config.TEST_GUILD_ID)
-                    self.tree.clear_commands(guild=guild)
-                    
+                    if force:
+                        self.tree.clear_commands(guild=guild)
                     self.tree.copy_global_to(guild=guild)
-                    for attempt in range(3):
-                        try:
-                            await self.tree.sync(guild=guild)
-                            break
-                        except asyncio.CancelledError:
-                            if attempt == 2:  # Last attempt
-                                raise
-                            await asyncio.sleep(2 ** attempt)  # Exponential backoff
-                    
-                    commands = await self.tree.fetch_commands(guild=guild)
-                    logger.info(f"Synced {len(commands)} commands to test guild")
-                    for cmd in commands:
-                        logger.info(f"  • {cmd.name}")
+                    async with asyncio.timeout(30):
+                        await self.tree.sync(guild=guild)
+                    logger.info(f"Commands {'force ' if force else ''}synced to test guild")
                 else:
-                    # Add retry logic for global sync
-                    for attempt in range(3):
-                        try:
-                            await self.tree.sync()
-                            break
-                        except asyncio.CancelledError:
-                            if attempt == 2:  # Last attempt
-                                raise
-                            await asyncio.sleep(2 ** attempt)
-                    
-                    commands = await self.tree.fetch_commands()
-                    logger.info(f"Synced {len(commands)} commands globally")
-                    for cmd in commands:
-                        logger.info(f"  • {cmd.name}")
+                    if force:
+                        self.tree.clear_commands()
+                    async with asyncio.timeout(30):
+                        await self.tree.sync()
+                    logger.info(f"Commands {'force ' if force else ''}synced globally")
+                
+                self._synced = True
+            except asyncio.TimeoutError:
+                logger.error("Command sync timed out")
+                raise
             except Exception as e:
                 logger.error(f"Failed to sync commands: {e}")
                 raise
 
-    async def setup_hook(self):
-        logger.info("Starting setup hook...")
+    async def setup_hook(self) -> None:
+        logger.info("Setup hook started")
+        
+        for extension in config.INITIAL_EXTENSIONS:
+            try:
+                await self.load_extension(extension)
+                logger.info(f"Loaded cog: {extension}")
+            except Exception as e:
+                logger.error(f"Failed to load {extension}: {e}")
+        
+        logger.info("Finished loading cogs")
+        logger.info("Starting command tree sync")
+        
+        for attempt in range(3):
+            try:
+                await self.sync_commands()
+                break
+            except asyncio.TimeoutError:
+                logger.warning(f"Command sync attempt {attempt + 1} timed out, retrying...")
+                if attempt == 2:
+                    logger.error("Command sync failed after all attempts")
+                    raise
+                await asyncio.sleep(5)
+            except Exception as e:
+                logger.error(f"Failed to sync commands: {e}")
+                raise
+
+    def add_group_to_tree(self, group: app_commands.Group, group_name: str) -> bool:
+        if not isinstance(group, app_commands.Group):
+            logger.error(f"Invalid group type for {group_name}: {type(group)}")
+            return False
+        
         try:
-            loaded_extensions = []
-            for extension in self.config.INITIAL_EXTENSIONS:
-                try:
-                    await self.load_extension(extension)
-                    loaded_extensions.append(extension)
-                    logger.info(f"Loaded extension: {extension}")
-                except Exception as e:
-                    logger.error(f"Failed to load extension {extension}: {e}")
+            if group_name in self.added_command_groups:
+                logger.debug(f"Command group {group_name} already added")
+                return True
 
-            # Then sync commands with retry logic
-            await self.sync_commands()
-            self._synced = True
-
+            self.tree.add_command(group)
+            self.added_command_groups.add(group_name)
+            logger.info(f"Added command group: {group_name}")
+            return True
         except Exception as e:
-            logger.error(f"Setup hook failed: {e}")
-            raise
-
-    async def ensure_sync(self) -> None:
-        try:
-            await self.sync_commands()
-        except Exception as e:
-            logger.error(f"Force sync failed: {e}")
-            raise
-
-    async def load_cogs(self) -> None:
-        loaded_count = 0
-        start_time = asyncio.get_event_loop().time()
-    
-        for filename in os.listdir("./cogs"):
-            if filename.endswith(".py") and not filename.startswith("_"):
-                cog_name = f"cogs.{filename[:-3]}"
-                try:
-                    await self.load_extension(cog_name)
-                    loaded_count += 1
-                    logger.info(f"Loaded cog ({loaded_count}): {cog_name}")
-                except Exception as e:
-                    logger.error(f"Failed to load cog {cog_name}: {str(e)}")
-                
-        elapsed = asyncio.get_event_loop().time() - start_time
-        logger.info(f"Finished loading {loaded_count} cogs in {elapsed:.2f} seconds")
+            logger.error(f"Failed to add command group {group_name}: {e}")
+            return False
 
     async def on_ready(self) -> None:
         try:
@@ -123,33 +113,26 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            if self._synced:
-                guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
-                try:
-                    async with asyncio.timeout(10):
-                        commands = await self.tree.fetch_commands(guild=guild)
-                        if commands:
-                            logger.info(f"Registered Commands ({len(commands)}):")
-                            for cmd in commands:
-                                logger.info(f"  • {cmd.name}")
-                        else:
-                            logger.warning("No commands registered")
-                except asyncio.TimeoutError:
-                    logger.error("Timeout while fetching commands")
-                except Exception as e:
-                    logger.error(f"Error fetching commands: {e}")
+            guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+            try:
+                async with asyncio.timeout(10):
+                    commands = await self.tree.fetch_commands(guild=guild)
+                    command_count = len(commands)
+                    
+                    if command_count > 0:
+                        logger.info(f"Registered Commands ({command_count}):")
+                        for cmd in commands:
+                            logger.info(f"  • {cmd.name}")
+                    else:
+                        logger.warning("No commands registered, attempting force sync...")
+                        await self.sync_commands(force=True)
+            except asyncio.TimeoutError:
+                logger.error("Timeout while fetching commands")
+            except Exception as e:
+                logger.error(f"Error fetching commands: {e}")
 
         except Exception as e:
-            logger.error(f"Error in on_ready: {str(e)}")
-
-    async def force_sync(self, guild_id=None):
-        try:
-            self._synced = False
-            await self.sync_commands()
-            self._synced = True
-        except Exception as e:
-            logger.error(f"Force sync failed: {e}")
-            raise
+            logger.error(f"Error in on_ready: {e}", exc_info=True)
 
     async def on_connect(self) -> None:
         logger.info("Connected to Discord")
@@ -159,3 +142,19 @@ class JagerBot(commands.Bot):
 
     async def on_error(self, event_method: str, *args, **kwargs) -> None:
         logger.error(f"Unhandled error in {event_method}", exc_info=True)
+
+    async def close(self) -> None:
+        logger.info("Shutting down bot...")
+        try:
+            tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+            if tasks:
+                logger.info(f"Cancelling {len(tasks)} remaining tasks...")
+                for task in tasks:
+                    task.cancel()
+                await asyncio.gather(*tasks, return_exceptions=True)
+            
+            await super().close()
+            logger.info("Bot shutdown complete")
+        except Exception as e:
+            logger.error(f"Error during shutdown: {e}")
+            raise

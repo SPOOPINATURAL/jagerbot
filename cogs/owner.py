@@ -41,6 +41,20 @@ class Owner(commands.Cog):
             logger.error(f"Unexpected error in sync command: {error}", exc_info=True)
             await ctx.send("❌ An unexpected error occurred.")
 
+    @commands.is_owner()
+    @commands.command(name='clearsync')
+    async def clear_commands(self, ctx: commands.Context):
+        """Clear and resync all commands"""
+        await ctx.send("Clearing commands...")
+        if self.bot.is_dev:
+            guild = discord.Object(id=self.bot.config.TEST_GUILD_ID)
+            self.bot.tree.clear_commands(guild=guild)
+            await self.bot.tree.sync(guild=guild)
+        else:
+            self.bot.tree.clear_commands()
+            await self.bot.tree.sync()
+        await ctx.send("✅ Commands cleared and resynced!")
+
 
 async def setup(bot):
     await bot.add_cog(Owner(bot))

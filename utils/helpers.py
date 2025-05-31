@@ -145,13 +145,13 @@ class WeatherHelper:
 # data/alias stuff
 class DataHelper:
     @staticmethod
-    async def safe_json_operation(func: Callable, *args, **kwargs) -> Optional[dict]:
+    async def safe_json_operation(func, *args, **kwargs):
         try:
-            result = await func(*args, **kwargs)
+            if asyncio.iscoroutinefunction(func):
+                result = await func(*args, **kwargs)
+            else:
+                result = func(*args, **kwargs)
             return result
-        except json.JSONDecodeError as e:
-            logger.error(f"JSON decode error: {e}")
-            return None
         except Exception as e:
             logger.error(f"Error in JSON operation: {e}")
             return None
