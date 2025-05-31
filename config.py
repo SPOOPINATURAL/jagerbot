@@ -6,14 +6,33 @@ load_dotenv()
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 TRACKER_API_KEY = os.getenv('TRACKER_API_KEY')
 ALLOWED_GUILD_IDS = {899978176355266580, 989558855023362110}
+TEST_GUILD_ID = 989558855023362110
 WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 TIMEZONES = sorted(pytz.all_timezones)
 DATA_FOLDER = "data"
 ALERTS_FILE = f"{DATA_FOLDER}/alerts.json"
 SCORES_FILE = f"{DATA_FOLDER}/trivia_scores.json"
 
+CACHE_DURATION = 300
+API_TIMEOUT = 10
+MAX_RETRIES = 3
+R6_VIEW_TIMEOUT = 60
+
+
+
+MINECRAFT_WIKI_BASE = "https://minecraft.wiki/w"
+WARFRAME_API_BASE = "https://api.warframestat.us/pc"
+R6_API_BASE = "https://api.r6stats.com/api/v1"
+R6_STEAM_RSS = "https://steamcommunity.com/games/359550/rss/"
+WF_API_BASE = "https://api.warframestat.us/pc"
+WF_MARKET_API = "https://api.warframe.market/v1"
+WF_STREAMS_API = "https://api.warframestreams.lol/v1"
+WF_COLOR = 0x00aff0
+
+
+
+
 SUPPORTED_TZ = {
-        # US Timezones
         "EST": "America/New_York",
         "EDT": "America/New_York",
         "CST": "America/Chicago",
@@ -26,7 +45,6 @@ SUPPORTED_TZ = {
         "AKDT": "America/Anchorage",
         "HST": "Pacific/Honolulu",
 
-        # Europe
         "GMT": "Etc/GMT",
         "BST": "Europe/London",
         "CET": "Europe/Paris",
@@ -36,24 +54,20 @@ SUPPORTED_TZ = {
         "WET": "Europe/Lisbon",
         "WEST": "Europe/Lisbon",
 
-        # Asia
         "IST": "Asia/Kolkata",
         "KST": "Asia/Seoul",
         "SGT": "Asia/Singapore",
         "HKT": "Asia/Hong_Kong",
 
-        # Australia
         "AEST": "Australia/Sydney",
         "AEDT": "Australia/Sydney",
         "ACST": "Australia/Adelaide",
         "ACDT": "Australia/Adelaide",
         "AWST": "Australia/Perth",
 
-        # New Zealand
         "NZST": "Pacific/Auckland",
         "NZDT": "Pacific/Auckland",
 
-        # Common UTC variants
         "UTC": "UTC",
         "Z": "UTC",
 

@@ -1,0 +1,15 @@
+
+import discord
+
+class EmbedBuilder:
+    @staticmethod
+    def error(message: str) -> discord.Embed:
+        return discord.Embed(description=f"❌ {message}", color=0xff0000)
+
+    @staticmethod
+    def success(message: str) -> discord.Embed:
+        return discord.Embed(description=f"✅ {message}", color=0x00ff00)
+
+    @staticmethod
+    def info(title: str, description: str, color: int = 0x3498db) -> discord.Embed:
+        return discord.Embed(title=title, description=description, color=color)

@@ -1,0 +1,254 @@
+2025-05-31 00:48:54,358 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 00:48:54,359 - discord.client - INFO - logging in using static token
+2025-05-31 00:48:54,373 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 00:48:54,373 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 00:48:56,311 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 00:48:56,311 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001A93156CE00>
+2025-05-31 00:48:56,580 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001A932A487A0>
+2025-05-31 00:48:56,581 - utils.helpers - ERROR - Error in JSON operation: object dict can't be used in 'await' expression
+2025-05-31 00:48:56,582 - utils.helpers - ERROR - Error in JSON operation: object dict can't be used in 'await' expression
+2025-05-31 00:48:56,582 - cogs.r6 - ERROR - Error loading R6 data: 'NoneType' object has no attribute 'values'
+2025-05-31 01:06:41,616 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:06:41,618 - discord.client - INFO - logging in using static token
+2025-05-31 01:06:41,630 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:06:41,630 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:06:42,039 - bot - ERROR - ❌ Failed to load cog alerts.py: Extension 'cogs.alerts' raised an error: TypeError: AlertManager.load_alerts() missing 1 required positional argument: 'self'
+2025-05-31 01:06:42,051 - bot - INFO - ✅ Loaded cog: alert_cmd.py
+2025-05-31 01:06:42,057 - bot - INFO - ✅ Loaded cog: core.py
+2025-05-31 01:06:43,646 - bot - INFO - ✅ Loaded cog: error_handler.py
+2025-05-31 01:06:43,654 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:06:43,654 - bot - INFO - ✅ Loaded cog: fun.py
+2025-05-31 01:06:43,846 - bot - INFO - ✅ Loaded cog: minecraft.py
+2025-05-31 01:06:43,850 - bot - ERROR - ❌ Failed to load cog owner.py: Extension 'cogs.owner' raised an error: NameError: name 'aiohttp' is not defined
+2025-05-31 01:06:43,889 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000013891936A20>
+2025-05-31 01:06:43,889 - cogs.r6 - ERROR - Error loading R6 data: type object 'DataHelper' has no attribute 'safe_json_operation'
+2025-05-31 01:10:14,229 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:13:56,851 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:13:56,853 - discord.client - INFO - logging in using static token
+2025-05-31 01:13:56,864 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:13:56,864 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:13:57,616 - bot - INFO - ✅ Loaded cog: alerts.py
+2025-05-31 01:13:57,623 - bot - INFO - ✅ Loaded cog: alert_cmd.py
+2025-05-31 01:13:57,625 - bot - INFO - ✅ Loaded cog: core.py
+2025-05-31 01:13:59,146 - bot - INFO - ✅ Loaded cog: error_handler.py
+2025-05-31 01:13:59,148 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:13:59,150 - bot - INFO - ✅ Loaded cog: fun.py
+2025-05-31 01:13:59,325 - bot - INFO - ✅ Loaded cog: minecraft.py
+2025-05-31 01:13:59,329 - bot - INFO - ✅ Loaded cog: owner.py
+2025-05-31 01:13:59,361 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000028ECEF069C0>
+2025-05-31 01:13:59,361 - cogs.r6 - ERROR - Error loading R6 data: type object 'DataHelper' has no attribute 'safe_json_operation'
+2025-05-31 01:16:17,029 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:16:17,030 - discord.client - INFO - logging in using static token
+2025-05-31 01:16:17,042 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:16:17,042 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:16:17,346 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 01:16:17,349 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 01:16:17,351 - bot - INFO - Loaded cog: core.py
+2025-05-31 01:16:18,837 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 01:16:18,839 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:16:18,839 - bot - INFO - Loaded cog: fun.py
+2025-05-31 01:16:19,010 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 01:16:19,011 - bot - INFO - Loaded cog: owner.py
+2025-05-31 01:16:19,039 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000208A3AD9DF0>
+2025-05-31 01:16:19,040 - cogs.r6 - ERROR - Error loading R6 data: type object 'DataHelper' has no attribute 'safe_json_operation'
+2025-05-31 01:17:19,044 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 01:17:19,044 - bot - INFO - Loaded cog: r6.py
+2025-05-31 01:17:19,049 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000208A273C050>
+2025-05-31 01:17:19,198 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 01:28:11,915 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:28:11,917 - discord.client - INFO - logging in using static token
+2025-05-31 01:28:11,928 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:28:11,928 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:28:13,381 - bot - INFO - Setup hook started
+2025-05-31 01:28:13,386 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 01:28:13,389 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 01:28:13,391 - bot - INFO - Loaded cog: core.py
+2025-05-31 01:28:15,189 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 01:28:15,191 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:28:15,192 - bot - INFO - Loaded cog: fun.py
+2025-05-31 01:28:15,399 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 01:28:15,400 - bot - INFO - Loaded cog: owner.py
+2025-05-31 01:28:15,429 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001C8487CAAB0>
+2025-05-31 01:28:15,429 - cogs.r6 - ERROR - Error loading R6 data: type object 'DataHelper' has no attribute 'safe_json_operation'
+2025-05-31 01:29:15,380 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 01:29:15,380 - bot - INFO - Loaded cog: r6.py
+2025-05-31 01:29:15,382 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001C8454172C0>
+2025-05-31 01:29:15,524 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 01:29:15,524 - bot - INFO - Finished loading cogs
+2025-05-31 01:29:15,524 - bot - INFO - Starting command tree sync
+2025-05-31 01:29:33,106 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 01:33:02,986 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:33:02,987 - discord.client - INFO - logging in using static token
+2025-05-31 01:33:02,998 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:33:02,998 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:33:03,419 - bot - INFO - Setup hook started
+2025-05-31 01:33:03,423 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 01:33:03,427 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 01:33:03,428 - bot - INFO - Loaded cog: core.py
+2025-05-31 01:33:05,088 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 01:33:05,091 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:33:05,091 - bot - INFO - Loaded cog: fun.py
+2025-05-31 01:33:05,307 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 01:33:05,308 - bot - INFO - Loaded cog: owner.py
+2025-05-31 01:33:05,338 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000216B47CE360>
+2025-05-31 01:33:05,338 - cogs.r6 - ERROR - Error loading R6 data: type object 'DataHelper' has no attribute 'safe_json_operation'
+2025-05-31 01:34:05,299 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 01:34:05,299 - bot - INFO - Loaded cog: r6.py
+2025-05-31 01:34:05,300 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000216B463E0F0>
+2025-05-31 01:34:05,471 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 01:34:05,471 - bot - INFO - Finished loading cogs
+2025-05-31 01:34:05,471 - bot - INFO - Starting command tree sync
+2025-05-31 01:34:35,474 - bot - WARNING - Command sync attempt 1 timed out, retrying...
+2025-05-31 01:35:10,491 - bot - WARNING - Command sync attempt 2 timed out, retrying...
+2025-05-31 01:35:15,680 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 01:35:15,934 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0a519f3de3653d336b856394a972ce6d).
+2025-05-31 01:35:15,934 - bot - INFO - Connected to Discord
+2025-05-31 01:35:17,939 - bot - INFO - ✨ Logged in as JägerBot#6929 (ID: 1376008090968657990) :)
+2025-05-31 01:35:17,943 - bot - INFO - Registered Commands:
+2025-05-31 01:35:17,944 - discord.ext.tasks - ERROR - Unhandled exception in internal background task 'check_alerts'.
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\ext\tasks\__init__.py", line 246, in _loop
+    await self.coro(*args, **kwargs)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alerts.py", line 71, in check_alerts
+    AlertManager.save_alerts(self.alerts)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\utils\helpers.py", line 231, in save_alerts
+    for user_id, user_alerts in self.alerts.items()
+                                ^^^^^^^^^^^
+AttributeError: 'collections.defaultdict' object has no attribute 'alerts'
+2025-05-31 01:35:18,202 - bot - INFO - Registered Commands:
+2025-05-31 01:36:26,686 - cogs.fun - INFO - Saved 1 trivia scores
+2025-05-31 01:36:26,686 - views.trivia - ERROR - Error processing trivia answer: object NoneType can't be used in 'await' expression
+2025-05-31 01:48:53,630 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 01:48:53,631 - root - ERROR - Error loading data: Expecting value: line 1 column 1 (char 0)
+2025-05-31 01:48:53,631 - discord.client - INFO - logging in using static token
+2025-05-31 01:48:53,642 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 01:48:53,642 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 01:48:54,211 - bot - INFO - Setup hook started
+2025-05-31 01:48:54,220 - bot - ERROR - Failed to load cog alerts.py: Extension 'cogs.alerts' raised an error: NameError: name 'defaultdict' is not defined
+2025-05-31 01:48:54,223 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 01:48:54,225 - bot - INFO - Loaded cog: core.py
+2025-05-31 01:48:55,781 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 01:48:55,786 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 01:48:55,786 - bot - INFO - Loaded cog: fun.py
+2025-05-31 01:48:55,935 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 01:48:55,936 - bot - INFO - Loaded cog: owner.py
+2025-05-31 01:48:55,968 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000165CB25A060>
+2025-05-31 01:48:55,969 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000165CB25A9F0>
+2025-05-31 01:48:55,969 - utils.helpers - ERROR - Error in JSON operation: object dict can't be used in 'await' expression
+2025-05-31 01:48:55,970 - utils.helpers - ERROR - Error in JSON operation: object dict can't be used in 'await' expression
+2025-05-31 01:48:55,970 - cogs.r6 - ERROR - Error loading R6 data: 'NoneType' object has no attribute 'values'
+2025-05-31 01:49:55,971 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 01:49:55,971 - bot - INFO - Loaded cog: r6.py
+2025-05-31 01:49:55,973 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000165CB178230>
+2025-05-31 01:49:56,124 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 01:49:56,124 - bot - INFO - Finished loading cogs
+2025-05-31 01:49:56,124 - bot - INFO - Starting command tree sync
+2025-05-31 01:50:26,129 - bot - WARNING - Command sync attempt 1 timed out, retrying...
+2025-05-31 02:00:00,296 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:00:00,297 - root - ERROR - Error loading data: Expecting value: line 1 column 1 (char 0)
+2025-05-31 02:00:00,298 - discord.client - INFO - logging in using static token
+2025-05-31 02:00:00,309 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:00:00,310 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:00:00,905 - bot - INFO - Setup hook started
+2025-05-31 02:00:00,916 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 02:00:00,920 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 02:00:00,922 - bot - INFO - Loaded cog: core.py
+2025-05-31 02:00:02,753 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 02:00:02,756 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:00:02,757 - bot - INFO - Loaded cog: fun.py
+2025-05-31 02:00:02,935 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 02:00:02,936 - bot - INFO - Loaded cog: owner.py
+2025-05-31 02:00:02,969 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001BA79CDE120>
+2025-05-31 02:00:02,970 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001BA79BE9C40>
+2025-05-31 02:00:02,971 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:00:02,971 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 02:01:02,924 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 02:01:02,924 - bot - INFO - Loaded cog: r6.py
+2025-05-31 02:01:02,926 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001BA78964620>
+2025-05-31 02:01:03,084 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 02:01:03,084 - bot - INFO - Finished loading cogs
+2025-05-31 02:01:03,084 - bot - INFO - Starting command tree sync
+2025-05-31 02:01:33,087 - bot - WARNING - Command sync attempt 1 timed out, retrying...
+2025-05-31 02:02:08,103 - bot - WARNING - Command sync attempt 2 timed out, retrying...
+2025-05-31 02:02:13,292 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 02:02:13,502 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1c2a0579bc0f3cc43d4638bc491364a7).
+2025-05-31 02:02:13,503 - bot - INFO - Connected to Discord
+2025-05-31 02:02:15,505 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990) :)
+2025-05-31 02:02:15,506 - bot - INFO - Registered Commands:
+2025-05-31 02:02:15,507 - discord.ext.tasks - ERROR - Unhandled exception in internal background task 'check_alerts'.
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\ext\tasks\__init__.py", line 246, in _loop
+    await self.coro(*args, **kwargs)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alerts.py", line 81, in check_alerts
+    AlertManager.save_alerts(self.alerts)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\utils\helpers.py", line 265, in save_alerts
+    for user_id, user_alerts in self.alerts.items()
+                                ^^^^^^^^^^^
+AttributeError: 'collections.defaultdict' object has no attribute 'alerts'
+2025-05-31 02:02:15,754 - bot - INFO - Registered Commands:
+2025-05-31 02:04:13,581 - cogs.fun - INFO - Saved 1 trivia scores
+2025-05-31 02:04:31,432 - cogs.core - ERROR - Weather command error: DataHelper.fetch_json() missing 1 required positional argument: 'session'
+2025-05-31 02:13:00,672 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:13:00,673 - root - ERROR - Error loading data: Expecting value: line 1 column 1 (char 0)
+2025-05-31 02:13:00,673 - discord.client - INFO - logging in using static token
+2025-05-31 02:13:00,684 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:13:00,684 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:13:01,243 - bot - INFO - Setup hook started
+2025-05-31 02:13:01,249 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 02:13:01,253 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 02:13:01,258 - bot - INFO - Loaded cog: core.py
+2025-05-31 02:13:02,782 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 02:13:02,785 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:13:02,786 - bot - INFO - Loaded cog: fun.py
+2025-05-31 02:13:03,126 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 02:13:03,127 - bot - INFO - Loaded cog: owner.py
+2025-05-31 02:13:03,156 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000190659D63F0>
+2025-05-31 02:13:03,156 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000019065926090>
+2025-05-31 02:13:03,158 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:13:03,158 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 02:13:53,547 - __main__ - INFO - Cleaning up 1 remaining tasks...

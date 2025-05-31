@@ -1,109 +1,203 @@
 import discord
+import aiohttp
+import logging
+from typing import Optional, Dict, Any, List
+from datetime import datetime, timedelta
 from discord.ext import commands
 from discord import app_commands
-import aiohttp
-TEST_GUILD_ID = 989558855023362110
+from utils.base_cog import BaseCog
+from config import (
+    TEST_GUILD_ID,
+    WF_API_BASE,
+    WF_MARKET_API,
+    WF_STREAMS_API,
+    CACHE_DURATION,
+    WF_COLOR
+)
+
+
+logger = logging.getLogger(__name__)
 wf_group = app_commands.Group(name="wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
+        self.cache = {}
 
-    async def cog_unload(self):
-        if self.session:
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
             await self.session.close()
 
-    @staticmethod
-    async def fetch_json(self, url: str):
-        async with self.session.get(url) as resp:
-            return await resp.json()
+    async def get_cached_data(self, endpoint: str, max_age: int = CACHE_DURATION) -> Optional[dict]:
+        cache_key = f"wf_{endpoint}"
+        cached = self.cache.get(cache_key, CACHE_DURATION)
+        if cached:
+            return cached
+
+        url = f"{WF_API_BASE}/{endpoint}"
+        try:
+            async with self.session.get(url) as resp:
+                if resp.status != 200:
+                    logger.error(f"API error for {endpoint}: {resp.status}")
+                    return None
+                data = await resp.json()
+                self.cache.set(cache_key, data)
+                return data
+        except Exception as e:
+            logger.error(f"Error fetching {endpoint}: {e}")
+            return None
+
+    def create_baro_embed(self, data: dict) -> discord.Embed:
+        embed = discord.Embed(color=WF_COLOR)
+        if data.get("active"):
+            embed.title = f"Baro Ki'Teer at {data['location']}"
+            embed.description = f"Leaving in {data['endString']}"
+
+            for item in data["inventory"]:
+                embed.add_field(
+                    name=item['item'],
+                    value=f"{item['ducats']} Ducats\n{item['credits']} Credits",
+                    inline=True
+                )
+        else:
+            embed.title = "Baro Ki'Teer"
+            embed.description = f"Next visit: {data['startString']}\nLocation: {data['location']}"
+
+        return embed
 
     @wf_group.command(name="baro", description="Warframe Baro status")
     async def wfbaro(self, interaction: discord.Interaction):
         await interaction.response.defer()
-        data = await self.fetch_json("https://api.warframestat.us/pc/voidTrader")
-        if data.get("active"):
-            inventory = "\n".join(
-                f"{item['item']} - {item['ducats']} Ducats, {item['credits']} Cr"
-                for item in data["inventory"]
-            )
-            msg = f"**Baro Ki'Teer is at {data['location']} until {data['endString']}**\n\n{inventory}"
-        else:
-            msg = f"**Baro is not here right now.** Next visit: {data['startString']}"
-        await interaction.followup.send(msg)
+        data = await self.get_cached_data("voidTrader")
+        if not data:
+            await interaction.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
+            return
+
+        embed = self.create_baro_embed(data)
+        await interaction.followup.send(embed=embed)
+
 
     @wf_group.command(name="news", description="Warframe News")
     async def wfnews(self, interaction: discord.Interaction):
-        news = await self.fetch_json("https://api.warframestat.us/pc/news")
-        items = [f"**{n['message']}**\n<{n['link']}>" for n in news[:5]]
-        await interaction.response.send_message("\n\n".join(items))
+        await interaction.response.defer()
+
+        data = await self.get_cached_data("news")
+        if not data:
+            await interaction.followup.send("❌ Failed to fetch news.", ephemeral=True)
+            return
+
+        embed = discord.Embed(title="Warframe News", color=WF_COLOR)
+        for news in data[:5]:
+            embed.add_field(
+                name=news['message'],
+                value=f"[Read More]({news['link']})",
+                inline=False
+            )
+
+        await interaction.followup.send(embed=embed)
+
 
     @wf_group.command(name="nightwave", description="Warframe Nightwave status")
-    async def wfnightwave(self, interaction: discord.Interaction):
-        data = await self.fetch_json("https://api.warframestat.us/pc/nightwave")
-        missions = [f"**{m['title']}** - {m['reputation']} Rep" for m in data.get("activeChallenges", [])]
-        await interaction.response.send_message("**Nightwave Challenges:**\n" + "\n".join(missions))
+    async def nightwave(self, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        data = await self.get_cached_data("nightwave")
+        if not data:
+            await interaction.followup.send("❌ Failed to fetch Nightwave data.", ephemeral=True)
+            return
+
+        embed = discord.Embed(title="Nightwave Challenges", color=WF_COLOR)
+
+        for challenge in data.get("activeChallenges", []):
+            embed.add_field(
+                name=f"{challenge['title']} ({challenge['reputation']} Rep)",
+                value=challenge.get('desc', 'No description'),
+                inline=False
+            )
+
+        await interaction.followup.send(embed=embed)
 
     @wf_group.command(name="price", description="Warframe prices from warframe.market")
     @app_commands.describe(item="Item name")
     async def wfprice(self, interaction: discord.Interaction, item: str):
+        await interaction.response.defer()
         item_url = item.replace(" ", "_").lower()
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://api.warframe.market/v1/items/{item_url}/orders") as resp:
+        url = f"{WF_MARKET_API}/items/{item_url}/orders"
+
+        try:
+            async with self.session.get(url) as resp:
                 if resp.status != 200:
-                    await interaction.response.send_message("❌ Item not found or API issue.")
+                    await interaction.followup.send("❌ Item not found.", ephemeral=True)
                     return
+
                 data = await resp.json()
                 sell_orders = [
-                    o for o in data["payload"]["orders"]
-                    if o["order_type"] == "sell" and o["user"]["status"] == "ingame"
+                    order for order in data["payload"]["orders"]
+                    if order["order_type"] == "sell" and
+                       order["user"]["status"] == "ingame"
                 ]
-                if sell_orders:
-                    cheapest = sorted(sell_orders, key=lambda x: x["platinum"])[0]
-                    await interaction.response.send_message(
-                        f"💰 Cheapest in-game seller: {cheapest['platinum']}p ({cheapest['user']['ingame_name']})"
+
+                if not sell_orders:
+                    await interaction.followup.send("❌ No active sellers found.")
+                    return
+
+                cheapest = sorted(sell_orders, key=lambda x: x["platinum"])[:5]
+
+                embed = discord.Embed(title=f"Prices for {item}", color=WF_COLOR)
+                for order in cheapest:
+                    embed.add_field(
+                        name=f"{order['platinum']}p",
+                        value=f"Seller: {order['user']['ingame_name']}",
+                        inline=True
                     )
-                else:
-                    await interaction.response.send_message("❌ No in-game sellers found.")
+
+                await interaction.followup.send(embed=embed)
+
+        except Exception as e:
+            logger.error(f"Error fetching price for {item}: {e}")
+            await interaction.followup.send("❌ Error fetching prices.", ephemeral=True)
+
 
     @wf_group.command(name="streams", description="List upcoming and active Warframe streams with drops")
     async def streams(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking=True)
+        try:
+            async with self.session.get(f"{WF_STREAMS_API}/streams/upcoming") as resp:
+                upcoming = await resp.json() if resp.status == 200 else []
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://api.warframestreams.lol/v1/streams/upcoming") as resp_upcoming:
-                upcoming_data = await resp_upcoming.json() if resp_upcoming.status == 200 else []
+            async with self.session.get(f"{WF_STREAMS_API}/streams/active") as resp:
+                active = await resp.json() if resp.status == 200 else []
 
-            async with session.get("https://api.warframestreams.lol/v1/streams/active") as resp_active:
-                active_data = await resp_active.json() if resp_active.status == 200 else []
+            embed = discord.Embed(title="Warframe Streams", color=WF_COLOR)
 
-        embed = discord.Embed(title="Warframe Streams", color=0x00FF00)
+            if upcoming:
+                value = ""
+                for stream in upcoming[:5]:
+                    drops = ", ".join(stream.get('drops', [])) or "No drops"
+                    value += f"**{stream['title']}**\n{drops}\nStarts: {stream['startTime']}\n\n"
+                embed.add_field(name="Upcoming Streams", value=value or "None", inline=False)
 
-        if upcoming_data:
-            upcoming_lines = []
-            for stream in upcoming_data[:5]:
-                title = stream.get('title', 'No Title')
-                drops = stream.get('drops', [])
-                drops_str = ", ".join(drops) if drops else "No Drops"
-                start_time = stream.get('startTime', 'Unknown Time')
-                upcoming_lines.append(f"**{title}**\nDrops: {drops_str}\nStart: {start_time}\n")
-            embed.add_field(name="Upcoming Streams", value="\n".join(upcoming_lines), inline=False)
-        else:
-            embed.add_field(name="Upcoming Streams", value="No upcoming streams found.", inline=False)
+            if active:
+                value = ""
+                for stream in active[:5]:
+                    drops = ", ".join(stream.get('drops', [])) or "No drops"
+                    value += f"[{stream['title']}]({stream['url']})\n{drops}\n\n"
+                embed.add_field(name="Active Streams", value=value or "None", inline=False)
 
-        if active_data:
-            active_lines = []
-            for stream in active_data[:5]:
-                title = stream.get('title', 'No Title')
-                drops = stream.get('drops', [])
-                drops_str = ", ".join(drops) if drops else "No Drops"
-                url = stream.get('url', '#')
-                active_lines.append(f"[{title}]({url})\nDrops: {drops_str}\n")
-            embed.add_field(name="Active Streams", value="\n".join(active_lines), inline=False)
-        else:
-            embed.add_field(name="Active Streams", value="No active streams found.", inline=False)
+            if not upcoming and not active:
+                embed.description = "No streams found."
 
-        await interaction.followup.send(embed=embed)
+            await interaction.followup.send(embed=embed)
+
+        except Exception as e:
+            logger.error(f"Error fetching streams: {e}")
+            await interaction.followup.send("❌ Error fetching stream data.", ephemeral=True)
+
 
 async def setup(bot: commands.Bot):
     bot.tree.add_command(wf_group)

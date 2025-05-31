@@ -19,13 +19,13 @@ class InfoPages(discord.ui.View):
             description="**R6 Siege Commands**",
             color=0x8B0000
         )
-        embed1.add_field(name="/r6stats (platform) (username)", value="Fetch R6 Siege stats from a user", inline=False)
+        embed1.add_field(name="/r6 stats (platform) (username)", value="Fetch R6 Siege stats from a user", inline=False)
         embed1.add_field(name="/quote", value="Get a random Jäger quote", inline=False)
-        embed1.add_field(name="/op (operator name)", value="Overview of a Siege Operator.", inline=False)
-        embed1.add_field(name="/oplist", value="List of all playable operators.", inline=False)
-        embed1.add_field(name="/oprandom (attack / defense)", value="Gives you a random operator.", inline=False)
-        embed1.add_field(name="/map (map name)", value="Get a floorplan of a ranked map.", inline=False)
-        embed1.add_field(name="/maplist", value="List of ranked maps", inline=False)
+        embed1.add_field(name="/r6 op (operator name)", value="Overview of a Siege Operator.", inline=False)
+        embed1.add_field(name="/r6 oplist", value="List of all playable operators.", inline=False)
+        embed1.add_field(name="/r6 oprandom (attack / defense)", value="Gives you a random operator.", inline=False)
+        embed1.add_field(name="/r6 map (map name)", value="Get a floorplan of a ranked map.", inline=False)
+        embed1.add_field(name="/r6 maplist", value="List of ranked maps", inline=False)
         self.pages.append(embed1)
 
         # Page 2: Minecraft
@@ -34,13 +34,13 @@ class InfoPages(discord.ui.View):
             description="**Minecraft Commands**",
             color=0x8B0000
         )
-        embed2.add_field(name="/mcwiki (search term)", value="Search Minecraft Wiki.", inline=False)
-        embed2.add_field(name="/mcrecipe (item)", value="Look up a crafting recipe.", inline=False)
-        embed2.add_field(name="/mcadvancement (name)", value="Info on advancements.", inline=False)
-        embed2.add_field(name="/mcenchant (name)", value="Minecraft enchantment info.", inline=False)
-        embed2.add_field(name="/mcbiome (name)", value="Info about biomes.", inline=False)
-        embed2.add_field(name="/mcstructure (name)", value="Info about structures.", inline=False)
-        embed2.add_field(name="/mcplayer (username)", value="Fetch player UUID and skin.", inline=False)
+        embed2.add_field(name="/mc wiki (search term)", value="Search Minecraft Wiki.", inline=False)
+        embed2.add_field(name="/mc recipe (item)", value="Look up a crafting recipe.", inline=False)
+        embed2.add_field(name="/mc advancement (name)", value="Info on advancements.", inline=False)
+        embed2.add_field(name="/mc enchant (name)", value="Minecraft enchantment info.", inline=False)
+        embed2.add_field(name="/mc biome (name)", value="Info about biomes.", inline=False)
+        embed2.add_field(name="/mc structure (name)", value="Info about structures.", inline=False)
+        embed2.add_field(name="/mc player (username)", value="Fetch player UUID and skin.", inline=False)
         if self.guild_id in config.ALLOWED_GUILD_IDS:
             embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
         self.pages.append(embed2)
@@ -85,10 +85,10 @@ class InfoPages(discord.ui.View):
             description="**Warframe Commands**",
             color=0x8B0000
         )
-        embed5.add_field(name="/wfbaro",  value="Tells you when Baro will arrive and where he is.", inline=False)
-        embed5.add_field(name="/wfnews", value="Latest Warframe news.", inline=False)
-        embed5.add_field(name="/wfnightwave", value="Warframe Nightwave quests.", inline=False)
-        embed5.add_field(name="/wfprice", value="warframe.market item price.", inline=False)
+        embed5.add_field(name="/wf baro",  value="Tells you when Baro will arrive and where he is.", inline=False)
+        embed5.add_field(name="/wf news", value="Latest Warframe news.", inline=False)
+        embed5.add_field(name="/wf nightwave", value="Warframe Nightwave quests.", inline=False)
+        embed5.add_field(name="/wf price", value="warframe.market item price.", inline=False)
         self.pages.append(embed5)
 
     async def update_message(self, interaction):

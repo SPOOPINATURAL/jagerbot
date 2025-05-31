@@ -1,25 +1,44 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from utils.base_cog import BaseCog
+from utils.embed_builder import EmbedBuilder
 import aiohttp
 from bs4 import BeautifulSoup
-from config import ALLOWED_GUILD_IDS
-TEST_GUILD_ID = 989558855023362110
+from config import (ALLOWED_GUILD_IDS, API_TIMEOUT, TEST_GUILD_ID, MINECRAFT_WIKI_BASE)
+
 mc_group = app_commands.Group(name="mc", description="Minecraft commands")
-class MinecraftCog(commands.Cog):
+class MinecraftCog(BaseCog):
     def __init__(self, bot):
-        self.bot = bot
+        super().__init__(bot)
+        self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
+        self.wiki_base_url = MINECRAFT_WIKI_BASE
+
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
+
+    def create_wiki_embed(self, title: str, page: str) -> discord.Embed:
+        url = f"{self.wiki_base_url}/{page}"
+        return EmbedBuilder.info(
+            title=title,
+            description=f"[Click here to view the wiki page]({url})",
+            color=0x55a630
+        )
 
     @mc_group.command(name="wiki", description="Search Minecraft Wiki")
     @app_commands.describe(query="The wiki page to search")
     async def mcwiki(self, interaction: discord.Interaction, query: str):
-        search = query.replace(" ", "_")
-        url = f"https://minecraft.wiki/w/{search}"
-        embed = discord.Embed(
-            title=f"📖 Minecraft Wiki: {query.title()}",
-            description=f"[Click here to view the wiki page]({url})",
-            color=0x55a630
+        embed = self.create_wiki_embed(
+            f"📖 Minecraft Wiki: {query.title()}",
+            query.replace(" ", "_")
         )
+
         await interaction.response.send_message(embed=embed)
 
     @mc_group.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
@@ -27,42 +46,22 @@ class MinecraftCog(commands.Cog):
     async def mcrecipe(self, interaction: discord.Interaction, item: str):
         await interaction.response.defer()
         item_name = item.replace(" ", "_").title()
-        wiki_url = f"https://minecraft.wiki/w/{item_name}"
+        wiki_url = f"{self.wiki_base_url}/{item_name}"
+
 
         recipe_image_url = None
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(wiki_url) as resp:
-                    if resp.status != 200:
-                        await interaction.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
-                        return
+        async with aiohttp.ClientSession(timeout=self.session_timeout):
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(wiki_url) as resp:
+                        if resp.status != 200:
+                            await interaction.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
+                            return
                     html = await resp.text()
                     soup = BeautifulSoup(html, "html.parser")
-
-                    crafting_table = soup.find("table", class_="crafting-table")
-                    if crafting_table:
-                        img = crafting_table.find("img")
-                        if img and img.has_attr("src"):
-                            recipe_image_url = img["src"]
-
-                    if not recipe_image_url:
-                        crafting_div = soup.find(lambda tag: tag.name == "div" and ("crafting" in tag.get("id", "") or "crafting" in tag.get("class", [])))
-                        if crafting_div:
-                            img = crafting_div.find("img")
-                            if img and img.has_attr("src"):
-                                recipe_image_url = img["src"]
-
-                    if not recipe_image_url:
-                        img = soup.find("img")
-                        if img and img.has_attr("src"):
-                            recipe_image_url = img["src"]
-
-                    if recipe_image_url and recipe_image_url.startswith("//"):
-                        recipe_image_url = "https:" + recipe_image_url
-                    elif recipe_image_url and recipe_image_url.startswith("/"):
-                        recipe_image_url = "https://minecraft.wiki" + recipe_image_url
-        except Exception:
-            recipe_image_url = None
+                    recipe_image_url = self._find_recipe_image(soup)
+            except Exception:
+                recipe_image_url = None
 
         embed = discord.Embed(
             title=f"Crafting Recipe for {item.title()}",
@@ -75,6 +74,27 @@ class MinecraftCog(commands.Cog):
         else:
             embed.set_footer(text="Recipe image not found, please check the wiki page link.")
         await interaction.followup.send(embed=embed)
+
+    def _find_recipe_image(self, soup: BeautifulSoup) -> str:
+        """Helper method to find recipe image in wiki page"""
+        for selector in [
+            ("table", "crafting-table"),
+            ("div", "crafting"),
+            ("img", None)
+        ]:
+            tag, class_name = selector
+            element = soup.find(tag, class_=class_name) if class_name else soup.find(tag)
+
+            if element:
+                img = element.find("img") if tag != "img" else element
+                if img and img.has_attr("src"):
+                    src = img["src"]
+                    if src.startswith("//"):
+                        return f"https:{src}"
+                    elif src.startswith("/"):
+                        return f"{self.wiki_base_url}{src}"
+                    return src
+        return None
 
     @mc_group.command(name="advancement", description="Get advancement info from Minecraft Wiki")
     @app_commands.describe(name="Advancement name")
@@ -127,9 +147,10 @@ class MinecraftCog(commands.Cog):
     @mc_group.command(name="player", description="Get Minecraft player info")
     @app_commands.describe(username="Minecraft IGN")
     async def mcplayer(self, interaction: discord.Interaction, username: str):
+        await interaction.response.defer()
         try:
-            await interaction.response.defer()
-            async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession(timeout=self.session_timeout
+) as session:
                 headers = {"User-Agent": "Mozilla/5.0"}
                 async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{username}", headers=headers) as resp:
                     if resp.status != 200:
@@ -161,8 +182,8 @@ class MinecraftCog(commands.Cog):
             )
             return
         await interaction.response.defer()
+        server_ip = "vdsmp.mc.gg"
         try:
-            server_ip = "vdsmp.mc.gg"
 
             async with aiohttp.ClientSession() as session:
                 async with session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
@@ -183,7 +204,7 @@ class MinecraftCog(commands.Cog):
 
             embed = discord.Embed(
                 title="🌐 Minecraft Server Status",
-                description="Your private server is **online** ✅",
+                description="The server is **online** ✅",
                 color=0x00cc66
             )
             embed.add_field(name="📃 MOTD", value=motd, inline=False)

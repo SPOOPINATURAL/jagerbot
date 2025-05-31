@@ -1,5 +1,6 @@
 import os
 import psutil
+import aiohttp
 from discord.ext import commands
 from discord import Interaction
 from discord.app_commands import AppCommandError, CommandOnCooldown, MissingPermissions, BotMissingPermissions, CommandNotFound, TransformerError
@@ -9,6 +10,15 @@ class ErrorHandlerCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.bot.tree.error(self.on_app_command_error)
+
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
@@ -64,7 +74,7 @@ class ErrorHandlerCog(commands.Cog):
         return False
 
     if check_for_multiple_instances():
-        exit(1)  # Or handle as needed
+        exit(1)
 
 async def setup(bot):
     await bot.add_cog(ErrorHandlerCog(bot))

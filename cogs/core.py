@@ -1,3 +1,4 @@
+import logging
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -5,54 +6,126 @@ import aiohttp
 import pytz
 import random
 from datetime import datetime
+from typing import Optional, Dict, Any
 from pytz.exceptions import UnknownTimeZoneError
+
 from config import WEATHER_API_KEY, SUPPORTED_TZ
-from utils.helpers import normalize_tz
+from utils.helpers import DataHelper, TimeHelper
+from utils.embed_builder import EmbedBuilder
 from views.info_pages import InfoPages
+
+
+logger = logging.getLogger(__name__)
+
+
+class WeatherService:
+    def __init__(self):
+        self.api_key = WEATHER_API_KEY
+        self.base_url = "https://api.openweathermap.org/data/2.5/weather"
+
+    async def get_weather(self, city: str, session: aiohttp.ClientSession) -> Optional[Dict[str, Any]]:
+        url = f"{self.base_url}?q={city}&appid={self.api_key}&units=metric"
+        return await DataHelper.fetch_json(url, session=session)
+
+    def create_weather_embed(self, data: Dict[str, Any]) -> discord.Embed:
+        temp_c = data["main"]["temp"]
+        temp_f = round((temp_c * 9 / 5) + 32, 1)
+        wind_mps = data["wind"]["speed"]
+        wind_mph = round(wind_mps * 2.23694, 1)
+
+        return EmbedBuilder.info(
+            title=f"🌤 Weather in {data['name']}",
+            fields=[
+                ("Temperature", f"{temp_c}°C / {temp_f}°F", True),
+                ("Condition", data["weather"][0]["description"].title(), True),
+                ("Humidity", f"{data['main']['humidity']}%", True),
+                ("Wind Speed", f"{wind_mps} m/s / {wind_mph} mph", True)
+            ], color = 0x8B0000
+        )
+
+
+class CurrencyService:
+    def __init__(self):
+        self.base_url = "https://api.exchangerate.host/convert"
+
+    async def convert_currency(
+            self,
+            amount: float,
+            from_currency: str,
+            to_currency: str,
+            session: aiohttp.ClientSession
+    ) -> Optional[float]:
+        try:
+            url = (f"{self.base_url}?"
+                   f"from={from_currency.upper()}&"
+                   f"to={to_currency.upper()}&"
+                   f"amount={amount}")
+
+            data = await DataHelper.fetch_json(url)
+            if not data or not data.get("success"):
+                return None
+
+            return data.get("result")
+
+        except Exception as e:
+            logger.error(f"Currency conversion error: {e}")
+            return None
 
 
 class CoreCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.session: Optional[aiohttp.ClientSession] = None
+        self.weather_service = WeatherService()
+        self.currency_service = CurrencyService()
+
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
 
     @app_commands.command(name='weather', description="Get the current weather in a city")
     @app_commands.describe(city="Name of the city (e.g. London, Tokyo)")
     async def weather(self, interaction: discord.Interaction, city: str):
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={WEATHER_API_KEY}&units=metric"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                if resp.status != 200:
-                    await interaction.response.send_message(f"❌ Could not find weather for `{city}`.")
-                    return
+        await interaction.response.defer()
 
-                data = await resp.json()
+        try:
+            weather_data = await self.weather_service.get_weather(city, self.session)
+            if not weather_data:
+                await interaction.followup.send(
+                    f"❌ Could not find weather for `{city}`.",
+                    ephemeral=True
+                )
+                return
 
-                name = data["name"]
-                temp_c = data["main"]["temp"]
-                temp_f = round((temp_c * 9 / 5) + 32, 1)
-                desc = data["weather"][0]["description"].title()
-                humidity = data["main"]["humidity"]
-                wind_mps = data["wind"]["speed"]
-                wind_mph = round(wind_mps * 2.23694, 1)
+            embed = self.weather_service.create_weather_embed(weather_data)
+            await interaction.followup.send(embed=embed)
 
-                embed = discord.Embed(title=f"🌤 Weather in {name}", color=0x8B0000)
-                embed.add_field(name="Temperature", value=f"{temp_c}°C / {temp_f}°F", inline=True)
-                embed.add_field(name="Condition", value=desc, inline=True)
-                embed.add_field(name="Humidity", value=f"{humidity}%", inline=True)
-                embed.add_field(name="Wind Speed", value=f"{wind_mps} m/s / {wind_mph} mph", inline=True)
-
-                await interaction.response.send_message(embed=embed)
+        except Exception as e:
+            logger.error(f"Weather command error: {e}")
+            await interaction.followup.send(
+                "❌ An error occurred while fetching weather data.",
+                ephemeral=True
+            )
 
     @app_commands.command(name="tzconvert", description="Convert time between timezones")
     @app_commands.describe(time="e.g. 14:00 or now", from_tz="From timezone", to_tz="To timezone")
-    async def tzconvert(self, interaction: discord.Interaction, time: str, from_tz: str, to_tz: str):
+    async def tzconvert(
+            self,
+            interaction: discord.Interaction,
+            time: str,
+            from_tz: str,
+            to_tz: str
+    ):
         await interaction.response.defer()
-        try:
-            from_tz = normalize_tz(from_tz)
-            to_tz = normalize_tz(to_tz)
 
-            from_zone = pytz.timezone(from_tz)
-            to_zone = pytz.timezone(to_tz)
+        try:
+            from_zone = pytz.timezone(TimeHelper.normalize_tz(from_tz))
+            to_zone = pytz.timezone(TimeHelper.normalize_tz(to_tz))
 
             if time.lower() == "now":
                 input_dt = datetime.now(from_zone)
@@ -72,8 +145,23 @@ class CoreCog(commands.Cog):
                 f"🕒 `{input_dt.strftime('%Y-%m-%d %H:%M')}` in **{from_tz}** is "
                 f"`{converted.strftime('%Y-%m-%d %H:%M')}` in **{to_tz}**"
             )
+
+        except UnknownTimeZoneError:
+            await interaction.followup.send(
+                "❌ Invalid timezone specified.",
+                ephemeral=True
+            )
+        except ValueError:
+            await interaction.followup.send(
+                "❌ Invalid time format. Use HH:MM or YYYY-MM-DD HH:MM",
+                ephemeral=True
+            )
         except Exception as e:
-            await interaction.followup.send(f"⚠️ Error: {e}", ephemeral=True)
+            logger.error(f"Timezone conversion error: {e}")
+            await interaction.followup.send(
+                "❌ An error occurred during conversion.",
+                ephemeral=True
+            )
 
     @app_commands.command(name="timezones", description="List supported timezones")
     async def timezones(self, interaction: discord.Interaction):
@@ -140,21 +228,40 @@ class CoreCog(commands.Cog):
 
     @app_commands.command(name="currency", description="Convert currency using exchangerate.host")
     @app_commands.describe(amount="Amount to convert", from_currency="Currency to convert from", to_currency="Currency to convert to")
-    async def currency(self, interaction: discord.Interaction, amount: float, from_currency: str, to_currency: str):
-        """Convert currency using exchangerate.host"""
-        url = f"https://api.exchangerate.host/convert?from={from_currency.upper()}&to={to_currency.upper()}&amount={amount}"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                if resp.status != 200:
-                    await interaction.response.send_message("❌ Failed to fetch exchange rate.", ephemeral=True)
-                    return
-                data = await resp.json()
-                if not data.get("success"):
-                    await interaction.response.send_message("❌ Conversion failed.", ephemeral=True)
-                    return
-                result = data.get("result")
-                await interaction.response.send_message(
-                    f"💱 {amount} {from_currency.upper()} = {result:.2f} {to_currency.upper()}")
+    async def currency(
+            self,
+            interaction: discord.Interaction,
+            amount: float,
+            from_currency: str,
+            to_currency: str
+    ):
+        await interaction.response.defer()
+
+        try:
+            result = await self.currency_service.convert_currency(
+                amount,
+                from_currency,
+                to_currency,
+                self.session
+            )
+
+            if result is None:
+                await interaction.followup.send(
+                    "❌ Currency conversion failed.",
+                    ephemeral=True
+                )
+                return
+
+            await interaction.followup.send(
+                f"💱 {amount} {from_currency.upper()} = {result:.2f} {to_currency.upper()}"
+            )
+
+        except Exception as e:
+            logger.error(f"Currency conversion error: {e}")
+            await interaction.followup.send(
+                "❌ An error occurred during conversion.",
+                ephemeral=True
+            )
 
     @app_commands.command(name="info", description="Command list")
     async def info(self, interaction: discord.Interaction):

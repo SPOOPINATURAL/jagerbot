@@ -1,57 +1,123 @@
+import logging
+from typing import Optional
+from enum import Enum
 
 import discord
-from discord.ui import View, Button
 import random
+from discord.ui import View, Button
+from discord import ButtonStyle, Interaction
 
-class RPSView(View):
-    def __init__(self, player_id: int):
-        super().__init__(timeout=15)
-        self.player_id = player_id
+logger = logging.getLogger(__name__)
 
-        self.options = {
-            "rock": "🪨 Rock",
-            "paper": "📄 Paper",
-            "scissors": "✂️ Scissors"
-        }
+class RPSChoice(Enum):
+    ROCK = "rock"
+    PAPER = "paper"
+    SCISSORS = "scissors"
 
-        for option, label in self.options.items():
-            self.add_item(RPSButton(label=label, choice=option, view=self))
+    @property
+    def emoji(self) -> str:
+        return {
+            self.ROCK: "🪨",
+            self.PAPER: "📄",
+            self.SCISSORS: "✂️"
+        }[self]
 
-    async def handle_choice(self, interaction: discord.Interaction, user_choice: str):
-        if interaction.user.id != self.player_id:
-            await interaction.response.send_message("❌ You're not the original player!", ephemeral=True)
-            return
-
-        bot_choice = random.choice(list(self.options.keys()))
-
-        if user_choice == bot_choice:
-            result = "It's a draw!"
-        elif (
-            (user_choice == "rock" and bot_choice == "scissors") or
-            (user_choice == "paper" and bot_choice == "rock") or
-            (user_choice == "scissors" and bot_choice == "paper")
-        ):
-            result = "You win!"
-        else:
-            result = "You lose!"
-
-        embed = discord.Embed(
-            title="🪨📄✂️ Rock Paper Scissors",
-            description=(
-                f"**You:** {user_choice.capitalize()}\n"
-                f"**Bot:** {bot_choice.capitalize()}\n\n**{result}**"
-            ),
-            color=0x8B0000
+    def beats(self, other: 'RPSChoice') -> bool:
+        return (
+            (self == self.ROCK and other == self.SCISSORS) or
+            (self == self.PAPER and other == self.ROCK) or
+            (self == self.SCISSORS and other == self.PAPER)
         )
 
-        await interaction.response.edit_message(embed=embed, view=None)
-
-
 class RPSButton(Button):
-    def __init__(self, label: str, choice: str, view: RPSView):
-        super().__init__(label=label, style=discord.ButtonStyle.secondary)
-        self.choice = choice
-        self.custom_view = view
 
-    async def callback(self, interaction: discord.Interaction):
-        await self.custom_view.handle_choice(interaction, self.choice)
+    def __init__(self, choice: RPSChoice, view: 'RPSView'):
+        super().__init__(
+            label=f"{choice.emoji} {choice.name.title()}", 
+            style=ButtonStyle.secondary,
+            custom_id=f"rps_{choice.value}"
+        )
+        self.choice = choice
+        self.rps_view = view
+
+    async def callback(self, interaction: Interaction) -> None:
+        try:
+            await self.rps_view.handle_choice(interaction, self.choice)
+        except Exception as e:
+            logger.error(f"Error in RPS button callback: {e}", exc_info=True)
+            await interaction.response.send_message(
+                "❌ An error occurred processing your choice.",
+                ephemeral=True
+            )
+
+class RPSView(View):
+
+    def __init__(self, player_id: int):
+        super().__init__(timeout=15.0)
+        self.player_id = player_id
+        self.message: Optional[discord.Message] = None
+        self._add_buttons()
+
+    def _add_buttons(self) -> None:
+        for choice in RPSChoice:
+            self.add_item(RPSButton(choice=choice, view=self))
+
+    def _create_result_embed(
+        self,
+        user_choice: RPSChoice,
+        bot_choice: RPSChoice,
+        result: str
+    ) -> discord.Embed:
+        return discord.Embed(
+            title="🎮 Rock Paper Scissors",
+            description=(
+                f"**You:** {user_choice.emoji} {user_choice.name.title()}\n"
+                f"**Bot:** {bot_choice.emoji} {bot_choice.name.title()}\n\n"
+                f"**{result}**"
+            ),
+            color=0x2F3136
+        )
+
+    async def on_timeout(self) -> None:
+        try:
+            for item in self.children:
+                item.disabled = True
+            if self.message:
+                await self.message.edit(
+                    content="⏰ Game timed out!",
+                    view=self
+                )
+        except Exception as e:
+            logger.error(f"Error handling RPS timeout: {e}")
+
+    async def handle_choice(
+        self,
+        interaction: Interaction,
+        user_choice: RPSChoice
+    ) -> None:
+        try:
+            if interaction.user.id != self.player_id:
+                await interaction.response.send_message(
+                    "❌ This isn't your game!",
+                    ephemeral=True
+                )
+                return
+
+            bot_choice = RPSChoice(random.choice([c.value for c in RPSChoice]))
+            
+            if user_choice == bot_choice:
+                result = "It's a draw! 🤝"
+            elif user_choice.beats(bot_choice):
+                result = "You win! 🎉"
+            else:
+                result = "You lose! 😢"
+
+            embed = self._create_result_embed(user_choice, bot_choice, result)
+            await interaction.response.edit_message(embed=embed, view=None)
+
+        except Exception as e:
+            logger.error(f"Error handling RPS choice: {e}", exc_info=True)
+            await interaction.response.send_message(
+                "❌ An error occurred during the game.",
+                ephemeral=True
+            )

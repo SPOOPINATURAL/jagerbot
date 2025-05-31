@@ -1,46 +1,64 @@
 import random
 import os
+import logging
+import json
+import html
+
+import aiohttp
 import discord
 from discord.ext import commands
 from discord import app_commands
-import json
-import html
-import aiohttp
+from typing import Dict, Optional, List
+from datetime import datetime
+
 from config import SCORES_FILE
-from utils.helpers import check_cooldown, start_cooldown
+from utils.helpers import CooldownManager, FileHelper
+from utils.embed_builder import EmbedBuilder
 from views.trivia import TriviaView
+from views.rps import RPSView
+
+logger = logging.getLogger(__name__)
+
 
 user_scores = {}
-def load_scores():
-    global user_scores
-    if os.path.exists(SCORES_FILE):
-        try:
-            with open(SCORES_FILE, "r", encoding="utf-8") as f:
-                user_scores = json.load(f)
-        except Exception as e:
-            print(f"Failed to load scores: {e}")
-            user_scores = {}
-    else:
-        user_scores = {}
-    print(f"Loaded scores: {user_scores}")
 
-def save_scores():
-    try:
-        with open(SCORES_FILE, "w", encoding="utf-8") as f:
-            json.dump(user_scores, f, indent=2)
-    except Exception as e:
-        print(f"Failed to save scores: {e}")
-    print(f"Saved scores: {user_scores}")
 
-async def handle_trivia_answer(user_id: int, is_correct: bool):
-    uid = str(user_id)
-    user_scores[uid] = user_scores.get(uid, 0) + int(is_correct)
-    save_scores()
+class TriviaManager:
+    def __init__(self, scores_file: str):
+        self.scores_file = scores_file
+        self.scores: Dict[str, int] = {}
+        self.load_scores()
+
+    def load_scores(self) -> None:
+        self.scores = FileHelper.load_json_file(self.scores_file) or {}
+        logger.info(f"Loaded {len(self.scores)} trivia scores")
+
+    def save_scores(self) -> None:
+        FileHelper.save_json_file(self.scores_file, self.scores)
+        logger.info(f"Saved {len(self.scores)} trivia scores")
+
+    def update_score(self, user_id: int, is_correct: bool) -> None:
+        uid = str(user_id)
+        self.scores[uid] = self.scores.get(uid, 0) + int(is_correct)
+        self.save_scores()
+
+    def get_score(self, user_id: int) -> int:
+        return self.scores.get(str(user_id), 0)
+
 
 class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        load_scores()
+        self.trivia_manager = TriviaManager(SCORES_FILE)
+        self.session = None
+
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession()
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
+
 
     @app_commands.command(name='hello', description="Hello!")
     async def hello(self, interaction: discord.Interaction):
@@ -133,59 +151,99 @@ class Fun(commands.Cog):
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="rps", description="Play Rock, Paper, Scissors")
+    @app_commands.checks.cooldown(1, 5.0)
     async def rps_command(self, interaction: discord.Interaction):
-        from views.rps import RPSView
-        view = RPSView(player_id=interaction.user.id)
-        await interaction.response.send_message("Choose your move:", view=view)
+        try:
+            view = RPSView(player_id=interaction.user.id)
+            await interaction.response.send_message(
+                "🎮 Choose your move:",
+                view=view
+            )
+            view.message = await interaction.original_response()
+
+        except Exception as e:
+            logger.error(f"Error starting RPS game: {e}", exc_info=True)
+            await interaction.response.send_message(
+                "❌ Failed to start the game. Please try again.",
+                ephemeral=True
+            )
 
     @app_commands.command(name='trivia', description="Get a trivia question, multiple choice answers")
+    @app_commands.checks.cooldown(1, 30.0)
     async def trivia(self, interaction: discord.Interaction):
-        on_cooldown, retry_after = check_cooldown(interaction.user.id, "trivia")
-        if on_cooldown:
+        try:
+            question_data = await self._fetch_trivia_question()
+            if not question_data:
+                await interaction.response.send_message(
+                    "❌ Failed to fetch trivia question. Try again later.",
+                    ephemeral=True
+                )
+                return
+
+            question, correct, answers = self._prepare_question(question_data)
+            correct_letter = self._get_correct_letter(answers, correct)
+
+            embed = self._create_trivia_embed(question, answers)
+            view = TriviaView(
+                author_id=interaction.user.id,
+                correct_letter=correct_letter,
+                correct_answer=correct,
+                answer_callback=self.trivia_manager.update_score
+            )
+
+            await interaction.response.send_message(embed=embed, view=view)
+            view.message = await interaction.original_response()
+            await view.wait()
+
+        except Exception as e:
+            logger.error(f"Error in trivia command: {e}")
             await interaction.response.send_message(
-                f"Please wait {retry_after} seconds before using this command again.", ephemeral=True)
-            return
+                "❌ An error occurred. Please try again.",
+                ephemeral=True
+            )
 
-        url = "https://opentdb.com/api.php?amount=1&type=multiple"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                data = await resp.json()
+    async def _fetch_trivia_question(self) -> Optional[dict]:
+        try:
+            async with self.session.get(
+                    "https://opentdb.com/api.php?amount=1&type=multiple"
+            ) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    return data["results"][0]
+        except Exception as e:
+            logger.error(f"Failed to fetch trivia: {e}")
+        return None
 
-        question_data = data["results"][0]
-        question = html.unescape(question_data["question"])
-        correct = html.unescape(question_data["correct_answer"])
-        incorrect = [html.unescape(ans) for ans in question_data["incorrect_answers"]]
+    def _prepare_question(self, data: dict) -> tuple[str, str, dict]:
+        question = html.unescape(data["question"])
+        correct = html.unescape(data["correct_answer"])
+        incorrect = [html.unescape(ans) for ans in data["incorrect_answers"]]
+
         all_answers = incorrect + [correct]
         random.shuffle(all_answers)
 
-        letters = ['A', 'B', 'C', 'D']
-        answer_map = dict(zip(letters, all_answers))
-        correct_letter = next(k for k, v in answer_map.items() if v == correct)
+        answers = dict(zip(['A', 'B', 'C', 'D'], all_answers))
+        return question, correct, answers
 
-        embed = discord.Embed(title="🧠 Trivia", description=question, color=0x8B0000)
-        for letter, answer in answer_map.items():
+    def _get_correct_letter(self, answers: dict, correct: str) -> str:
+        return next(k for k, v in answers.items() if v == correct)
+
+    def _create_trivia_embed(self, question: str, answers: dict) -> discord.Embed:
+        embed = EmbedBuilder.info(
+            title="🧠 Trivia",
+            description=question
+        )
+        for letter, answer in answers.items():
             embed.add_field(name=letter, value=answer, inline=False)
         embed.set_footer(text="Click the button that matches your answer.")
-
-        view = TriviaView(
-            author_id=interaction.user.id,
-            correct_letter=correct_letter,
-            correct_answer=correct,
-            answer_callback=handle_trivia_answer
-        )
-        await interaction.response.send_message(embed=embed, view=view)
-        view.message = await interaction.original_response()
-        await view.wait()
+        return embed
 
     @app_commands.command(name='score', description="Get your trivia score")
     async def score(self, interaction: discord.Interaction):
-        uid = str(interaction.user.id)
-        score = user_scores.get(uid, 0)
+        score = self.trivia_manager.get_score(interaction.user.id)
         await interaction.response.send_message(
             f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**"
         )
 
-
 async def setup(bot):
-    bot.config = __import__("config")
     await bot.add_cog(Fun(bot))

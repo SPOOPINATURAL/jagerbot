@@ -1,18 +1,46 @@
+import logging
 from discord.ext import commands
+import aiohttp
 import discord
+from typing import Optional
+
+logger = logging.getLogger(__name__)
+
 
 class Owner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    async def cog_load(self) -> None:
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
+
+    async def cog_unload(self) -> None:
+        if self.session and not self.session.closed:
+            await self.session.close()
+
     @commands.command(name="sync")
     @commands.is_owner()
     async def sync(self, ctx):
         try:
+            logger.info("Starting global command sync...")
             synced = await self.bot.tree.sync()
             await ctx.send(f"✅ Synced {len(synced)} command(s) globally.")
+            logger.info(f"Synced {len(synced)} commands globally")
         except Exception as e:
-            await ctx.send(f"❌ Error syncing commands: {e}")
+            error_msg = f"❌ Failed to sync commands: {str(e)}"
+            logger.error(error_msg, exc_info=True)
+            await ctx.send(error_msg)
+
+    @sync.error
+    async def sync_error(self, ctx: commands.Context, error: Exception) -> None:
+        if isinstance(error, commands.NotOwner):
+            await ctx.send("❌ Only the bot owner can use this command.")
+        else:
+            logger.error(f"Unexpected error in sync command: {error}", exc_info=True)
+            await ctx.send("❌ An unexpected error occurred.")
+
 
 async def setup(bot):
     await bot.add_cog(Owner(bot))
