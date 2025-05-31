@@ -4,10 +4,12 @@ from discord import app_commands
 from utils.base_cog import BaseCog
 from utils.embed_builder import EmbedBuilder
 import aiohttp
+import logging
 from bs4 import BeautifulSoup
 from config import (ALLOWED_GUILD_IDS, API_TIMEOUT, TEST_GUILD_ID, MINECRAFT_WIKI_BASE)
 
 mc_group = app_commands.Group(name="mc", description="Minecraft commands")
+logger = logging.getLogger(__name__)
 class MinecraftCog(BaseCog):
     def __init__(self, bot):
         super().__init__(bot)
@@ -222,7 +224,15 @@ class MinecraftCog(BaseCog):
             await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(MinecraftCog(bot))
-    bot.tree.add_command(mc_group)
-    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
-    print("Added mc_group to command tree")
+    try:
+        cog = MinecraftCog(bot)
+        await bot.add_cog(cog)
+        if not hasattr(bot, 'app_commands_added'):
+            bot.app_commands_added = set()
+        if 'mc' not in bot.app_commands_added:
+            bot.tree.add_command(mc_group)
+            bot.app_commands_added.add('mc')
+        logger.info("MinecraftCog loaded successfully")
+    except Exception as e:
+        logger.error(f"Failed to setup MinecraftCog: {e}")
+        raise

@@ -18,99 +18,58 @@ class JagerBot(commands.Bot):
         self.is_dev = os.getenv("BOT_ENV", "prod").lower() == "dev"
         self.initial_extensions: List[str] = []
         self.config = config
-        self._setup_logging()
         self._synced: bool = False
+        self._sync_lock = asyncio.Lock()
 
-    @property
-    def synced(self) -> bool:
-        return self._synced
-
-    @synced.setter
-    def synced(self, value: bool):
-        self._synced = value
-
-    def _setup_logging(self) -> None:
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            handlers=[
-                logging.FileHandler('discord.log', encoding='utf-8', errors='replace'),
-                logging.StreamHandler()
-            ]
-        )
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        for handler in logging.root.handlers:
-            handler.setFormatter(formatter)
-
-
-    async def load_cogs(self) -> None:
-        for filename in os.listdir("./cogs"):
-            if filename.endswith(".py") and not filename.startswith("_"):
-                try:
-                    await self.load_extension(f"cogs.{filename[:-3]}")
-                    logger.info(f"Loaded cog: {filename}")
-                except Exception as e:
-                    logger.error(f"Failed to load cog {filename}: {str(e)}")
-        logger.info("Finished loading cogs")
-
-    async def setup_hook(self) -> None:
+    async def sync_commands(self):
         try:
-            logger.info("Setup hook started")
-            await self.load_cogs()
-            if not self.synced:
-                logger.info("Starting command tree sync")
-                max_retries = 3
-                for attempt in range(max_retries):
-                    try:
-                        if self.is_dev:
-                            test_guild = discord.Object(id=self.config.TEST_GUILD_ID)
-
-                            # Batch sync commands instead of individual syncs
-                            commands = []
-                            for cmd in self.tree.get_commands():
-                                if not isinstance(cmd, app_commands.Group):
-                                    commands.append(cmd)
-
-                            self.tree.clear_commands(guild=test_guild)
-                            async with asyncio.timeout(30):
-                                await self.tree.sync(guild=test_guild)
-                            logger.info("Development mode: Commands synced to test guild")
-                        else:
-                            async with asyncio.timeout(30):
-                                await self.tree.sync()
-                            logger.info("Production mode: Commands synced globally")
-                        self.synced = True
-                        break
-                    except asyncio.TimeoutError:
-                        if attempt < max_retries - 1:
-                            logger.warning(f"Command sync attempt {attempt + 1} timed out, retrying...")
-                            await asyncio.sleep(5)
-                        else:
-                            logger.error("Command sync failed after all attempts")
-                            raise
-            else:
-                logger.info("Commands already synced, skipping sync")
-
-        except Exception as e:
-            logger.error(f"Error during setup: {str(e)}")
-            raise
-
-    async def sync_command_group(self, group_name: str) -> None:
-        try:
-            if self.is_dev:
-                test_guild = discord.Object(id=self.config.TEST_GUILD_ID)
-                await self.tree.sync(guild=test_guild)
+            if os.getenv("BOT_ENV", "dev").lower() == "dev":
+                guild = discord.Object(id=self.config.TEST_GUILD_ID)
+                self.tree.copy_global_to(guild=guild)
+                await self.tree.sync(guild=guild)
+                logger.info("Commands synced to test guild")
             else:
                 await self.tree.sync()
-            logger.info(f"Successfully synced command group: {group_name}")
+                logger.info("Commands synced globally")
         except Exception as e:
-            logger.error(f"Failed to sync command group {group_name}: {e}")
+            logger.error(f"Failed to sync commands: {e}")
+            raise
 
+    async def setup_hook(self):
+        try:
+            for cog in self.config.INITIAL_EXTENSIONS:
+                try:
+                    await self.load_extension(cog)
+                    logger.info(f"Loaded extension {cog}")
+                except Exception as e:
+                    logger.error(f"Failed to load extension {cog}: {e}")
+                
+            await self.sync_commands()
+        except Exception as e:
+            logger.error(f"Error in setup hook: {e}")
+            raise
+
+    async def load_cogs(self) -> None:
+        loaded_count = 0
+        start_time = asyncio.get_event_loop().time()
+        
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py") and not filename.startswith("_"):
+                cog_name = f"cogs.{filename[:-3]}"
+                try:
+                    await self.load_extension(cog_name)
+                    loaded_count += 1
+                    logger.info(f"Loaded cog ({loaded_count}): {cog_name}")
+                except Exception as e:
+                    logger.error(f"Failed to load cog {cog_name}: {str(e)}")
+                    
+        elapsed = asyncio.get_event_loop().time() - start_time
+        logger.info(f"Finished loading {loaded_count} cogs in {elapsed:.2f} seconds")
 
     async def on_ready(self) -> None:
         try:
-            logger.info(f"Logged in as {self.user} (ID: {self.user.id}) :)")
-
+            logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+            
             await self.change_presence(
                 status=discord.Status.online,
                 activity=discord.Activity(
@@ -119,19 +78,41 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
-            logger.info("Registered Commands:")
-            try:
-                async with asyncio.timeout(10):
-                    commands = await self.tree.fetch_commands(guild=guild)
-                    logger.info("Registered Commands:")
-                    for cmd in commands:
-                        logger.info(f"  • {cmd.name}")
-            except asyncio.TimeoutError:
-                logger.error("Timeout while fetching commands")
+            if self._synced:
+                guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+                try:
+                    async with asyncio.timeout(10):
+                        commands = await self.tree.fetch_commands(guild=guild)
+                        if commands:
+                            logger.info(f"Registered Commands ({len(commands)}):")
+                            for cmd in commands:
+                                logger.info(f"  • {cmd.name}")
+                        else:
+                            logger.warning("No commands registered")
+                except asyncio.TimeoutError:
+                    logger.error("Timeout while fetching commands")
+                except Exception as e:
+                    logger.error(f"Error fetching commands: {e}")
 
         except Exception as e:
             logger.error(f"Error in on_ready: {str(e)}")
+
+    async def force_sync(self, guild_id=None):
+        try:
+            self._synced = False
+            if guild_id:
+                guild = discord.Object(id=guild_id)
+                self.tree.clear_commands(guild=guild)
+                await self.tree.sync(guild=guild)
+                logger.info(f"Force synced commands to guild {guild_id}")
+            else:
+                self.tree.clear_commands()
+                await self.tree.sync()
+                logger.info("Force synced commands globally")
+            self._synced = True
+        except Exception as e:
+            logger.error(f"Force sync failed: {e}")
+            raise
 
     async def on_connect(self) -> None:
         logger.info("Connected to Discord")

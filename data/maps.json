@@ -46,7 +46,7 @@
     ]
   },
   "border": {
-    "name:": "Border",
+    "name": "Border",
     "floors": [
       {"name": "1st Floor", "image": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4nl4T7y1mBfwrti5e8Jq9Q/78fc6dbba89cdcc5a10a8e90889e870b/r6-maps-border-blueprint-1.jpg"},
       {"name": "2nd Floor", "image": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/1lG2AxuPadRvfN8Vjx7jGV/200afc5ce945628b744437a20969b1c5/r6-maps-border-blueprint-2.jpg"},
@@ -82,7 +82,7 @@
     ]
   },
   "coastline": {
-    "name": "Coastline:,",
+    "name": "Coastline:",
     "aliases": ["coast", "cline"],
     "floors": [
       {"name": "1st Floor", "image": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4b0lpXOb5Hv6kgJ2BvrjP9/59b1ccd49d36b8b38621d39d8f9479f9/r6-maps-coastline-blueprint-1.jpg"},
@@ -92,7 +92,7 @@
   },
   "consulate": {
     "name": "Consulate",
-    "aliases": "consul",
+    "aliases": ["consul"],
     "floors": [
       {"name": "Basement","image": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/14Ww7AoFdDGhcjgWpLTMdV/77bc68f24869fd75b49a715b67925488/r6-maps-consulate-blueprint-1.jpg"},
       {"name": "1st Floor","image": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/v0KtqRwgoNXSvGxjn0MVR/ec1200c055944ceba822a118d3611197/r6-maps-consulate-blueprint-2.jpg"},

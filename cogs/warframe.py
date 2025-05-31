@@ -15,13 +15,13 @@ from config import (
     WF_COLOR
 )
 
+wf_group = app_commands.Group(name="wf", description="Warframe commands")
 
 logger = logging.getLogger(__name__)
-wf_group = app_commands.Group(name="wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.session = aiohttp.ClientSession()
+        self.session = None
         self.cache = {}
 
     async def cog_load(self) -> None:
@@ -70,7 +70,7 @@ class WarframeCog(commands.Cog):
 
         return embed
 
-    @wf_group.command(name="baro", description="Warframe Baro status")
+    @wf_group.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def wfbaro(self, interaction: discord.Interaction):
         await interaction.response.defer()
         data = await self.get_cached_data("voidTrader")
@@ -81,11 +81,9 @@ class WarframeCog(commands.Cog):
         embed = self.create_baro_embed(data)
         await interaction.followup.send(embed=embed)
 
-
-    @wf_group.command(name="news", description="Warframe News")
+    @wf_group.command(name="news", description="Show latest Warframe news")
     async def wfnews(self, interaction: discord.Interaction):
         await interaction.response.defer()
-
         data = await self.get_cached_data("news")
         if not data:
             await interaction.followup.send("❌ Failed to fetch news.", ephemeral=True)
@@ -98,32 +96,27 @@ class WarframeCog(commands.Cog):
                 value=f"[Read More]({news['link']})",
                 inline=False
             )
-
         await interaction.followup.send(embed=embed)
 
-
-    @wf_group.command(name="nightwave", description="Warframe Nightwave status")
+    @wf_group.command(name="nightwave", description="Show current Nightwave challenges")
     async def nightwave(self, interaction: discord.Interaction):
         await interaction.response.defer()
-
         data = await self.get_cached_data("nightwave")
         if not data:
             await interaction.followup.send("❌ Failed to fetch Nightwave data.", ephemeral=True)
             return
 
         embed = discord.Embed(title="Nightwave Challenges", color=WF_COLOR)
-
         for challenge in data.get("activeChallenges", []):
             embed.add_field(
                 name=f"{challenge['title']} ({challenge['reputation']} Rep)",
                 value=challenge.get('desc', 'No description'),
                 inline=False
             )
-
         await interaction.followup.send(embed=embed)
 
-    @wf_group.command(name="price", description="Warframe prices from warframe.market")
-    @app_commands.describe(item="Item name")
+    @wf_group.command(name="price", description="Check item prices from warframe.market")
+    @app_commands.describe(item="Item name to check prices for")
     async def wfprice(self, interaction: discord.Interaction, item: str):
         await interaction.response.defer()
         item_url = item.replace(" ", "_").lower()
@@ -147,7 +140,6 @@ class WarframeCog(commands.Cog):
                     return
 
                 cheapest = sorted(sell_orders, key=lambda x: x["platinum"])[:5]
-
                 embed = discord.Embed(title=f"Prices for {item}", color=WF_COLOR)
                 for order in cheapest:
                     embed.add_field(
@@ -155,15 +147,13 @@ class WarframeCog(commands.Cog):
                         value=f"Seller: {order['user']['ingame_name']}",
                         inline=True
                     )
-
                 await interaction.followup.send(embed=embed)
 
         except Exception as e:
             logger.error(f"Error fetching price for {item}: {e}")
             await interaction.followup.send("❌ Error fetching prices.", ephemeral=True)
 
-
-    @wf_group.command(name="streams", description="List upcoming and active Warframe streams with drops")
+    @wf_group.command(name="streams", description="Show current and upcoming Warframe streams")
     async def streams(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking=True)
         try:
@@ -174,7 +164,6 @@ class WarframeCog(commands.Cog):
                 active = await resp.json() if resp.status == 200 else []
 
             embed = discord.Embed(title="Warframe Streams", color=WF_COLOR)
-
             if upcoming:
                 value = ""
                 for stream in upcoming[:5]:
@@ -198,9 +187,17 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error fetching streams: {e}")
             await interaction.followup.send("❌ Error fetching stream data.", ephemeral=True)
 
-
 async def setup(bot: commands.Bot):
-    bot.tree.add_command(wf_group)
-    await bot.add_cog(WarframeCog(bot))
-    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
-    print("Added wf_group to command tree")
+    try:
+        cog = WarframeCog(bot)
+        await bot.add_cog(cog)
+        if not hasattr(bot, 'app_commands_added'):
+            bot.app_commands_added = set()
+        if 'wf' not in bot.app_commands_added:
+            bot.tree.add_command(wf_group)
+            bot.app_commands_added.add('wf')
+        await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+        logger.info("WarframeCog loaded successfully")
+    except Exception as e:
+        logger.error(f"Failed to setup WarframeCog: {e}")
+        raise

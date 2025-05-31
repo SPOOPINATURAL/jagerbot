@@ -252,3 +252,259 @@ client_session: <aiohttp.client.ClientSession object at 0x0000019065926090>
 2025-05-31 02:13:03,158 - cogs.r6 - ERROR - Error loading R6 data: 'name'
 2025-05-31 02:13:03,158 - cogs.r6 - INFO - R6 data loaded successfully
 2025-05-31 02:13:53,547 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 02:23:44,017 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:23:44,018 - root - ERROR - Error loading data: Expecting value: line 1 column 1 (char 0)
+2025-05-31 02:23:44,018 - discord.client - INFO - logging in using static token
+2025-05-31 02:23:44,030 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:23:44,030 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:23:44,559 - bot - INFO - Setup hook started
+2025-05-31 02:23:44,566 - bot - INFO - Loaded cog: alerts.py
+2025-05-31 02:23:44,569 - bot - INFO - Loaded cog: alert_cmd.py
+2025-05-31 02:23:44,571 - bot - INFO - Loaded cog: core.py
+2025-05-31 02:23:46,255 - bot - INFO - Loaded cog: error_handler.py
+2025-05-31 02:23:46,257 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:23:46,257 - bot - INFO - Loaded cog: fun.py
+2025-05-31 02:23:46,427 - bot - INFO - Loaded cog: minecraft.py
+2025-05-31 02:23:46,428 - bot - INFO - Loaded cog: owner.py
+2025-05-31 02:23:46,465 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000017B17C2A210>
+2025-05-31 02:23:46,465 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000017B17BF5610>
+2025-05-31 02:23:46,467 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:23:46,467 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 02:24:46,427 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 02:24:46,427 - bot - INFO - Loaded cog: r6.py
+2025-05-31 02:24:46,429 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000017B15F89430>
+2025-05-31 02:24:46,649 - bot - INFO - Loaded cog: warframe.py
+2025-05-31 02:24:46,649 - bot - INFO - Finished loading cogs
+2025-05-31 02:24:46,649 - bot - INFO - Starting command tree sync
+2025-05-31 02:25:16,660 - bot - WARNING - Command sync attempt 1 timed out, retrying...
+2025-05-31 02:25:51,668 - bot - WARNING - Command sync attempt 2 timed out, retrying...
+2025-05-31 02:25:56,873 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 02:25:57,110 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b7d8f4b9567b1bd978c40442026372cd).
+2025-05-31 02:25:57,110 - bot - INFO - Connected to Discord
+2025-05-31 02:25:59,117 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990) :)
+2025-05-31 02:25:59,118 - bot - INFO - Registered Commands:
+2025-05-31 02:25:59,341 - bot - INFO - Registered Commands:
+2025-05-31 02:27:50,442 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 02:32:36,970 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:33:20,127 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:33:20,128 - discord.client - INFO - logging in using static token
+2025-05-31 02:33:20,139 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:33:20,140 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:33:20,502 - bot - INFO - Setup hook started
+2025-05-31 02:33:20,506 - bot - INFO - Loaded cog (1): cogs.alerts
+2025-05-31 02:33:20,509 - bot - INFO - Loaded cog (2): cogs.alert_cmd
+2025-05-31 02:33:20,511 - bot - INFO - Loaded cog (3): cogs.core
+2025-05-31 02:33:22,234 - bot - INFO - Loaded cog (4): cogs.error_handler
+2025-05-31 02:33:22,237 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:33:22,237 - bot - INFO - Loaded cog (5): cogs.fun
+2025-05-31 02:33:22,420 - bot - INFO - Loaded cog (6): cogs.minecraft
+2025-05-31 02:33:22,420 - bot - INFO - Loaded cog (7): cogs.owner
+2025-05-31 02:33:22,449 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000026BEB3864E0>
+2025-05-31 02:33:22,449 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000026BEB31A150>
+2025-05-31 02:33:22,451 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:33:22,452 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 02:34:22,423 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 02:34:22,423 - bot - INFO - Loaded cog (8): cogs.r6
+2025-05-31 02:34:22,424 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000026BEB371F70>
+2025-05-31 02:34:22,584 - bot - INFO - Loaded cog (9): cogs.warframe
+2025-05-31 02:34:22,585 - bot - INFO - Finished loading 9 cogs in 62.08 seconds
+2025-05-31 02:34:52,594 - bot - ERROR - Command sync timed out
+2025-05-31 02:34:52,594 - bot - ERROR - Error during setup: 
+2025-05-31 02:34:52,594 - __main__ - ERROR - Error running bot: 
+2025-05-31 02:34:52,594 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 02:41:47,211 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:41:47,214 - discord.client - INFO - logging in using static token
+2025-05-31 02:41:47,224 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:41:47,224 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:41:47,852 - bot - INFO - Setup hook started
+2025-05-31 02:41:47,856 - bot - INFO - Loaded cog (1): cogs.alerts
+2025-05-31 02:41:47,859 - bot - INFO - Loaded cog (2): cogs.alert_cmd
+2025-05-31 02:41:47,861 - bot - INFO - Loaded cog (3): cogs.core
+2025-05-31 02:41:49,479 - bot - INFO - Loaded cog (4): cogs.error_handler
+2025-05-31 02:41:49,482 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:41:49,482 - bot - INFO - Loaded cog (5): cogs.fun
+2025-05-31 02:41:49,665 - bot - INFO - Loaded cog (6): cogs.minecraft
+2025-05-31 02:41:49,666 - bot - INFO - Loaded cog (7): cogs.owner
+2025-05-31 02:41:49,694 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000002562808A5A0>
+2025-05-31 02:41:49,694 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000025628060A70>
+2025-05-31 02:41:49,696 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:41:49,696 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 02:42:49,665 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 02:42:49,665 - bot - INFO - Loaded cog (8): cogs.r6
+2025-05-31 02:42:49,667 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000025627FE2A50>
+2025-05-31 02:42:49,804 - bot - INFO - Loaded cog (9): cogs.warframe
+2025-05-31 02:42:49,805 - bot - INFO - Finished loading 9 cogs in 61.95 seconds
+2025-05-31 02:43:49,816 - bot - WARNING - Sync timeout, attempt 1 of 3
+2025-05-31 02:43:54,990 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 02:43:55,299 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f831aee64f71b3f59e934282c3ec5ed2).
+2025-05-31 02:43:55,299 - bot - INFO - Connected to Discord
+2025-05-31 02:43:57,315 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 02:43:57,532 - bot - WARNING - No commands registered
+2025-05-31 02:45:31,659 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 02:49:50,624 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:49:50,626 - discord.client - INFO - logging in using static token
+2025-05-31 02:49:50,636 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:49:50,636 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:49:51,232 - bot - INFO - Setup hook started
+2025-05-31 02:49:51,236 - bot - INFO - Loaded cog (1): cogs.alerts
+2025-05-31 02:49:51,240 - bot - INFO - Loaded cog (2): cogs.alert_cmd
+2025-05-31 02:49:51,241 - bot - INFO - Loaded cog (3): cogs.core
+2025-05-31 02:49:52,978 - bot - INFO - Loaded cog (4): cogs.error_handler
+2025-05-31 02:49:52,982 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:49:52,982 - bot - INFO - Loaded cog (5): cogs.fun
+2025-05-31 02:49:53,200 - bot - INFO - Loaded cog (6): cogs.minecraft
+2025-05-31 02:49:53,201 - bot - INFO - Loaded cog (7): cogs.owner
+2025-05-31 02:49:53,235 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001E0B6D28FB0>
+2025-05-31 02:49:53,237 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:49:53,237 - cogs.r6 - ERROR - Error loading R6 data: 'name'
+2025-05-31 02:49:53,237 - cogs.r6 - ERROR - Failed to setup R6Cog: 'name'
+2025-05-31 02:49:53,237 - bot - ERROR - Failed to load cog cogs.r6: Extension 'cogs.r6' raised an error: KeyError: 'name'
+2025-05-31 02:49:53,238 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001E0B6D4BC20>
+2025-05-31 02:50:53,194 - bot - INFO - Loaded cog (8): cogs.warframe
+2025-05-31 02:50:53,194 - bot - INFO - Finished loading 8 cogs in 61.95 seconds
+2025-05-31 02:50:53,338 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 02:50:53,515 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2f0e83555165604cca78d14bb470d692).
+2025-05-31 02:50:53,515 - bot - INFO - Connected to Discord
+2025-05-31 02:50:55,576 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 02:50:55,836 - bot - WARNING - No commands registered
+2025-05-31 02:51:40,748 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 02:55:23,644 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 02:55:23,645 - discord.client - INFO - logging in using static token
+2025-05-31 02:55:23,656 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 02:55:23,656 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 02:55:24,029 - bot - INFO - Setup hook started
+2025-05-31 02:55:24,032 - bot - INFO - Loaded cog (1): cogs.alerts
+2025-05-31 02:55:24,038 - bot - INFO - Loaded cog (2): cogs.alert_cmd
+2025-05-31 02:55:24,040 - bot - INFO - Loaded cog (3): cogs.core
+2025-05-31 02:55:25,716 - bot - INFO - Loaded cog (4): cogs.error_handler
+2025-05-31 02:55:25,719 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 02:55:25,719 - bot - INFO - Loaded cog (5): cogs.fun
+2025-05-31 02:55:25,879 - bot - INFO - Loaded cog (6): cogs.minecraft
+2025-05-31 02:55:25,880 - bot - INFO - Loaded cog (7): cogs.owner
+2025-05-31 02:55:25,915 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001EABF6D73B0>
+2025-05-31 02:55:25,916 - cogs.r6 - ERROR - Invalid data structure: Map border missing required field: name
+2025-05-31 02:55:25,916 - cogs.r6 - ERROR - Error during cog load: Map border missing required field: name
+2025-05-31 02:55:25,916 - cogs.r6 - ERROR - Failed to setup R6Cog: Map border missing required field: name
+2025-05-31 02:55:25,917 - bot - ERROR - Failed to load cog cogs.r6: Extension 'cogs.r6' raised an error: ValueError: Map border missing required field: name
+2025-05-31 02:55:25,918 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001EABF793860>
+2025-05-31 02:56:26,014 - bot - INFO - Loaded cog (8): cogs.warframe
+2025-05-31 02:56:26,014 - bot - INFO - Finished loading 8 cogs in 61.99 seconds
+2025-05-31 02:56:26,214 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 02:56:26,493 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0aab05acb1958d59ee4801e97b80651c).
+2025-05-31 02:56:26,493 - bot - INFO - Connected to Discord
+2025-05-31 02:56:28,518 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 02:56:28,781 - bot - WARNING - No commands registered
+2025-05-31 03:08:30,687 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 03:11:32,786 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 03:11:32,787 - discord.client - INFO - logging in using static token
+2025-05-31 03:11:32,798 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 03:11:32,799 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 03:11:33,148 - bot - INFO - Setup hook started
+2025-05-31 03:11:33,152 - bot - INFO - Loaded cog (1): cogs.alerts
+2025-05-31 03:11:33,156 - bot - INFO - Loaded cog (2): cogs.alert_cmd
+2025-05-31 03:11:33,158 - bot - INFO - Loaded cog (3): cogs.core
+2025-05-31 03:11:34,918 - bot - INFO - Loaded cog (4): cogs.error_handler
+2025-05-31 03:11:34,921 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 03:11:34,921 - bot - INFO - Loaded cog (5): cogs.fun
+2025-05-31 03:11:35,118 - bot - INFO - Loaded cog (6): cogs.minecraft
+2025-05-31 03:11:35,120 - bot - INFO - Loaded cog (7): cogs.owner
+2025-05-31 03:11:35,150 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B6A7CFA1B0>
+2025-05-31 03:11:35,152 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 03:12:35,113 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 03:12:35,113 - bot - INFO - Loaded cog (8): cogs.r6
+2025-05-31 03:12:35,115 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001B6A7D66C90>
+2025-05-31 03:12:35,277 - bot - INFO - Loaded cog (9): cogs.warframe
+2025-05-31 03:12:35,277 - bot - INFO - Finished loading 9 cogs in 62.12 seconds
+2025-05-31 03:13:35,286 - bot - WARNING - Sync timeout, attempt 1 of 3
+2025-05-31 03:13:40,470 - bot - INFO - Development mode: Commands synced to test guild
+2025-05-31 03:13:40,717 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 6cec544806adb2f5754f7d8fada5bc87).
+2025-05-31 03:13:40,717 - bot - INFO - Connected to Discord
+2025-05-31 03:13:42,728 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 03:13:42,955 - bot - WARNING - No commands registered
+2025-05-31 03:18:42,683 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 03:28:54,133 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 03:28:54,134 - discord.client - INFO - logging in using static token
+2025-05-31 03:28:54,146 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 03:28:54,146 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 03:28:54,522 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000297F8630A70>
+2025-05-31 03:28:54,524 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 03:28:54,525 - cogs.r6 - INFO - R6Cog loaded successfully
+2025-05-31 03:28:54,525 - bot - INFO - Loaded extension cogs.r6
+2025-05-31 03:28:54,585 - cogs.minecraft - INFO - MinecraftCog loaded successfully
+2025-05-31 03:28:54,585 - bot - INFO - Loaded extension cogs.minecraft
+2025-05-31 03:28:54,589 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000297FA967FE0>
+2025-05-31 03:28:54,589 - cogs.warframe - INFO - WarframeCog loaded successfully
+2025-05-31 03:28:54,589 - bot - INFO - Loaded extension cogs.warframe
+2025-05-31 03:28:54,593 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 03:28:54,593 - bot - INFO - Loaded extension cogs.fun
+2025-05-31 03:28:54,595 - bot - INFO - Loaded extension cogs.alerts
+2025-05-31 03:28:54,597 - bot - INFO - Loaded extension cogs.alert_cmd
+2025-05-31 03:28:54,598 - bot - INFO - Loaded extension cogs.core
+2025-05-31 03:28:56,306 - bot - INFO - Loaded extension cogs.error_handler
+2025-05-31 03:28:56,307 - bot - INFO - Loaded extension cogs.owner
+2025-05-31 03:28:56,522 - bot - INFO - Commands synced to test guild
+2025-05-31 03:28:56,798 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 36d6b5f4e70870921ef1ad19b1cf24bd).
+2025-05-31 03:28:56,799 - bot - INFO - Connected to Discord
+2025-05-31 03:28:58,809 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 03:30:14,581 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 03:34:56,522 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 03:34:56,524 - discord.client - INFO - logging in using static token
+2025-05-31 03:34:56,536 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 03:34:56,536 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 03:34:57,294 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001920F1A0A70>
+2025-05-31 03:34:57,295 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 03:34:57,296 - cogs.r6 - INFO - R6Cog loaded successfully
+2025-05-31 03:34:57,296 - bot - INFO - Loaded extension cogs.r6
+2025-05-31 03:34:57,351 - cogs.minecraft - INFO - MinecraftCog loaded successfully
+2025-05-31 03:34:57,352 - bot - INFO - Loaded extension cogs.minecraft
+2025-05-31 03:34:57,489 - cogs.warframe - INFO - WarframeCog loaded successfully
+2025-05-31 03:34:57,489 - bot - INFO - Loaded extension cogs.warframe
+2025-05-31 03:34:57,492 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 03:34:57,493 - bot - INFO - Loaded extension cogs.fun
+2025-05-31 03:34:57,494 - bot - INFO - Loaded extension cogs.alerts
+2025-05-31 03:34:57,496 - bot - INFO - Loaded extension cogs.alert_cmd
+2025-05-31 03:34:57,498 - bot - INFO - Loaded extension cogs.core
+2025-05-31 03:34:59,256 - bot - INFO - Loaded extension cogs.error_handler
+2025-05-31 03:34:59,256 - bot - INFO - Loaded extension cogs.owner

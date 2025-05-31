@@ -21,9 +21,8 @@ from config import (
     API_TIMEOUT
 )
 
-logger = logging.getLogger(__name__)
 r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
-
+logger = logging.getLogger(__name__)
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
         super().__init__(timeout=R6_VIEW_TIMEOUT)
@@ -48,74 +47,82 @@ class R6Cog(BaseCog, AutocompleteMixin):
         self._map_names: Dict[str, str] = {}
         self._map_aliases: Dict[str, str] = {}
         self.bot = bot
-        self.session = aiohttp.ClientSession()
+        self.session = None
         self.cache = {}
         self.r6_data = {}
-    async def cog_unload(self):
-        await super().cog_unload()
-        self.cache.cleanup_expired(CACHE_DURATION)
-        logger.info("R6Cog unloaded")
-        if self.session and not self.session.closed:
-            await self.session.close()
-        logger.info("R6Cog unloaded")
-
-    async def cog_load(self):
-        await super().cog_load()
-        self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
-            headers={"TRN-Api-Key": TRACKER_API_KEY}
-        )
-        try:
-            self.r6_data = self.load_r6_data()
-            await self.load_game_data()
-            logger.info("R6 data loaded successfully")
-        except Exception as e:
-            logger.error(f"Error loading R6 data: {e}")
-
-
-    def load_r6_data(self) -> Dict[str, Any]:
-        try:
-
-            with open('data/operators.json', 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                if not isinstance(data, dict):
-                    logger.error("Invalid data format in operators.json")
-                    return {}
-                for op_id, op_data in data.items():
-                    if not isinstance(op_data, dict) or 'name' not in op_data:
-                        logger.error(f"Invalid operator data format for {op_id}")
-                        continue
-                return data
-        except FileNotFoundError:
-            logger.error("R6 operators.json file not found")
-            return {}
-        except json.JSONDecodeError as e:
-            logger.error(f"Invalid JSON in operators.json: {e}")
-            return {}
-        except Exception as e:
-            logger.error(f"Error loading R6 data: {e}")
-            return {}
-
 
     async def load_game_data(self):
         try:
-            self.operators = await DataHelper.load_json_file("data/operators.json") or {}
-            self.maps = await DataHelper.load_json_file("data/maps.json") or {}
-            if not isinstance(self.operators, dict) or not isinstance(self.maps, dict):
-                logger.error("Invalid data format in R6 files")
-                self.operators = {}
-                self.maps = {}
-                return
+            operators_data = await DataHelper.load_json_file("data/operators.json")
+            maps_data = await DataHelper.load_json_file("data/maps.json")
+            
+            if not isinstance(operators_data, dict):
+                raise ValueError("Operators data must be a dictionary")
+            if not isinstance(maps_data, dict):
+                raise ValueError("Maps data must be a dictionary")
 
-            if not self.operators or not self.maps:
-                logger.error("Failed to load R6 data files")
-                return
+            for op_id, op_data in operators_data.items():
+                if not isinstance(op_data, dict):
+                    raise ValueError(f"Invalid operator data format for {op_id}")
+                required_fields = ['name', 'role', 'health', 'speed', 'squad', 'primary_weapons', 'secondary_weapons', 'primary_gadget', 'secondary_gadgets']
+                missing_fields = [field for field in required_fields if field not in op_data]
+                if missing_fields:
+                    raise ValueError(f"Operator {op_id} missing required fields: {', '.join(missing_fields)}")
+
+            for map_id, map_data in maps_data.items():
+                if not isinstance(map_data, dict):
+                    raise ValueError(f"Invalid map data format for {map_id}")
+                if 'name' not in map_data:
+                    raise ValueError(f"Map {map_id} missing required field: name")
+
+            self.operators = operators_data
+            self.maps = maps_data
+            
+            if not self.operators:
+                raise ValueError("No operator data loaded")
+            if not self.maps:
+                raise ValueError("No map data loaded")
+            
             self._build_lookups()
             logger.info("R6 data loaded successfully")
+        
+        except FileNotFoundError as e:
+            logger.error(f"Required data file not found: {e}")
+            raise
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in data files: {e}")
+            raise
+        except ValueError as e:
+            logger.error(f"Invalid data structure: {e}")
+            raise
         except Exception as e:
             logger.error(f"Error loading R6 data: {e}")
             self.operators = {}
             self.maps = {}
+            raise
+
+    async def cog_load(self):
+        await super().cog_load()
+        try:
+            self.session = aiohttp.ClientSession(
+                timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
+                headers={"TRN-Api-Key": TRACKER_API_KEY}
+            )
+            await self.load_game_data()
+        except Exception as e:
+            if self.session and not self.session.closed:
+                await self.session.close()
+            logger.error(f"Error during cog load: {e}")
+            raise
+
+    async def cog_unload(self):
+        if self.session and not self.session.closed:
+            await self.session.close()
+            self.session = None
+        if self.cache:
+            self.cache.cleanup_expired(CACHE_DURATION)
+        await super().cog_unload()
+        logger.info("R6Cog unloaded")
 
     async def _load_json_file(self, path: str) -> dict:
         cached = self.cache.get(path, CACHE_DURATION)
@@ -359,7 +366,15 @@ class R6Cog(BaseCog, AutocompleteMixin):
 
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(R6Cog(bot))
-    bot.tree.add_command(r6_group)
-    await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
-    logger.info("R6Cog loaded and commands synced")
+    try:
+        cog = R6Cog(bot)
+        await bot.add_cog(cog)
+        if not hasattr(bot, 'app_commands_added'):
+            bot.app_commands_added = set()
+        if 'r6' not in bot.app_commands_added:
+            bot.tree.add_command(r6_group)
+            bot.app_commands_added.add('r6')
+        logger.info("R6Cog loaded successfully")
+    except Exception as e:
+        logger.error(f"Failed to setup R6Cog: {e}")
+        raise

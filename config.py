@@ -29,6 +29,17 @@ WF_MARKET_API = "https://api.warframe.market/v1"
 WF_STREAMS_API = "https://api.warframestreams.lol/v1"
 WF_COLOR = 0x00aff0
 
+INITIAL_EXTENSIONS = [
+    'cogs.r6',
+    'cogs.minecraft',
+    'cogs.warframe',
+    'cogs.fun',
+    'cogs.alerts',
+    'cogs.alert_cmd',
+    'cogs.core',
+    'cogs.error_handler',
+    'cogs.owner'
+]
 
 
 
