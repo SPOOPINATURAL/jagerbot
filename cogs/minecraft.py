@@ -223,23 +223,19 @@ class MinecraftCog(BaseCog):
         except Exception as e:
             await interaction.followup.send(f"❌ Error in mcserverstatus: `{e}`")
 
+
 async def setup(bot: commands.Bot):
     try:
-        try:
-            bot.tree.remove_command("mc")
-        except:
-            pass
-        
         cog = MinecraftCog(bot)
         await bot.add_cog(cog)
-        
+
         if not hasattr(bot, 'added_command_groups'):
             bot.added_command_groups = set()
-            
+
         if "mc" not in bot.added_command_groups:
             bot.tree.add_command(mc_group)
             bot.added_command_groups.add("mc")
-            
+
         logger.info(f"{cog.__class__.__name__} loaded and commands synced")
     except Exception as e:
         logger.error(f"Failed to setup {cog.__class__.__name__}: {e}")

@@ -324,19 +324,20 @@ class R6Cog(BaseCog, AutocompleteMixin):
             logger.error(f"Error fetching R6 news: {e}")
             await interaction.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
 
+
 async def setup(bot: commands.Bot):
     try:
         cog = R6Cog(bot)
         await bot.add_cog(cog)
-        
+
         if not hasattr(bot, 'added_command_groups'):
             bot.added_command_groups = set()
-        
+
         if "r6" not in bot.added_command_groups:
             bot.tree.add_command(r6_group)
             bot.added_command_groups.add("r6")
-        
-        logger.info("R6Cog loaded and commands synced")
+
+        logger.info(f"{cog.__class__.__name__} loaded and commands synced")
     except Exception as e:
-        logger.error(f"Failed to setup R6Cog: {e}")
+        logger.error(f"Failed to setup {cog.__class__.__name__}: {e}")
         raise
