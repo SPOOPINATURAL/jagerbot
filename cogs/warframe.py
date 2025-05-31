@@ -71,15 +71,20 @@ class WarframeCog(commands.Cog):
         return embed
 
     @wf_group.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
-    async def wfbaro(self, interaction: discord.Interaction):
+    async def baro(self, interaction: discord.Interaction):
         await interaction.response.defer()
-        data = await self.get_cached_data("voidTrader")
-        if not data:
-            await interaction.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
-            return
+        try:
+            data = await self.get_cached_data("voidTrader")
+            if not data:
+                await interaction.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
+                return
 
-        embed = self.create_baro_embed(data)
-        await interaction.followup.send(embed=embed)
+            embed = self.create_baro_embed(data)
+            await interaction.followup.send(embed=embed)
+        except Exception as e:
+            logger.error(f"Error in baro command: {e}")
+            await interaction.followup.send("❌ Error fetching Baro data.", ephemeral=True)
+
 
     @wf_group.command(name="news", description="Show latest Warframe news")
     async def wfnews(self, interaction: discord.Interaction):
@@ -190,13 +195,11 @@ class WarframeCog(commands.Cog):
 async def setup(bot: commands.Bot):
     try:
         cog = WarframeCog(bot)
+        
+        bot.tree.add_command(wf_group)
+        
         await bot.add_cog(cog)
-        if not hasattr(bot, 'app_commands_added'):
-            bot.app_commands_added = set()
-        if 'wf' not in bot.app_commands_added:
-            bot.tree.add_command(wf_group)
-            bot.app_commands_added.add('wf')
-        await bot.tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+        
         logger.info("WarframeCog loaded successfully")
     except Exception as e:
         logger.error(f"Failed to setup WarframeCog: {e}")

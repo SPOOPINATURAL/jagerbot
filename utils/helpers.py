@@ -6,7 +6,7 @@ import aiohttp
 import asyncio
 from datetime import datetime, timedelta
 import config
-from typing import Dict, List, Tuple, Optional, Any, Union
+from typing import Dict, List, Tuple, Optional, Any, Union, Callable
 from collections import defaultdict
 
 AlertsDict = Dict[str, List[Dict[str, Any]]]
@@ -145,30 +145,37 @@ class WeatherHelper:
 # data/alias stuff
 class DataHelper:
     @staticmethod
-    def find_match(data_dict: JsonData, user_input: str) -> Optional[JsonData]:
-        user_input = user_input.lower()
-
-        for key, entry in data_dict.items():
-            if user_input == key.lower():
-                return entry
-            if "aliases" in entry and user_input in [a.lower() for a in entry["aliases"]]:
-                return entry
-        return None
-
-    @staticmethod
-    async def load_json_file(filepath: str) -> Optional[Dict[str, Any]]:
+    async def safe_json_operation(func: Callable, *args, **kwargs) -> Optional[dict]:
         try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            logger.error(f"File not found: {filepath}")
-            return None
+            result = await func(*args, **kwargs)
+            return result
         except json.JSONDecodeError as e:
-            logger.error(f"Invalid JSON in {filepath}: {e}")
+            logger.error(f"JSON decode error: {e}")
             return None
         except Exception as e:
-            logger.error(f"Error loading file {filepath}: {e}")
+            logger.error(f"Error in JSON operation: {e}")
             return None
+
+    @staticmethod
+    async def load_json_file(path: str) -> Optional[dict]:
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Error loading file {path}: {e}")
+            return None
+
+    @staticmethod
+    def find_match(data_dict: dict, search_term: str) -> Optional[dict]:
+        if not data_dict:
+            return None
+        search_term = search_term.lower()
+        for item in data_dict.values():
+            if item.get('name', '').lower() == search_term:
+                return item
+            if search_term in (alias.lower() for alias in item.get('aliases', [])):
+                return item
+        return None
 
     @staticmethod
     async def fetch_json(url: str, session: Optional[aiohttp.ClientSession], timeout: int = 5) -> Optional[Dict[str, Any]]:
@@ -188,18 +195,6 @@ class DataHelper:
                     await session.close()
         except Exception as e:
             logger.error(f"Error fetching JSON from {url}: {e}")
-            return None
-
-    @staticmethod
-    async def safe_json_operation(operation, *args, **kwargs):
-        try:
-            if asyncio.iscoroutinefunction(operation):
-                result = await operation(*args, **kwargs)
-            else:
-                result = operation(*args, **kwargs)
-            return result
-        except Exception as e:
-            logger.error(f"Error in JSON operation: {str(e)}")
             return None
 
 

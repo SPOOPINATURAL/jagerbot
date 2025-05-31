@@ -23,6 +23,7 @@ from config import (
 
 r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
 logger = logging.getLogger(__name__)
+
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
         super().__init__(timeout=R6_VIEW_TIMEOUT)
@@ -148,7 +149,29 @@ class R6Cog(BaseCog, AutocompleteMixin):
             for alias in m.get("aliases", [])
         }
 
-    async def operator_autocomplete(self, interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
+    async def map_autocomplete_callback(
+        self,
+        interaction: discord.Interaction,
+        current: str,
+    ) -> List[app_commands.Choice[str]]:
+        choices = []
+        current = current.lower()
+
+        for name in self._map_names.values():
+            if current in name.lower():
+                choices.append(app_commands.Choice(name=name, value=name))
+
+        for alias, name in self._map_aliases.items():
+            if current in alias.lower():
+                choices.append(app_commands.Choice(name=f"{name} ({alias})", value=name))
+
+        return choices[:25]
+
+    async def operator_autocomplete_callback(
+        self,
+        interaction: discord.Interaction,
+        current: str,
+    ) -> List[app_commands.Choice[str]]:
         return self.get_suggestions(
             current=current,
             primary_dict=self._operator_names,
@@ -156,103 +179,35 @@ class R6Cog(BaseCog, AutocompleteMixin):
             cache_prefix="op_autocomplete"
         )
 
-    async def map_autocomplete(self, interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
-        return self.get_suggestions(
-            current=current,
-            primary_dict=self._map_names,
-            alias_dict=self._map_aliases,
-            cache_prefix="map_autocomplete"
-        )
-
-    def create_op_embed(self, op: dict) -> discord.Embed:
-        embed = discord.Embed(title=op['name'], description=op['bio'], color=0x8B0000)
-        
-
-        for field, value in [
-            ("Role", op['role']),
-            ("Health", op['health']),
-            ("Speed", op['speed']),
-            ("Squad", op['squad'])
-        ]:
-            embed.add_field(name=field, value=value, inline=True)
-
-
-        for field, value in [
-            ("Primary Weapons", op['primary_weapons']),
-            ("Secondary Weapons", op['secondary_weapons']),
-            ("Primary Gadget", [op['primary_gadget']]),
-            ("Secondary Gadgets", op['secondary_gadgets'])
-        ]:
-            embed.add_field(name=field, value=", ".join(value), inline=False)
-
-
-        if op.get('image_url'):
-            embed.set_image(url=op['image_url'])
-        if op.get('icon_url'):
-            embed.set_thumbnail(url=op['icon_url'])
-        
-        return embed
-
-    @r6_group.command(name="stats")
-    @app_commands.describe(platform="uplay / xbox / psn", username="Player username")
-    async def stats(self, interaction: discord.Interaction, platform: str, username: str):
+    @r6_group.command(name="map", description="Look up map information")
+    @app_commands.describe(name="Name of the map")
+    async def map_lookup(self, interaction: discord.Interaction, name: str):
         await interaction.response.defer()
-        platform = platform.lower()
-        if platform not in ['uplay', 'xbox', 'psn']:
-            await interaction.followup.send(
-                "❌ Invalid platform. Use `uplay`, `xbox`, or `psn`.",
-                ephemeral=True
-            )
 
-        try:
-            data = await self.get_player_stats(platform, username)
-            if not data:
-                await interaction.followup.send(
-                    f"❌ Could not find stats for `{username}` on `{platform}`.",
-                    ephemeral=True
-                )
-                return
+        map_data = DataHelper.find_match(self.maps, name)
+        if not map_data:
+            await interaction.followup.send(f"❌ Map `{name}` not found.")
+            return
 
-            embed = self.create_stats_embed(data, username, platform)
-            await interaction.followup.send(embed=embed)
-        except Exception as e:
-            logger.error(f"Error in stats command: {e}")
-            await interaction.followup.send("❌ Error fetching stats. Please try again later.", ephemeral=True)
+        floors = map_data.get("floors", [])
+        if not floors:
+            await interaction.followup.send("❌ No floor data available.")
+            return
 
-    async def get_player_stats(self, platform: str, username: str) -> Optional[dict]:
-        cache_key = f"stats_{platform.lower()}_{username.lower()}"
-        cached = self.cache.get(cache_key, CACHE_DURATION)
-        if cached:
-            return cached
+        view = MapFloorView(floors=floors, map_name=map_data['name'])
+        await interaction.followup.send(embed=view.create_embed(0), view=view)
+        view.message = await interaction.original_response()
 
-        url = f"{R6_API_BASE}/{platform}/{username}"
-        data = await DataHelper.fetch_json(url)
-        if data:
-            self.cache.set(cache_key, data)
-        return data
-
-    def create_stats_embed(self, data: dict, username: str, platform: str) -> discord.Embed:
-        stats = data['data']['segments'][0]['stats']
-        rank_data = stats.get('rankedRank', {})
-        
-        embed = discord.Embed(title=f"R6 Stats for {username}", color=0x8B0000)
-        embed.add_field(name="Platform", value=platform.upper(), inline=True)
-        embed.add_field(name="Rank", value=rank_data.get('displayValue', 'N/A'), inline=True)
-
-        for stat in ['killsDeathRatio', 'winLossRatio']:
-            value = stats.get(stat, {}).get('displayValue', 'N/A')
-            name = stat.replace('Ratio', ' Ratio').title()
-            embed.add_field(name=name, value=value, inline=True)
-
-        rank_icon = rank_data.get('metadata', {}).get('iconUrl')
-        if rank_icon:
-            embed.set_thumbnail(url=rank_icon)
-
-        return embed
+    @map_lookup.autocomplete('name')
+    async def map_name_autocomplete(
+        self,
+        interaction: discord.Interaction,
+        current: str
+    ) -> List[app_commands.Choice[str]]:
+        return await self.map_autocomplete_callback(interaction, current)
 
     @r6_group.command(name="op")
     @app_commands.describe(name="Name of the operator")
-    @app_commands.autocomplete(name=operator_autocomplete)
     async def op_command(self, interaction: discord.Interaction, name: str):
         await interaction.response.defer()
         op_data = DataHelper.find_match(self.operators, name)
@@ -261,6 +216,14 @@ class R6Cog(BaseCog, AutocompleteMixin):
             return
         embed = self.create_op_embed(op_data)
         await interaction.followup.send(embed=embed)
+
+    @op_command.autocomplete('name')
+    async def op_name_autocomplete(
+        self,
+        interaction: discord.Interaction,
+        current: str
+    ) -> List[app_commands.Choice[str]]:
+        return await self.operator_autocomplete_callback(interaction, current)
 
     @r6_group.command(name="oprandom")
     @app_commands.describe(role="Optional: attacker or defender")
@@ -294,24 +257,6 @@ class R6Cog(BaseCog, AutocompleteMixin):
             embed.add_field(name=f"Column {i}", value="\n".join(col), inline=True)
             
         await interaction.response.send_message(embed=embed)
-
-    @r6_group.command(name="map")
-    @app_commands.describe(name="Map name")
-    @app_commands.autocomplete(name=map_autocomplete)
-    async def map_lookup(self, interaction: discord.Interaction, name: str):
-        m = DataHelper.find_match(self.maps, name)
-        if not m:
-            await interaction.response.send_message(f"❌ Map `{name}` not found.")
-            return
-
-        floors = m.get("floors", [])
-        if not floors:
-            await interaction.response.send_message("❌ No floor data.")
-            return
-
-        view = MapFloorView(floors=floors, map_name=m['name'])
-        await interaction.response.send_message(embed=view.create_embed(0), view=view)
-        view.message = await interaction.original_response()
 
     @r6_group.command(name="maplist")
     async def maplist(self, interaction: discord.Interaction):
@@ -364,16 +309,11 @@ class R6Cog(BaseCog, AutocompleteMixin):
             logger.error(f"Error fetching R6 news: {e}")
             await interaction.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
 
-
 async def setup(bot: commands.Bot):
     try:
         cog = R6Cog(bot)
+        bot.tree.add_command(r6_group)
         await bot.add_cog(cog)
-        if not hasattr(bot, 'app_commands_added'):
-            bot.app_commands_added = set()
-        if 'r6' not in bot.app_commands_added:
-            bot.tree.add_command(r6_group)
-            bot.app_commands_added.add('r6')
         logger.info("R6Cog loaded successfully")
     except Exception as e:
         logger.error(f"Failed to setup R6Cog: {e}")
