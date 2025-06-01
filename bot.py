@@ -32,7 +32,7 @@ class JagerBot(commands.Bot):
 
             logger.info(f"{'Force ' if force else ''}Syncing commands...")
             try:
-                guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+                guild = discord.Object(id=self.config.ALLOWED_GUILD_IDS) if self.is_dev else None
 
                 if force:
                     self.tree.clear_commands(guild=guild)
@@ -77,7 +77,7 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+            guild = discord.Object(id=self.config.ALLOWED_GUILD_IDS) if self.is_dev else None
 
             await asyncio.sleep(10)
 

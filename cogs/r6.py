@@ -6,6 +6,7 @@ import logging
 from typing import Dict, Any, List
 from discord import app_commands
 from discord.ext import commands
+from datetime import datetime, timedelta
 
 from utils.base_cog import BaseCog
 from utils.autocomplete import AutocompleteMixin
@@ -21,7 +22,7 @@ from config import (
 )
 
 logger = logging.getLogger(__name__)
-
+CACHE_DURATION = 300
 
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
@@ -49,6 +50,10 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         self._operator_aliases: Dict[str, str] = {}
         self._map_names: Dict[str, str] = {}
         self._map_aliases: Dict[str, str] = {}
+        self._news_cache = {
+            "data": None,
+            "timestamp": None,
+        }
 
     async def cog_load(self):
         try:
@@ -228,18 +233,13 @@ class R6Cog(commands.GroupCog, group_name="r6"):
     @app_commands.command(name="news", description="Get latest R6 news")
     async def news(self, interaction: discord.Interaction):
         await interaction.response.defer()
-        cache_key = "r6_news"
 
-        cached_news = self.cache.get(cache_key, CACHE_DURATION)
-        if cached_news:
-            embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
-            for entry in cached_news:
-                embed.add_field(
-                    name=f"{entry['title']} ({entry['published']})",
-                    value=f"{entry['summary']}\n[Read more]({entry['link']})",
-                    inline=False
-                )
-            embed.set_footer(text="Source: Steam News")
+        now = datetime.utcnow()
+        cache_data = self._news_cache.get("data")
+        cache_time = self._news_cache.get("timestamp")
+
+        if cache_data and cache_time and (now - cache_time).total_seconds() < CACHE_DURATION:
+            embed = self._build_news_embed(cache_data)
             await interaction.followup.send(embed=embed)
             return
 
@@ -256,24 +256,29 @@ class R6Cog(commands.GroupCog, group_name="r6"):
                     "title": entry.title,
                     "published": entry.published,
                     "summary": summary,
-                    "link": entry.link
+                    "link": entry.link,
                 })
 
-            self.cache.set(cache_key, news_data)
+            self._news_cache["data"] = news_data
+            self._news_cache["timestamp"] = now
 
-            embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
-            for entry in news_data:
-                embed.add_field(
-                    name=f"{entry['title']} ({entry['published']})",
-                    value=f"{entry['summary']}\n[Read more]({entry['link']})",
-                    inline=False
-                )
-            embed.set_footer(text="Source: Steam News")
+            embed = self._build_news_embed(news_data)
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
             logger.error(f"Error fetching R6 news: {e}")
             await interaction.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
+
+    def _build_news_embed(self, news_data):
+        embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
+        for entry in news_data:
+            embed.add_field(
+                name=f"{entry['title']} ({entry['published']})",
+                value=f"{entry['summary']}\n[Read more]({entry['link']})",
+                inline=False
+            )
+        embed.set_footer(text="Source: Steam News")
+        return embed
 
 
 async def setup(bot: commands.Bot):

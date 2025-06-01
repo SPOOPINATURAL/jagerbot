@@ -5,17 +5,17 @@ from discord import app_commands
 import aiohttp
 import pytz
 import random
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Optional, Dict, Any
 from pytz.exceptions import UnknownTimeZoneError
 
-from config import WEATHER_API_KEY, SUPPORTED_TZ
+from config import WEATHER_API_KEY, SUPPORTED_TZ, EXCHANGE_API_KEY
 from utils.helpers import DataHelper, TimeHelper
 from utils.embed_builder import EmbedBuilder
 from views.info_pages import InfoPages
 
 logger = logging.getLogger(__name__)
-
+logging.basicConfig(level=logging.INFO)
 
 class WeatherService:
     def __init__(self):
@@ -26,26 +26,47 @@ class WeatherService:
         url = f"{self.base_url}?q={city}&appid={self.api_key}&units=metric"
         return await DataHelper.fetch_json(url, session=session)
 
-    def create_weather_embed(self, data: Dict[str, Any]) -> discord.Embed:
-        temp_c = data["main"]["temp"]
-        temp_f = round((temp_c * 9 / 5) + 32, 1)
-        wind_mps = data["wind"]["speed"]
-        wind_mph = round(wind_mps * 2.23694, 1)
+    def create_weather_embed(self, data: dict) -> discord.Embed:
+        # Temperature
+        temp_c = round(data['main']['temp'], 1)
+        temp_f = round(temp_c * 9 / 5 + 32, 1)
 
-        return EmbedBuilder.info(
-            title=f"🌤 Weather in {data['name']}",
-            fields=[
-                ("Temperature", f"{temp_c}°C / {temp_f}°F", True),
-                ("Condition", data["weather"][0]["description"].title(), True),
-                ("Humidity", f"{data['main']['humidity']}%", True),
-                ("Wind Speed", f"{wind_mps} m/s / {wind_mph} mph", True)
-            ], color=0x8B0000
+        wind_speed_ms = data['wind']['speed']
+        wind_kmh = round(wind_speed_ms * 3.6, 1)
+        wind_mph = round(wind_speed_ms * 2.237, 1)
+
+        tz_offset = timedelta(seconds=data.get("timezone", 0))
+        local_time = lambda ts: datetime.fromtimestamp(ts).replace(tzinfo=timezone.utc).astimezone(
+            timezone(tz_offset))
+
+        sunrise = local_time(data['sys']['sunrise']).strftime("%H:%M %p")
+        sunset = local_time(data['sys']['sunset']).strftime("%H:%M %p")
+
+        city = data['name']
+        weather_desc = data['weather'][0]['description'].title()
+        icon_url = f"http://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
+
+        embed = EmbedBuilder.info(
+            title=f"Weather in {city}",
+            description=weather_desc,
+            color=discord.Color.blue()
         )
+
+        embed.set_thumbnail(url=icon_url)
+
+        embed.add_field(name="🌡 Temperature", value=f"{temp_c}°C / {temp_f}°F", inline=True)
+        embed.add_field(name="💧 Humidity", value=f"{data['main']['humidity']}%", inline=True)
+        embed.add_field(name="🌬 Wind Speed", value=f"{wind_kmh} km/h / {wind_mph} mph", inline=True)
+        embed.add_field(name="🌅 Sunrise", value=sunrise, inline=True)
+        embed.add_field(name="🌇 Sunset", value=sunset, inline=True)
+
+        return embed
 
 
 class CurrencyService:
     def __init__(self):
         self.base_url = "https://api.exchangerate.host/convert"
+        self.api_key = EXCHANGE_API_KEY
 
     async def convert_currency(
             self,
@@ -55,13 +76,20 @@ class CurrencyService:
             session: aiohttp.ClientSession
     ) -> Optional[float]:
         try:
-            url = (f"{self.base_url}?"
-                   f"from={from_currency.upper()}&"
-                   f"to={to_currency.upper()}&"
-                   f"amount={amount}")
+            url = (
+                f"{self.base_url}?"
+                f"from={from_currency.upper()}&"
+                f"to={to_currency.upper()}&"
+                f"amount={amount}"
+            )
+
+            if self.api_key:
+                url += f"&access_key={self.api_key}"
+
+            logger.info(f"CurrencyService: fetching URL: {url}")
 
             data = await DataHelper.fetch_json(url, session=session)
-            if not data or not data.get("success"):
+            if not data or not data.get("success", True):
                 logger.warning(f"Currency API returned failure or no data: {data}")
                 return None
 
