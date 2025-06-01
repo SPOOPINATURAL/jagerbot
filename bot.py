@@ -1,5 +1,6 @@
 import discord
 import os
+import sys
 from discord.ext import commands
 from discord import app_commands
 import logging
@@ -10,7 +11,6 @@ import config
 
 load_dotenv()
 logger = logging.getLogger(__name__)
-
 
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):

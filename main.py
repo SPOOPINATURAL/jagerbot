@@ -43,6 +43,7 @@ async def main():
     keep_alive()
 
     try:
+        logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
     except KeyboardInterrupt:
         logger.info("Received keyboard interrupt, shutting down...")
