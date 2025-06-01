@@ -26,6 +26,7 @@ class InfoPages(discord.ui.View):
         embed1.add_field(name="/r6 oprandom (attack / defense)", value="Gives you a random operator.", inline=False)
         embed1.add_field(name="/r6 map (map name)", value="Get a floorplan of a ranked map.", inline=False)
         embed1.add_field(name="/r6 maplist", value="List of ranked maps", inline=False)
+        embed1.add_field(name="/r6 news", value="Latest R6 Siege news", inline=False)
         self.pages.append(embed1)
 
         # Page 2: Minecraft
@@ -42,7 +43,7 @@ class InfoPages(discord.ui.View):
         embed2.add_field(name="/mc structure (name)", value="Info about structures.", inline=False)
         embed2.add_field(name="/mc player (username)", value="Fetch player UUID and skin.", inline=False)
         if self.guild_id in config.ALLOWED_GUILD_IDS:
-            embed2.add_field(name="/mcserverstatus", value="Check VDSMP server status.", inline=False)
+            embed2.add_field(name="/mc serverstatus", value="Check VDSMP server status.", inline=False)
         self.pages.append(embed2)
 
         # Page 3: Fun
@@ -89,6 +90,7 @@ class InfoPages(discord.ui.View):
         embed5.add_field(name="/wf news", value="Latest Warframe news.", inline=False)
         embed5.add_field(name="/wf nightwave", value="Warframe Nightwave quests.", inline=False)
         embed5.add_field(name="/wf price", value="warframe.market item price.", inline=False)
+        embed5.add_field(name="/wf streams", value="Upcoming and current Warframe streams/drops on Twitch", inline=False)
         self.pages.append(embed5)
 
     async def update_message(self, interaction):

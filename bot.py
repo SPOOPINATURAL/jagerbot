@@ -4,12 +4,13 @@ from discord.ext import commands
 from discord import app_commands
 import logging
 import asyncio
-from typing import List, Optional, Set
+from typing import List
 from dotenv import load_dotenv
 import config
 
 load_dotenv()
 logger = logging.getLogger(__name__)
+
 
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):
@@ -19,7 +20,6 @@ class JagerBot(commands.Bot):
         self._synced: bool = False
         self._sync_lock = asyncio.Lock()
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
-        self.added_command_groups: Set[str] = set()
 
     @property
     def is_dev(self) -> bool:
@@ -29,25 +29,19 @@ class JagerBot(commands.Bot):
         async with self._sync_lock:
             if self._synced and not force:
                 return
-            
+
             logger.info(f"{'Force ' if force else ''}Syncing commands...")
             try:
-                if self.is_dev:
-                    guild = discord.Object(id=self.config.TEST_GUILD_ID)
+                guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+
+                if force:
                     self.tree.clear_commands(guild=guild)
-                    if force:
-                        self.tree.clear_commands(guild=guild)
-                    self.tree.copy_global_to(guild=guild)
-                    async with asyncio.timeout(30):
-                        await self.tree.sync(guild=guild)
-                    logger.info(f"Commands {'force ' if force else ''}synced to test guild")
-                else:
-                    if force:
-                        self.tree.clear_commands()
-                    async with asyncio.timeout(30):
-                        await self.tree.sync()
-                    logger.info(f"Commands {'force ' if force else ''}synced globally")
-                
+
+                async with asyncio.timeout(30):
+                    await self.tree.sync(guild=guild)
+
+                logger.info(
+                    f"Commands {'force ' if force else ''}synced {'to test guild' if self.is_dev else 'globally'}")
                 self._synced = True
             except asyncio.TimeoutError:
                 logger.error("Command sync timed out")
@@ -60,58 +54,21 @@ class JagerBot(commands.Bot):
         logger.info("Setup hook started")
         self.owner_id = 640289470763237376
 
-        try:
-            if self.is_dev:
-                guild = discord.Object(id=self.config.TEST_GUILD_ID)
-                self.tree.clear_commands(guild=guild)
-            else:
-                self.tree.clear_commands()
-
-            for extension in self.config.INITIAL_EXTENSIONS:
-                try:
-                    await self.load_extension(extension)
-                    logger.info(f"Loaded extension: {extension}")
-                except Exception as e:
-                    logger.error(f"Failed to load extension {extension}: {e}")
-                    continue
-
+        for extension in self.config.INITIAL_EXTENSIONS:
             try:
-                if self.is_dev:
-                    guild = discord.Object(id=self.config.TEST_GUILD_ID)
-                    self.tree.copy_global_to(guild=guild)
-                    await self.tree.sync(guild=guild)
-                    logger.info(f"Synced commands to development guild")
-                else:
-                    await self.tree.sync()
-                    logger.info("Synced commands globally")
+                await self.load_extension(extension)
+                logger.info(f"Loaded extension: {extension}")
             except Exception as e:
-                logger.error(f"Initial sync failed: {e}")
+                logger.error(f"Failed to load extension {extension}: {e}")
 
-        except Exception as e:
-            logger.error(f"Setup hook failed: {e}", exc_info=True)
-
-    def add_group_to_tree(self, group: app_commands.Group, group_name: str) -> bool:
-        if not isinstance(group, app_commands.Group):
-            logger.error(f"Invalid group type for {group_name}: {type(group)}")
-            return False
-        
         try:
-            if group_name in self.added_command_groups:
-                logger.debug(f"Command group {group_name} already added")
-                return True
-
-            self.tree.add_command(group)
-            self.added_command_groups.add(group_name)
-            logger.info(f"Added command group: {group_name}")
-            return True
+            await self.sync_commands(force=True)
         except Exception as e:
-            logger.error(f"Failed to add command group {group_name}: {e}")
-            return False
+            logger.error(f"Initial command sync failed: {e}")
 
     async def on_ready(self) -> None:
         try:
             logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
-            
             await self.change_presence(
                 status=discord.Status.online,
                 activity=discord.Activity(
@@ -121,15 +78,12 @@ class JagerBot(commands.Bot):
             )
 
             guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
-            
             for attempt in range(3):
                 try:
                     async with asyncio.timeout(30):
                         commands = await self.tree.fetch_commands(guild=guild)
-                        command_count = len(commands)
-                        
-                        if command_count > 0:
-                            logger.info(f"Registered Commands ({command_count}):")
+                        if commands:
+                            logger.info(f"Registered Commands ({len(commands)}):")
                             for cmd in commands:
                                 logger.info(f"  • {cmd.name}")
                         else:
@@ -143,7 +97,6 @@ class JagerBot(commands.Bot):
                     await asyncio.sleep(5)
                 except Exception as e:
                     logger.error(f"Error fetching commands: {e}")
-
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
 
@@ -165,7 +118,7 @@ class JagerBot(commands.Bot):
                 for task in tasks:
                     task.cancel()
                 await asyncio.gather(*tasks, return_exceptions=True)
-            
+
             await super().close()
             logger.info("Bot shutdown complete")
         except Exception as e:

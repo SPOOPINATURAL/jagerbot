@@ -1965,3 +1965,757 @@ TypeError: autocomplete parameter expected a bound self parameter but one was no
 2025-05-31 18:09:15,916 - bot - INFO -   • currency
 2025-05-31 18:09:15,916 - bot - INFO -   • info
 2025-05-31 18:10:13,740 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 21:50:43,374 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 21:50:43,375 - discord.client - INFO - logging in using static token
+2025-05-31 21:50:43,386 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 21:50:43,386 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 21:50:43,719 - bot - INFO - Setup hook started
+2025-05-31 21:50:43,759 - bot - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: TypeError: object.__init__() takes exactly one argument (the instance to initialize)
+2025-05-31 21:50:43,822 - bot - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: TypeError: object.__init__() takes exactly one argument (the instance to initialize)
+2025-05-31 21:50:43,825 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 21:50:43,829 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 21:50:43,829 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 21:50:43,831 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 21:50:43,833 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 21:50:43,835 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 21:50:45,833 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 21:50:45,838 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 21:50:45,838 - bot - INFO - Force Syncing commands...
+2025-05-31 21:50:45,990 - bot - INFO - Commands force synced to test guild
+2025-05-31 21:50:46,221 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 78eb1b938f31e3b0ad7dc94bedcd77d0).
+2025-05-31 21:50:46,221 - bot - INFO - Connected to Discord
+2025-05-31 21:50:48,217 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 21:50:48,421 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:50:48,421 - bot - INFO - Force Syncing commands...
+2025-05-31 21:51:18,225 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 21:51:23,469 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:51:23,469 - bot - INFO - Force Syncing commands...
+2025-05-31 21:51:33,980 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 21:53:54,546 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 21:53:54,547 - discord.client - INFO - logging in using static token
+2025-05-31 21:53:54,558 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 21:53:54,558 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 21:53:54,932 - bot - INFO - Setup hook started
+2025-05-31 21:53:54,969 - utils.helpers - ERROR - Error loading file data/r6.json: [Errno 2] No such file or directory: 'data/r6.json'
+2025-05-31 21:53:54,971 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 21:53:54,971 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 21:53:55,028 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 21:53:55,033 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 21:53:55,037 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 21:53:55,037 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 21:53:55,039 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 21:53:55,040 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 21:53:55,042 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 21:53:56,965 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 21:53:56,966 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 21:53:56,966 - bot - INFO - Force Syncing commands...
+2025-05-31 21:53:57,092 - bot - INFO - Commands force synced to test guild
+2025-05-31 21:53:57,333 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 472a2c3ad6eeb86ce22f8d4741330d18).
+2025-05-31 21:53:57,334 - bot - INFO - Connected to Discord
+2025-05-31 21:53:59,344 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 21:53:59,569 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:53:59,569 - bot - INFO - Force Syncing commands...
+2025-05-31 21:54:12,404 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 21:57:17,997 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 21:57:17,998 - discord.client - INFO - logging in using static token
+2025-05-31 21:57:18,010 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 21:57:18,010 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 21:57:18,332 - bot - INFO - Setup hook started
+2025-05-31 21:57:18,371 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 21:57:18,371 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 21:57:18,426 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 21:57:18,427 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 21:57:18,431 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 21:57:18,431 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 21:57:18,432 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 21:57:18,434 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 21:57:18,436 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 21:57:20,364 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 21:57:20,365 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 21:57:20,366 - bot - INFO - Force Syncing commands...
+2025-05-31 21:57:20,472 - bot - INFO - Commands force synced to test guild
+2025-05-31 21:57:20,719 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 72ec61aa7a511054300f7c201907b311).
+2025-05-31 21:57:20,719 - bot - INFO - Connected to Discord
+2025-05-31 21:57:22,730 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 21:57:22,974 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:57:22,974 - bot - INFO - Force Syncing commands...
+2025-05-31 21:57:52,741 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 21:57:57,970 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:57:57,970 - bot - INFO - Force Syncing commands...
+2025-05-31 21:58:27,761 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 21:58:32,984 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 21:58:32,984 - bot - INFO - Force Syncing commands...
+2025-05-31 21:58:33,080 - bot - INFO - Commands force synced to test guild
+2025-05-31 21:59:09,843 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 918, in _invoke_autocomplete
+    choices = await param.autocomplete(binding, interaction, value)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 172, in op_name_autocomplete
+    return await self.operator_autocomplete_callback(interaction, current)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 119, in operator_autocomplete_callback
+    return self.get_suggestions(
+           ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'R6Cog' object has no attribute 'get_suggestions'
+2025-05-31 21:59:10,226 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 918, in _invoke_autocomplete
+    choices = await param.autocomplete(binding, interaction, value)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 172, in op_name_autocomplete
+    return await self.operator_autocomplete_callback(interaction, current)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 119, in operator_autocomplete_callback
+    return self.get_suggestions(
+           ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'R6Cog' object has no attribute 'get_suggestions'
+2025-05-31 21:59:11,279 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 918, in _invoke_autocomplete
+    choices = await param.autocomplete(binding, interaction, value)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 172, in op_name_autocomplete
+    return await self.operator_autocomplete_callback(interaction, current)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 119, in operator_autocomplete_callback
+    return self.get_suggestions(
+           ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'R6Cog' object has no attribute 'get_suggestions'
+2025-05-31 21:59:11,324 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 op'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 918, in _invoke_autocomplete
+    choices = await param.autocomplete(binding, interaction, value)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 172, in op_name_autocomplete
+    return await self.operator_autocomplete_callback(interaction, current)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\r6.py", line 119, in operator_autocomplete_callback
+    return self.get_suggestions(
+           ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'R6Cog' object has no attribute 'get_suggestions'
+2025-05-31 21:59:48,701 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:03:53,006 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:03:53,007 - discord.client - INFO - logging in using static token
+2025-05-31 22:03:53,018 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:03:53,018 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:03:53,433 - bot - INFO - Setup hook started
+2025-05-31 22:03:53,473 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:03:53,474 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:03:53,528 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:03:53,529 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:03:53,531 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:03:53,531 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:03:53,534 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:03:53,535 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:03:53,537 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:03:55,412 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:03:55,412 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:03:55,412 - bot - INFO - Force Syncing commands...
+2025-05-31 22:03:55,609 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:03:55,884 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0c677699b88a80c227ff6d6051be66e5).
+2025-05-31 22:03:55,885 - bot - INFO - Connected to Discord
+2025-05-31 22:03:57,899 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:03:58,107 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:03:58,107 - bot - INFO - Force Syncing commands...
+2025-05-31 22:04:27,895 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:04:33,113 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:04:33,113 - bot - INFO - Force Syncing commands...
+2025-05-31 22:04:53,168 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 22:06:46,098 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:06:46,099 - discord.client - INFO - logging in using static token
+2025-05-31 22:06:46,109 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:06:46,109 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:06:46,585 - bot - INFO - Setup hook started
+2025-05-31 22:06:46,623 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:06:46,623 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:06:46,676 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:06:46,677 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:06:46,680 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:06:46,680 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:06:46,681 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:06:46,683 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:06:46,684 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:06:48,683 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:06:48,684 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:06:48,684 - bot - INFO - Force Syncing commands...
+2025-05-31 22:06:48,794 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:06:49,024 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: fd7da19ebbd51945b48a516cc107c269).
+2025-05-31 22:06:49,025 - bot - INFO - Connected to Discord
+2025-05-31 22:06:51,043 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:06:51,247 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:06:51,247 - bot - INFO - Force Syncing commands...
+2025-05-31 22:07:21,047 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:07:26,286 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:07:26,286 - bot - INFO - Force Syncing commands...
+2025-05-31 22:07:55,915 - cogs.warframe - ERROR - Error in baro command: 'int' object has no attribute 'get'
+2025-05-31 22:07:56,060 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:08:01,325 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:08:01,325 - bot - INFO - Force Syncing commands...
+2025-05-31 22:08:01,421 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:08:06,226 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:15:28,089 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:15:28,091 - discord.client - INFO - logging in using static token
+2025-05-31 22:15:28,103 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:15:28,103 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:15:28,416 - bot - INFO - Setup hook started
+2025-05-31 22:15:28,453 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:15:28,453 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:15:28,504 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:15:28,507 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:15:28,510 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:15:28,510 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:15:28,512 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:15:28,514 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:15:28,515 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:15:30,349 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:15:30,350 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:15:30,350 - bot - INFO - Force Syncing commands...
+2025-05-31 22:15:30,548 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:15:30,864 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 9a8b34d501cfd77eaf33e94a850da30c).
+2025-05-31 22:15:30,865 - bot - INFO - Connected to Discord
+2025-05-31 22:15:32,872 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:15:33,111 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:15:33,111 - bot - INFO - Force Syncing commands...
+2025-05-31 22:15:57,879 - cogs.warframe - ERROR - Error in baro command: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.fields: Must be 25 or fewer in length.
+2025-05-31 22:16:02,886 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:16:08,101 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:16:08,101 - bot - INFO - Force Syncing commands...
+2025-05-31 22:16:37,921 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:16:43,188 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:16:43,188 - bot - INFO - Force Syncing commands...
+2025-05-31 22:16:43,315 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:17:01,900 - cogs.warframe - ERROR - Error fetching streams: Cannot connect to host api.warframestreams.lol:443 ssl:default [getaddrinfo failed]
+2025-05-31 22:17:14,661 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:19:59,536 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:19:59,537 - discord.client - INFO - logging in using static token
+2025-05-31 22:19:59,549 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:19:59,549 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:20:00,011 - bot - INFO - Setup hook started
+2025-05-31 22:20:00,048 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:20:00,048 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:20:00,101 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:20:00,105 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:20:00,109 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:20:00,110 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:20:00,110 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:20:00,113 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:20:00,114 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:20:02,017 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:20:02,018 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:20:02,018 - bot - INFO - Force Syncing commands...
+2025-05-31 22:20:02,156 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:20:02,485 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7638df1cab7da9ef0f10a942763ca5fe).
+2025-05-31 22:20:02,485 - bot - INFO - Connected to Discord
+2025-05-31 22:20:04,497 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:20:04,758 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:20:04,758 - bot - INFO - Force Syncing commands...
+2025-05-31 22:20:34,501 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:20:39,776 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:20:39,776 - bot - INFO - Force Syncing commands...
+2025-05-31 22:21:05,002 - cogs.warframe - ERROR - Error fetching streams: Cannot connect to host api.warframestreams.lol:443 ssl:default [getaddrinfo failed]
+2025-05-31 22:21:09,504 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:21:12,967 - cogs.fun - INFO - Saved 1 trivia scores
+2025-05-31 22:21:14,756 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:21:14,756 - bot - INFO - Force Syncing commands...
+2025-05-31 22:21:14,871 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:22:02,749 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:23:49,566 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:23:49,568 - discord.client - INFO - logging in using static token
+2025-05-31 22:23:49,578 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:23:49,578 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:23:50,098 - bot - INFO - Setup hook started
+2025-05-31 22:23:50,133 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:23:50,133 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:23:50,184 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:23:50,188 - bot - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: NameError: name 'View' is not defined
+2025-05-31 22:23:50,191 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:23:50,192 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:23:50,193 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:23:50,195 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:23:50,197 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:23:52,063 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:23:52,064 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:23:52,064 - bot - INFO - Force Syncing commands...
+2025-05-31 22:23:52,212 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:23:52,419 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 31d9f7e23d97708bbd8654fa5d395590).
+2025-05-31 22:23:52,420 - bot - INFO - Connected to Discord
+2025-05-31 22:23:54,441 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:23:54,680 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:23:54,680 - bot - INFO - Force Syncing commands...
+2025-05-31 22:24:24,435 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:24:29,705 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:24:29,705 - bot - INFO - Force Syncing commands...
+2025-05-31 22:24:39,636 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 22:25:07,112 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:25:07,113 - discord.client - INFO - logging in using static token
+2025-05-31 22:25:07,123 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:25:07,123 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:25:08,766 - bot - INFO - Setup hook started
+2025-05-31 22:25:08,801 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:25:08,801 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:25:08,855 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:25:08,860 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:25:08,864 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:25:08,864 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:25:08,865 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:25:08,867 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:25:08,869 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:25:10,896 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:25:10,897 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:25:10,897 - bot - INFO - Force Syncing commands...
+2025-05-31 22:25:11,042 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:25:11,252 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 584703b2036f98b5d7ccd6f2401dd7f2).
+2025-05-31 22:25:11,253 - bot - INFO - Connected to Discord
+2025-05-31 22:25:13,258 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:25:13,562 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:25:13,562 - bot - INFO - Force Syncing commands...
+2025-05-31 22:25:43,275 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:25:48,497 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:25:48,497 - bot - INFO - Force Syncing commands...
+2025-05-31 22:26:13,956 - __main__ - INFO - Cleaning up 3 remaining tasks...
+2025-05-31 22:27:13,081 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:27:13,082 - discord.client - INFO - logging in using static token
+2025-05-31 22:27:13,094 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:27:13,094 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:27:13,561 - bot - INFO - Setup hook started
+2025-05-31 22:27:13,596 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:27:13,596 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:27:13,651 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:27:13,655 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:27:13,659 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:27:13,659 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:27:13,661 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:27:13,663 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:27:13,664 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:27:15,658 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:27:15,659 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:27:15,659 - bot - INFO - Force Syncing commands...
+2025-05-31 22:27:15,774 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:27:16,028 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 1f1d3208d760b41bc379b7d80d3f733e).
+2025-05-31 22:27:16,029 - bot - INFO - Connected to Discord
+2025-05-31 22:27:18,042 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:27:18,261 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:27:18,261 - bot - INFO - Force Syncing commands...
+2025-05-31 22:27:39,391 - cogs.warframe - ERROR - Error in baro command: name 'BaroPagination' is not defined
+2025-05-31 22:27:48,051 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:27:53,281 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:27:53,281 - bot - INFO - Force Syncing commands...
+2025-05-31 22:27:58,030 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 22:28:52,428 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:28:52,431 - discord.client - INFO - logging in using static token
+2025-05-31 22:28:52,442 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:28:52,442 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:28:52,771 - bot - INFO - Setup hook started
+2025-05-31 22:28:52,805 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:28:52,805 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:28:52,859 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:28:52,864 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:28:52,868 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:28:52,868 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:28:52,869 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:28:52,871 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:28:52,872 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:28:54,723 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:28:54,724 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:28:54,724 - bot - INFO - Force Syncing commands...
+2025-05-31 22:28:54,865 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:28:55,202 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 34eacb6856faebbffd35355ebd9f00c6).
+2025-05-31 22:28:55,203 - bot - INFO - Connected to Discord
+2025-05-31 22:28:57,207 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:28:57,461 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:28:57,461 - bot - INFO - Force Syncing commands...
+2025-05-31 22:29:22,838 - __main__ - INFO - Cleaning up 3 remaining tasks...
+2025-05-31 22:29:35,983 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:29:35,984 - discord.client - INFO - logging in using static token
+2025-05-31 22:29:35,996 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:29:35,996 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:29:36,432 - bot - INFO - Setup hook started
+2025-05-31 22:29:36,470 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:29:36,470 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:29:36,524 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:29:36,526 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:29:36,529 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:29:36,529 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:29:36,531 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:29:36,533 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:29:36,534 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:29:38,379 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:29:38,380 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:29:38,381 - bot - INFO - Force Syncing commands...
+2025-05-31 22:30:08,383 - bot - ERROR - Command sync timed out
+2025-05-31 22:30:08,383 - bot - ERROR - Initial command sync failed: 
+2025-05-31 22:30:08,587 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c00c3bb26de5b27ebc91762e035cafcb).
+2025-05-31 22:30:08,587 - bot - INFO - Connected to Discord
+2025-05-31 22:30:10,595 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:30:10,880 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:30:10,880 - bot - INFO - Force Syncing commands...
+2025-05-31 22:30:40,607 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:30:45,857 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:30:45,857 - bot - INFO - Force Syncing commands...
+2025-05-31 22:31:15,604 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:31:20,929 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:31:20,929 - bot - INFO - Force Syncing commands...
+2025-05-31 22:31:21,040 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:32:49,808 - cogs.alert_cmd - ERROR - Date parsing error: parser._parse() got an unexpected keyword argument 'settings'
+2025-05-31 22:33:07,669 - cogs.alert_cmd - ERROR - Date parsing error: parser._parse() got an unexpected keyword argument 'settings'
+2025-05-31 22:33:22,474 - cogs.alert_cmd - ERROR - Date parsing error: parser._parse() got an unexpected keyword argument 'settings'
+2025-05-31 22:33:22,474 - cogs.alert_cmd - ERROR - Alert creation error: EmbedBuilder.success() got an unexpected keyword argument 'title'
+2025-05-31 22:33:38,230 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:42:03,877 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:42:03,878 - discord.client - INFO - logging in using static token
+2025-05-31 22:42:03,888 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:42:03,888 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:42:04,446 - bot - INFO - Setup hook started
+2025-05-31 22:42:04,481 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:42:04,481 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:42:04,534 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:42:04,536 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:42:04,538 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:42:04,539 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:42:04,540 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:42:04,544 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:42:04,551 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:42:06,482 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:42:06,484 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:42:06,484 - bot - INFO - Force Syncing commands...
+2025-05-31 22:42:06,627 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:42:06,843 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 41d9563c3f2a647f1f5a858c5667a1a2).
+2025-05-31 22:42:06,844 - bot - INFO - Connected to Discord
+2025-05-31 22:42:08,863 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:42:09,091 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:42:09,091 - bot - INFO - Force Syncing commands...
+2025-05-31 22:42:36,755 - cogs.alert_cmd - ERROR - Alert creation error: EmbedBuilder.success() got an unexpected keyword argument 'description'
+2025-05-31 22:42:38,876 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:42:44,103 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:42:44,103 - bot - INFO - Force Syncing commands...
+2025-05-31 22:42:52,794 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 22:47:53,917 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:47:53,917 - discord.client - INFO - logging in using static token
+2025-05-31 22:47:53,930 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:47:53,930 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:47:54,241 - bot - INFO - Setup hook started
+2025-05-31 22:47:54,278 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:47:54,278 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:47:54,332 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:47:54,333 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:47:54,337 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:47:54,337 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:47:54,338 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:47:54,340 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:47:54,343 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:47:56,261 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:47:56,262 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:47:56,262 - bot - INFO - Force Syncing commands...
+2025-05-31 22:47:56,374 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:47:56,602 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 23e117b6ed89558e5b2eb211648869d4).
+2025-05-31 22:47:56,602 - bot - INFO - Connected to Discord
+2025-05-31 22:47:58,616 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:47:58,860 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:47:58,860 - bot - INFO - Force Syncing commands...
+2025-05-31 22:48:28,619 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:48:29,632 - cogs.alert_cmd - ERROR - Alert creation error: EmbedBuilder.success() got an unexpected keyword argument 'description'
+2025-05-31 22:48:33,858 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:48:33,858 - bot - INFO - Force Syncing commands...
+2025-05-31 22:48:54,106 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 22:49:45,798 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:49:45,799 - discord.client - INFO - logging in using static token
+2025-05-31 22:49:45,811 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:49:45,811 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:49:46,170 - bot - INFO - Setup hook started
+2025-05-31 22:49:46,203 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:49:46,203 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:49:46,256 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:49:46,257 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:49:46,259 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:49:46,259 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:49:46,260 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:49:46,266 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:49:46,268 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:49:48,140 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:49:48,141 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:49:48,141 - bot - INFO - Force Syncing commands...
+2025-05-31 22:49:48,294 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:49:48,524 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: ec26389eff538efaffed5b5362649d9a).
+2025-05-31 22:49:48,524 - bot - INFO - Connected to Discord
+2025-05-31 22:49:50,536 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:49:50,748 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:49:50,748 - bot - INFO - Force Syncing commands...
+2025-05-31 22:50:20,529 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:50:25,765 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:50:25,765 - bot - INFO - Force Syncing commands...
+2025-05-31 22:50:27,831 - cogs.alert_cmd - ERROR - Alert creation error: 400 Bad Request (error code: 50006): Cannot send an empty message
+2025-05-31 22:50:27,911 - discord.ui.modal - ERROR - Ignoring exception in modal <AlertModal timeout=None children=3>:
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alert_cmd.py", line 150, in handle_alert_creation
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\ui\modal.py", line 189, in _scheduled_task
+    await self.on_submit(interaction)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\views\alert_modal.py", line 15, in on_submit
+    await self.on_submit_callback(
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alert_cmd.py", line 154, in handle_alert_creation
+    await interaction.response.send_message(
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-05-31 22:50:32,970 - cogs.alert_cmd - ERROR - Alert creation error: 400 Bad Request (error code: 50006): Cannot send an empty message
+2025-05-31 22:50:33,050 - discord.ui.modal - ERROR - Ignoring exception in modal <AlertModal timeout=None children=3>:
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alert_cmd.py", line 150, in handle_alert_creation
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50006): Cannot send an empty message
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\ui\modal.py", line 189, in _scheduled_task
+    await self.on_submit(interaction)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\views\alert_modal.py", line 15, in on_submit
+    await self.on_submit_callback(
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\cogs\alert_cmd.py", line 154, in handle_alert_creation
+    await interaction.response.send_message(
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\webhook\async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-05-31 22:50:55,547 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:51:00,810 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:51:00,811 - bot - INFO - Force Syncing commands...
+2025-05-31 22:51:00,908 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:51:13,673 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:53:01,032 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:53:01,033 - discord.client - INFO - logging in using static token
+2025-05-31 22:53:01,045 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:53:01,045 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:53:01,446 - bot - INFO - Setup hook started
+2025-05-31 22:53:01,481 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:53:01,482 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:53:01,535 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:53:01,536 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:53:01,539 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:53:01,540 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:53:01,541 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:53:01,545 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:53:01,548 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:53:03,343 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:53:03,345 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:53:03,345 - bot - INFO - Force Syncing commands...
+2025-05-31 22:53:03,437 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:53:03,771 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: dab45fda57e9553e5399f1740744b6e2).
+2025-05-31 22:53:03,771 - bot - INFO - Connected to Discord
+2025-05-31 22:53:05,783 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:53:06,061 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:53:06,061 - bot - INFO - Force Syncing commands...
+2025-05-31 22:53:35,787 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:53:41,129 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:53:41,129 - bot - INFO - Force Syncing commands...
+2025-05-31 22:54:10,796 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 22:54:16,113 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:54:16,114 - bot - INFO - Force Syncing commands...
+2025-05-31 22:54:16,228 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:56:55,343 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:57:35,195 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:57:35,196 - discord.client - INFO - logging in using static token
+2025-05-31 22:57:35,206 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:57:35,207 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:57:35,690 - bot - INFO - Setup hook started
+2025-05-31 22:57:35,725 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:57:35,725 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:57:35,784 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:57:35,785 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:57:35,790 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:57:35,790 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:57:35,793 - bot - ERROR - Failed to load extension cogs.alerts: Extension 'cogs.alerts' has no 'setup' function.
+2025-05-31 22:57:35,796 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:57:35,797 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:57:37,714 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:57:37,715 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:57:37,715 - bot - INFO - Force Syncing commands...
+2025-05-31 22:57:37,892 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:57:38,089 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 48aa5d4e910e237cc02d9ebe9b09b140).
+2025-05-31 22:57:38,090 - bot - INFO - Connected to Discord
+2025-05-31 22:57:40,110 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:57:40,350 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:57:40,351 - bot - INFO - Force Syncing commands...
+2025-05-31 22:58:10,123 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:58:15,354 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:58:15,354 - bot - INFO - Force Syncing commands...
+2025-05-31 22:58:29,490 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 22:58:50,726 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 22:58:50,727 - discord.client - INFO - logging in using static token
+2025-05-31 22:58:50,738 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 22:58:50,739 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 22:58:51,145 - bot - INFO - Setup hook started
+2025-05-31 22:58:51,180 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 22:58:51,180 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 22:58:51,234 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 22:58:51,235 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 22:58:51,239 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 22:58:51,239 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 22:58:51,242 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 22:58:51,244 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 22:58:51,245 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 22:58:53,131 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 22:58:53,132 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 22:58:53,132 - bot - INFO - Force Syncing commands...
+2025-05-31 22:58:53,268 - bot - INFO - Commands force synced to test guild
+2025-05-31 22:58:53,460 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5938a151e1143fb28bd66d8c0faa9117).
+2025-05-31 22:58:53,460 - bot - INFO - Connected to Discord
+2025-05-31 22:58:55,502 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 22:58:55,735 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:58:55,735 - bot - INFO - Force Syncing commands...
+2025-05-31 22:59:25,513 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 22:59:30,734 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 22:59:30,734 - bot - INFO - Force Syncing commands...
+2025-05-31 23:00:00,538 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 23:00:05,839 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:00:05,839 - bot - INFO - Force Syncing commands...
+2025-05-31 23:00:05,940 - bot - INFO - Commands force synced to test guild
+2025-05-31 23:00:36,462 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 23:02:28,061 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 23:02:28,062 - discord.client - INFO - logging in using static token
+2025-05-31 23:02:28,074 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 23:02:28,074 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 23:02:28,391 - bot - INFO - Setup hook started
+2025-05-31 23:02:28,425 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 23:02:28,425 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 23:02:28,483 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 23:02:28,484 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 23:02:28,487 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 23:02:28,487 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 23:02:28,489 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 23:02:28,491 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 23:02:28,495 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 23:02:30,492 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 23:02:30,493 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 23:02:30,493 - bot - INFO - Force Syncing commands...
+2025-05-31 23:02:30,601 - bot - INFO - Commands force synced to test guild
+2025-05-31 23:02:30,862 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: d6a4419fc9d13a02801cc723a55f4297).
+2025-05-31 23:02:30,862 - bot - INFO - Connected to Discord
+2025-05-31 23:02:32,861 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 23:02:33,069 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:02:33,069 - bot - INFO - Force Syncing commands...
+2025-05-31 23:03:02,852 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 23:03:08,065 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:03:08,065 - bot - INFO - Force Syncing commands...
+2025-05-31 23:03:37,880 - bot - WARNING - Fetch attempt 2 timed out...
+2025-05-31 23:03:43,156 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:03:43,156 - bot - INFO - Force Syncing commands...
+2025-05-31 23:03:43,258 - bot - INFO - Commands force synced to test guild
+2025-05-31 23:04:18,309 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 23:04:30,007 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 23:04:30,008 - discord.client - INFO - logging in using static token
+2025-05-31 23:04:30,019 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 23:04:30,019 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 23:04:30,503 - bot - INFO - Setup hook started
+2025-05-31 23:04:30,538 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 23:04:30,538 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 23:04:30,591 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 23:04:30,592 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 23:04:30,597 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 23:04:30,597 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 23:04:30,599 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 23:04:30,600 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 23:04:30,602 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 23:04:32,507 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 23:04:32,508 - bot - INFO - Loaded extension: cogs.owner
+2025-05-31 23:04:32,508 - bot - INFO - Force Syncing commands...
+2025-05-31 23:04:32,617 - bot - INFO - Commands force synced to test guild
+2025-05-31 23:04:32,969 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: d58cdcf2c8e171616d8d7105d4a425fc).
+2025-05-31 23:04:32,970 - bot - INFO - Connected to Discord
+2025-05-31 23:04:34,962 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 23:04:35,233 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:04:35,233 - bot - INFO - Force Syncing commands...
+2025-05-31 23:05:04,983 - bot - WARNING - Fetch attempt 1 timed out...
+2025-05-31 23:05:10,276 - bot - WARNING - No commands registered, attempting force sync...
+2025-05-31 23:05:10,276 - bot - INFO - Force Syncing commands...
+2025-05-31 23:05:23,074 - __main__ - INFO - Cleaning up 2 remaining tasks...

@@ -185,10 +185,17 @@ class CoreCog(commands.Cog):
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="date", description="Get the current date and time")
-    @app_commands.describe(tz="Timezone name (optional)")
+    @app_commands.describe(tz="Timezone name or abbreviation (e.g., CST, PST, UTC)")
     async def date(self, interaction: discord.Interaction, tz: str = None):
+        if tz:
+            tz_upper = tz.strip().upper()
+            tz_name = SUPPORTED_TZ.get(tz_upper, tz)
+        else:
+            tz_name = "UTC"
+            tz_upper = "UTC"
+
         try:
-            zone = pytz.timezone(tz) if tz else pytz.UTC
+            zone = pytz.timezone(tz_name)
         except pytz.UnknownTimeZoneError:
             await interaction.response.send_message("❌ Unknown timezone.", ephemeral=True)
             return
@@ -196,7 +203,7 @@ class CoreCog(commands.Cog):
         now = datetime.now(zone)
         embed = discord.Embed(
             title="📅 Current Date & Time",
-            description=f"{now.strftime('%A, %B %d, %Y – %I:%M %p')} ({tz or 'UTC'})",
+            description=f"{now.strftime('%A, %B %d, %Y – %I:%M %p')} ({tz_upper})",
             color=0x8B0000
         )
         await interaction.response.send_message(embed=embed)

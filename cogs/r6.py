@@ -1,18 +1,17 @@
 import discord
 import random
 import aiohttp
-import json
 import feedparser
 import logging
-from typing import Dict, Optional, List, Any
+from typing import Dict, Any, List
 from discord import app_commands
 from discord.ext import commands
+
 from utils.base_cog import BaseCog
 from utils.autocomplete import AutocompleteMixin
 from utils.views import PaginationView
 from utils.helpers import DataHelper, FileHelper
 from config import (
-    TEST_GUILD_ID,
     TRACKER_API_KEY,
     R6_API_BASE,
     R6_STEAM_RSS,
@@ -21,8 +20,8 @@ from config import (
     API_TIMEOUT
 )
 
-r6_group = app_commands.Group(name="r6", description="Rainbow Six Siege commands")
 logger = logging.getLogger(__name__)
+
 
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
@@ -40,90 +39,25 @@ class MapFloorView(PaginationView):
 
 
 class R6Cog(commands.GroupCog, group_name="r6"):
-    async def cog_load(self) -> None:
-        try:
-            self.session = aiohttp.ClientSession()
-            data_helper = DataHelper()
-            self.r6_data = await data_helper.load_json_file('data/r6.json')
-            if not self.r6_data:
-                raise ValueError("No R6 data loaded")
-            await self.load_game_data()
-            logger.info("R6Cog loaded and commands synced")
-        except Exception as e:
-            logger.error(f"Error loading R6 data: {e}")
-            self.r6_data = {}
-
     def __init__(self, bot):
-        super().__init__(bot)
+        self.bot = bot
+        self.session = None
+        self.cache = {}
         self.operators: Dict[str, Any] = {}
         self.maps: Dict[str, Any] = {}
         self._operator_names: Dict[str, str] = {}
         self._operator_aliases: Dict[str, str] = {}
         self._map_names: Dict[str, str] = {}
         self._map_aliases: Dict[str, str] = {}
-        self.bot = bot
-        self.session = None
-        self.cache = {}
-        self.r6_data = {}
-
-    async def load_game_data(self):
-        try:
-            operators_data = await DataHelper.load_json_file("data/operators.json")
-            maps_data = await DataHelper.load_json_file("data/maps.json")
-            
-            if not isinstance(operators_data, dict):
-                raise ValueError("Operators data must be a dictionary")
-            if not isinstance(maps_data, dict):
-                raise ValueError("Maps data must be a dictionary")
-
-            for op_id, op_data in operators_data.items():
-                if not isinstance(op_data, dict):
-                    raise ValueError(f"Invalid operator data format for {op_id}")
-                required_fields = ['name', 'role', 'health', 'speed', 'squad', 'primary_weapons', 'secondary_weapons', 'primary_gadget', 'secondary_gadgets']
-                missing_fields = [field for field in required_fields if field not in op_data]
-                if missing_fields:
-                    raise ValueError(f"Operator {op_id} missing required fields: {', '.join(missing_fields)}")
-
-            for map_id, map_data in maps_data.items():
-                if not isinstance(map_data, dict):
-                    raise ValueError(f"Invalid map data format for {map_id}")
-                if 'name' not in map_data:
-                    raise ValueError(f"Map {map_id} missing required field: name")
-
-            self.operators = operators_data
-            self.maps = maps_data
-            
-            if not self.operators:
-                raise ValueError("No operator data loaded")
-            if not self.maps:
-                raise ValueError("No map data loaded")
-            
-            self._build_lookups()
-            logger.info("R6 data loaded successfully")
-        
-        except FileNotFoundError as e:
-            logger.error(f"Required data file not found: {e}")
-            raise
-        except json.JSONDecodeError as e:
-            logger.error(f"Invalid JSON in data files: {e}")
-            raise
-        except ValueError as e:
-            logger.error(f"Invalid data structure: {e}")
-            raise
-        except Exception as e:
-            logger.error(f"Error loading R6 data: {e}")
-            self.operators = {}
-            self.maps = {}
-            raise
 
     async def cog_load(self):
-        await super().cog_load()
         try:
             self.session = aiohttp.ClientSession(
                 timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
                 headers={"TRN-Api-Key": TRACKER_API_KEY}
             )
             await self.load_game_data()
+            logger.info("R6Cog loaded and commands synced")
         except Exception as e:
             if self.session and not self.session.closed:
                 await self.session.close()
@@ -133,21 +67,23 @@ class R6Cog(commands.GroupCog, group_name="r6"):
     async def cog_unload(self):
         if self.session and not self.session.closed:
             await self.session.close()
-            self.session = None
         if self.cache:
             self.cache.cleanup_expired(CACHE_DURATION)
-        await super().cog_unload()
         logger.info("R6Cog unloaded")
 
-    async def _load_json_file(self, path: str) -> dict:
-        cached = self.cache.get(path, CACHE_DURATION)
-        if cached:
-            return cached
+    async def load_game_data(self):
+        operators_data = await DataHelper.load_json_file("data/operators.json")
+        maps_data = await DataHelper.load_json_file("data/maps.json")
 
-        return await DataHelper.safe_json_operation(
-            FileHelper.load_json_file,
-            path
-        )
+        self.operators = operators_data or {}
+        self.maps = maps_data or {}
+
+        if not self.operators:
+            raise ValueError("No operator data loaded")
+        if not self.maps:
+            raise ValueError("No map data loaded")
+
+        self._build_lookups()
 
     def _build_lookups(self):
         self._operator_names = {op["name"].lower(): op["name"] for op in self.operators.values()}
@@ -163,13 +99,9 @@ class R6Cog(commands.GroupCog, group_name="r6"):
             for alias in m.get("aliases", [])
         }
 
-    async def map_autocomplete_callback(
-        self,
-        interaction: discord.Interaction,
-        current: str,
-    ) -> List[app_commands.Choice[str]]:
-        choices = []
+    async def map_autocomplete_callback(self, interaction: discord.Interaction, current: str):
         current = current.lower()
+        choices = []
 
         for name in self._map_names.values():
             if current in name.lower():
@@ -181,38 +113,44 @@ class R6Cog(commands.GroupCog, group_name="r6"):
 
         return choices[:25]
 
-    async def operator_autocomplete_callback(
-        self,
-        interaction: discord.Interaction,
-        current: str,
-    ) -> List[app_commands.Choice[str]]:
-        return self.get_suggestions(
-            current=current,
-            primary_dict=self._operator_names,
-            alias_dict=self._operator_aliases,
-            cache_prefix="op_autocomplete"
-        )
+    async def operator_autocomplete_callback(self, interaction: discord.Interaction, current: str):
+        current = current.lower()
+        choices = []
+
+        # Match primary names
+        for name_lower, name in self._operator_names.items():
+            if current in name_lower:
+                choices.append(app_commands.Choice(name=name, value=name))
+
+        # Match aliases
+        for alias_lower, name in self._operator_aliases.items():
+            if current in alias_lower:
+                choices.append(app_commands.Choice(name=f"{name} ({alias_lower})", value=name))
+
+        return choices[:25]
+
     def create_op_embed(self, op_data: dict) -> discord.Embed:
         embed = discord.Embed(
             title=f"Operator: {op_data['name']}",
+            description=op_data.get("bio", ""),
             color=0x8B0000
         )
-        embed.add_field(name="Role", value=op_data['role'], inline=True)
-        embed.add_field(name="Squad", value=op_data['squad'], inline=True)
-        embed.add_field(name="Stats", value=f"Health: {op_data['health']}\nSpeed: {op_data['speed']}", inline=True)
+        embed.set_thumbnail(url=op_data.get("icon_url"))
+        embed.set_image(url=op_data.get("image_url"))
 
-        embed.add_field(name="Primary Weapons", value="\n".join(op_data['primary_weapons']) or "—", inline=False)
-        embed.add_field(name="Secondary Weapons", value="\n".join(op_data['secondary_weapons']) or "—", inline=False)
-        embed.add_field(name="Primary Gadget", value=op_data['primary_gadget'] or "—", inline=False)
-        embed.add_field(name="Secondary Gadgets", value="\n".join(op_data['secondary_gadgets']) or "—", inline=False)
-
+        embed.add_field(name="Role", value=op_data.get('role', 'Unknown'), inline=True)
+        embed.add_field(name="Squad", value=op_data.get('squad', '—'), inline=True)
+        embed.add_field(name="Stats", value=f"Health: {op_data.get('health', '—')}\nSpeed: {op_data.get('speed', '—')}", inline=True)
+        embed.add_field(name="Primary Weapons", value="\n".join(op_data.get('primary_weapons', [])) or "—", inline=False)
+        embed.add_field(name="Secondary Weapons", value="\n".join(op_data.get('secondary_weapons', [])) or "—", inline=False)
+        embed.add_field(name="Primary Gadget", value=op_data.get('primary_gadget', "—") or "—", inline=False)
+        embed.add_field(name="Secondary Gadgets", value="\n".join(op_data.get('secondary_gadgets', [])) or "—", inline=False)
         return embed
 
-    @r6_group.command(name="map", description="Look up map information")
+    @app_commands.command(name="map", description="Look up map information")
     @app_commands.describe(name="Name of the map")
     async def map_lookup(self, interaction: discord.Interaction, name: str):
         await interaction.response.defer()
-
         map_data = DataHelper.find_match(self.maps, name)
         if not map_data:
             await interaction.followup.send(f"❌ Map `{name}` not found.")
@@ -228,14 +166,10 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         view.message = await interaction.original_response()
 
     @map_lookup.autocomplete('name')
-    async def map_name_autocomplete(
-        self,
-        interaction: discord.Interaction,
-        current: str
-    ) -> List[app_commands.Choice[str]]:
+    async def map_name_autocomplete(self, interaction: discord.Interaction, current: str):
         return await self.map_autocomplete_callback(interaction, current)
 
-    @r6_group.command(name="op")
+    @app_commands.command(name="op", description="Look up operator information")
     @app_commands.describe(name="Name of the operator")
     async def op_command(self, interaction: discord.Interaction, name: str):
         await interaction.response.defer()
@@ -247,51 +181,41 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         await interaction.followup.send(embed=embed)
 
     @op_command.autocomplete('name')
-    async def op_name_autocomplete(
-        self,
-        interaction: discord.Interaction,
-        current: str
-    ) -> List[app_commands.Choice[str]]:
+    async def op_name_autocomplete(self, interaction: discord.Interaction, current: str):
         return await self.operator_autocomplete_callback(interaction, current)
 
-    @r6_group.command(name="oprandom")
+    @app_commands.command(name="oprandom", description="Get a random operator")
     @app_commands.describe(role="Optional: attacker or defender")
     async def oprandom(self, interaction: discord.Interaction, role: str = None):
         await interaction.response.defer()
         role = role.lower() if role else None
         filtered = [op for op in self.operators.values() if not role or op["role"].lower() == role]
-        
         if not filtered:
             await interaction.followup.send("❌ No operators found.")
             return
-            
         op_data = random.choice(filtered)
         embed = self.create_op_embed(op_data)
         await interaction.followup.send(embed=embed)
 
-    @r6_group.command(name="oplist")
+    @app_commands.command(name="oplist", description="List all operators")
     async def oplist(self, interaction: discord.Interaction):
-        names = sorted(op["name"] for op in self.operators.values())
-        columns = [[], [], []]
-        for i, name in enumerate(names):
-            columns[i % 3].append(name)
+        attackers = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "attacker"])
+        defenders = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "defender"])
 
         embed = discord.Embed(
-            title="Available Operators",
+            title="Operators by Role",
             description="Use `/r6 op [name]` to view detailed info.",
             color=0x8B0000
         )
-        
-        for i, col in enumerate(columns, 1):
-            embed.add_field(name=f"Column {i}", value="\n".join(col), inline=True)
-            
+        embed.add_field(name="Attackers", value="\n".join(attackers) or "—", inline=True)
+        embed.add_field(name="Defenders", value="\n".join(defenders) or "—", inline=True)
+
         await interaction.response.send_message(embed=embed)
 
-    @r6_group.command(name="maplist")
+    @app_commands.command(name="maplist", description="List all maps")
     async def maplist(self, interaction: discord.Interaction):
         names = sorted(m["name"] for m in self.maps.values())
         half = len(names) // 2
-        
         embed = discord.Embed(
             title="Available Ranked Maps",
             description="Use `/r6 map (name)` to view floorplans.",
@@ -299,59 +223,58 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         )
         embed.add_field(name="Maps A–M", value="\n".join(names[:half]) or "—", inline=True)
         embed.add_field(name="Maps N–Z", value="\n".join(names[half:]) or "—", inline=True)
-        
         await interaction.response.send_message(embed=embed)
 
-    @r6_group.command(name="news")
+    @app_commands.command(name="news", description="Get latest R6 news")
     async def news(self, interaction: discord.Interaction):
         await interaction.response.defer()
         cache_key = "r6_news"
-        cached_news = self.cache.get(cache_key, CACHE_DURATION)
 
+        cached_news = self.cache.get(cache_key, CACHE_DURATION)
         if cached_news:
-            await interaction.followup.send(embed=cached_news)
+            embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
+            for entry in cached_news:
+                embed.add_field(
+                    name=f"{entry['title']} ({entry['published']})",
+                    value=f"{entry['summary']}\n[Read more]({entry['link']})",
+                    inline=False
+                )
+            embed.set_footer(text="Source: Steam News")
+            await interaction.followup.send(embed=embed)
             return
 
         try:
             feed = feedparser.parse(R6_STEAM_RSS)
             if not feed.entries:
-                await interaction.followup.send(
-                    "❌ Could not fetch R6 news right now. Please try again later.",
-                    ephemeral=True
-                )
+                await interaction.followup.send("❌ Could not fetch R6 news.", ephemeral=True)
                 return
 
-            embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
+            news_data = []
             for entry in feed.entries[:3]:
                 summary = entry.summary[:200] + "..." if len(entry.summary) > 200 else entry.summary
+                news_data.append({
+                    "title": entry.title,
+                    "published": entry.published,
+                    "summary": summary,
+                    "link": entry.link
+                })
+
+            self.cache.set(cache_key, news_data)
+
+            embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
+            for entry in news_data:
                 embed.add_field(
-                    name=f"{entry.title} ({entry.published})",
-                    value=f"{summary}\n[Read more]({entry.link})",
+                    name=f"{entry['title']} ({entry['published']})",
+                    value=f"{entry['summary']}\n[Read more]({entry['link']})",
                     inline=False
                 )
-
             embed.set_footer(text="Source: Steam News")
-            self.cache.set(cache_key, embed)
             await interaction.followup.send(embed=embed)
-            
+
         except Exception as e:
             logger.error(f"Error fetching R6 news: {e}")
             await interaction.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
 
 
 async def setup(bot: commands.Bot):
-    try:
-        r6_cog = R6Cog(bot)
-        await bot.add_cog(r6_cog)
-
-        if not hasattr(bot, 'added_command_groups'):
-            bot.added_command_groups = set()
-
-        if "r6" not in bot.added_command_groups:
-            bot.tree.add_command(r6_group)
-            bot.added_command_groups.add("r6")
-
-        logger.info(f"R6Cog loaded and commands synced")
-    except Exception as e:
-        logger.error(f"Failed to setup R6Cog: {e}")
-        raise
+    await bot.add_cog(R6Cog(bot))
