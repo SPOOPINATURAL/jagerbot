@@ -21,6 +21,7 @@ def create_bot() -> JagerBot:
     intents = discord.Intents.default()
     intents.message_content = True
     intents.members = True
+    intents.guilds = True
     
     bot = JagerBot(
         command_prefix=">",
@@ -34,6 +35,7 @@ async def main():
     logger = logging.getLogger(__name__)
     
     bot = create_bot()
+
     
     data = load_data()
     bot.planes = data.get("planes", [])

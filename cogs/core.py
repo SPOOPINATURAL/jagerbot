@@ -14,7 +14,6 @@ from utils.helpers import DataHelper, TimeHelper
 from utils.embed_builder import EmbedBuilder
 from views.info_pages import InfoPages
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -40,7 +39,7 @@ class WeatherService:
                 ("Condition", data["weather"][0]["description"].title(), True),
                 ("Humidity", f"{data['main']['humidity']}%", True),
                 ("Wind Speed", f"{wind_mps} m/s / {wind_mph} mph", True)
-            ], color = 0x8B0000
+            ], color=0x8B0000
         )
 
 
@@ -61,14 +60,15 @@ class CurrencyService:
                    f"to={to_currency.upper()}&"
                    f"amount={amount}")
 
-            data = await DataHelper.fetch_json(url)
+            data = await DataHelper.fetch_json(url, session=session)
             if not data or not data.get("success"):
+                logger.warning(f"Currency API returned failure or no data: {data}")
                 return None
 
             return data.get("result")
 
         except Exception as e:
-            logger.error(f"Currency conversion error: {e}")
+            logger.error(f"Currency conversion error: {e}", exc_info=True)
             return None
 
 
@@ -80,19 +80,27 @@ class CoreCog(commands.Cog):
         self.currency_service = CurrencyService()
 
     async def cog_load(self) -> None:
+        logger.info("CoreCog loading: creating aiohttp ClientSession")
         self.session = aiohttp.ClientSession(
             timeout=aiohttp.ClientTimeout(total=30)
         )
 
     async def cog_unload(self) -> None:
+        logger.info("CoreCog unloading: closing aiohttp ClientSession")
         if self.session and not self.session.closed:
             await self.session.close()
 
     @app_commands.command(name='weather', description="Get the current weather in a city")
     @app_commands.describe(city="Name of the city (e.g. London, Tokyo)")
     async def weather(self, interaction: discord.Interaction, city: str):
-        await interaction.response.defer()
+        logger.info(f"weather command invoked with city={city}")
 
+        if not self.session or self.session.closed:
+            await interaction.response.send_message("❌ HTTP session is not ready. Try again later.", ephemeral=True)
+            logger.error("weather command failed: session not ready")
+            return
+
+        await interaction.response.defer()
         try:
             weather_data = await self.weather_service.get_weather(city, self.session)
             if not weather_data:
@@ -106,11 +114,81 @@ class CoreCog(commands.Cog):
             await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            logger.error(f"Weather command error: {e}")
-            await interaction.followup.send(
-                "❌ An error occurred while fetching weather data.",
-                ephemeral=True
+            logger.error(f"Weather command error: {e}", exc_info=True)
+            try:
+                await interaction.followup.send(
+                    "❌ An error occurred while fetching weather data.",
+                    ephemeral=True
+                )
+            except Exception:
+                logger.error("Failed to send followup message after weather error")
+
+    @app_commands.command(name="currency", description="Convert currency using exchangerate.host")
+    @app_commands.describe(amount="Amount to convert", from_currency="Currency to convert from", to_currency="Currency to convert to")
+    async def currency(
+            self,
+            interaction: discord.Interaction,
+            amount: float,
+            from_currency: str,
+            to_currency: str
+    ):
+        logger.info(f"currency command invoked: {amount} {from_currency} -> {to_currency}")
+
+        if not self.session or self.session.closed:
+            await interaction.response.send_message("❌ HTTP session is not ready. Try again later.", ephemeral=True)
+            logger.error("currency command failed: session not ready")
+            return
+
+        await interaction.response.defer()
+        try:
+            result = await self.currency_service.convert_currency(
+                amount,
+                from_currency,
+                to_currency,
+                self.session
             )
+
+            if result is None:
+                await interaction.followup.send(
+                    "❌ Currency conversion failed.",
+                    ephemeral=True
+                )
+                return
+
+            await interaction.followup.send(
+                f"💱 {amount} {from_currency.upper()} = {result:.2f} {to_currency.upper()}"
+            )
+
+        except Exception as e:
+            logger.error(f"Currency conversion error: {e}", exc_info=True)
+            try:
+                await interaction.followup.send(
+                    "❌ An error occurred during conversion.",
+                    ephemeral=True
+                )
+            except Exception:
+                logger.error("Failed to send followup message after currency error")
+
+    @app_commands.command(name="timezones", description="List supported timezones")
+    async def timezones(self, interaction: discord.Interaction):
+        logger.info("timezones command invoked")
+
+        try:
+            if not SUPPORTED_TZ:
+                await interaction.response.send_message("❌ No supported timezones configured.", ephemeral=True)
+                logger.error("timezones command failed: SUPPORTED_TZ empty or None")
+                return
+
+            text = "\n".join([f"**{abbr}** → `{full}`" for abbr, full in SUPPORTED_TZ.items()])
+            embed = discord.Embed(title="🕒 Supported Timezones", description=text, color=0x8B0000)
+            await interaction.response.send_message(embed=embed)
+
+        except Exception as e:
+            logger.error(f"timezones command error: {e}", exc_info=True)
+            try:
+                await interaction.response.send_message("❌ An error occurred while fetching timezones.", ephemeral=True)
+            except Exception:
+                logger.error("Failed to send error message after timezones command failure")
 
     @app_commands.command(name="tzconvert", description="Convert time between timezones")
     @app_commands.describe(time="e.g. 14:00 or now", from_tz="From timezone", to_tz="To timezone")
@@ -121,6 +199,8 @@ class CoreCog(commands.Cog):
             from_tz: str,
             to_tz: str
     ):
+        logger.info(f"tzconvert command invoked: {time} {from_tz} -> {to_tz}")
+
         await interaction.response.defer()
 
         try:
@@ -157,17 +237,11 @@ class CoreCog(commands.Cog):
                 ephemeral=True
             )
         except Exception as e:
-            logger.error(f"Timezone conversion error: {e}")
+            logger.error(f"Timezone conversion error: {e}", exc_info=True)
             await interaction.followup.send(
                 "❌ An error occurred during conversion.",
                 ephemeral=True
             )
-
-    @app_commands.command(name="timezones", description="List supported timezones")
-    async def timezones(self, interaction: discord.Interaction):
-        text = "\n".join([f"**{abbr}** → `{full}`" for abbr, full in SUPPORTED_TZ.items()])
-        embed = discord.Embed(title="🕒 Supported Timezones", description=text, color=0x8B0000)
-        await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="credits", description="Credits for this bot")
     async def credits(self, interaction: discord.Interaction):

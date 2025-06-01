@@ -78,6 +78,9 @@ class JagerBot(commands.Bot):
             )
 
             guild = discord.Object(id=self.config.TEST_GUILD_ID) if self.is_dev else None
+
+            await asyncio.sleep(10)
+
             for attempt in range(3):
                 try:
                     async with asyncio.timeout(30):

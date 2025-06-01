@@ -17,6 +17,7 @@ CACHE_DURATION = 300
 API_TIMEOUT = 10
 MAX_RETRIES = 3
 R6_VIEW_TIMEOUT = 60
+OWNER_IDS = [int(id_) for id_ in os.getenv("OWNER_IDS", "640289470763237376").split(",")]
 
 
 
