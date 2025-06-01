@@ -14,6 +14,7 @@ UTC = pytz.UTC
 class AlertCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.alerts = defaultdict(list)
         self.alert_manager = AlertManager()
         self.alerts = defaultdict(list)
 

@@ -1839,3 +1839,129 @@ client_session: <aiohttp.client.ClientSession object at 0x000001BB458B78F0>
 2025-05-31 17:44:57,165 - bot - INFO - Force Syncing commands...
 2025-05-31 17:45:06,965 - bot - ERROR - Timeout while fetching commands
 2025-05-31 17:46:46,038 - __main__ - INFO - Cleaning up 2 remaining tasks...
+2025-05-31 18:00:40,585 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 18:00:40,586 - discord.client - INFO - logging in using static token
+2025-05-31 18:00:40,598 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 18:00:40,598 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 18:00:41,057 - bot - INFO - Setup hook started
+2025-05-31 18:00:41,091 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x0000012555F7CDA0>
+2025-05-31 18:00:41,091 - cogs.r6 - INFO - R6 data loaded successfully
+2025-05-31 18:00:41,092 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-05-31 18:00:41,092 - bot - INFO - Loaded extension: cogs.r6
+2025-05-31 18:00:41,145 - cogs.minecraft - INFO - MinecraftCog loaded and commands synced
+2025-05-31 18:00:41,146 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 18:00:41,150 - cogs.warframe - INFO - WarframeCog loaded and commands synced
+2025-05-31 18:00:41,150 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 18:00:41,154 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 18:00:41,154 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 18:00:41,155 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 18:00:41,158 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 18:00:41,161 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 18:00:43,169 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 18:00:43,170 - bot - ERROR - Failed to load extension cogs.owner: Extension 'cogs.owner' has no 'setup' function.
+2025-05-31 18:00:43,341 - bot - INFO - Synced commands to development guild
+2025-05-31 18:00:43,705 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: f2c3554efdde1ec15a6bbba0eb8acb38).
+2025-05-31 18:00:43,705 - bot - INFO - Connected to Discord
+2025-05-31 18:00:45,710 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 18:00:46,019 - bot - INFO - Registered Commands (25):
+2025-05-31 18:00:46,019 - bot - INFO -   • r6
+2025-05-31 18:00:46,021 - bot - INFO -   • mc
+2025-05-31 18:00:46,021 - bot - INFO -   • wf
+2025-05-31 18:00:46,021 - bot - INFO -   • hello
+2025-05-31 18:00:46,021 - bot - INFO -   • quote
+2025-05-31 18:00:46,021 - bot - INFO -   • image
+2025-05-31 18:00:46,021 - bot - INFO -   • clancy
+2025-05-31 18:00:46,021 - bot - INFO -   • longo
+2025-05-31 18:00:46,021 - bot - INFO -   • 8ball
+2025-05-31 18:00:46,021 - bot - INFO -   • xkcd
+2025-05-31 18:00:46,021 - bot - INFO -   • d20
+2025-05-31 18:00:46,021 - bot - INFO -   • rps
+2025-05-31 18:00:46,021 - bot - INFO -   • trivia
+2025-05-31 18:00:46,021 - bot - INFO -   • score
+2025-05-31 18:00:46,021 - bot - INFO -   • alert
+2025-05-31 18:00:46,021 - bot - INFO -   • listalerts
+2025-05-31 18:00:46,021 - bot - INFO -   • cancelalerts
+2025-05-31 18:00:46,021 - bot - INFO -   • weather
+2025-05-31 18:00:46,021 - bot - INFO -   • tzconvert
+2025-05-31 18:00:46,021 - bot - INFO -   • timezones
+2025-05-31 18:00:46,021 - bot - INFO -   • credits
+2025-05-31 18:00:46,021 - bot - INFO -   • date
+2025-05-31 18:00:46,021 - bot - INFO -   • plane
+2025-05-31 18:00:46,021 - bot - INFO -   • currency
+2025-05-31 18:00:46,021 - bot - INFO -   • info
+2025-05-31 18:02:34,433 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 18:02:35,249 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 18:02:36,206 - discord.app_commands.tree - ERROR - Ignoring exception in autocomplete for 'r6 map'
+Traceback (most recent call last):
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\tree.py", line 1302, in _call
+    await command._invoke_autocomplete(interaction, focused, namespace)
+  File "C:\Users\jimothy\PycharmProjects\jagerbot\.venv\Lib\site-packages\discord\app_commands\commands.py", line 920, in _invoke_autocomplete
+    raise TypeError('autocomplete parameter expected a bound self parameter but one was not provided')
+TypeError: autocomplete parameter expected a bound self parameter but one was not provided
+2025-05-31 18:02:46,257 - __main__ - INFO - Cleaning up 1 remaining tasks...
+2025-05-31 18:09:10,981 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-05-31 18:09:10,982 - discord.client - INFO - logging in using static token
+2025-05-31 18:09:10,994 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.198:8080
+2025-05-31 18:09:10,994 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 18:09:11,378 - bot - INFO - Setup hook started
+2025-05-31 18:09:11,417 - bot - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: UnboundLocalError: cannot access local variable 'cog' where it is not associated with a value
+2025-05-31 18:09:11,473 - cogs.minecraft - INFO - MinecraftCog loaded and commands synced
+2025-05-31 18:09:11,473 - bot - INFO - Loaded extension: cogs.minecraft
+2025-05-31 18:09:11,474 - cogs.warframe - INFO - WarframeCog loaded and commands synced
+2025-05-31 18:09:11,474 - bot - INFO - Loaded extension: cogs.warframe
+2025-05-31 18:09:11,478 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-05-31 18:09:11,478 - bot - INFO - Loaded extension: cogs.fun
+2025-05-31 18:09:11,481 - bot - INFO - Loaded extension: cogs.alerts
+2025-05-31 18:09:11,483 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-05-31 18:09:11,484 - bot - INFO - Loaded extension: cogs.core
+2025-05-31 18:09:13,276 - bot - INFO - Loaded extension: cogs.error_handler
+2025-05-31 18:09:13,279 - bot - ERROR - Failed to load extension cogs.owner: Extension 'cogs.owner' has no 'setup' function.
+2025-05-31 18:09:13,422 - bot - INFO - Synced commands to development guild
+2025-05-31 18:09:13,643 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c7988a0fc880a2116405d1b0cbd69bd4).
+2025-05-31 18:09:13,644 - bot - INFO - Connected to Discord
+2025-05-31 18:09:15,640 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-05-31 18:09:15,915 - bot - INFO - Registered Commands (24):
+2025-05-31 18:09:15,915 - bot - INFO -   • mc
+2025-05-31 18:09:15,915 - bot - INFO -   • wf
+2025-05-31 18:09:15,916 - bot - INFO -   • hello
+2025-05-31 18:09:15,916 - bot - INFO -   • quote
+2025-05-31 18:09:15,916 - bot - INFO -   • image
+2025-05-31 18:09:15,916 - bot - INFO -   • clancy
+2025-05-31 18:09:15,916 - bot - INFO -   • longo
+2025-05-31 18:09:15,916 - bot - INFO -   • 8ball
+2025-05-31 18:09:15,916 - bot - INFO -   • xkcd
+2025-05-31 18:09:15,916 - bot - INFO -   • d20
+2025-05-31 18:09:15,916 - bot - INFO -   • rps
+2025-05-31 18:09:15,916 - bot - INFO -   • trivia
+2025-05-31 18:09:15,916 - bot - INFO -   • score
+2025-05-31 18:09:15,916 - bot - INFO -   • alert
+2025-05-31 18:09:15,916 - bot - INFO -   • listalerts
+2025-05-31 18:09:15,916 - bot - INFO -   • cancelalerts
+2025-05-31 18:09:15,916 - bot - INFO -   • weather
+2025-05-31 18:09:15,916 - bot - INFO -   • tzconvert
+2025-05-31 18:09:15,916 - bot - INFO -   • timezones
+2025-05-31 18:09:15,916 - bot - INFO -   • credits
+2025-05-31 18:09:15,916 - bot - INFO -   • date
+2025-05-31 18:09:15,916 - bot - INFO -   • plane
+2025-05-31 18:09:15,916 - bot - INFO -   • currency
+2025-05-31 18:09:15,916 - bot - INFO -   • info
+2025-05-31 18:10:13,740 - __main__ - INFO - Cleaning up 1 remaining tasks...

@@ -4,6 +4,7 @@ import aiohttp
 import discord
 import asyncio
 from typing import Optional
+from discord import app_commands
 
 logger = logging.getLogger(__name__)
 
@@ -12,103 +13,93 @@ class Owner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def cog_load(self) -> None:
-        self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=30)
-        )
-
-    async def cog_unload(self) -> None:
-        if self.session and not self.session.closed:
-            await self.session.close()
+    async def cog_check(self, ctx: commands.Context) -> bool:
+        return ctx.author.id in self.bot.config.OWNER_IDS
 
     @commands.command(name='sync')
     @commands.is_owner()
-    async def sync_cmd(self, ctx: commands.Context):
-        await ctx.send("🔄 Starting command sync...")
+    async def sync_command(self, ctx: commands.Context, spec: Optional[str] = None):
+        async def sync_to(guild_id=None):
+            try:
+                if guild_id:
+                    guild = discord.Object(id=guild_id)
+                    self.bot.tree.copy_global_to(guild=guild)
+                    await self.bot.tree.sync(guild=guild)
+                else:
+                    await self.bot.tree.sync()
+                return True
+            except Exception as e:
+                logger.error(f"Sync failed: {e}")
+                return False
+
+        await ctx.send("🔄 Starting sync...")
 
         try:
-            if self.bot.is_dev:
-                guild = discord.Object(id=self.bot.config.TEST_GUILD_ID)
-                self.bot.tree.copy_global_to(guild=guild)
+            self.bot.tree.clear_commands(guild=discord.Object(id=self.bot.config.TEST_GUILD_ID) if self.bot.is_dev else None)
+            
+            commands = []
+            for cmd in self.bot.tree._get_all_commands():
+                if isinstance(cmd, app_commands.Group):
+                    commands.extend(cmd.commands)
+                else:
+                    commands.append(cmd)
 
-                commands_to_sync = self.bot.tree._get_all_commands()
-                total_commands = len(commands_to_sync)
+            total_commands = len(commands)
+            logger.info(f"Found {total_commands} commands to sync")
 
+            batch_size = 25
+            for i in range(0, total_commands, batch_size):
+                batch = commands[i:i + batch_size]
+                if self.bot.is_dev:
+                    success = await sync_to(self.bot.config.TEST_GUILD_ID)
+                else:
+                    success = await sync_to()
+                
+                if success:
+                    await ctx.send(f"✅ Synced batch {i//batch_size + 1} ({min(i + batch_size, total_commands)}/{total_commands} commands)")
+                else:
+                    await ctx.send(f"❌ Failed to sync batch {i//batch_size + 1}")
+                    return
 
-                for i in range(0, total_commands, 25):
-                    batch = commands_to_sync[i:i + 25]
-                    async with asyncio.timeout(30):
-                        await self.bot.tree.sync(guild=guild)
-                    await ctx.send(f"✅ Synced batch of {len(batch)} commands ({i + len(batch)}/{total_commands})")
-                    await asyncio.sleep(1)
-                await ctx.send(f"✅ Finished syncing all {total_commands} commands to development guild!")
-            else:
-                commands_to_sync = self.bot.tree._get_all_commands()
-                total_commands = len(commands_to_sync)
+                await asyncio.sleep(1)
 
-                for i in range(0, total_commands, 25):
-                    batch = commands_to_sync[i:i + 25]
-                    async with asyncio.timeout(30):
-                        await self.bot.tree.sync()
-                    await ctx.send(f"✅ Synced batch of {len(batch)} commands ({i + len(batch)}/{total_commands})")
-                    await asyncio.sleep(1)
-
-                await ctx.send(f"✅ Finished syncing all {total_commands} commands globally!")
+            await ctx.send(f"✅ Successfully synced {total_commands} commands!")
 
         except Exception as e:
-            await ctx.send(f"❌ Error during sync: {str(e)}")
-            return
+            await ctx.send(f"❌ Sync failed: {str(e)}")
+            logger.error(f"Sync error: {e}", exc_info=True)
 
-    @sync_cmd.error
-    async def sync_error(self, ctx: commands.Context, error: Exception) -> None:
-        if isinstance(error, commands.NotOwner):
-            await ctx.send("❌ Only the bot owner can use this command.")
-        else:
-            logger.error(f"Unexpected error in sync command: {error}", exc_info=True)
-            await ctx.send("❌ An unexpected error occurred.")
-
+    @commands.command(name='debugcmds')
     @commands.is_owner()
-    @commands.command(name='clearsync')
-    async def clear_commands(self, ctx: commands.Context):
-        """Clear and resync all commands"""
-        await ctx.send("Clearing commands...")
+    async def debug_commands(self, ctx: commands.Context):
+        """Debug command tree"""
+        def format_cmd(cmd):
+            return f"- {cmd.name}: {type(cmd).__name__}"
+
+        lines = ["**Registered Commands:**"]
+        
+        lines.append("\n*Global Commands:*")
+        for cmd in self.bot.tree._get_all_commands():
+            lines.append(format_cmd(cmd))
+            if isinstance(cmd, app_commands.Group):
+                for subcmd in cmd.commands:
+                    lines.append(f"  └─ {format_cmd(subcmd)}")
+
         if self.bot.is_dev:
             guild = discord.Object(id=self.bot.config.TEST_GUILD_ID)
-            self.bot.tree.clear_commands(guild=guild)
-            await self.bot.tree.sync(guild=guild)
+            lines.append("\n*Guild Commands:*")
+            for cmd in self.bot.tree._get_all_commands(guild=guild):
+                lines.append(format_cmd(cmd))
+                if isinstance(cmd, app_commands.Group):
+                    for subcmd in cmd.commands:
+                        lines.append(f"  └─ {format_cmd(subcmd)}")
+
+        content = "\n".join(lines)
+        if len(content) > 2000:
+            chunks = [content[i:i+1990] for i in range(0, len(content), 1990)]
+            for chunk in chunks:
+                await ctx.send(f"```\n{chunk}\n```")
         else:
-            self.bot.tree.clear_commands()
-            await self.bot.tree.sync()
-        await ctx.send("✅ Commands cleared and resynced!")
-
-    @commands.command(name='nukesync')
-    @commands.is_owner()
-    async def nuke_sync(self, ctx: commands.Context):
-        await ctx.send(" Starting nuclear sync...")
-        
-        try:
-            guild = discord.Object(id=self.bot.config.TEST_GUILD_ID)
-            self.bot.tree.clear_commands(guild=guild)
-            await self.bot.tree.sync(guild=guild)
-        
-            self.bot.tree.clear_commands()
-            await self.bot.tree.sync()
-        
-            await ctx.send("✅ All commands cleared. Resyncing...")
-        
-            if self.bot.is_dev:
-                self.bot.tree.copy_global_to(guild=guild)
-                async with asyncio.timeout(60):
-                    await self.bot.tree.sync(guild=guild)
-            else:
-                async with asyncio.timeout(60):
-                    await self.bot.tree.sync()
-                
-            await ctx.send("✅ Nuclear sync complete!")
-        
-        except Exception as e:
-            await ctx.send(f"❌ Error during nuclear sync: {str(e)}")
-
-
-async def setup(bot):
+            await ctx.send(content)
+async def setup(bot: commands.Bot):
     await bot.add_cog(Owner(bot))

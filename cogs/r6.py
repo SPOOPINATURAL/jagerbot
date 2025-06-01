@@ -38,7 +38,21 @@ class MapFloorView(PaginationView):
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
 
-class R6Cog(BaseCog, AutocompleteMixin):
+
+class R6Cog(commands.GroupCog, group_name="r6"):
+    async def cog_load(self) -> None:
+        try:
+            self.session = aiohttp.ClientSession()
+            data_helper = DataHelper()
+            self.r6_data = await data_helper.load_json_file('data/r6.json')
+            if not self.r6_data:
+                raise ValueError("No R6 data loaded")
+            await self.load_game_data()
+            logger.info("R6Cog loaded and commands synced")
+        except Exception as e:
+            logger.error(f"Error loading R6 data: {e}")
+            self.r6_data = {}
+
     def __init__(self, bot):
         super().__init__(bot)
         self.operators: Dict[str, Any] = {}
@@ -327,8 +341,8 @@ class R6Cog(BaseCog, AutocompleteMixin):
 
 async def setup(bot: commands.Bot):
     try:
-        cog = R6Cog(bot)
-        await bot.add_cog(cog)
+        r6_cog = R6Cog(bot)
+        await bot.add_cog(r6_cog)
 
         if not hasattr(bot, 'added_command_groups'):
             bot.added_command_groups = set()
@@ -337,7 +351,7 @@ async def setup(bot: commands.Bot):
             bot.tree.add_command(r6_group)
             bot.added_command_groups.add("r6")
 
-        logger.info(f"{cog.__class__.__name__} loaded and commands synced")
+        logger.info(f"R6Cog loaded and commands synced")
     except Exception as e:
-        logger.error(f"Failed to setup {cog.__class__.__name__}: {e}")
+        logger.error(f"Failed to setup R6Cog: {e}")
         raise

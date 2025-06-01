@@ -11,8 +11,9 @@ class BaseCog(commands.Cog):
         self.session = None
         self.cache_duration = config.CACHE_DURATION
 
-    async def cog_load(self):
-        self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=10))
+    async def cog_load(self) -> None:
+        if not hasattr(self, 'session') or self.session is None or self.session.closed:
+            self.session = aiohttp.ClientSession()
 
     async def cog_unload(self) -> None:
         if hasattr(self, 'session') and self.session and not self.session.closed:

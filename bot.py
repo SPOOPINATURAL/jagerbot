@@ -26,7 +26,6 @@ class JagerBot(commands.Bot):
         return self._dev_mode
 
     async def sync_commands(self, force: bool = False) -> None:
-
         async with self._sync_lock:
             if self._synced and not force:
                 return
@@ -35,6 +34,7 @@ class JagerBot(commands.Bot):
             try:
                 if self.is_dev:
                     guild = discord.Object(id=self.config.TEST_GUILD_ID)
+                    self.tree.clear_commands(guild=guild)
                     if force:
                         self.tree.clear_commands(guild=guild)
                     self.tree.copy_global_to(guild=guild)
@@ -58,50 +58,37 @@ class JagerBot(commands.Bot):
 
     async def setup_hook(self) -> None:
         logger.info("Setup hook started")
-        
-        # Clear commands first
+        self.owner_id = 640289470763237376
+
         try:
             if self.is_dev:
                 guild = discord.Object(id=self.config.TEST_GUILD_ID)
                 self.tree.clear_commands(guild=guild)
             else:
                 self.tree.clear_commands()
+
+            for extension in self.config.INITIAL_EXTENSIONS:
+                try:
+                    await self.load_extension(extension)
+                    logger.info(f"Loaded extension: {extension}")
+                except Exception as e:
+                    logger.error(f"Failed to load extension {extension}: {e}")
+                    continue
+
+            try:
+                if self.is_dev:
+                    guild = discord.Object(id=self.config.TEST_GUILD_ID)
+                    self.tree.copy_global_to(guild=guild)
+                    await self.tree.sync(guild=guild)
+                    logger.info(f"Synced commands to development guild")
+                else:
+                    await self.tree.sync()
+                    logger.info("Synced commands globally")
+            except Exception as e:
+                logger.error(f"Initial sync failed: {e}")
+
         except Exception as e:
-            logger.error(f"Failed to clear commands: {e}")
-        
-        # Load extensions
-        for extension in config.INITIAL_EXTENSIONS:
-            try:
-                await self.load_extension(extension)
-                logger.info(f"Loaded cog: {extension}")
-            except Exception as e:
-                logger.error(f"Failed to load {extension}: {e}")
-        
-        logger.info("Finished loading cogs")
-        logger.info("Starting command tree sync")
-        
-        # Sync with increased timeout
-        for attempt in range(3):  # Try up to 3 times
-            try:
-                async with asyncio.timeout(120):  # Increase to 120 seconds
-                    if self.is_dev:
-                        guild = discord.Object(id=self.config.TEST_GUILD_ID)
-                        await self.tree.sync(guild=guild)
-                        logger.info("Development mode: Commands synced to test guild")
-                    else:
-                        await self.tree.sync()
-                        logger.info("Commands synced globally")
-                    self._synced = True
-                    break  # Break if successful
-            except asyncio.TimeoutError:
-                logger.warning(f"Sync attempt {attempt + 1} timed out...")
-                if attempt == 2:  # Last attempt
-                    logger.error("All sync attempts failed")
-                    raise
-                await asyncio.sleep(5)  # Wait before retrying
-            except Exception as e:
-                logger.error(f"Failed to sync commands: {e}")
-                raise
+            logger.error(f"Setup hook failed: {e}", exc_info=True)
 
     def add_group_to_tree(self, group: app_commands.Group, group_name: str) -> bool:
         if not isinstance(group, app_commands.Group):
@@ -148,12 +135,12 @@ class JagerBot(commands.Bot):
                         else:
                             logger.warning("No commands registered, attempting force sync...")
                             await self.sync_commands(force=True)
-                        break  # Break if successful
+                        break
                 except asyncio.TimeoutError:
                     logger.warning(f"Fetch attempt {attempt + 1} timed out...")
                     if attempt == 2:
                         logger.error("All fetch attempts failed")
-                    await asyncio.sleep(5)  # Wait before retrying
+                    await asyncio.sleep(5)
                 except Exception as e:
                     logger.error(f"Error fetching commands: {e}")
 

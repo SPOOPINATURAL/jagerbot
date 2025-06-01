@@ -23,6 +23,7 @@ class WarframeCog(commands.Cog):
         self.bot = bot
         self.session = None
         self.cache = {}
+        super().__init__()
 
     async def cog_load(self) -> None:
         self.session = aiohttp.ClientSession(
