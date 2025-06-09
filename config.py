@@ -143,6 +143,7 @@ image_urls = [
     "https://i.imgur.com/ATKBvSw.png",
     "https://i.imgur.com/R2p7X9X.jpeg",
     "https://i.imgur.com/8FUbTDF.jpeg",
+    "https://i.imgur.com/Ok5DzzG.png",
 
 ]
 
