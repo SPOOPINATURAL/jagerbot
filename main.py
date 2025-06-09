@@ -24,7 +24,7 @@ def create_bot() -> JagerBot:
     intents.guilds = True
     
     bot = JagerBot(
-        command_prefix=">",
+        command_prefix="$",
         intents=intents,
         help_command=None
     )
