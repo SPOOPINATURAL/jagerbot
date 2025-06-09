@@ -30,22 +30,14 @@ class JagerBot(commands.Bot):
             if self._synced and not force:
                 return
 
-        logger.info(f"{'Force ' if force else ''}Syncing commands...")
+        logger.info(f"{'Force ' if force else ''}Syncing commands globally...")
 
         try:
-            if self.is_dev:
-                for guild_id in self.config.ALLOWED_GUILD_IDS:
-                    guild = discord.Object(id=guild_id)
-                    if force:
-                        self.tree.clear_commands(guild=guild)
-                    await self.tree.sync(guild=guild)
-                    logger.info(f"Commands synced to test guild {guild_id}")
-            else:
-                if force:
-                    self.tree.clear_commands()
-                await self.tree.sync()
-                logger.info("Commands synced globally")
+            if force:
+                self.tree.clear_commands()
 
+            await self.tree.sync()
+            logger.info("✅ Commands synced globally")
             self._synced = True
 
         except asyncio.TimeoutError:
@@ -54,7 +46,6 @@ class JagerBot(commands.Bot):
         except Exception as e:
             logger.error(f"Failed to sync commands: {e}")
             raise
-
 
     async def setup_hook(self) -> None:
         logger.info("Setup hook started")
@@ -79,20 +70,16 @@ class JagerBot(commands.Bot):
                 status=discord.Status.online,
                 activity=discord.Activity(
                     type=discord.ActivityType.watching,
-                    name="Everything"
+                    name="everything"
                 )
             )
-
-            guild_ids = self.config.ALLOWED_GUILD_IDS if self.is_dev else [None]
 
             await asyncio.sleep(10)
 
             for attempt in range(3):
                 try:
                     async with asyncio.timeout(30):
-                        for gid in guild_ids:
-                            guild = discord.Object(id=gid) if gid else None
-                            commands = await self.tree.fetch_commands(guild=guild)
+                        commands = await self.tree.fetch_commands(guild=None)
                         if commands:
                             logger.info(f"Registered Commands ({len(commands)}):")
                             for cmd in commands:
