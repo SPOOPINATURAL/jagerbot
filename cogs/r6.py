@@ -22,7 +22,6 @@ from config import (
 )
 
 logger = logging.getLogger(__name__)
-CACHE_DURATION = 300
 
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
@@ -122,12 +121,10 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         current = current.lower()
         choices = []
 
-        # Match primary names
         for name_lower, name in self._operator_names.items():
             if current in name_lower:
                 choices.append(app_commands.Choice(name=name, value=name))
 
-        # Match aliases
         for alias_lower, name in self._operator_aliases.items():
             if current in alias_lower:
                 choices.append(app_commands.Choice(name=f"{name} ({alias_lower})", value=name))
@@ -151,6 +148,61 @@ class R6Cog(commands.GroupCog, group_name="r6"):
         embed.add_field(name="Primary Gadget", value=op_data.get('primary_gadget', "—") or "—", inline=False)
         embed.add_field(name="Secondary Gadgets", value="\n".join(op_data.get('secondary_gadgets', [])) or "—", inline=False)
         return embed
+
+    @app_commands.command(name="stats", description="Look up R6 player stats")
+    @app_commands.describe(platform="uplay / psn / xbl", username="Player username")
+    async def player_stats(self, interaction: discord.Interaction, platform: str, username: str):
+        await interaction.response.defer()
+
+        url = f"{R6_API_BASE}/profile/{platform}/{username}"
+        headers = {
+            "TRN-Api-Key": TRACKER_API_KEY,
+            "Accept": "application/json"
+        }
+        try:
+            async with self.session.get(url, headers=headers) as resp:
+                if resp.status != 200:
+                    await interaction.followup.send(f"❌ Could not find stats for `{username}` on `{platform}`.")
+                    return
+                data = await resp.json()
+
+            stats = data["data"]["segments"][0]["stats"]
+            metadata = data["data"]["segments"][0]["metadata"]
+
+            rp = stats.get("rankedPoints", {}).get("displayValue", "—")
+            kd = stats.get("kd", {}).get("displayValue", "—")
+            wl = stats.get("wlPercentage", {}).get("displayValue", "—")
+            avg_kills = stats.get("killsPerMatch", {}).get("displayValue") or stats.get("averageKills", {}).get(
+                "displayValue", "—")
+            headshot_pct = stats.get("headshotPct", {}).get("displayValue") or stats.get("headshotPercentage", {}).get(
+                "displayValue", "—")
+            rank_icon = metadata.get("rankImageUrl") or metadata.get("iconUrl")
+
+            embed = discord.Embed(
+                title=f"📊 {username}'s R6 Stats ({platform.upper()})",
+                color=0x8B0000
+            )
+            embed.set_thumbnail(url=rank_icon)
+            embed.add_field(name="Ranked Points (RP)", value=rp, inline=True)
+            embed.add_field(name="K/D Ratio", value=kd, inline=True)
+            embed.add_field(name="Win %", value=wl, inline=True)
+            embed.add_field(name="Avg Kills/Match", value=avg_kills, inline=True)
+            embed.add_field(name="Headshot %", value=headshot_pct, inline=True)
+            embed.set_footer(text="Data provided by Tracker Network")
+
+            await interaction.followup.send(embed=embed)
+
+        except Exception as e:
+            logger.error(f"Error fetching R6 stats for {username}: {e}")
+            await interaction.followup.send("❌ Error fetching stats.")
+
+    @player_stats.autocomplete('platform')
+    async def platform_autocomplete(self, interaction: discord.Interaction, current: str):
+        return [
+            app_commands.Choice(name="uplay", value="uplay"),
+            app_commands.Choice(name="psn", value="psn"),
+            app_commands.Choice(name="xbl", value="xbl"),
+        ]
 
     @app_commands.command(name="map", description="Look up map information")
     @app_commands.describe(name="Name of the map")
