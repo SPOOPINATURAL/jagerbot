@@ -41,6 +41,7 @@ INITIAL_EXTENSIONS = [
     'cogs.core',
     'cogs.error_handler',
     'cogs.owner'
+    'cogs.frost'
 ]
 
 
