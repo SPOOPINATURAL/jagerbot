@@ -14,6 +14,7 @@ class FrostCog(commands.Cog):
             print(f"$frost was triggered by {message.author.id} | {message.author.name}")
             frostl = random.randint(1, 1_000_000)
             await message.channel.send(f"frosty took another L — he's at {frostl:,} L's now")
+        await self.bot.process_commands(message)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(FrostCog(bot))
