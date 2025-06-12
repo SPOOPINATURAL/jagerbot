@@ -318,3 +318,49 @@ discord.app_commands.errors.CommandNotFound: Application command 'image' not fou
 2025-06-12 16:53:48,998 - bot - INFO - Force Syncing commands globally...
 2025-06-12 16:53:49,112 - bot - INFO - ✅ Commands synced globally
 2025-06-12 16:54:23,753 - cogs.owner - INFO - Found 0 commands to sync
+2025-06-12 17:16:10,686 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-12 17:16:10,688 - __main__ - INFO - Starting bot...
+2025-06-12 17:16:10,688 - discord.client - INFO - logging in using static token
+2025-06-12 17:16:10,693 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-12 17:16:10,693 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-12 17:16:11,192 - bot - INFO - Setup hook started
+2025-06-12 17:16:11,568 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-12 17:16:11,568 - bot - INFO - Loaded extension: cogs.r6
+2025-06-12 17:16:11,644 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-12 17:16:11,648 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-12 17:16:11,653 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-12 17:16:11,653 - bot - INFO - Loaded extension: cogs.fun
+2025-06-12 17:16:11,655 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-12 17:16:11,658 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-12 17:16:11,666 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-12 17:16:11,666 - bot - INFO - Loaded extension: cogs.core
+2025-06-12 17:16:11,682 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: TypeError: ErrorHandlerCog.check_for_multiple_instances() missing 1 required positional argument: 'self'
+2025-06-12 17:16:11,684 - bot - INFO - Loaded extension: cogs.owner
+2025-06-12 17:16:11,685 - bot - INFO - Loaded extension: cogs.frost
+2025-06-12 17:16:11,685 - bot - INFO - Force Syncing commands globally...
+2025-06-12 17:17:11,511 - bot - INFO - ✅ Commands synced globally
+2025-06-12 17:17:11,807 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: db89585eedcfd029a1766b9e6a4f4920).
+2025-06-12 17:17:11,807 - bot - INFO - Connected to Discord
+2025-06-12 17:17:13,841 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-12 17:17:13,842 - bot - INFO - Force Syncing commands globally...
+2025-06-12 17:17:14,037 - bot - INFO - ✅ Commands synced globally
+2025-06-12 17:17:14,037 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-12 17:17:14,147 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 17:17:14,147 - bot - INFO - Force Syncing commands globally...
+2025-06-12 17:17:44,039 - bot - WARNING - Fetch attempt 1 timed out...
+2025-06-12 17:17:49,252 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 17:17:49,252 - bot - INFO - Force Syncing commands globally...
+2025-06-12 17:17:49,333 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'image' not found
+2025-06-12 17:18:19,050 - bot - WARNING - Fetch attempt 2 timed out...
