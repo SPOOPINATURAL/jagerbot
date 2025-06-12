@@ -87,7 +87,7 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            await asyncio.sleep(10)  # Let things settle before checking commands
+            await asyncio.sleep(10)
 
             for attempt in range(3):
                 try:
