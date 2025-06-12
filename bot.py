@@ -73,11 +73,6 @@ class JagerBot(commands.Bot):
             except Exception as e:
                 logger.error(f"Failed to load extension {extension}: {e}")
 
-        try:
-            await self.tree.sync()
-        except Exception as e:
-            logger.error(f"Initial command sync failed: {e}")
-
 
     async def on_ready(self) -> None:
         try:
@@ -89,29 +84,8 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
-
             await self.sync_commands(force=True)
             logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
-
-            for attempt in range(3):
-                try:
-                    async with asyncio.timeout(30):
-                        commands = await self.tree.fetch_commands(guild=None)
-                        if commands:
-                            logger.info(f"Registered Commands ({len(commands)}):")
-                            for cmd in commands:
-                                logger.info(f"  • {cmd.name}")
-                        else:
-                            logger.warning("No commands registered, attempting force sync...")
-                            await self.sync_commands(force=True)
-                        break
-                except asyncio.TimeoutError:
-                    logger.warning(f"Fetch attempt {attempt + 1} timed out...")
-                    if attempt == 2:
-                        logger.error("All fetch attempts failed")
-                    await asyncio.sleep(5)
-                except Exception as e:
-                    logger.error(f"Error fetching commands: {e}")
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
 
