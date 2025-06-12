@@ -51,6 +51,7 @@ class Fun(commands.Cog):
         self.bot = bot
         self.trivia_manager = TriviaManager(SCORES_FILE)
         self.session = None
+        super().__init__()
 
     async def cog_load(self) -> None:
         self.session = aiohttp.ClientSession()

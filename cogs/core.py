@@ -21,6 +21,7 @@ class WeatherService:
     def __init__(self):
         self.api_key = WEATHER_API_KEY
         self.base_url = "https://api.openweathermap.org/data/2.5/weather"
+        super().__init__()
 
     async def get_weather(self, city: str, session: aiohttp.ClientSession) -> Optional[Dict[str, Any]]:
         url = f"{self.base_url}?q={city}&appid={self.api_key}&units=metric"
@@ -67,6 +68,7 @@ class CurrencyService:
     def __init__(self):
         self.base_url = "https://api.exchangerate.host/convert"
         self.api_key = EXCHANGE_API_KEY
+        super().__init__()
 
     async def convert_currency(
             self,
@@ -106,6 +108,7 @@ class CoreCog(commands.Cog):
         self.session: Optional[aiohttp.ClientSession] = None
         self.weather_service = WeatherService()
         self.currency_service = CurrencyService()
+        super().__init__()
 
     async def cog_load(self) -> None:
         logger.info("CoreCog loading: creating aiohttp ClientSession")

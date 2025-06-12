@@ -1,13 +1,14 @@
-import discord
-import traceback
-from discord.ext import commands
-from discord import app_commands
-from utils.base_cog import BaseCog
-from utils.embed_builder import EmbedBuilder
-import aiohttp
 import logging
+import traceback
+
+import aiohttp
+import discord
 from bs4 import BeautifulSoup
+from discord import app_commands
+from discord.ext import commands
+
 from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
+from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,7 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
         self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
         self.wiki_base_url = MINECRAFT_WIKI_BASE
         self.session = None
+        super().__init__()
 
     async def cog_load(self) -> None:
         self.session = aiohttp.ClientSession(timeout=self.session_timeout)

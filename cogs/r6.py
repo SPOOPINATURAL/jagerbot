@@ -40,6 +40,7 @@ class MapFloorView(PaginationView):
 
 class R6Cog(commands.GroupCog, group_name="r6"):
     def __init__(self, bot):
+        super().__init__()
         self.bot = bot
         self.session = None
         self.cache = {}

@@ -22,6 +22,7 @@ class AlertCommands(commands.Cog):
         self.bot = bot
         self._configure_limits()
         self.session = None
+        super().__init__()
 
     async def cog_load(self) -> None:
         self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30))

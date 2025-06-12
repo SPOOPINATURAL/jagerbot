@@ -10,6 +10,7 @@ class ErrorHandlerCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.bot.tree.error(self.on_app_command_error)
+        super().__init__()
 
     async def cog_load(self) -> None:
         self.session = aiohttp.ClientSession(
@@ -62,7 +63,7 @@ class ErrorHandlerCog(commands.Cog):
         except NotFound:
             pass
 
-    def check_for_multiple_instances():
+    def check_for_multiple_instances(self):
         current_pid = os.getpid()
         count = 0
         for proc in psutil.process_iter(['pid', 'name', 'cmdline']):

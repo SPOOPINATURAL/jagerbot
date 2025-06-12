@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 
 import config
 
+
 load_dotenv()
 
 log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -76,7 +77,7 @@ class JagerBot(commands.Bot):
             await self.sync_commands(force=True)
         except Exception as e:
             logger.error(f"Initial command sync failed: {e}")
-        await self.tree.sync()
+
 
     async def on_ready(self) -> None:
         try:

@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 class Owner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        super().__init__()
 
     async def cog_check(self, ctx: commands.Context) -> bool:
         return ctx.author.id in self.bot.config.OWNER_IDS
