@@ -3583,3 +3583,530 @@ discord.ext.commands.errors.CommandNotFound: Command "sync" is not found
 discord.ext.commands.errors.CommandNotFound: Command "sync" is not found
 2025-06-09 17:54:50,989 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
 discord.ext.commands.errors.CommandNotFound: Command "frost" is not found
+2025-06-09 20:44:00,692 - bot - WARNING - Disconnected from Discord
+2025-06-09 20:44:00,881 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 068923334d596ee1324b735d680cb4c5.
+2025-06-09 22:56:22,652 - bot - WARNING - Disconnected from Discord
+2025-06-09 22:56:22,836 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 068923334d596ee1324b735d680cb4c5.
+2025-06-10 01:46:25,605 - bot - WARNING - Disconnected from Discord
+2025-06-10 01:46:25,802 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 068923334d596ee1324b735d680cb4c5.
+2025-06-10 02:34:34,178 - bot - WARNING - Disconnected from Discord
+2025-06-10 02:34:34,413 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 068923334d596ee1324b735d680cb4c5.
+2025-06-10 03:45:51,998 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-10 03:45:52,015 - __main__ - INFO - Starting bot...
+2025-06-10 03:45:52,015 - discord.client - INFO - logging in using static token
+2025-06-10 03:45:52,036 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-10 03:45:52,036 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 03:45:52,686 - bot - INFO - Setup hook started
+2025-06-10 03:45:52,883 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-10 03:45:52,883 - bot - INFO - Loaded extension: cogs.r6
+2025-06-10 03:45:53,072 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-10 03:45:53,081 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-10 03:45:53,101 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-10 03:45:53,101 - bot - INFO - Loaded extension: cogs.fun
+2025-06-10 03:45:53,118 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-10 03:45:53,137 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-10 03:45:53,149 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-10 03:45:53,149 - bot - INFO - Loaded extension: cogs.core
+2025-06-10 03:45:53,152 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-10 03:45:53,152 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-10 03:45:53,152 - bot - INFO - Force Syncing commands globally...
+2025-06-10 03:45:53,152 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 03:45:53,152 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 03:45:53,413 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b6af5ec952661fa670a2586e82629e90).
+2025-06-10 03:45:53,414 - bot - INFO - Connected to Discord
+2025-06-10 03:45:55,431 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-10 11:30:37,874 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 11:30:37,874 - bot - INFO - Force Syncing commands globally...
+2025-06-10 11:30:37,874 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:30:37,874 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:30:38,046 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 11:30:38,046 - bot - INFO - Force Syncing commands globally...
+2025-06-10 11:30:38,046 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:30:38,046 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:30:38,153 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 11:30:38,153 - bot - INFO - Force Syncing commands globally...
+2025-06-10 11:30:38,153 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:30:38,153 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 11:48:35,750 - bot - WARNING - Disconnected from Discord
+2025-06-10 11:48:35,940 - discord.gateway - INFO - Shard ID None has successfully RESUMED session b6af5ec952661fa670a2586e82629e90.
+2025-06-10 13:15:45,305 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "sync" is not found
+2025-06-10 13:21:38,153 - bot - WARNING - Disconnected from Discord
+2025-06-10 13:21:38,325 - discord.gateway - INFO - Shard ID None has successfully RESUMED session b6af5ec952661fa670a2586e82629e90.
+2025-06-10 14:15:05,115 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-10 14:15:05,126 - __main__ - INFO - Starting bot...
+2025-06-10 14:15:05,127 - discord.client - INFO - logging in using static token
+2025-06-10 14:15:05,155 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-10 14:15:05,156 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 14:15:05,838 - bot - INFO - Setup hook started
+2025-06-10 14:15:05,987 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-10 14:15:05,991 - bot - INFO - Loaded extension: cogs.r6
+2025-06-10 14:15:06,202 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-10 14:15:06,207 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-10 14:15:06,217 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-10 14:15:06,217 - bot - INFO - Loaded extension: cogs.fun
+2025-06-10 14:15:06,231 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-10 14:15:06,245 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-10 14:15:06,264 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-10 14:15:06,264 - bot - INFO - Loaded extension: cogs.core
+2025-06-10 14:15:06,267 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-10 14:15:06,267 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-10 14:15:06,267 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:15:06,267 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:06,268 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:06,736 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e232e6901e28505b220d9cd92fc94058).
+2025-06-10 14:15:06,738 - bot - INFO - Connected to Discord
+2025-06-10 14:15:08,758 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-10 14:15:18,937 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:15:18,937 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:15:18,937 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:18,937 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:19,113 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:15:19,114 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:15:19,114 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:19,114 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:19,239 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:15:19,239 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:15:19,240 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:15:19,240 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:23,896 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-10 14:24:23,917 - __main__ - INFO - Starting bot...
+2025-06-10 14:24:23,918 - discord.client - INFO - logging in using static token
+2025-06-10 14:24:23,940 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-10 14:24:23,940 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 14:24:24,537 - bot - INFO - Setup hook started
+2025-06-10 14:24:24,801 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-10 14:24:24,801 - bot - INFO - Loaded extension: cogs.r6
+2025-06-10 14:24:25,102 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-10 14:24:25,113 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-10 14:24:25,141 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-10 14:24:25,141 - bot - INFO - Loaded extension: cogs.fun
+2025-06-10 14:24:25,161 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-10 14:24:25,173 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-10 14:24:25,184 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-10 14:24:25,184 - bot - INFO - Loaded extension: cogs.core
+2025-06-10 14:24:25,192 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-10 14:24:25,192 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-10 14:24:25,193 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:24:25,193 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:25,193 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:25,471 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 3d0914b5b54b03b53050705c5a104e1f).
+2025-06-10 14:24:25,471 - bot - INFO - Connected to Discord
+2025-06-10 14:24:27,498 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-10 14:24:37,639 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:24:37,639 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:24:37,639 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:37,639 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:37,832 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:24:37,833 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:24:37,833 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:37,833 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:37,950 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 14:24:37,950 - bot - INFO - Force Syncing commands globally...
+2025-06-10 14:24:37,950 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 14:24:37,950 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:56:46,705 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-10 15:56:46,723 - __main__ - INFO - Starting bot...
+2025-06-10 15:56:46,724 - discord.client - INFO - logging in using static token
+2025-06-10 15:56:46,753 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-10 15:56:46,755 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 15:56:47,165 - bot - INFO - Setup hook started
+2025-06-10 15:56:47,387 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-10 15:56:47,387 - bot - INFO - Loaded extension: cogs.r6
+2025-06-10 15:56:47,672 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-10 15:56:47,677 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-10 15:56:47,685 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-10 15:56:47,686 - bot - INFO - Loaded extension: cogs.fun
+2025-06-10 15:56:47,695 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-10 15:56:47,702 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-10 15:56:47,713 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-10 15:56:47,713 - bot - INFO - Loaded extension: cogs.core
+2025-06-10 15:56:47,715 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-10 15:56:47,716 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-10 15:56:47,716 - bot - INFO - Force Syncing commands globally...
+2025-06-10 15:56:47,716 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:56:47,716 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:56:48,946 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 99005ae1b82d5c507dc3c713604a3b9a).
+2025-06-10 15:56:48,948 - bot - INFO - Connected to Discord
+2025-06-10 15:56:50,961 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-10 15:57:01,099 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 15:57:01,100 - bot - INFO - Force Syncing commands globally...
+2025-06-10 15:57:01,100 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:57:01,100 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:57:01,215 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 15:57:01,215 - bot - INFO - Force Syncing commands globally...
+2025-06-10 15:57:01,215 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:57:01,215 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:57:01,338 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-10 15:57:01,338 - bot - INFO - Force Syncing commands globally...
+2025-06-10 15:57:01,338 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 15:57:01,338 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-10 18:17:58,851 - bot - WARNING - Disconnected from Discord
+2025-06-10 18:17:59,111 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 99005ae1b82d5c507dc3c713604a3b9a.
+2025-06-10 18:55:15,825 - bot - WARNING - Disconnected from Discord
+2025-06-10 18:55:16,022 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 99005ae1b82d5c507dc3c713604a3b9a.
+2025-06-10 19:01:07,903 - bot - WARNING - Disconnected from Discord
+2025-06-10 19:01:08,087 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 99005ae1b82d5c507dc3c713604a3b9a.
+2025-06-10 22:15:42,008 - bot - WARNING - Disconnected from Discord
+2025-06-10 22:15:42,232 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 99005ae1b82d5c507dc3c713604a3b9a.
+2025-06-11 00:12:59,190 - bot - WARNING - Disconnected from Discord
+2025-06-11 00:12:59,384 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 99005ae1b82d5c507dc3c713604a3b9a.
+2025-06-11 02:53:39,816 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 02:53:39,829 - __main__ - INFO - Starting bot...
+2025-06-11 02:53:39,829 - discord.client - INFO - logging in using static token
+2025-06-11 02:53:39,849 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 02:53:39,849 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 02:53:40,352 - bot - INFO - Setup hook started
+2025-06-11 02:53:40,576 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 02:53:40,584 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 02:53:40,797 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 02:53:40,802 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 02:53:40,821 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 02:53:40,822 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 02:53:40,838 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 02:53:40,855 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 02:53:40,864 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 02:53:40,864 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 02:53:40,866 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 02:53:40,866 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 02:53:40,867 - bot - INFO - Force Syncing commands globally...
+2025-06-11 02:53:40,867 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 02:53:40,867 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 02:53:41,193 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: a3170f794113b9fb54826a78d2f6982f).
+2025-06-11 02:53:41,194 - bot - INFO - Connected to Discord
+2025-06-11 02:53:43,206 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 16:23:28,247 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 16:23:28,247 - bot - INFO - Force Syncing commands globally...
+2025-06-11 16:23:28,247 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:23:28,247 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:23:28,358 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 16:23:28,358 - bot - INFO - Force Syncing commands globally...
+2025-06-11 16:23:28,358 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:23:28,358 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:23:28,490 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 16:23:28,490 - bot - INFO - Force Syncing commands globally...
+2025-06-11 16:23:28,491 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:23:28,491 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:28:44,365 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 16:28:44,380 - __main__ - INFO - Starting bot...
+2025-06-11 16:28:44,380 - discord.client - INFO - logging in using static token
+2025-06-11 16:28:44,400 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 16:28:44,400 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 16:28:44,879 - bot - INFO - Setup hook started
+2025-06-11 16:28:45,129 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 16:28:45,129 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 16:28:45,345 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 16:28:45,350 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 16:28:45,380 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 16:28:45,381 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 16:28:45,394 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 16:28:45,411 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 16:28:45,419 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 16:28:45,420 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 16:28:45,423 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 16:28:45,424 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 16:28:45,424 - bot - INFO - Force Syncing commands globally...
+2025-06-11 16:28:45,424 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:28:45,424 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 16:28:45,681 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c824409e714cbfb6671baede618ef961).
+2025-06-11 16:28:45,681 - bot - INFO - Connected to Discord
+2025-06-11 17:04:35,184 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 17:04:46,885 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 17:04:46,885 - bot - INFO - Force Syncing commands globally...
+2025-06-11 17:04:46,887 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 17:04:46,888 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 17:04:47,120 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 17:04:47,120 - bot - INFO - Force Syncing commands globally...
+2025-06-11 17:04:47,120 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 17:04:47,120 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 17:04:47,231 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 17:04:47,232 - bot - INFO - Force Syncing commands globally...
+2025-06-11 17:04:47,232 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 17:04:47,232 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:18,358 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 18:14:18,382 - __main__ - INFO - Starting bot...
+2025-06-11 18:14:18,382 - discord.client - INFO - logging in using static token
+2025-06-11 18:14:18,397 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 18:14:18,398 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 18:14:18,844 - bot - INFO - Setup hook started
+2025-06-11 18:14:19,173 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 18:14:19,175 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 18:14:19,388 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 18:14:19,397 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 18:14:19,434 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 18:14:19,435 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 18:14:19,453 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 18:14:19,480 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 18:14:19,490 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 18:14:19,491 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 18:14:19,497 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 18:14:19,497 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 18:14:19,498 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:14:19,498 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:19,498 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:19,798 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 58f02d959dee5ff15f4fa938dfc9c645).
+2025-06-11 18:14:19,799 - bot - INFO - Connected to Discord
+2025-06-11 18:14:21,816 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 18:14:31,526 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:14:31,526 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:14:31,527 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:31,527 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:31,666 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:14:31,666 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:14:31,666 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:31,666 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:31,796 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:14:31,796 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:14:31,796 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:14:31,796 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:23,274 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 18:26:23,302 - __main__ - INFO - Starting bot...
+2025-06-11 18:26:23,302 - discord.client - INFO - logging in using static token
+2025-06-11 18:26:23,327 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 18:26:23,327 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 18:26:23,787 - bot - INFO - Setup hook started
+2025-06-11 18:26:24,000 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 18:26:24,000 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 18:26:24,179 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 18:26:24,184 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 18:26:24,202 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 18:26:24,202 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 18:26:24,215 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 18:26:24,231 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 18:26:24,237 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 18:26:24,238 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 18:26:24,241 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 18:26:24,241 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 18:26:24,242 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:26:24,242 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:24,242 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:24,529 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 4df9e582b5833f47eb1436b0cf3ba89f).
+2025-06-11 18:26:24,530 - bot - INFO - Connected to Discord
+2025-06-11 18:26:26,554 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 18:26:36,754 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:26:36,754 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:26:36,754 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:36,754 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:36,868 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:26:36,868 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:26:36,869 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:36,869 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:36,987 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:26:36,987 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:26:36,987 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:26:36,987 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:05,696 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 18:48:05,714 - __main__ - INFO - Starting bot...
+2025-06-11 18:48:05,714 - discord.client - INFO - logging in using static token
+2025-06-11 18:48:05,749 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 18:48:05,753 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 18:48:06,345 - bot - INFO - Setup hook started
+2025-06-11 18:48:06,690 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 18:48:06,690 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 18:48:06,898 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 18:48:06,902 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 18:48:06,914 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 18:48:06,914 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 18:48:06,922 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 18:48:06,931 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 18:48:06,937 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 18:48:06,937 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 18:48:06,942 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 18:48:06,943 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 18:48:06,943 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:48:06,943 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:06,943 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:07,351 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 82d7064331cc89420516cc68d5e5bae8).
+2025-06-11 18:48:07,351 - bot - INFO - Connected to Discord
+2025-06-11 18:48:09,370 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 18:48:19,080 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:48:19,080 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:48:19,081 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:19,082 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:19,196 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:48:19,196 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:48:19,196 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:19,196 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:19,335 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:48:19,335 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:48:19,335 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:48:19,335 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:40,029 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 18:50:40,044 - __main__ - INFO - Starting bot...
+2025-06-11 18:50:40,044 - discord.client - INFO - logging in using static token
+2025-06-11 18:50:40,062 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 18:50:40,062 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 18:50:40,615 - bot - INFO - Setup hook started
+2025-06-11 18:50:40,878 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 18:50:40,878 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 18:50:41,056 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 18:50:41,060 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 18:50:41,083 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 18:50:41,083 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 18:50:41,102 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 18:50:41,110 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 18:50:41,118 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 18:50:41,118 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 18:50:41,125 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 18:50:41,125 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 18:50:41,125 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:50:41,125 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:41,125 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:41,684 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: b226e1eb5c19f0e52d8db00ad832eb97).
+2025-06-11 18:50:41,685 - bot - INFO - Connected to Discord
+2025-06-11 18:50:44,203 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 18:50:54,326 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:50:54,326 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:50:54,326 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:54,326 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:54,438 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:50:54,438 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:50:54,438 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:54,438 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:54,559 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 18:50:54,559 - bot - INFO - Force Syncing commands globally...
+2025-06-11 18:50:54,560 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 18:50:54,560 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:30,633 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 19:03:30,662 - __main__ - INFO - Starting bot...
+2025-06-11 19:03:30,663 - discord.client - INFO - logging in using static token
+2025-06-11 19:03:30,700 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 19:03:30,700 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 19:03:31,194 - bot - INFO - Setup hook started
+2025-06-11 19:03:31,500 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 19:03:31,500 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 19:03:31,698 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 19:03:31,702 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 19:03:31,719 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 19:03:31,719 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 19:03:31,729 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 19:03:31,737 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 19:03:31,744 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 19:03:31,745 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 19:03:31,747 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 19:03:31,748 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 19:03:31,748 - bot - INFO - Force Syncing commands globally...
+2025-06-11 19:03:31,748 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:31,748 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:32,003 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 6b219c7cc0814aa0d7084a9e25b7862e).
+2025-06-11 19:03:32,003 - bot - INFO - Connected to Discord
+2025-06-11 19:03:34,028 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 19:03:44,162 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 19:03:44,162 - bot - INFO - Force Syncing commands globally...
+2025-06-11 19:03:44,162 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:44,163 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:44,260 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 19:03:44,261 - bot - INFO - Force Syncing commands globally...
+2025-06-11 19:03:44,261 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:44,261 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:44,398 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 19:03:44,399 - bot - INFO - Force Syncing commands globally...
+2025-06-11 19:03:44,399 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:03:44,400 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 19:50:04,055 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:50:37,638 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:51:04,062 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:51:34,049 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:52:04,038 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:52:34,058 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:53:04,042 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:53:34,048 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:54:04,035 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:54:34,051 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:55:04,053 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 19:55:34,039 - cogs.alerts - ERROR - Error saving alerts: [Errno 28] No space left on device
+2025-06-11 20:53:58,621 - bot - WARNING - Disconnected from Discord
+2025-06-11 20:53:58,869 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 6b219c7cc0814aa0d7084a9e25b7862e.
+2025-06-11 21:41:57,787 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-11 21:41:57,825 - __main__ - INFO - Starting bot...
+2025-06-11 21:41:57,825 - discord.client - INFO - logging in using static token
+2025-06-11 21:41:57,857 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-11 21:41:57,857 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-11 21:41:58,533 - bot - INFO - Setup hook started
+2025-06-11 21:41:58,911 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-11 21:41:58,911 - bot - INFO - Loaded extension: cogs.r6
+2025-06-11 21:41:59,227 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-11 21:41:59,235 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-11 21:41:59,265 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-11 21:41:59,265 - bot - INFO - Loaded extension: cogs.fun
+2025-06-11 21:41:59,284 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-11 21:41:59,310 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-11 21:41:59,326 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-11 21:41:59,326 - bot - INFO - Loaded extension: cogs.core
+2025-06-11 21:41:59,333 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-11 21:41:59,333 - bot - ERROR - Failed to load extension cogs.ownercogs.frost: No module named 'cogs.ownercogs'
+2025-06-11 21:41:59,333 - bot - INFO - Force Syncing commands globally...
+2025-06-11 21:41:59,333 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:41:59,333 - bot - ERROR - Initial command sync failed: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:41:59,606 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7134129be170852a16265f2e81f3b0d0).
+2025-06-11 21:41:59,608 - bot - INFO - Connected to Discord
+2025-06-11 21:42:53,644 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-11 21:43:03,811 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 21:43:03,811 - bot - INFO - Force Syncing commands globally...
+2025-06-11 21:43:03,811 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:43:03,811 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:43:03,990 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 21:43:03,990 - bot - INFO - Force Syncing commands globally...
+2025-06-11 21:43:03,990 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:43:03,990 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:43:04,107 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-11 21:43:04,107 - bot - INFO - Force Syncing commands globally...
+2025-06-11 21:43:04,107 - bot - ERROR - Failed to sync commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-11 21:43:04,107 - bot - ERROR - Error fetching commands: CommandTree.clear_commands() missing 1 required keyword-only argument: 'guild'
+2025-06-12 01:39:51,555 - bot - WARNING - Disconnected from Discord
+2025-06-12 01:39:51,758 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 01:40:19,093 - root - ERROR - Error while closing connector: ClientConnectionError('Connection lost: SSL shutdown timed out')
+2025-06-12 03:08:33,039 - bot - WARNING - Disconnected from Discord
+2025-06-12 03:08:33,224 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 06:14:12,336 - bot - WARNING - Disconnected from Discord
+2025-06-12 06:14:12,526 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 07:06:38,126 - bot - WARNING - Disconnected from Discord
+2025-06-12 07:06:38,342 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 07:32:26,214 - bot - WARNING - Disconnected from Discord
+2025-06-12 07:32:26,404 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 07:57:46,887 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "!$?" is not found
+2025-06-12 08:47:25,144 - bot - WARNING - Disconnected from Discord
+2025-06-12 08:47:25,912 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 08:54:54,690 - bot - WARNING - Disconnected from Discord
+2025-06-12 08:54:54,902 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 11:43:12,395 - bot - WARNING - Disconnected from Discord
+2025-06-12 11:43:12,635 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7134129be170852a16265f2e81f3b0d0.
+2025-06-12 12:39:37,224 - discord.ext.commands.bot - ERROR - Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "sync" is not found
