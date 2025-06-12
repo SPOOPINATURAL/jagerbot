@@ -312,3 +312,9 @@ discord.app_commands.errors.CommandNotFound: Application command 'image' not fou
 2025-06-12 16:52:49,052 - bot - INFO - Connected to Discord
 2025-06-12 16:52:51,105 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-12 16:52:51,106 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:53:48,784 - bot - INFO - ✅ Commands synced globally
+2025-06-12 16:53:48,784 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-12 16:53:48,998 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 16:53:48,998 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:53:49,112 - bot - INFO - ✅ Commands synced globally
+2025-06-12 16:54:23,753 - cogs.owner - INFO - Found 0 commands to sync
