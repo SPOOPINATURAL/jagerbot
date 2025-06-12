@@ -180,3 +180,63 @@ Traceback (most recent call last):
   File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 775, in request
     raise DiscordServerError(response, data)
 discord.errors.DiscordServerError: 500 Internal Server Error (error code: 0): 500: Internal Server Error
+2025-06-12 16:36:00,227 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-12 16:36:00,230 - __main__ - INFO - Starting bot...
+2025-06-12 16:36:00,231 - discord.client - INFO - logging in using static token
+2025-06-12 16:36:00,241 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-12 16:36:00,241 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-12 16:36:00,838 - bot - INFO - Setup hook started
+2025-06-12 16:36:01,178 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-12 16:36:01,178 - bot - INFO - Loaded extension: cogs.r6
+2025-06-12 16:36:01,262 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-12 16:36:01,265 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-12 16:36:01,268 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-12 16:36:01,269 - bot - INFO - Loaded extension: cogs.fun
+2025-06-12 16:36:01,272 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-12 16:36:01,275 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-12 16:36:01,277 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-12 16:36:01,277 - bot - INFO - Loaded extension: cogs.core
+2025-06-12 16:36:01,278 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'psutil'
+2025-06-12 16:36:01,280 - bot - INFO - Loaded extension: cogs.owner
+2025-06-12 16:36:01,281 - bot - INFO - Loaded extension: cogs.frost
+2025-06-12 16:36:01,281 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:37:01,148 - bot - INFO - ✅ Commands synced globally
+2025-06-12 16:37:01,508 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 72372f54cbb4bed23b9f2000345f5b30).
+2025-06-12 16:37:01,509 - bot - INFO - Connected to Discord
+2025-06-12 16:37:03,554 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-12 16:37:03,555 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:37:03,790 - bot - INFO - ✅ Commands synced globally
+2025-06-12 16:37:03,791 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-12 16:37:03,917 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 16:37:03,917 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:37:33,791 - bot - WARNING - Fetch attempt 1 timed out...
+2025-06-12 16:37:39,062 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 16:37:39,062 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:37:46,073 - cogs.owner - INFO - Found 0 commands to sync
+2025-06-12 16:38:08,803 - bot - WARNING - Fetch attempt 2 timed out...
+2025-06-12 16:38:14,065 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 16:38:14,065 - bot - INFO - Force Syncing commands globally...
+2025-06-12 16:38:14,179 - bot - INFO - ✅ Commands synced globally
+2025-06-12 16:38:24,175 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'image' not found
+2025-06-12 16:38:38,019 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'image' not found
