@@ -74,7 +74,7 @@ class JagerBot(commands.Bot):
                 logger.error(f"Failed to load extension {extension}: {e}")
 
         try:
-            await self.sync_commands(force=True)
+            await self.tree.sync()
         except Exception as e:
             logger.error(f"Initial command sync failed: {e}")
 
