@@ -1,12 +1,13 @@
-import discord
+import asyncio
+import logging
 import os
 import sys
-from discord.ext import commands
-from discord import app_commands
-import logging
-import asyncio
 from typing import List
+
+import discord
+from discord.ext import commands
 from dotenv import load_dotenv
+
 import config
 
 load_dotenv()
@@ -87,7 +88,8 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            await asyncio.sleep(10)
+            await self.sync_commands(force=True)
+            logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
 
             for attempt in range(3):
                 try:
