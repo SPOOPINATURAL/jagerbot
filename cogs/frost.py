@@ -5,7 +5,7 @@ class FrostCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="frost", help="Check how many L's Frost has taken")
+    @commands.command(name="frost")
     async def frost(self, ctx: commands.Context):
         frostl = random.randint(1, 1_000_000)
         await ctx.send(f"frosty took another L — he's at {frostl:,} L's now")

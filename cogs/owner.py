@@ -25,8 +25,8 @@ class Owner(commands.Cog):
                     self.bot.tree.copy_global_to(guild=guild)
                     await self.bot.tree.sync(guild=guild)
                 else:
-                    self.bot.tree.clear_commands()
-                    await self.bot.tree.sync()
+                    self.bot.tree.clear_commands(guild=None)
+                    await self.bot.tree.sync(guild=None)
                 return True
             except Exception as e:
                 logger.error(f"Sync failed: {e}")

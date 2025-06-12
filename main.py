@@ -4,7 +4,6 @@ import logging
 from bot import JagerBot
 import config
 from utils.setup import setup_logging, load_data
-from webserver import keep_alive
 
 import discord
 from discord.ext import commands
@@ -16,6 +15,11 @@ from pytz.exceptions import UnknownTimeZoneError
 from dateparser.conf import settings as dp_settings
 import html
 
+try:
+    from webserver import keep_alive
+except ModuleNotFoundError:
+    def keep_alive():
+        pass
 
 def create_bot() -> JagerBot:
     intents = discord.Intents.default()
@@ -50,8 +54,9 @@ async def main():
     except KeyboardInterrupt:
         logger.info("Received keyboard interrupt, shutting down...")
         await bot.close()
+        logger.info("Bot closed cleanly.")
     except Exception as e:
-        logger.error(f"Error running bot: {e}")
+        logger.exception("Error running bot")
         raise
     finally:
         remaining_tasks = [t for t in asyncio.all_tasks()if t is not asyncio.current_task()]

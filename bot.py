@@ -10,6 +10,19 @@ from dotenv import load_dotenv
 import config
 
 load_dotenv()
+
+log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+log_file = "jagerbot.log"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format=log_format,
+    handlers=[
+        logging.FileHandler(log_file, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
 logger = logging.getLogger(__name__)
 
 class JagerBot(commands.Bot):
@@ -34,7 +47,7 @@ class JagerBot(commands.Bot):
 
         try:
             if force:
-                self.tree.clear_commands()
+                self.tree.clear_commands(guild=None)
 
             await self.tree.sync()
             logger.info("✅ Commands synced globally")
@@ -74,7 +87,7 @@ class JagerBot(commands.Bot):
                 )
             )
 
-            await asyncio.sleep(10)
+            await asyncio.sleep(10)  # Let things settle before checking commands
 
             for attempt in range(3):
                 try:
