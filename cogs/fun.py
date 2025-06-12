@@ -19,10 +19,6 @@ from views.rps import RPSView
 
 logger = logging.getLogger(__name__)
 
-
-user_scores = {}
-
-
 class TriviaManager:
     def __init__(self, scores_file: str):
         self.scores_file = scores_file
@@ -114,7 +110,6 @@ class Fun(commands.Cog):
 
     @app_commands.command(name="xkcd", description="Get a random XKCD comic")
     async def random_xkcd(self, interaction: discord.Interaction):
-        import aiohttp
         async with aiohttp.ClientSession() as session:
             async with session.get("https://c.xkcd.com/random/comic/", allow_redirects=False) as resp:
                 if resp.status != 302:

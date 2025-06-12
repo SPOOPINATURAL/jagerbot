@@ -336,4 +336,6 @@ class R6Cog(commands.GroupCog, group_name="r6"):
 
 
 async def setup(bot: commands.Bot):
+    cog = R6Cog(bot)
     await bot.add_cog(R6Cog(bot))
+    bot.tree.add_command(cog.group)
