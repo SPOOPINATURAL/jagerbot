@@ -8,14 +8,15 @@ from discord.errors import NotFound
 
 class ErrorHandlerCog(commands.Cog):
     def __init__(self, bot):
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=30)
+        )
         self.bot = bot
         self.bot.tree.error(self.on_app_command_error)
         super().__init__()
 
     async def cog_load(self) -> None:
-        self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=30)
-        )
+        pass
 
     async def cog_unload(self) -> None:
         if self.session and not self.session.closed:
@@ -39,7 +40,8 @@ class ErrorHandlerCog(commands.Cog):
             print(f"Unhandled prefix command error: {error}")
             raise error
 
-    async def on_app_command_error(self, interaction: Interaction, error: AppCommandError):
+    @staticmethod
+    async def on_app_command_error(interaction: Interaction, error: AppCommandError):
         try:
             if isinstance(error, CommandOnCooldown):
                 msg = f"⏳ This command is on cooldown. Try again in {error.retry_after:.2f} seconds."
@@ -63,7 +65,8 @@ class ErrorHandlerCog(commands.Cog):
         except NotFound:
             pass
 
-    def check_for_multiple_instances(self):
+    @staticmethod
+    def check_for_multiple_instances():
         current_pid = os.getpid()
         count = 0
         for proc in psutil.process_iter(['pid', 'name', 'cmdline']):

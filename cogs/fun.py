@@ -1,21 +1,18 @@
-import random
-import os
-import logging
-import json
 import html
+import logging
+import random
+from typing import Dict, Optional
 
 import aiohttp
 import discord
-from discord.ext import commands
 from discord import app_commands
-from typing import Dict, Optional, List
-from datetime import datetime
+from discord.ext import commands
 
 from config import SCORES_FILE
-from utils.helpers import CooldownManager, FileHelper
 from utils.embed_builder import EmbedBuilder
-from views.trivia import TriviaView
+from utils.helpers import FileHelper
 from views.rps import RPSView
+from views.trivia import TriviaView
 
 logger = logging.getLogger(__name__)
 
@@ -210,7 +207,8 @@ class Fun(commands.Cog):
             logger.error(f"Failed to fetch trivia: {e}")
         return None
 
-    def _prepare_question(self, data: dict) -> tuple[str, str, dict]:
+    @staticmethod
+    def _prepare_question(data: dict) -> tuple[str, str, dict]:
         question = html.unescape(data["question"])
         correct = html.unescape(data["correct_answer"])
         incorrect = [html.unescape(ans) for ans in data["incorrect_answers"]]
@@ -221,10 +219,12 @@ class Fun(commands.Cog):
         answers = dict(zip(['A', 'B', 'C', 'D'], all_answers))
         return question, correct, answers
 
-    def _get_correct_letter(self, answers: dict, correct: str) -> str:
+    @staticmethod
+    def _get_correct_letter(answers: dict, correct: str) -> str:
         return next(k for k, v in answers.items() if v == correct)
 
-    def _create_trivia_embed(self, question: str, answers: dict) -> discord.Embed:
+    @staticmethod
+    def _create_trivia_embed(question: str, answers: dict) -> discord.Embed:
         embed = EmbedBuilder.info(
             title="🧠 Trivia",
             description=question

@@ -27,7 +27,8 @@ class WeatherService:
         url = f"{self.base_url}?q={city}&appid={self.api_key}&units=metric"
         return await DataHelper.fetch_json(url, session=session)
 
-    def create_weather_embed(self, data: dict) -> discord.Embed:
+    @staticmethod
+    def create_weather_embed(data: dict) -> discord.Embed:
         # Temperature
         temp_c = round(data['main']['temp'], 1)
         temp_f = round(temp_c * 9 / 5 + 32, 1)
@@ -337,44 +338,6 @@ class CoreCog(commands.Cog):
         )
         embed.set_image(url=plane.get("image", ""))
         await interaction.response.send_message(embed=embed)
-
-    @app_commands.command(name="currency", description="Convert currency using exchangerate.host")
-    @app_commands.describe(amount="Amount to convert", from_currency="Currency to convert from", to_currency="Currency to convert to")
-    async def currency(
-            self,
-            interaction: discord.Interaction,
-            amount: float,
-            from_currency: str,
-            to_currency: str
-    ):
-        await interaction.response.defer()
-
-        try:
-            result = await self.currency_service.convert_currency(
-                amount,
-                from_currency,
-                to_currency,
-                self.session
-            )
-
-            if result is None:
-                await interaction.followup.send(
-                    "❌ Currency conversion failed.",
-                    ephemeral=True
-                )
-                return
-
-            await interaction.followup.send(
-                f"💱 {amount} {from_currency.upper()} = {result:.2f} {to_currency.upper()}"
-            )
-
-        except Exception as e:
-            logger.error(f"Currency conversion error: {e}")
-            await interaction.followup.send(
-                "❌ An error occurred during conversion.",
-                ephemeral=True
-            )
-
     @app_commands.command(name="info", description="Command list")
     async def info(self, interaction: discord.Interaction):
         guild_id = interaction.guild.id if interaction.guild else 0

@@ -1,7 +1,6 @@
 import logging
 from discord.ext import commands
 import discord
-import asyncio
 from typing import Optional
 from discord import app_commands
 
@@ -17,63 +16,21 @@ class Owner(commands.Cog):
 
     @commands.command(name='sync')
     @commands.is_owner()
-    async def sync_command(self, ctx: commands.Context, spec: Optional[str] = None):
-        async def sync_to(guild_id=None):
-            try:
-                if guild_id:
-                    guild = discord.Object(id=guild_id)
-                    self.bot.tree.clear_commands(guild=guild)
-                    self.bot.tree.copy_global_to(guild=guild)
-                    await self.bot.tree.sync(guild=guild)
-                else:
-                    self.bot.tree.clear_commands(guild=None)
-                    await self.bot.tree.sync(guild=None)
-                return True
-            except Exception as e:
-                logger.error(f"Sync failed: {e}")
-                return False
-
-        await ctx.send("🔄 Starting sync...")
+    async def sync_command(self, ctx: commands.Context):
+        await ctx.send("🔄 Syncing commands globally...")
 
         try:
-            commands = []
-            for cmd in self.bot.tree._get_all_commands():
-                if isinstance(cmd, app_commands.Group):
-                    commands.extend(cmd.commands)
-                else:
-                    commands.append(cmd)
+            self.bot.tree.clear_commands(guild=None)
+            await self.bot.tree.sync()
 
-            total_commands = len(commands)
-            logger.info(f"Found {total_commands} commands to sync")
+            all_cmds = list(self.bot.tree._get_all_commands())
+            cmd_count = len(all_cmds)
 
-            batch_size = 25
-            if self.bot.is_dev:
-                for guild_id in self.bot.config.ALLOWED_GUILD_IDS:
-                    for i in range(0, total_commands, batch_size):
-                        batch = commands[i:i + batch_size]
-                        success = await sync_to(guild_id)
-                        if success:
-                            await ctx.send(f"✅ Synced batch {i//batch_size + 1} ({min(i + batch_size, total_commands)}/{total_commands}) to guild {guild_id}")
-                        else:
-                            await ctx.send(f"❌ Failed to sync batch {i//batch_size + 1} to guild {guild_id}")
-                            return
-                        await asyncio.sleep(1)
-            else:
-                for i in range(0, total_commands, batch_size):
-                    batch = commands[i:i + batch_size]
-                    success = await sync_to()
-                    if success:
-                        await ctx.send(f"✅ Synced batch {i//batch_size + 1} ({min(i + batch_size, total_commands)}/{total_commands}) globally")
-                    else:
-                        await ctx.send(f"❌ Failed to sync batch {i//batch_size + 1} globally")
-                        return
-                    await asyncio.sleep(1)
-
-            await ctx.send(f"✅ Successfully synced {total_commands} commands!")
-
+            await ctx.send(f"✅ Synced {cmd_count} commands globally.")
+            logger.info(f"Manually synced {cmd_count} commands globally.")
         except Exception as e:
-            await ctx.send(f"❌ Sync failed: {str(e)}")
-            logger.error(f"Sync error: {e}", exc_info=True)
+            await ctx.send(f"❌ Sync failed: {e}")
+            logger.error("Manual sync failed", exc_info=True)
 
 
 async def setup(bot: commands.Bot):

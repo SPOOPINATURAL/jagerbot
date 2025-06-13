@@ -133,7 +133,8 @@ class R6Cog(commands.GroupCog, group_name="r6"):
 
         return choices[:25]
 
-    def create_op_embed(self, op_data: dict) -> discord.Embed:
+    @staticmethod
+    def create_op_embed(op_data: dict) -> discord.Embed:
         embed = discord.Embed(
             title=f"Operator: {op_data['name']}",
             description=op_data.get("bio", ""),
@@ -288,7 +289,7 @@ class R6Cog(commands.GroupCog, group_name="r6"):
     async def news(self, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        now = datetime.utcnow()
+        now = datetime.now()
         cache_data = self._news_cache.get("data")
         cache_time = self._news_cache.get("timestamp")
 
@@ -323,7 +324,8 @@ class R6Cog(commands.GroupCog, group_name="r6"):
             logger.error(f"Error fetching R6 news: {e}")
             await interaction.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
 
-    def _build_news_embed(self, news_data):
+    @staticmethod
+    def _build_news_embed(news_data):
         embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
         for entry in news_data:
             embed.add_field(

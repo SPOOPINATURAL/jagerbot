@@ -36,7 +36,8 @@ class AlertCommands(commands.Cog):
         self.max_event_length = 100
         self.min_recurring_seconds = 60
 
-    async def validate_time(self, time_str: str) -> Optional[datetime]:
+    @staticmethod
+    async def validate_time(time_str: str) -> Optional[datetime]:
         try:
             date = dateparser.parse(
                 time_str,
@@ -75,7 +76,8 @@ class AlertCommands(commands.Cog):
 
         return recurring
 
-    def create_alert_embed(self, event: str, date: datetime, recurring: Optional[str]) -> discord.Embed:
+    @staticmethod
+    def create_alert_embed(event: str, date: datetime, recurring: Optional[str]) -> discord.Embed:
         return EmbedBuilder.success(
             message=(
                 f"**Event:** {event}\n"
@@ -162,7 +164,8 @@ class AlertCommands(commands.Cog):
         modal = AlertModal(self.handle_alert_creation)
         await interaction.response.send_modal(modal)
 
-    def create_alert_list_embed(self, alert: dict, index: int, time_left: timedelta) -> discord.Embed:
+    @staticmethod
+    def create_alert_list_embed(alert: dict, index: int, time_left: timedelta) -> discord.Embed:
         total_seconds = int(time_left.total_seconds())
         minutes, seconds = divmod(total_seconds, 60)
         hours, minutes = divmod(minutes, 60)
@@ -236,7 +239,8 @@ class AlertCommands(commands.Cog):
                 ephemeral=True
             )
 
-    async def cancel_alert(self, interaction: discord.Interaction, alert_index: int):
+    @staticmethod
+    async def cancel_alert(interaction: discord.Interaction, alert_index: int):
         user_id = str(interaction.user.id)
         user_alerts = alerts.get(user_id, [])
 
@@ -257,7 +261,8 @@ class AlertCommands(commands.Cog):
             ephemeral=True
         )
 
-    async def snooze_alert(self, interaction: discord.Interaction, alert_index: int):
+    @staticmethod
+    async def snooze_alert(interaction: discord.Interaction, alert_index: int):
         user_id = str(interaction.user.id)
         user_alerts = alerts.get(user_id, [])
 

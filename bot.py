@@ -72,6 +72,8 @@ class JagerBot(commands.Bot):
                 logger.info(f"Loaded extension: {extension}")
             except Exception as e:
                 logger.error(f"Failed to load extension {extension}: {e}")
+        await self.sync_commands(force=True)
+        logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
 
 
     async def on_ready(self) -> None:
@@ -84,15 +86,15 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
-            await self.sync_commands(force=True)
-            logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
 
-    async def on_connect(self) -> None:
+    @staticmethod
+    async def on_connect() -> None:
         logger.info("Connected to Discord")
 
-    async def on_disconnect(self) -> None:
+    @staticmethod
+    async def on_disconnect() -> None:
         logger.warning("Disconnected from Discord")
 
     async def on_error(self, event_method: str, *args, **kwargs) -> None:
@@ -101,13 +103,6 @@ class JagerBot(commands.Bot):
     async def close(self) -> None:
         logger.info("Shutting down bot...")
         try:
-            tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-            if tasks:
-                logger.info(f"Cancelling {len(tasks)} remaining tasks...")
-                for task in tasks:
-                    task.cancel()
-                await asyncio.gather(*tasks, return_exceptions=True)
-
             await super().close()
             logger.info("Bot shutdown complete")
         except Exception as e:

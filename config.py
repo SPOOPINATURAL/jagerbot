@@ -39,7 +39,7 @@ INITIAL_EXTENSIONS = [
     'cogs.alerts',
     'cogs.alert_cmd',
     'cogs.core',
-    'cogs.error_handler',
+    #'cogs.error_handler',
     'cogs.owner',
     'cogs.frost',
 ]
