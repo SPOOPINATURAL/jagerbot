@@ -23,8 +23,8 @@ class Owner(commands.Cog):
             self.bot.tree.clear_commands(guild=None)
             await self.bot.tree.sync()
 
-            all_cmds = list(self.bot.tree._get_all_commands())
-            cmd_count = len(all_cmds)
+            synced_cmds = await self.bot.tree.fetch_commands()
+            cmd_count = len(synced_cmds)
 
             await ctx.send(f"✅ Synced {cmd_count} commands globally.")
             logger.info(f"Manually synced {cmd_count} commands globally.")
