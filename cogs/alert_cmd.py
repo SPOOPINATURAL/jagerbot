@@ -283,4 +283,7 @@ class AlertCommands(commands.Cog):
         )
 
 async def setup(bot):
-    await bot.add_cog(AlertCommands(bot))
+    cog = AlertCommands(bot)
+    await bot.add_cog(cog)
+    for command in cog.get_app_commands():
+        bot.tree.add_command(command)

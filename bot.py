@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.initial_extensions: List[str] = []
+        self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
         self.config = config
         self._synced: bool = False
         self._sync_lock = asyncio.Lock()
@@ -66,7 +66,7 @@ class JagerBot(commands.Bot):
         logger.info("Setup hook started")
         self.owner_id = 640289470763237376
 
-        for extension in self.config.INITIAL_EXTENSIONS:
+        for extension in self.initial_extensions:
             try:
                 await self.load_extension(extension)
                 logger.info(f"Loaded extension: {extension}")

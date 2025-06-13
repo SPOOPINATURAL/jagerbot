@@ -346,4 +346,7 @@ class CoreCog(commands.Cog):
 
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(CoreCog(bot))
+    cog = CoreCog(bot)
+    await bot.add_cog(cog)
+    for command in cog.get_app_commands():
+        bot.tree.add_command(command)

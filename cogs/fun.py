@@ -242,4 +242,7 @@ class Fun(commands.Cog):
         )
 
 async def setup(bot):
-    await bot.add_cog(Fun(bot))
+    cog = Fun(bot)
+    await bot.add_cog(cog)
+    for command in cog.get_app_commands():
+        bot.tree.add_command(command)
