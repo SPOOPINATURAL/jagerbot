@@ -364,3 +364,188 @@ Traceback (most recent call last):
     raise CommandNotFound(name, parents)
 discord.app_commands.errors.CommandNotFound: Application command 'image' not found
 2025-06-12 17:18:19,050 - bot - WARNING - Fetch attempt 2 timed out...
+2025-06-12 17:18:24,246 - bot - WARNING - No commands registered, attempting force sync...
+2025-06-12 17:18:24,246 - bot - INFO - Force Syncing commands globally...
+2025-06-12 17:18:24,364 - bot - INFO - ✅ Commands synced globally
+2025-06-12 17:22:04,540 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-12 17:22:04,542 - __main__ - INFO - Starting bot...
+2025-06-12 17:22:04,542 - discord.client - INFO - logging in using static token
+2025-06-12 17:22:04,548 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-12 17:22:04,548 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-12 17:22:05,025 - bot - INFO - Setup hook started
+2025-06-12 17:22:05,399 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-12 17:22:05,399 - bot - INFO - Loaded extension: cogs.r6
+2025-06-12 17:22:05,471 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-12 17:22:05,472 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-12 17:22:05,474 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-12 17:22:05,474 - bot - INFO - Loaded extension: cogs.fun
+2025-06-12 17:22:05,476 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-12 17:22:05,477 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-12 17:22:05,480 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-12 17:22:05,480 - bot - INFO - Loaded extension: cogs.core
+2025-06-12 17:22:05,494 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: TypeError: ErrorHandlerCog.check_for_multiple_instances() missing 1 required positional argument: 'self'
+2025-06-12 17:22:05,495 - bot - INFO - Loaded extension: cogs.owner
+2025-06-12 17:22:05,496 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 01:30:33,110 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 01:30:33,113 - __main__ - INFO - Starting bot...
+2025-06-13 01:30:33,113 - discord.client - INFO - logging in using static token
+2025-06-13 01:30:33,120 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 01:30:33,121 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 01:30:33,619 - bot - INFO - Setup hook started
+2025-06-13 01:30:33,853 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 01:30:33,853 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 01:30:33,934 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 01:30:33,936 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 01:30:33,943 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 01:30:33,943 - bot - INFO - Loaded extension: cogs.fun
+2025-06-13 01:30:33,946 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 01:30:33,949 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-13 01:30:33,952 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 01:30:33,952 - bot - INFO - Loaded extension: cogs.core
+2025-06-13 01:30:33,971 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: TypeError: ErrorHandlerCog.check_for_multiple_instances() missing 1 required positional argument: 'self'
+2025-06-13 01:30:33,973 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 01:30:33,974 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 01:30:34,363 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 71f48922b28ce2e52506de4c1cf3407e).
+2025-06-13 01:30:34,364 - bot - INFO - Connected to Discord
+2025-06-13 01:30:36,403 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 01:30:36,403 - bot - INFO - Force Syncing commands globally...
+2025-06-13 01:31:24,593 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 01:31:24,613 - __main__ - INFO - Starting bot...
+2025-06-13 01:31:24,614 - discord.client - INFO - logging in using static token
+2025-06-13 01:31:24,651 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 01:31:24,652 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 01:31:25,086 - bot - INFO - Setup hook started
+2025-06-13 01:31:25,828 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 01:31:25,829 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 01:31:26,158 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 01:31:26,162 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 01:31:26,188 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 01:31:26,190 - bot - INFO - Loaded extension: cogs.fun
+2025-06-13 01:31:26,219 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 01:31:26,258 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-13 01:31:26,283 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 01:31:26,293 - bot - INFO - Loaded extension: cogs.core
+2025-06-13 01:31:26,388 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: TypeError: ErrorHandlerCog.check_for_multiple_instances() missing 1 required positional argument: 'self'
+2025-06-13 01:31:26,393 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 01:31:26,399 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 01:31:26,850 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e6eee7ab3a1f1160af543cd4753db628).
+2025-06-13 01:31:26,854 - bot - INFO - Connected to Discord
+2025-06-13 14:23:08,387 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 14:23:08,388 - bot - INFO - Force Syncing commands globally...
+2025-06-13 14:24:06,705 - bot - INFO - ✅ Commands synced globally
+2025-06-13 14:24:06,765 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 14:39:11,601 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 14:39:11,604 - __main__ - INFO - Starting bot...
+2025-06-13 14:39:11,604 - discord.client - INFO - logging in using static token
+2025-06-13 14:39:11,613 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 14:39:11,613 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 14:39:12,154 - bot - INFO - Setup hook started
+2025-06-13 14:39:12,455 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 14:39:12,455 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 14:39:12,539 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 14:39:12,540 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 14:39:12,545 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 14:39:12,545 - bot - INFO - Loaded extension: cogs.fun
+2025-06-13 14:39:12,548 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 14:39:12,551 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-13 14:39:12,554 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 14:39:12,554 - bot - INFO - Loaded extension: cogs.core
+2025-06-13 14:39:12,572 - bot - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: TypeError: ErrorHandlerCog.check_for_multiple_instances() missing 1 required positional argument: 'self'
+2025-06-13 14:39:12,574 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 14:39:12,575 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 14:39:12,863 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 231fcc76578e39485556c6e51cb71127).
+2025-06-13 14:39:12,864 - bot - INFO - Connected to Discord
+2025-06-13 14:39:14,888 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 14:39:14,888 - bot - INFO - Force Syncing commands globally...
+2025-06-13 14:40:12,557 - bot - INFO - ✅ Commands synced globally
+2025-06-13 14:40:12,557 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 14:41:05,681 - cogs.owner - INFO - Found 0 commands to sync
+2025-06-13 14:41:17,811 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'image' not found
+2025-06-13 14:42:52,791 - bot - WARNING - Disconnected from Discord
+2025-06-13 14:43:16,080 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 14:43:16,081 - __main__ - INFO - Starting bot...
+2025-06-13 14:43:16,081 - discord.client - INFO - logging in using static token
+2025-06-13 14:43:16,089 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 14:43:16,089 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 14:43:29,612 - __main__ - ERROR - Error running bot
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 53, in main
+    await bot.start(config.DISCORD_TOKEN)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 823, in start
+    await self.login(token)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 652, in login
+    data = await self.http.static_login(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 828, in static_login
+    data = await self.request(Route('GET', '/users/@me'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 642, in request
+    async with self.__session.request(method, url, **kwargs) as response:
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
