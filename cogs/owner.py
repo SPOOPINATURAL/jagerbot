@@ -16,6 +16,8 @@ class Owner(commands.Cog):
     @commands.command(name='sync')
     @commands.is_owner()
     async def sync_command(self, ctx: commands.Context, scope: Optional[str] = None):
+        cmds = self.bot.tree.get_commands(guild=Object(id=gid))
+        await ctx.send(f"Commands to sync for guild {gid}: {cmds}")
         """
         Usage:
         $sync           - Sync globally (may take up to 1 hour)
