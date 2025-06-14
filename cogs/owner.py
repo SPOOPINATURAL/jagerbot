@@ -1,7 +1,7 @@
 import logging
 from discord.ext import commands
 from typing import Optional
-from discord import app_commands
+from discord import app_commands, Object
 
 logger = logging.getLogger(__name__)
 
