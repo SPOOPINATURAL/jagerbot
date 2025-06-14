@@ -430,3 +430,5 @@ discord.ext.commands.errors.CommandInvokeError: Command raised an exception: Unb
 2025-06-13 20:47:13,322 - bot - INFO - Connected to Discord
 2025-06-13 20:47:15,334 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-13 20:47:25,706 - cogs.owner - INFO - Manually synced commands to all allowed guilds.
+2025-06-13 20:50:11,947 - cogs.owner - INFO - Manually synced 0 commands globally.
+2025-06-13 20:50:56,767 - cogs.owner - INFO - Manually synced 0 commands globally.
