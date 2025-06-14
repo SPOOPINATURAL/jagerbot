@@ -80,3 +80,14 @@
 2025-06-13 20:09:01,948 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7207d0cf94ae6ac1c7310b67a2567d33).
 2025-06-13 20:09:01,949 - bot - INFO - Connected to Discord
 2025-06-13 20:09:04,004 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 20:12:15,304 - cogs.owner - INFO - Manually synced 0 commands globally.
+2025-06-13 20:12:23,215 - discord.app_commands.tree - ERROR - Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1151, in wrapper
+    await self._call(interaction)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1283, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'image' not found
