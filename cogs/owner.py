@@ -1,7 +1,7 @@
 import logging
 from discord.ext import commands
 from typing import Optional
-from discord import app_commands, Object
+from discord import Object
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,6 @@ class Owner(commands.Cog):
         $sync           - Sync globally (may take up to 1 hour)
         $sync guilds    - Sync to all guilds in config.ALLOWED_GUILD_IDS (instant)
         $sync guild     - Sync to this guild only (instant)
-        $sync --force   - Force clear and sync globally
         """
         if scope == "guilds":
             total = 0
@@ -41,11 +40,8 @@ class Owner(commands.Cog):
             else:
                 await ctx.send("❌ This command must be used in a server.")
         else:
-            force_sync = scope == "--force"
             await ctx.send("🔄 Syncing commands globally...")
             try:
-                if force_sync:
-                    self.bot.tree.clear_commands(guild=None)
                 synced = await self.bot.tree.sync()
                 fetched_cmds = await self.bot.tree.fetch_commands()
                 cmd_names = [cmd.name for cmd in fetched_cmds]

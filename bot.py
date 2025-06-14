@@ -40,17 +40,15 @@ class JagerBot(commands.Bot):
     def is_dev(self) -> bool:
         return self._dev_mode
 
-    async def sync_commands(self, force: bool = False) -> None:
+    async def sync_commands(self) -> None:
         async with self._sync_lock:
-            if self._synced and not force:
+            if self._synced:
                 return
 
-            logger.info(f"{'Force ' if force else ''}Syncing commands globally...")
+            logger.info("Syncing commands globally...")
 
             try:
-                if force:
-                    self.tree.clear_commands(guild=None)
-
+                
                 await self.tree.sync()
                 logger.info("✅ Commands synced globally")
                 self._synced = True
@@ -74,7 +72,7 @@ class JagerBot(commands.Bot):
                 logger.error(f"Failed to load extension {extension}: {e}")
         logger.info(f"App commands before sync: {self.tree.get_commands()}")
         logger.info(f"Registered global app commands: {[cmd.name for cmd in self.tree.get_commands()]}")
-        await self.sync_commands(force=True)
+        await self.sync_commands()
         logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
         for gid in self.config.ALLOWED_GUILD_IDS:
             synced = await self.tree.sync(guild=discord.Object(id=gid))
