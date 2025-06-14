@@ -526,3 +526,36 @@ discord.ext.commands.errors.CommandInvokeError: Command raised an exception: Unb
 2025-06-13 21:08:08,930 - bot - INFO - Connected to Discord
 2025-06-13 21:08:10,962 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-13 21:09:08,862 - cogs.owner - INFO - Manually synced 0 commands globally: []
+2025-06-14 18:05:32,514 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-14 18:05:32,516 - __main__ - INFO - Starting bot...
+2025-06-14 18:05:32,516 - discord.client - INFO - logging in using static token
+2025-06-14 18:05:32,526 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-14 18:05:32,526 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-14 18:05:33,144 - bot - INFO - Setup hook started
+2025-06-14 18:05:33,235 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-14 18:05:33,235 - bot - INFO - Loaded extension: cogs.r6
+2025-06-14 18:05:33,461 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-14 18:05:33,465 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-14 18:05:33,473 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-14 18:05:33,473 - bot - INFO - Loaded extension: cogs.fun
+2025-06-14 18:05:33,481 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-14 18:05:33,488 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-14 18:05:33,494 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-14 18:05:33,494 - bot - INFO - Loaded extension: cogs.core
+2025-06-14 18:05:33,496 - bot - INFO - Loaded extension: cogs.owner
+2025-06-14 18:05:33,497 - bot - INFO - Loaded extension: cogs.frost
+2025-06-14 18:05:33,497 - bot - INFO - App commands before sync: [<discord.app_commands.commands.Group object at 0x7fff03263490>, <discord.app_commands.commands.Group object at 0x7fff03058a90>, <discord.app_commands.commands.Group object at 0x7fff0325e390>, <discord.app_commands.commands.Command object at 0x7fff0309b190>, <discord.app_commands.commands.Command object at 0x7fff0309b0d0>, <discord.app_commands.commands.Command object at 0x7fff0309b250>, <discord.app_commands.commands.Command object at 0x7fff0309b2d0>, <discord.app_commands.commands.Command object at 0x7fff0309b410>, <discord.app_commands.commands.Command object at 0x7fff0309b510>, <discord.app_commands.commands.Command object at 0x7fff0309b5d0>, <discord.app_commands.commands.Command object at 0x7fff0309b7d0>, <discord.app_commands.commands.Command object at 0x7fff0309b890>, <discord.app_commands.commands.Command object at 0x7fff0309b9d0>, <discord.app_commands.commands.Command object at 0x7fff0309ba50>, <discord.app_commands.commands.Command object at 0x7fff0449a090>, <discord.app_commands.commands.Command object at 0x7fff04499690>, <discord.app_commands.commands.Command object at 0x7fff044996d0>, <discord.app_commands.commands.Command object at 0x7fff0319ebd0>, <discord.app_commands.commands.Command object at 0x7fff0319ef90>, <discord.app_commands.commands.Command object at 0x7fff0319f2d0>, <discord.app_commands.commands.Command object at 0x7fff0319f1d0>, <discord.app_commands.commands.Command object at 0x7fff0319f110>, <discord.app_commands.commands.Command object at 0x7fff0319fd90>, <discord.app_commands.commands.Command object at 0x7fff0319e010>, <discord.app_commands.commands.Command object at 0x7fff0319c290>]
+2025-06-14 18:05:33,498 - bot - INFO - Registered global app commands: ['r6', 'mc', 'wf', 'hello', 'quote', 'image', 'clancy', 'longo', '8ball', 'xkcd', 'd20', 'rps', 'trivia', 'score', 'alert', 'listalerts', 'cancelalerts', 'weather', 'currency', 'timezones', 'tzconvert', 'credits', 'date', 'plane', 'info']
+2025-06-14 18:05:33,498 - bot - INFO - Syncing commands globally...
+2025-06-14 18:05:33,877 - bot - INFO - ✅ Commands synced globally
+2025-06-14 18:05:33,878 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-14 18:05:34,008 - bot - INFO - Force-synced 0 commands to guild 899978176355266580: []
+2025-06-14 18:05:34,141 - bot - INFO - Force-synced 0 commands to guild 989558855023362110: []
+2025-06-14 18:05:34,373 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 16bfefb13bd5958d9c97d8cea8ef5d73).
+2025-06-14 18:05:34,374 - bot - INFO - Connected to Discord
+2025-06-14 18:05:36,401 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-14 18:09:36,285 - cogs.owner - INFO - Manually synced 25 commands globally: ['r6', 'mc', 'wf', 'hello', 'quote', 'image', 'clancy', 'longo', '8ball', 'xkcd', 'd20', 'rps', 'trivia', 'score', 'alert', 'listalerts', 'cancelalerts', 'weather', 'currency', 'timezones', 'tzconvert', 'credits', 'date', 'plane', 'info']
+2025-06-14 18:20:21,291 - cogs.owner - INFO - Manually synced commands to all allowed guilds.
