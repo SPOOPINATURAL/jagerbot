@@ -525,3 +525,4 @@ discord.ext.commands.errors.CommandInvokeError: Command raised an exception: Unb
 2025-06-13 21:08:08,929 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 5e2b08608c0f5b2314b6be1711b3f423).
 2025-06-13 21:08:08,930 - bot - INFO - Connected to Discord
 2025-06-13 21:08:10,962 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 21:09:08,862 - cogs.owner - INFO - Manually synced 0 commands globally: []
