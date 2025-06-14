@@ -1,6 +1,5 @@
 import logging
 from discord.ext import commands
-import discord
 from typing import Optional
 from discord import app_commands
 

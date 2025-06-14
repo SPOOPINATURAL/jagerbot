@@ -1,19 +1,11 @@
 import asyncio
-from typing import Dict
 import logging
 from bot import JagerBot
 import config
 from utils.setup import setup_logging, load_data
 
 import discord
-from discord.ext import commands
-from discord import app_commands
-import aiohttp
-import dateparser
-import pytz
-from pytz.exceptions import UnknownTimeZoneError
 from dateparser.conf import settings as dp_settings
-import html
 
 try:
     from webserver import keep_alive
