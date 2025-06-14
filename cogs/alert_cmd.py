@@ -282,8 +282,5 @@ class AlertCommands(commands.Cog):
             ephemeral=True
         )
 
-async def setup(bot):
-    cog = AlertCommands(bot)
-    await bot.add_cog(cog)
-    for command in cog.get_app_commands():
-        bot.tree.add_command(command)
+async def setup(bot: commands.Bot):
+    await bot.add_cog(AlertCommands(bot))
