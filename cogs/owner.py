@@ -16,12 +16,13 @@ class Owner(commands.Cog):
 
     @commands.command(name='sync')
     @commands.is_owner()
-    async def sync_command(self, ctx: commands.Context):
+    async def sync_command(self, ctx: commands.Context, force: Optional[str] = None):
         force_sync = force == "--force"
         await ctx.send("🔄 Syncing commands globally...")
 
         try:
-            self.bot.tree.clear_commands(guild=None)
+            if force_sync:
+                self.bot.tree.clear_commands(guild=None)
             await self.bot.tree.sync()
 
             synced_cmds = await self.bot.tree.fetch_commands()
