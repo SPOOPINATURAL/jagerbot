@@ -658,3 +658,139 @@ Traceback (most recent call last):
   File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
     raise CommandNotFound(name, parents)
 discord.app_commands.errors.CommandNotFound: Application command 'image' not found
+2025-06-13 18:53:25,296 - bot - WARNING - Disconnected from Discord
+2025-06-13 18:53:25,508 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 8cfbb974b463cc070e7b482b23839c07.
+2025-06-13 19:12:17,369 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 19:12:17,371 - __main__ - INFO - Starting bot...
+2025-06-13 19:12:17,371 - discord.client - INFO - logging in using static token
+2025-06-13 19:12:17,379 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 19:12:17,379 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 19:12:17,941 - bot - INFO - Setup hook started
+2025-06-13 19:12:18,332 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 19:12:18,332 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 19:12:18,417 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 19:12:18,419 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 19:12:18,431 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 19:12:18,431 - bot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: CommandAlreadyRegistered: Command 'hello' already registered.
+2025-06-13 19:12:18,434 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 19:12:18,438 - bot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: CommandAlreadyRegistered: Command 'alert' already registered.
+2025-06-13 19:12:18,448 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 19:12:18,448 - cogs.core - INFO - CoreCog unloading: closing aiohttp ClientSession
+2025-06-13 19:12:18,449 - bot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: CommandAlreadyRegistered: Command 'weather' already registered.
+2025-06-13 19:12:18,451 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 19:12:18,452 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 19:12:18,452 - bot - INFO - Force Syncing commands globally...
+2025-06-13 19:13:18,275 - bot - INFO - ✅ Commands synced globally
+2025-06-13 19:13:18,276 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 19:13:18,571 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2f5e7f49a43caa33ee66952953dff1d6).
+2025-06-13 19:13:18,572 - bot - INFO - Connected to Discord
+2025-06-13 19:13:20,596 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 19:15:15,375 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 19:15:15,376 - __main__ - INFO - Starting bot...
+2025-06-13 19:15:15,376 - discord.client - INFO - logging in using static token
+2025-06-13 19:15:15,381 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 19:15:15,381 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 19:15:15,796 - bot - INFO - Setup hook started
+2025-06-13 19:15:16,169 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 19:15:16,169 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 19:15:16,377 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 19:15:16,381 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 19:15:16,388 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 19:15:16,389 - bot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: CommandAlreadyRegistered: Command 'hello' already registered.
+2025-06-13 19:15:16,396 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 19:15:16,403 - bot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: CommandAlreadyRegistered: Command 'alert' already registered.
+2025-06-13 19:15:16,409 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 19:15:16,409 - cogs.core - INFO - CoreCog unloading: closing aiohttp ClientSession
+2025-06-13 19:15:16,410 - bot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: CommandAlreadyRegistered: Command 'weather' already registered.
+2025-06-13 19:15:16,411 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 19:15:16,412 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 19:15:16,412 - bot - INFO - Force Syncing commands globally...
+2025-06-13 19:16:16,100 - bot - INFO - ✅ Commands synced globally
+2025-06-13 19:16:16,101 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 19:16:16,339 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 8e0e4765c1f1171ee05a18459f8073dd).
+2025-06-13 19:16:16,340 - bot - INFO - Connected to Discord
+2025-06-13 19:16:18,372 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 19:16:57,658 - discord.ext.commands.bot - ERROR - Ignoring exception in command sync
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/owner.py", line 20, in sync_command
+    force_sync = force == "--force"
+                 ^^^^^
+NameError: name 'force' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: NameError: name 'force' is not defined
+2025-06-13 19:21:36,265 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 19:21:36,266 - __main__ - INFO - Starting bot...
+2025-06-13 19:21:36,266 - discord.client - INFO - logging in using static token
+2025-06-13 19:21:36,272 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 19:21:36,273 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 19:21:36,760 - bot - INFO - Setup hook started
+2025-06-13 19:21:36,986 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 19:21:36,986 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 19:21:37,053 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 19:21:37,054 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 19:21:37,056 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 19:21:37,057 - bot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: CommandAlreadyRegistered: Command 'hello' already registered.
+2025-06-13 19:21:37,058 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 19:21:37,060 - bot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: CommandAlreadyRegistered: Command 'alert' already registered.
+2025-06-13 19:21:37,061 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 19:21:37,062 - cogs.core - INFO - CoreCog unloading: closing aiohttp ClientSession
+2025-06-13 19:21:37,062 - bot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: CommandAlreadyRegistered: Command 'weather' already registered.
+2025-06-13 19:21:37,063 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 19:21:37,064 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 19:21:37,064 - bot - INFO - Force Syncing commands globally...
+2025-06-13 19:22:37,170 - bot - INFO - ✅ Commands synced globally
+2025-06-13 19:22:37,170 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 19:22:37,430 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: e9283cbc43adf5963cc5a589fcbbacf0).
+2025-06-13 19:22:37,431 - bot - INFO - Connected to Discord
+2025-06-13 19:22:39,478 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 19:27:57,931 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 19:27:57,932 - __main__ - INFO - Starting bot...
+2025-06-13 19:27:57,932 - discord.client - INFO - logging in using static token
+2025-06-13 19:27:57,936 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 19:27:57,937 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 19:27:58,348 - bot - INFO - Setup hook started
+2025-06-13 19:27:58,550 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 19:27:58,551 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 19:27:58,626 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 19:27:58,627 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 19:27:58,629 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 19:27:58,630 - bot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: CommandAlreadyRegistered: Command 'hello' already registered.
+2025-06-13 19:27:58,632 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 19:27:58,634 - bot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: CommandAlreadyRegistered: Command 'alert' already registered.
+2025-06-13 19:27:58,635 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 19:27:58,635 - cogs.core - INFO - CoreCog unloading: closing aiohttp ClientSession
+2025-06-13 19:27:58,636 - bot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: CommandAlreadyRegistered: Command 'weather' already registered.
+2025-06-13 19:27:58,637 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 19:27:58,637 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 19:27:58,637 - bot - INFO - Force Syncing commands globally...
+2025-06-13 19:28:58,576 - bot - INFO - ✅ Commands synced globally
+2025-06-13 19:28:58,576 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 19:28:58,800 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: c0e2b42fe4c209cc6b0552162b3bd12d).
+2025-06-13 19:28:58,800 - bot - INFO - Connected to Discord
+2025-06-13 19:29:00,834 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 19:29:28,579 - cogs.owner - INFO - Manually synced 0 commands globally.
