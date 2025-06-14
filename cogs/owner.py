@@ -48,7 +48,7 @@ class Owner(commands.Cog):
             try:
                 if force_sync:
                     self.bot.tree.clear_commands(guild=None)
-                await self.bot.tree.sync()
+                await self.bot.tree.fetch_commands()
                 synced_cmds = await self.bot.tree.fetch_commands()
                 cmd_count = len(synced_cmds)
                 await ctx.send(f"✅ Synced {cmd_count} commands globally.")
