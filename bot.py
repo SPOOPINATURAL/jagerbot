@@ -72,6 +72,7 @@ class JagerBot(commands.Bot):
                 logger.info(f"Loaded extension: {extension}")
             except Exception as e:
                 logger.error(f"Failed to load extension {extension}: {e}")
+        logger.info(f"App commands before sync: {self.tree.get_commands()}")
         await self.sync_commands(force=True)
         logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
 
