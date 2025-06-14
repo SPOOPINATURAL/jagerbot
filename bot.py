@@ -45,22 +45,22 @@ class JagerBot(commands.Bot):
             if self._synced and not force:
                 return
 
-        logger.info(f"{'Force ' if force else ''}Syncing commands globally...")
+            logger.info(f"{'Force ' if force else ''}Syncing commands globally...")
 
-        try:
-            if force:
-                self.tree.clear_commands(guild=None)
+            try:
+                if force:
+                    self.tree.clear_commands(guild=None)
 
-            await self.tree.sync()
-            logger.info("✅ Commands synced globally")
-            self._synced = True
+                await self.tree.sync()
+                logger.info("✅ Commands synced globally")
+                self._synced = True
 
-        except asyncio.TimeoutError:
-            logger.error("Command sync timed out")
-            raise
-        except Exception as e:
-            logger.error(f"Failed to sync commands: {e}")
-            raise
+            except asyncio.TimeoutError:
+                logger.error("Command sync timed out")
+                raise
+            except Exception as e:
+                logger.error(f"Failed to sync commands: {e}")
+                raise
 
     async def setup_hook(self) -> None:
         logger.info("Setup hook started")

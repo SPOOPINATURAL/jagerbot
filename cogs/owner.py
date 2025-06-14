@@ -17,6 +17,7 @@ class Owner(commands.Cog):
     @commands.command(name='sync')
     @commands.is_owner()
     async def sync_command(self, ctx: commands.Context):
+        force_sync = force == "--force"
         await ctx.send("🔄 Syncing commands globally...")
 
         try:

@@ -241,8 +241,12 @@ class Fun(commands.Cog):
             f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**"
         )
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     cog = Fun(bot)
     await bot.add_cog(cog)
+    if not hasattr(bot, "_registered_flat_commands"):
+        bot._registered_flat_commands = set()
     for command in cog.get_app_commands():
-        bot.tree.add_command(command)
+        if command.name not in bot._registered_flat_commands:
+            bot.tree.add_command(command)
+            bot._registered_flat_commands.add(command.name)
