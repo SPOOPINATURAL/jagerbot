@@ -91,3 +91,184 @@ Traceback (most recent call last):
   File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1187, in _get_app_command_options
     raise CommandNotFound(name, parents)
 discord.app_commands.errors.CommandNotFound: Application command 'image' not found
+2025-06-13 20:16:30,374 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 20:16:30,376 - __main__ - INFO - Starting bot...
+2025-06-13 20:16:30,377 - discord.client - INFO - logging in using static token
+2025-06-13 20:16:30,385 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 20:16:30,386 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 20:16:44,236 - __main__ - ERROR - Error running bot
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 45, in main
+    await bot.start(config.DISCORD_TOKEN)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 823, in start
+    await self.login(token)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 652, in login
+    data = await self.http.static_login(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 828, in static_login
+    data = await self.request(Route('GET', '/users/@me'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 642, in request
+    async with self.__session.request(method, url, **kwargs) as response:
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-13 20:17:05,853 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 20:17:05,854 - __main__ - INFO - Starting bot...
+2025-06-13 20:17:05,854 - discord.client - INFO - logging in using static token
+2025-06-13 20:17:05,862 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 20:17:05,862 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 20:17:18,125 - __main__ - ERROR - Error running bot
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 45, in main
+    await bot.start(config.DISCORD_TOKEN)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 823, in start
+    await self.login(token)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 652, in login
+    data = await self.http.static_login(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 828, in static_login
+    data = await self.request(Route('GET', '/users/@me'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 642, in request
+    async with self.__session.request(method, url, **kwargs) as response:
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-13 20:23:53,045 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-13 20:23:53,046 - __main__ - INFO - Starting bot...
+2025-06-13 20:23:53,046 - discord.client - INFO - logging in using static token
+2025-06-13 20:23:53,053 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-13 20:23:53,053 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-13 20:23:53,526 - bot - INFO - Setup hook started
+2025-06-13 20:23:53,610 - cogs.r6 - INFO - R6Cog loaded and commands synced
+2025-06-13 20:23:53,610 - bot - INFO - Loaded extension: cogs.r6
+2025-06-13 20:23:53,832 - bot - INFO - Loaded extension: cogs.minecraft
+2025-06-13 20:23:53,836 - bot - INFO - Loaded extension: cogs.warframe
+2025-06-13 20:23:53,844 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-13 20:23:53,844 - bot - INFO - Loaded extension: cogs.fun
+2025-06-13 20:23:53,852 - bot - INFO - Loaded extension: cogs.alerts
+2025-06-13 20:23:53,856 - bot - INFO - Loaded extension: cogs.alert_cmd
+2025-06-13 20:23:53,862 - cogs.core - INFO - CoreCog loading: creating aiohttp ClientSession
+2025-06-13 20:23:53,862 - bot - INFO - Loaded extension: cogs.core
+2025-06-13 20:23:53,864 - bot - INFO - Loaded extension: cogs.owner
+2025-06-13 20:23:53,864 - bot - INFO - Loaded extension: cogs.frost
+2025-06-13 20:23:53,865 - bot - INFO - App commands before sync: [<discord.app_commands.commands.Group object at 0x7ffedf15f9d0>, <discord.app_commands.commands.Group object at 0x7ffee0fd57d0>, <discord.app_commands.commands.Group object at 0x7ffedf05ab90>, <discord.app_commands.commands.Command object at 0x7ffedf10f6d0>, <discord.app_commands.commands.Command object at 0x7ffedf10e150>, <discord.app_commands.commands.Command object at 0x7ffedf10f810>, <discord.app_commands.commands.Command object at 0x7ffedf10dcd0>, <discord.app_commands.commands.Command object at 0x7ffedf10d690>, <discord.app_commands.commands.Command object at 0x7ffedf10f350>, <discord.app_commands.commands.Command object at 0x7ffedf10fd90>, <discord.app_commands.commands.Command object at 0x7ffedf10fdd0>, <discord.app_commands.commands.Command object at 0x7ffedf10cf50>, <discord.app_commands.commands.Command object at 0x7ffedf10c050>, <discord.app_commands.commands.Command object at 0x7ffedf10f550>, <discord.app_commands.commands.Command object at 0x7ffedf0ca250>, <discord.app_commands.commands.Command object at 0x7ffedf0cbbd0>, <discord.app_commands.commands.Command object at 0x7ffedf0c9110>, <discord.app_commands.commands.Command object at 0x7ffee0fd5cd0>, <discord.app_commands.commands.Command object at 0x7ffedf09da10>, <discord.app_commands.commands.Command object at 0x7ffedf09d950>, <discord.app_commands.commands.Command object at 0x7ffedf09d690>, <discord.app_commands.commands.Command object at 0x7ffedf09e250>, <discord.app_commands.commands.Command object at 0x7ffedf09e450>, <discord.app_commands.commands.Command object at 0x7ffedf09f190>, <discord.app_commands.commands.Command object at 0x7ffedf09fb50>]
+2025-06-13 20:23:53,865 - bot - INFO - Force Syncing commands globally...
+2025-06-13 20:23:53,993 - bot - INFO - ✅ Commands synced globally
+2025-06-13 20:23:53,993 - bot - INFO - Global commands synced. They may take up to 1 hour to appear on Discord clients.
+2025-06-13 20:23:54,257 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2cbeddd664afa6dedb55343a7260073f).
+2025-06-13 20:23:54,257 - bot - INFO - Connected to Discord
+2025-06-13 20:23:56,292 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-13 20:23:58,908 - discord.ext.commands.bot - ERROR - Ignoring exception in command sync
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/owner.py", line 30, in sync_command
+    synced = await self.bot.tree.sync(guild=Object(id=gid))
+                                            ^^^^^^
+NameError: name 'Object' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/core.py", line 244, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: NameError: name 'Object' is not defined
