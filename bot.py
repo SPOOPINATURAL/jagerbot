@@ -32,32 +32,11 @@ class JagerBot(commands.Bot):
         super().__init__(*args, **kwargs)
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
         self.config = config
-        self._synced: bool = False
-        self._sync_lock = asyncio.Lock()
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
     @property
     def is_dev(self) -> bool:
         return self._dev_mode
-
-    async def sync_commands(self) -> None:
-        async with self._sync_lock:
-            if self._synced:
-                return
-
-            logger.info("Syncing application commands globally...")
-
-            try:
-                await self.sync_application_commands()
-                logger.info("✅ Application commands synced globally")
-                self._synced = True
-
-            except asyncio.TimeoutError:
-                logger.error("Command sync timed out")
-                raise
-            except Exception as e:
-                logger.error(f"Failed to sync commands: {e}")
-                raise
 
     async def setup_hook(self) -> None:
         logger.info("Setup hook started")
@@ -70,10 +49,9 @@ class JagerBot(commands.Bot):
             except Exception as e:
                 logger.error(f"Failed to load extension {extension}: {e}")
 
-        logger.info(f"App commands before sync: {self.application_commands}")
+        logger.info(f"App commands loaded: {self.application_commands}")
         logger.info(f"Registered global app commands: {[cmd.name for cmd in self.application_commands]}")
-        await self.sync_commands()
-        logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
+        logger.info("Slash commands will be synced automatically by Pycord.")
 
     async def on_ready(self) -> None:
         try:
