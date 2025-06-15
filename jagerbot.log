@@ -559,3 +559,31 @@ discord.ext.commands.errors.CommandInvokeError: Command raised an exception: Unb
 2025-06-14 18:05:36,401 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-14 18:09:36,285 - cogs.owner - INFO - Manually synced 25 commands globally: ['r6', 'mc', 'wf', 'hello', 'quote', 'image', 'clancy', 'longo', '8ball', 'xkcd', 'd20', 'rps', 'trivia', 'score', 'alert', 'listalerts', 'cancelalerts', 'weather', 'currency', 'timezones', 'tzconvert', 'credits', 'date', 'plane', 'info']
 2025-06-14 18:20:21,291 - cogs.owner - INFO - Manually synced commands to all allowed guilds.
+2025-06-14 20:04:09,151 - bot - WARNING - Disconnected from Discord
+2025-06-14 20:04:09,364 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-14 22:05:53,534 - bot - WARNING - Disconnected from Discord
+2025-06-14 22:05:53,751 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 01:27:53,717 - bot - WARNING - Disconnected from Discord
+2025-06-15 01:27:53,911 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 05:23:02,406 - bot - WARNING - Disconnected from Discord
+2025-06-15 05:23:02,577 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 07:49:25,766 - bot - WARNING - Disconnected from Discord
+2025-06-15 07:49:25,997 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 09:10:43,989 - bot - WARNING - Disconnected from Discord
+2025-06-15 09:10:44,156 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 12:00:14,937 - bot - WARNING - Disconnected from Discord
+2025-06-15 12:00:15,114 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 15:16:17,299 - bot - WARNING - Disconnected from Discord
+2025-06-15 15:16:17,502 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 16bfefb13bd5958d9c97d8cea8ef5d73.
+2025-06-15 16:23:56,003 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-15 16:23:56,004 - __main__ - INFO - Starting bot...
+2025-06-15 16:23:56,004 - discord.client - INFO - logging in using static token
+2025-06-15 16:23:56,008 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-15 16:23:56,008 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-15 16:23:56,409 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-15 16:23:56,545 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-b5f8",{"micros":90002,"calls":["id_created",{"micros":940,"calls":[]},"session_lookup_time",{"micros":1369,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-121",{"micros":87266,"calls":["start_session",{"micros":50520,"calls":["discord-api-rpc-f55bfd467-98vdq",{"micros":41244,"calls":["get_user",{"micros":6435},"get_guilds",{"micros":5855},"send_scheduled_deletion_message",{"micros":18},"guild_join_requests",{"micros":487},"authorized_ip_coro",{"micros":17},"pending_payments",{"micros":1117},"apex_user_experiments",{"micros":3},"user_activities",{"micros":2},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":70,"calls":[]},"presence_started",{"micros":1802,"calls":[]},"guilds_started",{"micros":75,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":34776,"calls":[]},"connect_finished",{"micros":34781,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: e51b69e57458b4991feccf939e8ba232).
+2025-06-15 16:23:56,546 - bot - INFO - Connected to Discord
+2025-06-15 16:23:58,580 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
