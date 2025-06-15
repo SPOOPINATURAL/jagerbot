@@ -643,3 +643,15 @@ Traceback (most recent call last):
     await self.sync_application_commands()
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'JagerBot' object has no attribute 'sync_application_commands'
+2025-06-15 16:52:32,745 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-15 16:52:32,746 - __main__ - INFO - Starting bot...
+2025-06-15 16:52:32,746 - discord.client - INFO - logging in using static token
+2025-06-15 16:52:32,749 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-15 16:52:32,749 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-15 16:52:33,119 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-15 16:52:33,380 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-jmv4",{"micros":209187,"calls":["id_created",{"micros":367,"calls":[]},"session_lookup_time",{"micros":330,"calls":[]},"session_lookup_finished",{"micros":23,"calls":[]},"discord-sessions-prd-2-10",{"micros":208112,"calls":["start_session",{"micros":190192,"calls":["discord-api-rpc-f55bfd467-sg877",{"micros":158532,"calls":["get_user",{"micros":5008},"get_guilds",{"micros":24486},"send_scheduled_deletion_message",{"micros":20},"guild_join_requests",{"micros":617},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":5623},"apex_user_experiments",{"micros":6},"user_activities",{"micros":11},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":68,"calls":[]},"presence_started",{"micros":9230,"calls":[]},"guilds_started",{"micros":82,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":8516,"calls":[]},"connect_finished",{"micros":8521,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 99ee1649d7bf314d4b6634a51b9d4722).
+2025-06-15 16:52:33,381 - bot - INFO - Connected to Discord
+2025-06-15 16:52:35,435 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
