@@ -1,11 +1,10 @@
 import asyncio
 import logging
+import discord
+from discord.ext import commands
 from bot import JagerBot
 import config
 from utils.setup import setup_logging, load_data
-
-import discord
-from dateparser.conf import settings as dp_settings
 
 try:
     from webserver import keep_alive
@@ -18,7 +17,7 @@ def create_bot() -> JagerBot:
     intents.message_content = True
     intents.members = True
     intents.guilds = True
-    
+
     bot = JagerBot(
         command_prefix="$",
         intents=intents,
@@ -29,15 +28,14 @@ def create_bot() -> JagerBot:
 async def main():
     setup_logging()
     logger = logging.getLogger(__name__)
-    
+
     bot = create_bot()
 
-    
     data = load_data()
     bot.planes = data.get("planes", [])
     bot.alerts = data.get("alerts", {})
     bot.user_scores = data.get("trivia_scores", {})
-    
+
     keep_alive()
 
     try:
@@ -51,13 +49,12 @@ async def main():
         logger.exception("Error running bot")
         raise
     finally:
-        remaining_tasks = [t for t in asyncio.all_tasks()if t is not asyncio.current_task()]
+        remaining_tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         if remaining_tasks:
             logger.info(f"Cleaning up {len(remaining_tasks)} remaining tasks...")
             for task in remaining_tasks:
                 task.cancel()
             await asyncio.gather(*remaining_tasks, return_exceptions=True)
-
 
 if __name__ == "__main__":
     asyncio.run(main())

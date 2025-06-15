@@ -74,10 +74,6 @@ class JagerBot(commands.Bot):
         logger.info(f"Registered global app commands: {[cmd.name for cmd in self.tree.get_commands()]}")
         await self.sync_commands()
         logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
-        for gid in self.config.ALLOWED_GUILD_IDS:
-            synced = await self.tree.sync(guild=discord.Object(id=gid))
-            logger.info(f"Force-synced {len(synced)} commands to guild {gid}: {[cmd.name for cmd in synced]}")
-
 
     async def on_ready(self) -> None:
         try:

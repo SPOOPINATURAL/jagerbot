@@ -1,7 +1,7 @@
 import logging
 from discord.ext import commands
 from typing import Optional
-from discord import Object
+import discord
 
 logger = logging.getLogger(__name__)
 
@@ -26,11 +26,11 @@ class Owner(commands.Cog):
             total = 0
             for gid in self.bot.config.ALLOWED_GUILD_IDS:
                 await ctx.send(f"🔄 Syncing commands to guild {gid}...")
-                synced = await self.bot.tree.sync(guild=Object(id=gid))
+                synced = await self.bot.tree.sync(guild=discord.Object(id=gid))
                 await ctx.send(f"✅ Synced {len(synced)} commands to guild {gid}: {[cmd.name for cmd in synced]}")
                 total += len(synced)
             await ctx.send(f"✅ Finished syncing to all guilds. Total commands synced: {total}")
-            logger.info(f"Manually synced commands to all allowed guilds.")
+            logger.info("Manually synced commands to all allowed guilds.")
         elif scope == "guild":
             if ctx.guild:
                 await ctx.send(f"🔄 Syncing commands to this guild ({ctx.guild.id})...")

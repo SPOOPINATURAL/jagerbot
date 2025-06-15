@@ -53,7 +53,6 @@ class Fun(commands.Cog):
         if self.session and not self.session.closed:
             await self.session.close()
 
-
     @app_commands.command(name='hello', description="Hello!")
     async def hello(self, interaction: discord.Interaction):
         await interaction.response.send_message(f"Hallo {interaction.user.mention} :)")
@@ -144,7 +143,7 @@ class Fun(commands.Cog):
         await interaction.response.send_message(embed=embed)
 
     @app_commands.command(name="rps", description="Play Rock, Paper, Scissors")
-    @app_commands.checks.cooldown(1, 5.0)
+    @commands.cooldown(1, 5.0, commands.BucketType.user)
     async def rps_command(self, interaction: discord.Interaction):
         try:
             view = RPSView(player_id=interaction.user.id)
@@ -162,7 +161,7 @@ class Fun(commands.Cog):
             )
 
     @app_commands.command(name='trivia', description="Get a trivia question, multiple choice answers")
-    @app_commands.checks.cooldown(1, 30.0)
+    @commands.cooldown(1, 30.0, commands.BucketType.user)
     async def trivia(self, interaction: discord.Interaction):
         try:
             question_data = await self._fetch_trivia_question()
