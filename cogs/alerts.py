@@ -7,9 +7,9 @@ from datetime import datetime, timedelta, timezone
 import discord
 from collections import defaultdict
 
-
 logger = logging.getLogger(__name__)
 UTC = pytz.UTC
+
 def serialize_alerts(alerts_dict):
     serialized = {}
     for user_id, user_alerts in alerts_dict.items():

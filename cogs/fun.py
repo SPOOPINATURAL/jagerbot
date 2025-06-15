@@ -5,7 +5,6 @@ from typing import Dict, Optional
 
 import aiohttp
 import discord
-from discord import app_commands
 from discord.ext import commands
 
 from config import SCORES_FILE
@@ -53,35 +52,38 @@ class Fun(commands.Cog):
         if self.session and not self.session.closed:
             await self.session.close()
 
-    @app_commands.command(name='hello', description="Hello!")
-    async def hello(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f"Hallo {interaction.user.mention} :)")
+    @commands.slash_command(name='hello', description="Hello!")
+    async def hello(self, ctx: discord.ApplicationContext):
+        await ctx.respond(f"Hallo {ctx.user.mention} :)")
 
-    @app_commands.command(name='quote', description="Get a random Jäger quote")
-    async def quote(self, interaction: discord.Interaction):
+    @commands.slash_command(name='quote', description="Get a random Jäger quote")
+    async def quote(self, ctx: discord.ApplicationContext):
         selected_quotes = random.choice(self.bot.config.quotes)
-        await interaction.response.send_message(selected_quotes)
+        await ctx.respond(selected_quotes)
 
-    @app_commands.command(name='image', description="Get a random image")
-    async def image(self, interaction: discord.Interaction):
+    @commands.slash_command(name='image', description="Get a random image")
+    async def image(self, ctx: discord.ApplicationContext):
         images_url = random.choice(self.bot.config.image_urls)
-        await interaction.response.send_message(images_url)
+        await ctx.respond(images_url)
 
-    @app_commands.command(name='clancy', description="Obtain a random Clancy image")
-    async def clancy(self, interaction: discord.Interaction):
+    @commands.slash_command(name='clancy', description="Obtain a random Clancy image")
+    async def clancy(self, ctx: discord.ApplicationContext):
         clancy_image = random.choice(self.bot.config.clancy_images)
-        await interaction.response.send_message(clancy_image)
+        await ctx.respond(clancy_image)
 
-    @app_commands.command(name='longo', description="longo")
-    async def longo(self, interaction: discord.Interaction):
+    @commands.slash_command(name='longo', description="longo")
+    async def longo(self, ctx: discord.ApplicationContext):
         image_url = "https://i.imgur.com/J1P7g5f.jpeg"
         embed = discord.Embed(title="longo")
         embed.set_image(url=image_url)
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="8ball", description="Ask the magic 8ball a question")
-    @app_commands.describe(question="Your yes/no question")
-    async def eight_ball(self, interaction: discord.Interaction, question: str):
+    @commands.slash_command(name="8ball", description="Ask the magic 8ball a question")
+    async def eight_ball(
+        self,
+        ctx: discord.ApplicationContext,
+        question: discord.Option(str, "Your yes/no question")
+    ):
         responses = [
             "🎱 Yes, definitely.",
             "🎱 It is certain.",
@@ -102,24 +104,24 @@ class Fun(commands.Cog):
             description=f"**Question:** {question}\n**Answer:** {response}",
             color=0x8B0000
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="xkcd", description="Get a random XKCD comic")
-    async def random_xkcd(self, interaction: discord.Interaction):
+    @commands.slash_command(name="xkcd", description="Get a random XKCD comic")
+    async def random_xkcd(self, ctx: discord.ApplicationContext):
         async with aiohttp.ClientSession() as session:
             async with session.get("https://c.xkcd.com/random/comic/", allow_redirects=False) as resp:
                 if resp.status != 302:
-                    await interaction.response.send_message("Couldn't fetch a random XKCD comic.", ephemeral=True)
+                    await ctx.respond("Couldn't fetch a random XKCD comic.", ephemeral=True)
                     return
                 location = resp.headers.get("Location")
                 if not location:
-                    await interaction.response.send_message("Couldn't get the comic URL.", ephemeral=True)
+                    await ctx.respond("Couldn't get the comic URL.", ephemeral=True)
                     return
 
             json_url = location + "info.0.json"
             async with session.get(json_url) as resp:
                 if resp.status != 200:
-                    await interaction.response.send_message("Couldn't fetch XKCD comic info.", ephemeral=True)
+                    await ctx.respond("Couldn't fetch XKCD comic info.", ephemeral=True)
                     return
                 comic = await resp.json()
 
@@ -130,43 +132,43 @@ class Fun(commands.Cog):
         )
         embed.set_image(url=comic["img"])
         embed.set_footer(text=f"Comic #{comic['num']}")
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="d20", description="Roll d20")
-    async def roll_d20(self, interaction: discord.Interaction):
+    @commands.slash_command(name="d20", description="Roll d20")
+    async def roll_d20(self, ctx: discord.ApplicationContext):
         result = random.randint(1, 20)
         embed = discord.Embed(
             title="🎲 D20 Roll",
             description=f"You rolled a **{result}**!",
             color=0x8B0000
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="rps", description="Play Rock, Paper, Scissors")
+    @commands.slash_command(name="rps", description="Play Rock, Paper, Scissors")
     @commands.cooldown(1, 5.0, commands.BucketType.user)
-    async def rps_command(self, interaction: discord.Interaction):
+    async def rps_command(self, ctx: discord.ApplicationContext):
         try:
-            view = RPSView(player_id=interaction.user.id)
-            await interaction.response.send_message(
+            view = RPSView(player_id=ctx.user.id)
+            await ctx.respond(
                 "🎮 Choose your move:",
                 view=view
             )
-            view.message = await interaction.original_response()
+            view.message = await ctx.interaction.original_response()
 
         except Exception as e:
             logger.error(f"Error starting RPS game: {e}", exc_info=True)
-            await interaction.response.send_message(
+            await ctx.respond(
                 "❌ Failed to start the game. Please try again.",
                 ephemeral=True
             )
 
-    @app_commands.command(name='trivia', description="Get a trivia question, multiple choice answers")
+    @commands.slash_command(name='trivia', description="Get a trivia question, multiple choice answers")
     @commands.cooldown(1, 30.0, commands.BucketType.user)
-    async def trivia(self, interaction: discord.Interaction):
+    async def trivia(self, ctx: discord.ApplicationContext):
         try:
             question_data = await self._fetch_trivia_question()
             if not question_data:
-                await interaction.response.send_message(
+                await ctx.respond(
                     "❌ Failed to fetch trivia question. Try again later.",
                     ephemeral=True
                 )
@@ -177,19 +179,19 @@ class Fun(commands.Cog):
 
             embed = self._create_trivia_embed(question, answers)
             view = TriviaView(
-                author_id=interaction.user.id,
+                author_id=ctx.user.id,
                 correct_letter=correct_letter,
                 correct_answer=correct,
                 answer_callback=self.trivia_manager.update_score
             )
 
-            await interaction.response.send_message(embed=embed, view=view)
-            view.message = await interaction.original_response()
+            await ctx.respond(embed=embed, view=view)
+            view.message = await ctx.interaction.original_response()
             await view.wait()
 
         except Exception as e:
             logger.error(f"Error in trivia command: {e}")
-            await interaction.response.send_message(
+            await ctx.respond(
                 "❌ An error occurred. Please try again.",
                 ephemeral=True
             )
@@ -233,11 +235,11 @@ class Fun(commands.Cog):
         embed.set_footer(text="Click the button that matches your answer.")
         return embed
 
-    @app_commands.command(name='score', description="Get your trivia score")
-    async def score(self, interaction: discord.Interaction):
-        score = self.trivia_manager.get_score(interaction.user.id)
-        await interaction.response.send_message(
-            f"🏆 {interaction.user.display_name}, your trivia score is: **{score}**"
+    @commands.slash_command(name='score', description="Get your trivia score")
+    async def score(self, ctx: discord.ApplicationContext):
+        score = self.trivia_manager.get_score(ctx.user.id)
+        await ctx.respond(
+            f"🏆 {ctx.user.display_name}, your trivia score is: **{score}**"
         )
 
 async def setup(bot: commands.Bot):

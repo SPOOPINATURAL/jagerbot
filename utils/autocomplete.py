@@ -1,6 +1,5 @@
-
 from typing import Dict, List, Tuple
-from discord import app_commands
+import discord
 
 class AutocompleteMixin:
     def get_suggestions(
@@ -10,7 +9,7 @@ class AutocompleteMixin:
         alias_dict: Dict[str, str] = None,
         max_results: int = 25,
         cache_prefix: str = ""
-    ) -> List[app_commands.Choice[str]]:
+    ) -> List[discord.OptionChoice]:
         if not current:
             return []
 
@@ -25,13 +24,13 @@ class AutocompleteMixin:
 
         for name, full_name in primary_dict.items():
             if current in name:
-                suggestions.append(app_commands.Choice(name=full_name, value=full_name))
+                suggestions.append(discord.OptionChoice(name=full_name, value=full_name))
 
 
         if alias_dict and len(suggestions) < max_results:
             for alias, name in alias_dict.items():
                 if current in alias.lower() and len(suggestions) < max_results:
-                    suggestions.append(app_commands.Choice(
+                    suggestions.append(discord.OptionChoice(
                         name=f"{alias} (alias for {name})",
                         value=name
                     ))

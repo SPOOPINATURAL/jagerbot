@@ -45,12 +45,11 @@ class JagerBot(commands.Bot):
             if self._synced:
                 return
 
-            logger.info("Syncing commands globally...")
+            logger.info("Syncing application commands globally...")
 
             try:
-                
-                await self.tree.sync()
-                logger.info("✅ Commands synced globally")
+                await self.sync_application_commands()
+                logger.info("✅ Application commands synced globally")
                 self._synced = True
 
             except asyncio.TimeoutError:
@@ -70,8 +69,9 @@ class JagerBot(commands.Bot):
                 logger.info(f"Loaded extension: {extension}")
             except Exception as e:
                 logger.error(f"Failed to load extension {extension}: {e}")
-        logger.info(f"App commands before sync: {self.tree.get_commands()}")
-        logger.info(f"Registered global app commands: {[cmd.name for cmd in self.tree.get_commands()]}")
+
+        logger.info(f"App commands before sync: {self.application_commands}")
+        logger.info(f"Registered global app commands: {[cmd.name for cmd in self.application_commands]}")
         await self.sync_commands()
         logger.info("Global commands synced. They may take up to 1 hour to appear on Discord clients.")
 

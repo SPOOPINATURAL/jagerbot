@@ -1,7 +1,6 @@
 import logging
 import discord
 import aiohttp
-from discord import app_commands
 from discord.ext import commands
 from datetime import datetime, timedelta
 from pytz import UTC
@@ -159,10 +158,10 @@ class AlertCommands(commands.Cog):
                 ephemeral=True
             )
 
-    @app_commands.command(name="alert", description="Set an alert via interactive modal")
-    async def alert(self, interaction: discord.Interaction) -> None:
+    @commands.slash_command(name="alert", description="Set an alert via interactive modal")
+    async def alert(self, ctx: discord.ApplicationContext):
         modal = AlertModal(self.handle_alert_creation)
-        await interaction.response.send_modal(modal)
+        await ctx.interaction.response.send_modal(modal)
 
     @staticmethod
     def create_alert_list_embed(alert: dict, index: int, time_left: timedelta) -> discord.Embed:
@@ -198,14 +197,14 @@ class AlertCommands(commands.Cog):
 
         return active_alerts
 
-    @app_commands.command(name="listalerts", description="List your active alerts with controls")
-    async def listalerts(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=True)
-        user_id = str(interaction.user.id)
+    @commands.slash_command(name="listalerts", description="List your active alerts with controls")
+    async def listalerts(self, ctx: discord.ApplicationContext):
+        await ctx.defer(ephemeral=True)
+        user_id = str(ctx.author.id)
         user_alerts = alerts.get(user_id, [])
 
         if not user_alerts:
-            await interaction.followup.send(
+            await ctx.followup.send(
                 "ℹ️ You have no active alerts.",
                 ephemeral=True
             )
@@ -214,27 +213,27 @@ class AlertCommands(commands.Cog):
         active_alerts = self.get_active_alerts(user_alerts)
 
         if not active_alerts:
-            await interaction.followup.send(
+            await ctx.followup.send(
                 "ℹ️ You have no active alerts.",
                 ephemeral=True
             )
             return
 
         for embed, view in active_alerts:
-            await interaction.followup.send(embed=embed, view=view)
+            await ctx.followup.send(embed=embed, view=view)
 
-    @app_commands.command(name="cancelalerts", description="Cancel all your active alerts")
-    async def cancelalerts(self, interaction: discord.Interaction):
-        user_id = str(interaction.user.id)
+    @commands.slash_command(name="cancelalerts", description="Cancel all your active alerts")
+    async def cancelalerts(self, ctx: discord.ApplicationContext):
+        user_id = str(ctx.author.id)
         if user_id in alerts:
             del alerts[user_id]
             save_alerts()
-            await interaction.response.send_message(
+            await ctx.respond(
                 "🛑 All your alerts have been cancelled.",
                 ephemeral=True
             )
         else:
-            await interaction.response.send_message(
+            await ctx.respond(
                 "ℹ️ You have no active alerts.",
                 ephemeral=True
             )

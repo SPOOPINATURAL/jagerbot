@@ -4,7 +4,6 @@ import traceback
 import aiohttp
 import discord
 from bs4 import BeautifulSoup
-from discord import app_commands
 from discord.ext import commands
 
 from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
@@ -12,8 +11,7 @@ from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
 
-
-class MinecraftCog(commands.GroupCog, group_name="mc"):
+class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
@@ -36,19 +34,30 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
             color=0x55a630
         )
 
-    @app_commands.command(name="wiki", description="Search Minecraft Wiki")
-    @app_commands.describe(query="The wiki page to search")
-    async def mcwiki(self, interaction: discord.Interaction, query: str):
+    @commands.slash_command(name="mc", description="Minecraft related commands")
+    async def mc(self, ctx: discord.ApplicationContext):
+        """Group command root for Minecraft."""
+        pass
+
+    @mc.sub_command(name="wiki", description="Search Minecraft Wiki")
+    async def mc_wiki(
+        self,
+        ctx: discord.ApplicationContext,
+        query: discord.Option(str, "The wiki page to search")
+    ):
         embed = self.create_wiki_embed(
             f"📖 Minecraft Wiki: {query.title()}",
             query.replace(" ", "_")
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
-    @app_commands.describe(item="The item to get recipe for")
-    async def mcrecipe(self, interaction: discord.Interaction, item: str):
-        await interaction.response.defer()
+    @mc.sub_command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
+    async def mc_recipe(
+        self,
+        ctx: discord.ApplicationContext,
+        item: discord.Option(str, "The item to get recipe for")
+    ):
+        await ctx.defer()
         item_name = item.replace(" ", "_").title()
         wiki_url = f"{self.wiki_base_url}/{item_name}"
 
@@ -56,7 +65,7 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
         try:
             async with self.session.get(wiki_url) as resp:
                 if resp.status != 200:
-                    await interaction.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
+                    await ctx.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
                     return
                 html = await resp.text()
                 soup = BeautifulSoup(html, "html.parser")
@@ -74,7 +83,7 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
             embed.set_image(url=recipe_image_url)
         else:
             embed.set_footer(text="Recipe image not found, please check the wiki page link.")
-        await interaction.followup.send(embed=embed)
+        await ctx.followup.send(embed=embed)
 
     def _find_recipe_image(self, soup: BeautifulSoup) -> str:
         for selector in [("table", "crafting-table"), ("div", "crafting"), ("img", None)]:
@@ -91,61 +100,76 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
                     return src
         return None
 
-    @app_commands.command(name="advancement", description="Get advancement info from Minecraft Wiki")
-    @app_commands.describe(name="Advancement name")
-    async def mcadvancement(self, interaction: discord.Interaction, name: str):
+    @mc.sub_command(name="advancement", description="Get advancement info from Minecraft Wiki")
+    async def mc_advancement(
+        self,
+        ctx: discord.ApplicationContext,
+        name: discord.Option(str, "Advancement name")
+    ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
             title=f"🏆 Info on advancement {name.title()}",
             description=f"[View on wiki]({url})",
             color=0x55a630
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="enchant", description="Get enchantment info from Minecraft Wiki")
-    @app_commands.describe(name="Enchantment name")
-    async def mcenchant(self, interaction: discord.Interaction, name: str):
+    @mc.sub_command(name="enchant", description="Get enchantment info from Minecraft Wiki")
+    async def mc_enchant(
+        self,
+        ctx: discord.ApplicationContext,
+        name: discord.Option(str, "Enchantment name")
+    ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
             title=f"✨ Enchantment {name.title()} details",
             description=f"[View on wiki]({url})",
             color=0x55a630
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="biome", description="Get biome info from Minecraft Wiki")
-    @app_commands.describe(name="Biome name")
-    async def mcbiome(self, interaction: discord.Interaction, name: str):
+    @mc.sub_command(name="biome", description="Get biome info from Minecraft Wiki")
+    async def mc_biome(
+        self,
+        ctx: discord.ApplicationContext,
+        name: discord.Option(str, "Biome name")
+    ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
             title=f"🌲 Biome {name.title()} info",
             description=f"[View on wiki]({url})",
             color=0x55a630
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="structure", description="Get structure info from Minecraft Wiki")
-    @app_commands.describe(name="Structure name")
-    async def mcstructure(self, interaction: discord.Interaction, name: str):
+    @mc.sub_command(name="structure", description="Get structure info from Minecraft Wiki")
+    async def mc_structure(
+        self,
+        ctx: discord.ApplicationContext,
+        name: discord.Option(str, "Structure name")
+    ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
             title=f"🏛️ Structure {name.title()}",
             description=f"[View on wiki]({url})",
             color=0x55a630
         )
-        await interaction.response.send_message(embed=embed)
+        await ctx.respond(embed=embed)
 
-    @app_commands.command(name="player", description="Get Minecraft player info")
-    @app_commands.describe(username="Minecraft IGN")
-    async def mcplayer(self, interaction: discord.Interaction, username: str):
-        await interaction.response.defer()
+    @mc.sub_command(name="player", description="Get Minecraft player info")
+    async def mc_player(
+        self,
+        ctx: discord.ApplicationContext,
+        username: discord.Option(str, "Minecraft IGN")
+    ):
+        await ctx.defer()
         try:
             headers = {"User-Agent": "Mozilla/5.0"}
             async with self.session.get(
                 f"https://api.mojang.com/users/profiles/minecraft/{username}", headers=headers
             ) as resp:
                 if resp.status != 200:
-                    await interaction.followup.send("❌ Could not find that player.")
+                    await ctx.followup.send("❌ Could not find that player.")
                     return
                 data = await resp.json()
                 uuid = data["id"]
@@ -160,35 +184,35 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
             )
             embed.set_image(url=skin_url)
             embed.set_thumbnail(url=head_url)
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
         except Exception as e:
-            await interaction.followup.send(f"❌ Error: `{e}`")
+            await ctx.followup.send(f"❌ Error: `{e}`")
 
-    @app_commands.command(name="serverstatus", description="Get the status of the VDSMP")
-    async def mcserverstatus(self, interaction: discord.Interaction):
-        if interaction.guild_id not in ALLOWED_GUILD_IDS:
-            await interaction.response.send_message(
+    @mc.sub_command(name="serverstatus", description="Get the status of the VDSMP")
+    async def mc_serverstatus(self, ctx: discord.ApplicationContext):
+        if ctx.guild and ctx.guild.id not in ALLOWED_GUILD_IDS:
+            await ctx.respond(
                 "❌ This command is not available in this server.",
                 ephemeral=True
             )
             return
 
-        await interaction.response.defer()
+        await ctx.defer()
 
         server_ip = "vdsmp.mc.gg"
 
         try:
             async with self.session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
                 if resp.status != 200:
-                    await interaction.followup.send("❌ Error contacting the status API.")
+                    await ctx.followup.send("❌ Error contacting the status API.")
                     return
                 data = await resp.json()
 
             if not data.get("online", False):
-                await interaction.followup.send("❌ The server is currently **offline**.")
+                await ctx.followup.send("❌ The server is currently **offline**.")
                 return
 
-            # Safely get MOTD
+            # MOTD
             motd = "No MOTD"
             motd_data = data.get("motd", {})
             if motd_data:
@@ -214,12 +238,11 @@ class MinecraftCog(commands.GroupCog, group_name="mc"):
             if icon and not icon.startswith("data:image"):
                 embed.set_thumbnail(url=icon)
 
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
 
         except Exception as e:
             tb = traceback.format_exc()
-            await interaction.followup.send(f"❌ Error in mcserverstatus:\n```\n{tb}\n```")
-
+            await ctx.followup.send(f"❌ Error in mcserverstatus:\n```\n{tb}\n```")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(MinecraftCog(bot))

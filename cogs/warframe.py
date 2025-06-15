@@ -3,7 +3,6 @@ import aiohttp
 import logging
 from typing import Optional
 from discord.ext import commands
-from discord import app_commands
 from discord.ui import View, Button
 from config import (
     WF_API_BASE,
@@ -14,9 +13,11 @@ from config import (
 )
 
 logger = logging.getLogger(__name__)
+
 def chunk_list(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
+
 class BaroPaginator(View):
     def __init__(self, items: list[dict], location: str, end_str: str):
         super().__init__(timeout=180)
@@ -56,7 +57,7 @@ class BaroPaginator(View):
             )
         return embed
 
-class WarframeCog(commands.GroupCog, group_name="wf"):
+class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.session = None
@@ -91,18 +92,23 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
             logger.error(f"Error fetching {endpoint}: {e}")
             return None
 
-    @app_commands.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
-    async def baro(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+    @commands.slash_command(name="wf", description="Warframe related commands")
+    async def wf(self, ctx: discord.ApplicationContext):
+        """Group command root for Warframe."""
+        pass
+
+    @wf.sub_command(name="baro", description="Check Baro Ki'Teer's status and inventory")
+    async def baro(self, ctx: discord.ApplicationContext):
+        await ctx.defer()
         data = await self.get_cached_data("voidTrader")
         if not data:
-            await interaction.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
+            await ctx.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
             return
 
         if data.get("active"):
             inventory = data.get("inventory", [])
             if not inventory:
-                await interaction.followup.send("Baro has no inventory currently.", ephemeral=True)
+                await ctx.followup.send("Baro has no inventory currently.", ephemeral=True)
                 return
             paginator = BaroPaginator(
                 items=inventory,
@@ -110,19 +116,19 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
                 end_str=data.get("endString", "Unknown time")
             )
             embed = paginator.create_embed()
-            await interaction.followup.send(embed=embed, view=paginator)
+            await ctx.followup.send(embed=embed, view=paginator)
         else:
             embed = discord.Embed(title="Baro Ki'Teer", color=WF_COLOR)
             embed.description = f"Next visit: {data.get('startString', 'Unknown')}\nLocation: {data.get('location', 'Unknown')}"
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
 
-    @app_commands.command(name="news", description="Show latest Warframe news")
-    async def wfnews(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+    @wf.sub_command(name="news", description="Show latest Warframe news")
+    async def wfnews(self, ctx: discord.ApplicationContext):
+        await ctx.defer()
         try:
             data = await self.get_cached_data("news")
             if not data:
-                await interaction.followup.send("❌ Failed to fetch news.", ephemeral=True)
+                await ctx.followup.send("❌ Failed to fetch news.", ephemeral=True)
                 return
             embed = discord.Embed(title="Warframe News", color=WF_COLOR)
             for news in data[:5]:
@@ -131,18 +137,18 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
                     value=f"[Read More]({news['link']})",
                     inline=False
                 )
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error in news command: {e}")
-            await interaction.followup.send("❌ Error fetching news.", ephemeral=True)
+            await ctx.followup.send("❌ Error fetching news.", ephemeral=True)
 
-    @app_commands.command(name="nightwave", description="Show current Nightwave challenges")
-    async def nightwave(self, interaction: discord.Interaction):
-        await interaction.response.defer()
+    @wf.sub_command(name="nightwave", description="Show current Nightwave challenges")
+    async def nightwave(self, ctx: discord.ApplicationContext):
+        await ctx.defer()
         try:
             data = await self.get_cached_data("nightwave")
             if not data:
-                await interaction.followup.send("❌ Failed to fetch Nightwave data.", ephemeral=True)
+                await ctx.followup.send("❌ Failed to fetch Nightwave data.", ephemeral=True)
                 return
             embed = discord.Embed(title="Nightwave Challenges", color=WF_COLOR)
             for challenge in data.get("activeChallenges", []):
@@ -151,22 +157,25 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
                     value=challenge.get('desc', 'No description'),
                     inline=False
                 )
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error in nightwave command: {e}")
-            await interaction.followup.send("❌ Error fetching Nightwave data.", ephemeral=True)
+            await ctx.followup.send("❌ Error fetching Nightwave data.", ephemeral=True)
 
-    @app_commands.command(name="price", description="Check item prices from warframe.market")
-    @app_commands.describe(item="Item name to check prices for")
-    async def wfprice(self, interaction: discord.Interaction, item: str):
-        await interaction.response.defer()
+    @wf.sub_command(name="price", description="Check item prices from warframe.market")
+    async def wfprice(
+        self,
+        ctx: discord.ApplicationContext,
+        item: discord.Option(str, "Item name to check prices for")
+    ):
+        await ctx.defer()
         item_url = item.replace(" ", "_").lower()
         url = f"{WF_MARKET_API}/items/{item_url}/orders"
 
         try:
             async with self.session.get(url) as resp:
                 if resp.status != 200:
-                    await interaction.followup.send("❌ Item not found.", ephemeral=True)
+                    await ctx.followup.send("❌ Item not found.", ephemeral=True)
                     return
                 data = await resp.json()
                 sell_orders = [
@@ -174,7 +183,7 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
                     if order.get("order_type") == "sell" and order.get("user", {}).get("status") == "ingame"
                 ]
                 if not sell_orders:
-                    await interaction.followup.send("❌ No active sellers found.")
+                    await ctx.followup.send("❌ No active sellers found.")
                     return
 
                 cheapest = sorted(sell_orders, key=lambda x: x.get("platinum", 9999))[:5]
@@ -185,14 +194,14 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
                         value=f"Seller: {order.get('user', {}).get('ingame_name', 'Unknown')}",
                         inline=True
                     )
-                await interaction.followup.send(embed=embed)
+                await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error fetching price for {item}: {e}")
-            await interaction.followup.send("❌ Error fetching prices.", ephemeral=True)
+            await ctx.followup.send("❌ Error fetching prices.", ephemeral=True)
 
-    @app_commands.command(name="streams", description="Show current and upcoming Warframe streams")
-    async def streams(self, interaction: discord.Interaction):
-        await interaction.response.defer(thinking=True)
+    @wf.sub_command(name="streams", description="Show current and upcoming Warframe streams")
+    async def streams(self, ctx: discord.ApplicationContext):
+        await ctx.defer(thinking=True)
         try:
             async with self.session.get(f"{WF_STREAMS_API}/streams/upcoming") as resp:
                 upcoming = await resp.json() if resp.status == 200 else []
@@ -218,10 +227,10 @@ class WarframeCog(commands.GroupCog, group_name="wf"):
             if not upcoming and not active:
                 embed.description = "No streams found."
 
-            await interaction.followup.send(embed=embed)
+            await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error fetching streams: {e}")
-            await interaction.followup.send("❌ Error fetching stream data.", ephemeral=True)
+            await ctx.followup.send("❌ Error fetching stream data.", ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(WarframeCog(bot))
