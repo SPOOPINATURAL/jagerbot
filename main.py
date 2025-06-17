@@ -2,6 +2,7 @@ import asyncio
 import logging
 from bot import JagerBot
 import config
+import os
 from utils.setup import load_data
 
 logging.basicConfig(level=logging.INFO)
@@ -30,7 +31,10 @@ async def main():
     bot.planes = data.get("planes", [])
     bot.alerts = data.get("alerts", {})
     bot.user_scores = data.get("trivia_scores", {})
-
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await bot.load_extension(f"cogs.{filename[:-3]}")
+            logger.info(f"Loaded extension: cogs.{filename[:-3]}")
     try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
