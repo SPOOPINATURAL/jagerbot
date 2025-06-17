@@ -18,11 +18,12 @@ def load_alerts():
             for user_id, user_alerts in alerts_raw.items():
                 alerts[user_id] = []
                 for alert in user_alerts:
-                    alert['time'] = isoparse(alert['time'])
+                    alert_time = isoparse(alert['time'])
                     if alert_time.tzinfo is None:
                         alert_time = alert_time.replace(tzinfo=timezone.utc)
                     else:
                         alert_time = alert_time.astimezone(timezone.utc)
+                    alert['time'] = alert_time
                     alerts[user_id].append({
                         "event": alert.get("event", "Unnamed Event"),
                         "time": alert_time,

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List
 import logging
-from discord import app_commands
+import discord
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,6 @@ class GameCache(BaseCache):
         self.api_cache = BaseCache()
 
     def cleanup_expired(self, max_age: int):
-        now = datetime.now()
         for cache in [self.stats_cache, self.data_cache, self.api_cache]:
             cache.cleanup_expired(max_age)
 
@@ -60,10 +59,10 @@ class AutocompleteCache(BaseCache):
     def get_suggestions(
         self, 
         query: str, 
-        suggestions: List[app_commands.Choice], 
+        suggestions: List[discord.OptionChoice], 
         max_age: int = 300,
         max_results: int = 25
-    ) -> List[app_commands.Choice]:
+    ) -> List[discord.OptionChoice]:
         query = query.lower()
         cached = self.get(query, max_age)
         if cached:

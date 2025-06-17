@@ -32,7 +32,7 @@ async def main():
     bot.alerts = data.get("alerts", {})
     bot.user_scores = data.get("trivia_scores", {})
     for filename in os.listdir("./cogs"):
-        if filename.endswith(".py"):
+        if filename.endswith(".py") and filename != "__init__.py":
             try:
                 await bot.load_extension(f"cogs.{filename[:-3]}")
                 logger.info(f"Loaded extension: cogs.{filename[:-3]}")
