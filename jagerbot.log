@@ -1397,3 +1397,60 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 10:21:04,346 - __main__ - INFO - main() is running
 2025-06-17 10:21:04,347 - __main__ - INFO - Loaded data from JSON.
 2025-06-17 10:21:04,348 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:21:25,006 - bot - INFO - bot.py is running
+2025-06-17 10:21:25,007 - __main__ - INFO - main() is running
+2025-06-17 10:21:25,007 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:21:25,008 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:21:45,487 - bot - INFO - bot.py is running
+2025-06-17 10:21:45,488 - __main__ - INFO - main() is running
+2025-06-17 10:21:45,489 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:21:45,489 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:22:05,984 - bot - INFO - bot.py is running
+2025-06-17 10:22:05,985 - __main__ - INFO - main() is running
+2025-06-17 10:22:05,985 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:22:05,986 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:22:26,491 - bot - INFO - bot.py is running
+2025-06-17 10:22:26,492 - __main__ - INFO - main() is running
+2025-06-17 10:22:26,492 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:22:26,493 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:22:47,015 - bot - INFO - bot.py is running
+2025-06-17 10:22:47,016 - __main__ - INFO - main() is running
+2025-06-17 10:22:47,016 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:22:47,017 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:23:07,522 - bot - INFO - bot.py is running
+2025-06-17 10:23:07,523 - __main__ - INFO - main() is running
+2025-06-17 10:23:07,523 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:23:07,524 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:23:27,974 - bot - INFO - bot.py is running
+2025-06-17 10:23:27,975 - __main__ - INFO - main() is running
+2025-06-17 10:23:27,976 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:23:27,976 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:23:48,486 - bot - INFO - bot.py is running
+2025-06-17 10:23:48,487 - __main__ - INFO - main() is running
+2025-06-17 10:23:48,488 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:23:48,489 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:24:09,002 - bot - INFO - bot.py is running
+2025-06-17 10:24:09,003 - __main__ - INFO - main() is running
+2025-06-17 10:24:09,004 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:24:09,004 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:24:32,874 - bot - INFO - bot.py is running
+2025-06-17 10:24:32,875 - __main__ - INFO - main() is running
+2025-06-17 10:24:32,875 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 10:24:32,876 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 10:24:32,877 - __main__ - ERROR - Failed to load extension cogs.__init__: Extension 'cogs.__init__' has no 'setup' function.
+2025-06-17 10:24:32,890 - __main__ - ERROR - Failed to load extension cogs.alerts: object list can't be used in 'await' expression
+2025-06-17 10:24:32,908 - __main__ - ERROR - Failed to load extension cogs.fun: object list can't be used in 'await' expression
+2025-06-17 10:24:32,910 - __main__ - ERROR - Failed to load extension cogs.owner: object list can't be used in 'await' expression
+2025-06-17 10:24:32,914 - __main__ - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 10:24:33,301 - __main__ - ERROR - Failed to load extension cogs.alert_cmd: object list can't be used in 'await' expression
+2025-06-17 10:24:33,378 - __main__ - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: ImportError: cannot import name 'app_commands' from 'discord' (/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py)
+2025-06-17 10:24:33,430 - __main__ - ERROR - Failed to load extension cogs.error_handler: Extension 'cogs.error_handler' raised an error: ModuleNotFoundError: No module named 'discord.app_commands'
+2025-06-17 10:24:33,438 - __main__ - ERROR - Failed to load extension cogs.core: object list can't be used in 'await' expression
+2025-06-17 10:24:33,611 - __main__ - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 10:24:33,612 - __main__ - ERROR - Failed to load extension cogs.frost: object list can't be used in 'await' expression
+2025-06-17 10:24:33,612 - __main__ - INFO - Starting bot...
+2025-06-17 10:24:33,612 - discord.client - INFO - logging in using static token
+2025-06-17 10:24:34,005 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 10:24:34,213 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-9xmh",{"micros":151294,"calls":["id_created",{"micros":348,"calls":[]},"session_lookup_time",{"micros":256,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-184",{"micros":150336,"calls":["start_session",{"micros":136294,"calls":["discord-api-rpc-696744dbdf-7kkdc",{"micros":127949,"calls":["get_user",{"micros":16280},"get_guilds",{"micros":3609},"send_scheduled_deletion_message",{"micros":9},"guild_join_requests",{"micros":14918},"authorized_ip_coro",{"micros":11},"pending_payments",{"micros":1107},"apex_experiments",{"micros":3},"user_activities",{"micros":1},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":25,"calls":[]},"presence_started",{"micros":280,"calls":[]},"guilds_started",{"micros":81,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":13634,"calls":[]},"connect_finished",{"micros":13640,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 503f3acbdc13dc7b0ef9d85041de8c15).
+2025-06-17 10:24:34,213 - bot - INFO - Connected to Discord
+2025-06-17 10:24:36,231 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
