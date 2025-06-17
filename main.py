@@ -27,6 +27,14 @@ async def main():
     bot.planes = data.get("planes", [])
     bot.alerts = data.get("alerts", {})
     bot.user_scores = data.get("trivia_scores", {})
+    
+    @bot.event
+    async def on_application_command_error(ctx, error):
+        import traceback
+        logger.error(f"Slash command error: {error}")
+        logger.error(traceback.format_exc())
+        await ctx.respond(f"Error: {error}", ephemeral=True)
+    
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py") and filename != "__init__.py":
             try:
