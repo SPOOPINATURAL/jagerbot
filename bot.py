@@ -43,6 +43,10 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
+            for cmd in self.walk_application_commands():
+                logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
+            for cmd in self.commands:
+                logger.info(f"Loaded prefix command: {cmd.qualified_name}")
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
 
