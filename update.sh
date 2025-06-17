@@ -1,5 +1,4 @@
 #!/bin/zsh
-set -e
 cd /home/spoopinatural/jagerbot
 git pull origin main
 git rm --cached -r __pycache__/
