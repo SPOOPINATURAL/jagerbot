@@ -1785,3 +1785,26 @@ Traceback (most recent call last):
     for cmd in self.walk_application_commands():
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'JagerBot' object has no attribute 'walk_application_commands'
+2025-06-17 16:15:18,111 - bot - INFO - bot.py is running
+2025-06-17 16:15:18,112 - __main__ - INFO - main() is running
+2025-06-17 16:15:18,113 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 16:15:18,113 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 16:15:18,114 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 16:15:18,114 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 16:15:18,115 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 16:15:18,115 - __main__ - INFO - Starting bot...
+2025-06-17 16:15:18,115 - discord.client - INFO - logging in using static token
+2025-06-17 16:15:19,208 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 10176a080e351d5ba1197d75e4e71f44).
+2025-06-17 16:15:19,209 - bot - INFO - Connected to Discord
+2025-06-17 16:15:21,274 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 16:15:21,275 - bot - ERROR - Error in on_ready: 'CommandTree' object has no attribute 'walk_application_commands'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/bot.py", line 46, in on_ready
+    for cmd in self.tree.walk_application_commands():
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CommandTree' object has no attribute 'walk_application_commands'
