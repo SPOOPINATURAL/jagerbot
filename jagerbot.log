@@ -1638,3 +1638,31 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 11:40:13,337 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-6p6h",{"micros":70615,"calls":["id_created",{"micros":493,"calls":[]},"session_lookup_time",{"micros":266,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-24",{"micros":67411,"calls":["start_session",{"micros":63757,"calls":["discord-api-rpc-78d54ddfb4-7dbt8",{"micros":53834,"calls":["get_user",{"micros":16829},"get_guilds",{"micros":2704},"send_scheduled_deletion_message",{"micros":18},"guild_join_requests",{"micros":1918},"authorized_ip_coro",{"micros":18},"pending_payments",{"micros":1320},"apex_experiments",{"micros":4},"user_activities",{"micros":2},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":30,"calls":[]},"presence_started",{"micros":424,"calls":[]},"guilds_started",{"micros":91,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":3088,"calls":[]},"connect_finished",{"micros":3093,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: f5f7a5e4484f9b64aff9e86f33e9e970).
 2025-06-17 11:40:13,337 - bot - INFO - Connected to Discord
 2025-06-17 11:40:15,361 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 13:02:38,460 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 13:02:38,460 - bot - WARNING - Disconnected from Discord
+2025-06-17 13:02:38,700 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 13:02:38,754 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f5f7a5e4484f9b64aff9e86f33e9e970 under trace ["gateway-prd-us-east1-b-p5dw",{"micros":571,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":267,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-24",{"micros":17}]}].
+2025-06-17 13:31:54,481 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 13:31:54,481 - bot - WARNING - Disconnected from Discord
+2025-06-17 13:31:54,712 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 13:31:54,755 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f5f7a5e4484f9b64aff9e86f33e9e970 under trace ["gateway-prd-us-east1-d-58bp",{"micros":585,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":280,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-24",{"micros":29}]}].
+2025-06-17 14:47:00,984 - bot - INFO - bot.py is running
+2025-06-17 14:47:00,985 - __main__ - INFO - main() is running
+2025-06-17 14:47:00,986 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 14:47:00,986 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 14:47:00,996 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 14:47:01,014 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-17 14:47:01,015 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 14:47:01,018 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 14:47:01,369 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 14:47:01,429 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 14:47:01,436 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 14:47:01,593 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 14:47:01,594 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 14:47:01,595 - __main__ - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 14:47:01,595 - __main__ - INFO - Starting bot...
+2025-06-17 14:47:01,595 - discord.client - INFO - logging in using static token
+2025-06-17 14:47:02,026 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 14:47:02,168 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-7bqh",{"micros":71265,"calls":["id_created",{"micros":946,"calls":[]},"session_lookup_time",{"micros":280,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-141",{"micros":69668,"calls":["start_session",{"micros":61250,"calls":["discord-api-rpc-87fd7c8fd-8j27z",{"micros":52748,"calls":["get_user",{"micros":9209},"get_guilds",{"micros":10750},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":1009},"apex_experiments",{"micros":5},"user_activities",{"micros":2},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":53,"calls":[]},"presence_started",{"micros":306,"calls":[]},"guilds_started",{"micros":109,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":7928,"calls":[]},"connect_finished",{"micros":7931,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 288d3add96afc78012be17749c66b549).
+2025-06-17 14:47:02,169 - bot - INFO - Connected to Discord
+2025-06-17 14:47:04,183 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
