@@ -43,7 +43,7 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
-            for cmd in self.tree.walk_application_commands():
+            for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
             for cmd in self.commands:
                 logger.info(f"Loaded prefix command: {cmd.qualified_name}")
