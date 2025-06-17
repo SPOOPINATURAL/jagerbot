@@ -1,11 +1,9 @@
-import asyncio
 import logging
 import os
 import sys
 from typing import List
 
 import discord
-from discord.ext import commands
 from dotenv import load_dotenv
 
 import config
@@ -27,7 +25,7 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 logger.info("bot.py is running")
-class JagerBot(commands.Bot):
+class JagerBot(discord.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
