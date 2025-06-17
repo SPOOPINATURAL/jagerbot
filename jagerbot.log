@@ -667,3 +667,612 @@ AttributeError: 'JagerBot' object has no attribute 'sync_application_commands'
 2025-06-15 17:02:22,656 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-q0bv",{"micros":98229,"calls":["id_created",{"micros":512,"calls":[]},"session_lookup_time",{"micros":1050,"calls":[]},"session_lookup_finished",{"micros":21,"calls":[]},"discord-sessions-prd-2-141",{"micros":95708,"calls":["start_session",{"micros":49518,"calls":["discord-api-rpc-f55bfd467-nn4vz",{"micros":40401,"calls":["get_user",{"micros":7184},"get_guilds",{"micros":2387},"send_scheduled_deletion_message",{"micros":18},"guild_join_requests",{"micros":3398},"authorized_ip_coro",{"micros":20},"pending_payments",{"micros":1373},"apex_user_experiments",{"micros":4},"user_activities",{"micros":2},"played_application_ids",{"micros":8}]}]},"starting_guild_connect",{"micros":65,"calls":[]},"presence_started",{"micros":5515,"calls":[]},"guilds_started",{"micros":108,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":40484,"calls":[]},"connect_finished",{"micros":40488,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: f124c1064b66e2b92c75fdc5643ea6dc).
 2025-06-15 17:02:22,657 - bot - INFO - Connected to Discord
 2025-06-15 17:02:24,713 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-15 19:07:46,566 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-15 19:07:46,566 - bot - WARNING - Disconnected from Discord
+2025-06-15 19:07:46,809 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-15 19:07:46,859 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-d-qbd4",{"micros":4017,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":3169,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-141",{"micros":16}]}].
+2025-06-15 23:06:11,827 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-15 23:06:11,827 - bot - WARNING - Disconnected from Discord
+2025-06-15 23:06:12,069 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-15 23:06:12,127 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-d-g0k9",{"micros":10759,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":8070,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-141",{"micros":29}]}].
+2025-06-16 01:33:42,955 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 01:33:42,956 - bot - WARNING - Disconnected from Discord
+2025-06-16 01:33:43,188 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 01:33:43,236 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-b-wq8v",{"micros":538,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":264,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-141",{"micros":18}]}].
+2025-06-16 04:25:08,927 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 04:25:08,927 - bot - WARNING - Disconnected from Discord
+2025-06-16 04:25:09,158 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 04:25:09,213 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-b-80d3",{"micros":430,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":236,"calls":[]},"session_lookup_finished",{"micros":10,"calls":[]},"discord-sessions-prd-2-141",{"micros":17}]}].
+2025-06-16 04:36:32,121 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 04:36:32,122 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 04:36:32,122 - bot - WARNING - Disconnected from Discord
+2025-06-16 04:36:32,349 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 04:36:32,400 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-b-20gf",{"micros":425,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":211,"calls":[]},"session_lookup_finished",{"micros":18,"calls":[]},"discord-sessions-prd-2-141",{"micros":18}]}].
+2025-06-16 06:26:26,267 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 06:26:26,267 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 06:26:26,267 - bot - WARNING - Disconnected from Discord
+2025-06-16 06:26:26,525 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 06:26:26,584 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-d-39w2",{"micros":7465,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":7208,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-141",{"micros":16}]}].
+2025-06-16 08:09:22,530 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 08:09:22,530 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 08:09:22,530 - bot - WARNING - Disconnected from Discord
+2025-06-16 08:09:22,808 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 08:09:22,863 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-b-hn2d",{"micros":628,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":380,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-141",{"micros":17}]}].
+2025-06-16 11:38:26,924 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 11:38:26,925 - bot - WARNING - Disconnected from Discord
+2025-06-16 11:38:27,174 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 11:38:27,219 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-d-kgw8",{"micros":532,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":269,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-141",{"micros":16}]}].
+2025-06-16 13:34:06,601 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 13:34:06,602 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 13:34:06,602 - bot - WARNING - Disconnected from Discord
+2025-06-16 13:34:06,883 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 13:34:06,933 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-d-0tll",{"micros":714,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":398,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-141",{"micros":29}]}].
+2025-06-16 16:04:30,468 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 16:04:30,468 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 16:04:30,469 - bot - WARNING - Disconnected from Discord
+2025-06-16 16:04:30,722 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 16:04:30,767 - discord.gateway - INFO - Shard ID None has successfully RESUMED session f124c1064b66e2b92c75fdc5643ea6dc under trace ["gateway-prd-us-east1-c-rfg1",{"micros":568,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":289,"calls":[]},"session_lookup_finished",{"micros":18,"calls":[]},"discord-sessions-prd-2-141",{"micros":18}]}].
+2025-06-16 16:08:41,142 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-16 16:08:41,198 - __main__ - INFO - Starting bot...
+2025-06-16 16:08:41,199 - discord.client - INFO - logging in using static token
+2025-06-16 16:08:41,256 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:6050
+ * Running on http://192.168.86.26:6050
+2025-06-16 16:08:41,256 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-16 16:08:41,684 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-16 16:08:41,911 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-jd5g",{"micros":177894,"calls":["id_created",{"micros":850,"calls":[]},"session_lookup_time",{"micros":2041,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-163",{"micros":174715,"calls":["start_session",{"micros":136745,"calls":["discord-api-rpc-7cbdcbb885-mgxs5",{"micros":114639,"calls":["get_user",{"micros":26515},"get_guilds",{"micros":8840},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":1430},"apex_experiments",{"micros":5},"user_activities",{"micros":2},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":60,"calls":[]},"presence_started",{"micros":17096,"calls":[]},"guilds_started",{"micros":90,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":20703,"calls":[]},"connect_finished",{"micros":20707,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: e2cae11c1e3bf754caf4fd0a502c6f4c).
+2025-06-16 16:08:41,912 - bot - INFO - Connected to Discord
+2025-06-16 16:08:43,942 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-16 20:02:51,047 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 20:02:51,073 - bot - WARNING - Disconnected from Discord
+2025-06-16 20:02:51,443 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 20:02:51,488 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-9zp5",{"micros":498,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":253,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-163",{"micros":16}]}].
+2025-06-16 20:12:06,892 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 20:12:06,893 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 20:12:06,893 - bot - WARNING - Disconnected from Discord
+2025-06-16 20:12:07,164 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 20:12:07,212 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-1vk5",{"micros":518,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":269,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-163",{"micros":15}]}].
+2025-06-16 22:35:33,013 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 22:35:33,017 - bot - WARNING - Disconnected from Discord
+2025-06-16 22:35:33,392 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 22:35:33,446 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-jqq1",{"micros":590,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":300,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"discord-sessions-prd-2-163",{"micros":26}]}].
+2025-06-16 22:44:05,537 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-16 22:44:05,542 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 22:44:05,543 - bot - WARNING - Disconnected from Discord
+2025-06-16 22:44:05,800 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 22:44:05,858 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-1cj0",{"micros":521,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":266,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-163",{"micros":16}]}].
+2025-06-16 23:10:12,212 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 23:10:12,212 - bot - WARNING - Disconnected from Discord
+2025-06-16 23:10:12,457 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 23:10:12,508 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-b-t5mn",{"micros":710,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":429,"calls":[]},"session_lookup_finished",{"micros":22,"calls":[]},"discord-sessions-prd-2-163",{"micros":11}]}].
+2025-06-16 23:47:49,791 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-16 23:47:49,793 - bot - WARNING - Disconnected from Discord
+2025-06-16 23:47:50,039 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-16 23:47:50,084 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-b-ftsn",{"micros":535,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":251,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-163",{"micros":14}]}].
+2025-06-17 00:04:54,893 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 00:04:54,894 - bot - WARNING - Disconnected from Discord
+2025-06-17 00:04:55,103 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 00:04:55,152 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-bt98",{"micros":527,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":281,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-163",{"micros":14}]}].
+2025-06-17 01:10:51,714 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 01:10:51,714 - bot - WARNING - Disconnected from Discord
+2025-06-17 01:10:51,913 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 01:10:51,956 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-b-5hpx",{"micros":480,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":233,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-163",{"micros":17}]}].
+2025-06-17 03:46:36,690 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 03:46:36,691 - bot - WARNING - Disconnected from Discord
+2025-06-17 03:46:36,909 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 03:46:36,956 - discord.gateway - INFO - Shard ID None has successfully RESUMED session e2cae11c1e3bf754caf4fd0a502c6f4c under trace ["gateway-prd-us-east1-d-jqq1",{"micros":531,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":253,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-163",{"micros":14}]}].
+2025-06-17 04:37:48,274 - discord.gateway - INFO - Timed out receiving packet. Attempting a reconnect.
+2025-06-17 04:37:48,278 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 04:37:48,279 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:37:48,304 - discord.client - ERROR - Attempting a reconnect in 1.96s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:37:48,355 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:37:50,337 - discord.client - ERROR - Attempting a reconnect in 2.78s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:37:50,339 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:37:53,144 - discord.client - ERROR - Attempting a reconnect in 5.17s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:37:53,145 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:37:58,337 - discord.client - ERROR - Attempting a reconnect in 2.51s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:37:58,339 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:38:00,880 - discord.client - ERROR - Attempting a reconnect in 1.78s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:38:00,882 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:38:02,684 - discord.client - ERROR - Attempting a reconnect in 12.65s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:38:02,685 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:38:15,367 - discord.client - ERROR - Attempting a reconnect in 62.81s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:38:15,369 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:39:18,411 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 04:39:18,454 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-06-17 04:39:18,499 - discord.client - INFO - Got a request to IDENTIFY the websocket.
+2025-06-17 04:39:18,499 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:39:23,634 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 04:39:23,805 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-l5kg",{"micros":122925,"calls":["id_created",{"micros":417,"calls":[]},"session_lookup_time",{"micros":3772,"calls":[]},"session_lookup_finished",{"micros":21,"calls":[]},"discord-sessions-prd-2-44",{"micros":118374,"calls":["start_session",{"micros":81059,"calls":["discord-api-rpc-696744dbdf-kbdg6",{"micros":70498,"calls":["get_user",{"micros":6554},"get_guilds",{"micros":30052},"send_scheduled_deletion_message",{"micros":28},"guild_join_requests",{"micros":4},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":1861},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":10}]}]},"starting_guild_connect",{"micros":30,"calls":[]},"presence_started",{"micros":9679,"calls":[]},"guilds_started",{"micros":127,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":27454,"calls":[]},"connect_finished",{"micros":27458,"calls":[]},"build_ready",{"micros":17,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 236b4ecad43b240f8255b747ea62e3c1).
+2025-06-17 04:39:23,808 - bot - INFO - Connected to Discord
+2025-06-17 04:39:25,836 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 04:40:59,940 - discord.gateway - INFO - Timed out receiving packet. Attempting a reconnect.
+2025-06-17 04:40:59,940 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 04:40:59,940 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:40:59,968 - discord.client - ERROR - Attempting a reconnect in 159.06s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1443, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1059, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1090, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/resolver.py", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 867, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 614, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 338, in from_client
+    gateway = gateway or await client.http.get_gateway()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 3071, in get_gateway
+    data = await self.request(Route("GET", "/gateway"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 286, in request
+    async with self.__session.request(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1470, in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 761, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 716, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 596, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1120, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1449, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discord.com:443 ssl:default [Temporary failure in name resolution]
+2025-06-17 04:40:59,970 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:43:39,267 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 04:43:39,305 - discord.gateway - INFO - Shard ID None session has been invalidated.
+2025-06-17 04:43:39,346 - discord.client - INFO - Got a request to IDENTIFY the websocket.
+2025-06-17 04:43:39,346 - bot - WARNING - Disconnected from Discord
+2025-06-17 04:43:44,491 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 04:43:44,621 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-jf0t",{"micros":79571,"calls":["id_created",{"micros":385,"calls":[]},"session_lookup_time",{"micros":1455,"calls":[]},"session_lookup_finished",{"micros":25,"calls":[]},"discord-sessions-prd-2-96",{"micros":76630,"calls":["start_session",{"micros":53381,"calls":["discord-api-rpc-696744dbdf-tcvwb",{"micros":41021,"calls":["get_user",{"micros":6867},"get_guilds",{"micros":4830},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":1401},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":37,"calls":[]},"presence_started",{"micros":289,"calls":[]},"guilds_started",{"micros":123,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":22777,"calls":[]},"connect_finished",{"micros":22782,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: eb83e903f7551439ff5532cf268dcc83).
+2025-06-17 04:43:44,621 - bot - INFO - Connected to Discord
+2025-06-17 04:43:46,643 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 07:55:17,653 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 07:55:17,654 - bot - WARNING - Disconnected from Discord
+2025-06-17 07:55:17,872 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 07:55:17,923 - discord.gateway - INFO - Shard ID None has successfully RESUMED session eb83e903f7551439ff5532cf268dcc83 under trace ["gateway-prd-us-east1-b-7klz",{"micros":574,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":339,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-96",{"micros":20}]}].
