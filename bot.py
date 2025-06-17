@@ -35,16 +35,15 @@ class JagerBot(commands.Bot):
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
 
-    async def setup_hook(self) -> None:
-        logger.info("Setup hook started")
-        self.owner_id = 640289470763237376
-
-        for extension in self.initial_extensions:
-            try:
-                await self.load_extension(extension)
-                logger.info(f"Loaded extension: {extension}")
-            except Exception as e:
-                logger.error(f"Failed to load extension {extension}: {e}")
+    async def setup_hook(self):
+        logger.info("setup_hook running")
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py"):
+                try:
+                    await self.load_extension(f"cogs.{filename[:-3]}")
+                    logger.info(f"Loaded extension: cogs.{filename[:-3]}")
+                except Exception as e:
+                    logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}", exc_info=True)
 
         logger.info(f"App commands loaded: {self.application_commands}")
         logger.info(f"Registered global app commands: {[cmd.name for cmd in self.application_commands]}")
