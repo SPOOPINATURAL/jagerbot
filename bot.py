@@ -34,21 +34,6 @@ class JagerBot(commands.Bot):
         self.config = config
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
-
-    async def setup_hook(self):
-        logger.info("setup_hook running")
-        for filename in os.listdir("./cogs"):
-            if filename.endswith(".py"):
-                try:
-                    await self.load_extension(f"cogs.{filename[:-3]}")
-                    logger.info(f"Loaded extension: cogs.{filename[:-3]}")
-                except Exception as e:
-                    logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}", exc_info=True)
-
-        logger.info(f"App commands loaded: {self.application_commands}")
-        logger.info(f"Registered global app commands: {[cmd.name for cmd in self.application_commands]}")
-        logger.info("Slash commands will be synced automatically by Pycord.")
-
     async def on_ready(self) -> None:
         try:
             logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
