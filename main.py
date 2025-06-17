@@ -27,6 +27,7 @@ def create_bot() -> JagerBot:
     return bot
 
 async def main():
+    logging.info("main() is running")
     setup_logging()
     logger = logging.getLogger(__name__)
 
