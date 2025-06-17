@@ -33,8 +33,11 @@ async def main():
     bot.user_scores = data.get("trivia_scores", {})
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
-            await bot.load_extension(f"cogs.{filename[:-3]}")
-            logger.info(f"Loaded extension: cogs.{filename[:-3]}")
+            try:
+                await bot.load_extension(f"cogs.{filename[:-3]}")
+                logger.info(f"Loaded extension: cogs.{filename[:-3]}")
+            except Exception as e:
+                logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}")
     try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
