@@ -10,15 +10,11 @@ logger = logging.getLogger(__name__)
 
 def create_bot() -> JagerBot:
     import discord
-    intents = discord.Intents.default()
-    intents.message_content = True
-    intents.members = True
-    intents.guilds = True
 
     bot = JagerBot(
         command_prefix="$",
-        intents=intents,
-        help_command=None
+        help_command=None,
+        intents=discord.Intents.all()
     )
     return bot
 
