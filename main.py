@@ -1,19 +1,14 @@
 import asyncio
 import logging
-import discord
-from discord.ext import commands
 from bot import JagerBot
 import config
-from utils.setup import setup_logging, load_data
+from utils.setup import load_data
+
 logging.basicConfig(level=logging.INFO)
-logging.info("main.py is running")
-try:
-    from webserver import keep_alive
-except ModuleNotFoundError:
-    def keep_alive():
-        pass
+logger = logging.getLogger(__name__)
 
 def create_bot() -> JagerBot:
+    import discord
     intents = discord.Intents.default()
     intents.message_content = True
     intents.members = True
@@ -27,18 +22,14 @@ def create_bot() -> JagerBot:
     return bot
 
 async def main():
-    logging.info("main() is running")
-    setup_logging()
-    logger = logging.getLogger(__name__)
+    logger.info("main() is running")
+    data = load_data()
+    logger.info("Loaded data from JSON.")
 
     bot = create_bot()
-
-    data = load_data()
     bot.planes = data.get("planes", [])
     bot.alerts = data.get("alerts", {})
     bot.user_scores = data.get("trivia_scores", {})
-
-    keep_alive()
 
     try:
         logger.info("Starting bot...")
@@ -47,16 +38,6 @@ async def main():
         logger.info("Received keyboard interrupt, shutting down...")
         await bot.close()
         logger.info("Bot closed cleanly.")
-    except Exception as e:
-        logger.exception("Error running bot")
-        raise
-    finally:
-        remaining_tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-        if remaining_tasks:
-            logger.info(f"Cleaning up {len(remaining_tasks)} remaining tasks...")
-            for task in remaining_tasks:
-                task.cancel()
-            await asyncio.gather(*remaining_tasks, return_exceptions=True)
 
 if __name__ == "__main__":
     asyncio.run(main())
