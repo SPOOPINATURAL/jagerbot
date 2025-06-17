@@ -1723,3 +1723,22 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 15:23:30,470 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-48q7",{"micros":111174,"calls":["id_created",{"micros":487,"calls":[]},"session_lookup_time",{"micros":668,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-186",{"micros":109289,"calls":["start_session",{"micros":77551,"calls":["discord-api-rpc-87fd7c8fd-tkprn",{"micros":65247,"calls":["get_user",{"micros":16335},"get_guilds",{"micros":7906},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":1324},"apex_experiments",{"micros":9},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":59,"calls":[]},"presence_started",{"micros":7353,"calls":[]},"guilds_started",{"micros":118,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":24184,"calls":[]},"connect_finished",{"micros":24190,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 475a613fd8f30542eb1904ed58297c54).
 2025-06-17 15:23:30,471 - bot - INFO - Connected to Discord
 2025-06-17 15:23:32,513 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 15:44:55,446 - bot - INFO - bot.py is running
+2025-06-17 15:44:55,448 - __main__ - INFO - main() is running
+2025-06-17 15:44:55,448 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 15:44:55,449 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 15:44:55,458 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 15:44:55,475 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-17 15:44:55,475 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 15:44:55,479 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 15:44:55,814 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 15:44:55,872 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 15:44:55,879 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 15:44:56,034 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 15:44:56,035 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 15:44:56,036 - __main__ - INFO - Starting bot...
+2025-06-17 15:44:56,036 - discord.client - INFO - logging in using static token
+2025-06-17 15:44:56,437 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 15:44:56,710 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-39w2",{"micros":223679,"calls":["id_created",{"micros":513,"calls":[]},"session_lookup_time",{"micros":259,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-57",{"micros":221968,"calls":["start_session",{"micros":192573,"calls":["discord-api-rpc-87fd7c8fd-72zc5",{"micros":180361,"calls":["get_user",{"micros":143392},"get_guilds",{"micros":4653},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":1469},"apex_experiments",{"micros":5},"user_activities",{"micros":11},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":72,"calls":[]},"presence_started",{"micros":11441,"calls":[]},"guilds_started",{"micros":119,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":17739,"calls":[]},"connect_finished",{"micros":17744,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 45005f77f9ec75bee4de0d0622ab4470).
+2025-06-17 15:44:56,711 - bot - INFO - Connected to Discord
+2025-06-17 15:44:58,747 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
