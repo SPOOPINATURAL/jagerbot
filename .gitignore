@@ -1,8 +1,9 @@
 
 .env
-discord.log
+__pycache__/
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
 /.idea
 /.vs
+
