@@ -1666,3 +1666,41 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 14:47:02,168 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-7bqh",{"micros":71265,"calls":["id_created",{"micros":946,"calls":[]},"session_lookup_time",{"micros":280,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-141",{"micros":69668,"calls":["start_session",{"micros":61250,"calls":["discord-api-rpc-87fd7c8fd-8j27z",{"micros":52748,"calls":["get_user",{"micros":9209},"get_guilds",{"micros":10750},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":1009},"apex_experiments",{"micros":5},"user_activities",{"micros":2},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":53,"calls":[]},"presence_started",{"micros":306,"calls":[]},"guilds_started",{"micros":109,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":7928,"calls":[]},"connect_finished",{"micros":7931,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 288d3add96afc78012be17749c66b549).
 2025-06-17 14:47:02,169 - bot - INFO - Connected to Discord
 2025-06-17 14:47:04,183 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 14:54:19,824 - bot - INFO - bot.py is running
+2025-06-17 14:54:19,826 - __main__ - INFO - main() is running
+2025-06-17 14:54:19,827 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 14:54:19,828 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 14:54:19,840 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 14:54:19,865 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-17 14:54:19,866 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 14:54:19,871 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 14:54:20,246 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 14:54:20,308 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 14:54:20,315 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 14:54:20,484 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 14:54:20,485 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 14:54:20,485 - __main__ - INFO - Starting bot...
+2025-06-17 14:54:20,485 - discord.client - INFO - logging in using static token
+2025-06-17 14:54:20,919 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 14:54:21,175 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-k74c",{"micros":212246,"calls":["id_created",{"micros":349,"calls":[]},"session_lookup_time",{"micros":324,"calls":[]},"session_lookup_finished",{"micros":25,"calls":[]},"discord-sessions-prd-2-85",{"micros":211137,"calls":["start_session",{"micros":203049,"calls":["discord-api-rpc-87fd7c8fd-l5wbp",{"micros":179049,"calls":["get_user",{"micros":14987},"get_guilds",{"micros":5196},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":514},"authorized_ip_coro",{"micros":20},"pending_payments",{"micros":2506},"apex_experiments",{"micros":5},"user_activities",{"micros":2},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":51,"calls":[]},"presence_started",{"micros":1829,"calls":[]},"guilds_started",{"micros":110,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":6073,"calls":[]},"connect_finished",{"micros":6080,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 94211a68edccde3a6e4a1abd72a31f04).
+2025-06-17 14:54:21,176 - bot - INFO - Connected to Discord
+2025-06-17 14:54:23,199 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 15:15:43,301 - bot - INFO - bot.py is running
+2025-06-17 15:15:43,303 - __main__ - INFO - main() is running
+2025-06-17 15:15:43,303 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 15:15:43,304 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 15:15:43,313 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 15:15:43,330 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-17 15:15:43,330 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 15:15:43,334 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 15:15:43,667 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 15:15:43,725 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 15:15:43,731 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 15:15:43,887 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 15:15:43,888 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 15:15:43,888 - __main__ - INFO - Starting bot...
+2025-06-17 15:15:43,888 - discord.client - INFO - logging in using static token
+2025-06-17 15:15:44,343 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 15:15:44,570 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-v60r",{"micros":183666,"calls":["id_created",{"micros":703,"calls":[]},"session_lookup_time",{"micros":1799,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-53",{"micros":180554,"calls":["start_session",{"micros":155578,"calls":["discord-api-continuous-canary-rpc-769957fdb8-fqmws",{"micros":134916,"calls":["get_user",{"micros":5946},"get_guilds",{"micros":5744},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":11},"pending_payments",{"micros":2265},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":58,"calls":[]},"presence_started",{"micros":8738,"calls":[]},"guilds_started",{"micros":106,"calls":[]},"lobbies_started",{"micros":2,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":16052,"calls":[]},"connect_finished",{"micros":16056,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 5a3845958c2068dcfcf3c377428d767e).
+2025-06-17 15:15:44,571 - bot - INFO - Connected to Discord
+2025-06-17 15:15:46,606 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
