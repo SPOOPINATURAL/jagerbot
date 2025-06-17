@@ -1512,3 +1512,41 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 10:57:33,582 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-pxwc",{"micros":91230,"calls":["id_created",{"micros":514,"calls":[]},"session_lookup_time",{"micros":3905,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-22",{"micros":86454,"calls":["start_session",{"micros":72412,"calls":["discord-api-rpc-78d54ddfb4-pgwhd",{"micros":63744,"calls":["get_user",{"micros":31945},"get_guilds",{"micros":2744},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":463},"authorized_ip_coro",{"micros":16},"pending_payments",{"micros":1224},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":20,"calls":[]},"presence_started",{"micros":13358,"calls":[]},"guilds_started",{"micros":119,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":525,"calls":[]},"connect_finished",{"micros":529,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: ce924956672c403a922566bdb134d39e).
 2025-06-17 10:57:33,583 - bot - INFO - Connected to Discord
 2025-06-17 10:57:35,623 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 11:11:00,104 - bot - INFO - bot.py is running
+2025-06-17 11:11:00,106 - __main__ - INFO - main() is running
+2025-06-17 11:11:00,107 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 11:11:00,111 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 11:11:00,125 - __main__ - ERROR - Failed to load extension cogs.alerts: object list can't be used in 'await' expression
+2025-06-17 11:11:00,146 - __main__ - ERROR - Failed to load extension cogs.fun: object list can't be used in 'await' expression
+2025-06-17 11:11:00,149 - __main__ - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:00,505 - __main__ - ERROR - Failed to load extension cogs.alert_cmd: object list can't be used in 'await' expression
+2025-06-17 11:11:00,570 - __main__ - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:00,577 - __main__ - ERROR - Failed to load extension cogs.core: object list can't be used in 'await' expression
+2025-06-17 11:11:00,747 - __main__ - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:00,749 - __main__ - ERROR - Failed to load extension cogs.frost: object list can't be used in 'await' expression
+2025-06-17 11:11:00,751 - __main__ - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:00,751 - __main__ - INFO - Starting bot...
+2025-06-17 11:11:00,751 - discord.client - INFO - logging in using static token
+2025-06-17 11:11:01,139 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 11:11:01,398 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-pv0x",{"micros":213136,"calls":["id_created",{"micros":578,"calls":[]},"session_lookup_time",{"micros":329,"calls":[]},"session_lookup_finished",{"micros":45,"calls":[]},"discord-sessions-prd-2-168",{"micros":211865,"calls":["start_session",{"micros":199641,"calls":["discord-api-rpc-78d54ddfb4-m9wt2",{"micros":155026,"calls":["get_user",{"micros":22490},"get_guilds",{"micros":4830},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":3262},"authorized_ip_coro",{"micros":22},"pending_payments",{"micros":2155},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":33,"calls":[]},"presence_started",{"micros":3291,"calls":[]},"guilds_started",{"micros":106,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":8771,"calls":[]},"connect_finished",{"micros":8775,"calls":[]},"build_ready",{"micros":16,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 3112e1c9648bfef4841ba3f6e9709ca1).
+2025-06-17 11:11:01,398 - bot - INFO - Connected to Discord
+2025-06-17 11:11:03,433 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 11:11:20,439 - bot - INFO - bot.py is running
+2025-06-17 11:11:20,440 - __main__ - INFO - main() is running
+2025-06-17 11:11:20,441 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 11:11:20,441 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 11:11:20,452 - __main__ - ERROR - Failed to load extension cogs.alerts: object list can't be used in 'await' expression
+2025-06-17 11:11:20,468 - __main__ - ERROR - Failed to load extension cogs.fun: object list can't be used in 'await' expression
+2025-06-17 11:11:20,472 - __main__ - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:20,811 - __main__ - ERROR - Failed to load extension cogs.alert_cmd: object list can't be used in 'await' expression
+2025-06-17 11:11:20,867 - __main__ - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:20,874 - __main__ - ERROR - Failed to load extension cogs.core: object list can't be used in 'await' expression
+2025-06-17 11:11:21,027 - __main__ - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:21,028 - __main__ - ERROR - Failed to load extension cogs.frost: object list can't be used in 'await' expression
+2025-06-17 11:11:21,029 - __main__ - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:11:21,029 - __main__ - INFO - Starting bot...
+2025-06-17 11:11:21,029 - discord.client - INFO - logging in using static token
+2025-06-17 11:11:21,402 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 11:11:21,516 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-h8rk",{"micros":72091,"calls":["id_created",{"micros":722,"calls":[]},"session_lookup_time",{"micros":645,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-10",{"micros":70221,"calls":["start_session",{"micros":56514,"calls":["discord-api-rpc-78d54ddfb4-2rstr",{"micros":46318,"calls":["get_user",{"micros":12122},"get_guilds",{"micros":3916},"send_scheduled_deletion_message",{"micros":32},"guild_join_requests",{"micros":1256},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":1405},"apex_experiments",{"micros":4},"user_activities",{"micros":3},"played_application_ids",{"micros":9}]}]},"starting_guild_connect",{"micros":23,"calls":[]},"presence_started",{"micros":7988,"calls":[]},"guilds_started",{"micros":107,"calls":[]},"lobbies_started",{"micros":8,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":5560,"calls":[]},"connect_finished",{"micros":5565,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 446562cc794544a068ca86f462ae3c99).
+2025-06-17 11:11:21,516 - bot - INFO - Connected to Discord
+2025-06-17 11:11:23,540 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
