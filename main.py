@@ -54,7 +54,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-@commands.slash_command(name='hello', description="Hello!")
-async def hello(self, ctx: discord.ApplicationContext):
-    await ctx.respond(f"Hallo {ctx.user.mention} :)")
