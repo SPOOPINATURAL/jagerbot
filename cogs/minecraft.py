@@ -244,5 +244,5 @@ class MinecraftCog(commands.Cog):
             tb = traceback.format_exc()
             await ctx.followup.send(f"❌ Error in mcserverstatus:\n```\n{tb}\n```")
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(MinecraftCog(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(MinecraftCog(bot))

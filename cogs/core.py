@@ -342,5 +342,5 @@ class CoreCog(commands.Cog):
         view = InfoPages(guild_id)
         view.message = await ctx.respond(embed=view.pages[0], view=view)
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(CoreCog(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(CoreCog(bot))

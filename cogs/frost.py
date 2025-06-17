@@ -11,5 +11,5 @@ class FrostCog(commands.Cog):
         frostl = random.randint(1, 1_000_000)
         await ctx.send(f"frosty took another L — he's at {frostl:,} L's now")
 
-async def setup(bot):
-    await bot.add_cog(FrostCog(bot))
+def setup(bot):
+    bot.add_cog(FrostCog(bot))

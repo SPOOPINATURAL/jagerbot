@@ -232,5 +232,5 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error fetching streams: {e}")
             await ctx.followup.send("❌ Error fetching stream data.", ephemeral=True)
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(WarframeCog(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(WarframeCog(bot))

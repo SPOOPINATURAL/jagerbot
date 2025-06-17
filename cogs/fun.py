@@ -242,5 +242,5 @@ class Fun(commands.Cog):
             f"🏆 {ctx.user.display_name}, your trivia score is: **{score}**"
         )
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(Fun(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(Fun(bot))

@@ -13,5 +13,5 @@ class TestCog(commands.Cog):
     async def sub(self, ctx: discord.ApplicationContext):
         await ctx.respond("Subcommand works!")
 
-async def setup(bot):
-    await bot.add_cog(TestCog(bot))
+def setup(bot):
+    bot.add_cog(TestCog(bot))
