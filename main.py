@@ -5,7 +5,8 @@ from discord.ext import commands
 from bot import JagerBot
 import config
 from utils.setup import setup_logging, load_data
-
+logging.basicConfig(level=logging.INFO)
+logging.info("main.py is running")
 try:
     from webserver import keep_alive
 except ModuleNotFoundError:

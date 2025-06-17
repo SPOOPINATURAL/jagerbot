@@ -26,7 +26,7 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
+logger.info("bot.py is running")
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
