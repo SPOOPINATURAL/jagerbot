@@ -1593,3 +1593,28 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-06-17 11:24:40,419 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-4t41",{"micros":71959,"calls":["id_created",{"micros":852,"calls":[]},"session_lookup_time",{"micros":355,"calls":[]},"session_lookup_finished",{"micros":24,"calls":[]},"discord-sessions-prd-2-79",{"micros":70273,"calls":["start_session",{"micros":65396,"calls":["discord-api-rpc-78d54ddfb4-hchjl",{"micros":54031,"calls":["get_user",{"micros":6883},"get_guilds",{"micros":5086},"send_scheduled_deletion_message",{"micros":16},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":1464},"apex_experiments",{"micros":5},"user_activities",{"micros":3},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":22,"calls":[]},"presence_started",{"micros":272,"calls":[]},"guilds_started",{"micros":85,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4479,"calls":[]},"connect_finished",{"micros":4483,"calls":[]},"build_ready",{"micros":11,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 2a3c9e70c39c68c03f4b83ea3481cbea).
 2025-06-17 11:24:40,420 - bot - INFO - Connected to Discord
 2025-06-17 11:24:42,452 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 11:31:01,838 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-06-17 11:31:01,838 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-06-17 11:31:01,839 - bot - WARNING - Disconnected from Discord
+2025-06-17 11:31:02,082 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-06-17 11:31:02,150 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 2a3c9e70c39c68c03f4b83ea3481cbea under trace ["gateway-prd-us-east1-b-hn2d",{"micros":6138,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":4873,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-79",{"micros":15}]}].
+2025-06-17 11:33:47,353 - bot - INFO - bot.py is running
+2025-06-17 11:33:47,354 - __main__ - INFO - main() is running
+2025-06-17 11:33:47,355 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 11:33:47,356 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 11:33:47,366 - __main__ - ERROR - Failed to load extension cogs.alerts: object list can't be used in 'await' expression
+2025-06-17 11:33:47,385 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-06-17 11:33:47,385 - __main__ - ERROR - Failed to load extension cogs.fun: object list can't be used in 'await' expression
+2025-06-17 11:33:47,388 - __main__ - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:33:47,739 - __main__ - ERROR - Failed to load extension cogs.alert_cmd: object list can't be used in 'await' expression
+2025-06-17 11:33:47,803 - __main__ - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:33:47,810 - __main__ - ERROR - Failed to load extension cogs.core: object list can't be used in 'await' expression
+2025-06-17 11:33:47,974 - __main__ - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:33:47,975 - __main__ - ERROR - Failed to load extension cogs.frost: object list can't be used in 'await' expression
+2025-06-17 11:33:47,975 - __main__ - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: 'SlashCommand' object has no attribute 'sub_command'
+2025-06-17 11:33:47,976 - __main__ - INFO - Starting bot...
+2025-06-17 11:33:47,976 - discord.client - INFO - logging in using static token
+2025-06-17 11:33:48,373 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-06-17 11:33:48,522 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-14r4",{"micros":101085,"calls":["id_created",{"micros":472,"calls":[]},"session_lookup_time",{"micros":1017,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-84",{"micros":98457,"calls":["start_session",{"micros":93287,"calls":["discord-api-rpc-78d54ddfb4-nh8nj",{"micros":81845,"calls":["get_user",{"micros":34087},"get_guilds",{"micros":3475},"send_scheduled_deletion_message",{"micros":17},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":1292},"apex_experiments",{"micros":5},"user_activities",{"micros":9},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":37,"calls":[]},"presence_started",{"micros":289,"calls":[]},"guilds_started",{"micros":147,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4675,"calls":[]},"connect_finished",{"micros":4678,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: e15826323eb8945b05f229e8594fb8b5).
+2025-06-17 11:33:48,522 - bot - INFO - Connected to Discord
+2025-06-17 11:33:50,553 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
