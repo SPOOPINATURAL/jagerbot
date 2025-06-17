@@ -3,6 +3,8 @@ import logging
 from bot import JagerBot
 import config
 import os
+import discord
+from discord.ext import commands
 from utils.setup import load_data
 
 logging.basicConfig(level=logging.INFO)
@@ -52,3 +54,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+@commands.slash_command(name='hello', description="Hello!")
+async def hello(self, ctx: discord.ApplicationContext):
+    await ctx.respond(f"Hallo {ctx.user.mention} :)")
