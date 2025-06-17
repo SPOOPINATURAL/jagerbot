@@ -1877,3 +1877,21 @@ AttributeError: 'CommandTree' object has no attribute 'walk_application_commands
 2025-06-17 16:25:33,507 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 49b611f1b6a4aa38332d3d49dc84868f).
 2025-06-17 16:25:33,508 - bot - INFO - Connected to Discord
 2025-06-17 16:25:35,566 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-17 16:28:15,930 - bot - INFO - bot.py is running
+2025-06-17 16:28:15,931 - __main__ - INFO - main() is running
+2025-06-17 16:28:15,932 - __main__ - INFO - Loaded data from JSON.
+2025-06-17 16:28:15,932 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-17 16:28:15,933 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-17 16:28:15,933 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-17 16:28:15,933 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-17 16:28:15,934 - __main__ - INFO - Loaded extension: cogs.test
+2025-06-17 16:28:15,934 - __main__ - INFO - Starting bot...
+2025-06-17 16:28:15,934 - discord.client - INFO - logging in using static token
+2025-06-17 16:28:16,763 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 14d36ac27aee9f90e1c10ea87e668719).
+2025-06-17 16:28:16,764 - bot - INFO - Connected to Discord
+2025-06-17 16:28:18,830 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
