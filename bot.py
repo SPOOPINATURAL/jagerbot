@@ -29,15 +29,11 @@ logger = logging.getLogger(__name__)
 logger.info("bot.py is running")
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):
-        logger.info("JagerBot __init__ running")
         super().__init__(*args, **kwargs)
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
         self.config = config
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
-    @property
-    def is_dev(self) -> bool:
-        return self._dev_mode
 
     async def setup_hook(self) -> None:
         logger.info("Setup hook started")
