@@ -2217,3 +2217,11 @@ AttributeError: 'CommandTree' object has no attribute 'walk_application_commands
 2025-06-18 18:16:01,967 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 18:16:01,968 - bot - INFO - Commands registered in tree before start: 0
 2025-06-18 18:16:01,968 - bot - INFO - Commands registered in tree at on_ready: 0
+2025-06-18 18:43:24,637 - __main__ - INFO - main() is running
+2025-06-18 18:43:24,638 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:43:45,250 - __main__ - INFO - main() is running
+2025-06-18 18:43:45,251 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:44:05,741 - __main__ - INFO - main() is running
+2025-06-18 18:44:05,742 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:44:26,283 - __main__ - INFO - main() is running
+2025-06-18 18:44:26,283 - __main__ - INFO - Loaded data from JSON.
