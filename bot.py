@@ -2,7 +2,7 @@ import logging
 import os
 import sys
 from typing import List
-
+import asyncio
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -43,6 +43,10 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
+            await asyncio.sleep(1)  # delay 1 sec
+            if not getattr(self, "_synced", False):
+                synced = await self.tree.sync()
+                self._synced = True
             for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
             for cmd in self.commands:
