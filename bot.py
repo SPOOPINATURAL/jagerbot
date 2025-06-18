@@ -43,6 +43,8 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
+            synced = await self.tree.sync()
+            logger.info(f"Synced {len(synced)} slash commands with Discord.")
             for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
             for cmd in self.commands:

@@ -52,10 +52,6 @@ class Fun(commands.Cog):
         if self.session and not self.session.closed:
             await self.session.close()
 
-    @commands.slash_command(name='hello', description="Hello!")
-    async def hello(self, ctx: discord.ApplicationContext):
-        await ctx.respond(f"Hallo {ctx.user.mention} :)")
-
     @commands.slash_command(name='quote', description="Get a random Jäger quote")
     async def quote(self, ctx: discord.ApplicationContext):
         selected_quotes = random.choice(self.bot.config.quotes)
