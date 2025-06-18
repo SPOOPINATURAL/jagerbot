@@ -2225,3 +2225,40 @@ AttributeError: 'CommandTree' object has no attribute 'walk_application_commands
 2025-06-18 18:44:05,742 - __main__ - INFO - Loaded data from JSON.
 2025-06-18 18:44:26,283 - __main__ - INFO - main() is running
 2025-06-18 18:44:26,283 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:44:46,997 - __main__ - INFO - main() is running
+2025-06-18 18:44:46,997 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:45:07,499 - __main__ - INFO - main() is running
+2025-06-18 18:45:07,500 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:45:27,995 - __main__ - INFO - main() is running
+2025-06-18 18:45:27,995 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:45:48,516 - __main__ - INFO - main() is running
+2025-06-18 18:45:48,516 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:46:09,020 - __main__ - INFO - main() is running
+2025-06-18 18:46:09,021 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:46:29,482 - __main__ - INFO - main() is running
+2025-06-18 18:46:29,482 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:46:51,762 - bot - INFO - bot.py is running
+2025-06-18 18:46:51,764 - __main__ - INFO - main() is running
+2025-06-18 18:46:51,764 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:46:51,764 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 18:46:51,765 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 18:46:51,765 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 18:46:51,765 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 18:46:51,765 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 18:46:51,766 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 18:46:51,766 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 18:46:51,766 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 18:46:51,766 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 18:46:51,766 - __main__ - INFO - Loaded extension: cogs.test
+2025-06-18 18:46:51,766 - __main__ - INFO - Starting bot...
+2025-06-18 18:46:51,766 - discord.client - INFO - logging in using static token
+2025-06-18 18:46:52,501 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: cea5ab51ebfe10aa2153910de8a980a1).
+2025-06-18 18:46:52,502 - bot - INFO - Connected to Discord
+2025-06-18 18:46:54,572 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 18:46:54,572 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 18:46:54,573 - bot - ERROR - Error in on_ready: name 'bot' is not defined
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/bot.py", line 47, in on_ready
+    logger.info(f"Commands registered in tree at on_ready: {len(bot.tree.get_commands())}")
+                                                                ^^^
+NameError: name 'bot' is not defined
