@@ -53,8 +53,19 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
+    async def cog_load(self):
+        self.session = aiohttp.ClientSession(
+            timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
+            headers={"TRN-Api-Key": TRACKER_API_KEY}
+        )
 
-        self.r6_group = bot.create_group("r6", "Rainbow Six Siege commands")
+        self.operators = await DataHelper.load_json_file("data/operators.json") or {}
+        self.maps = await DataHelper.load_json_file("data/maps.json") or {}
+
+        if not self.operators or not self.maps:
+            raise ValueError("Missing game data")
+
+        self.r6_group = self.bot.create_group("r6", "Rainbow Six Siege commands")
 
         @self.r6_group.command(name="stats", description="Look up R6 player stats")
         async def stats(
@@ -219,21 +230,9 @@ class R6Cog(commands.Cog):
             except Exception as e:
                 logger.error(f"Error fetching R6 news: {e}")
                 await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
-
-    async def cog_load(self):
-        try:
-            self.session = aiohttp.ClientSession(
-                timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
-                headers={"TRN-Api-Key": TRACKER_API_KEY}
-            )
-            await self.load_game_data()
-            self.bot.tree.add_command(self.r6_group)
-            logger.info("R6Cog loaded and commands synced")
-        except Exception as e:
-            if self.session and not self.session.closed:
-                await self.session.close()
-            logger.error(f"Error during cog load: {e}")
-            raise
+        
+        self.bot.tree.add_command(self.r6_group)
+        logger.info("R6Cog loaded and slash commands registered")
 
     async def cog_unload(self):
         if self.session and not self.session.closed:
