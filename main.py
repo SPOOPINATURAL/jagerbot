@@ -19,7 +19,7 @@ def create_bot() -> JagerBot:
         intents=discord.Intents.all()
     )
     return bot
-
+bot = discord.Bot()
 async def main():
     logger.info("main() is running")
     data = load_data()
@@ -52,5 +52,8 @@ async def main():
         await bot.close()
         logger.info("Bot closed cleanly.")
 
+@bot.command(description="Sends the bot's latency.") # this decorator makes a slash command
+async def ping(ctx): # a slash command will be created with the name "ping"
+    await ctx.respond(f"Pong! Latency is {bot.latency}")
 if __name__ == "__main__":
     asyncio.run(main())
