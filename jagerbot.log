@@ -2306,3 +2306,22 @@ NameError: name 'bot' is not defined
 2025-06-18 18:48:56,967 - bot - INFO - Connected to Discord
 2025-06-18 18:48:59,034 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 18:48:59,035 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 18:52:29,217 - bot - INFO - bot.py is running
+2025-06-18 18:52:29,219 - __main__ - INFO - main() is running
+2025-06-18 18:52:29,219 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:52:29,220 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 18:52:29,221 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 18:52:29,221 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 18:52:29,221 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 18:52:29,221 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 18:52:29,221 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 18:52:29,222 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 18:52:29,222 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 18:52:29,222 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 18:52:29,222 - __main__ - INFO - Loaded extension: cogs.test
+2025-06-18 18:52:29,222 - __main__ - INFO - Starting bot...
+2025-06-18 18:52:29,222 - discord.client - INFO - logging in using static token
+2025-06-18 18:52:29,906 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 60cae92231f0ade5ea1b7f8a84606c5d).
+2025-06-18 18:52:29,908 - bot - INFO - Connected to Discord
+2025-06-18 18:52:31,965 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 18:52:31,966 - bot - INFO - Commands registered in tree before start: 0
