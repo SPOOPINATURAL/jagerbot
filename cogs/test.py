@@ -28,5 +28,5 @@ class TestCog(commands.Cog):
         except Exception as e:
             logger.exception("❌ Failed to add /test group to tree")
 
-async def setup(bot):
-    await bot.add_cog(TestCog(bot))
+def setup(bot):
+    bot.add_cog(TestCog(bot))
