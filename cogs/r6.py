@@ -54,18 +54,6 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
-    async def cog_load(self):
-        self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=API_TIMEOUT),
-            headers={"TRN-Api-Key": TRACKER_API_KEY}
-        )
-
-        self.operators = await DataHelper.load_json_file("data/operators.json") or {}
-        self.maps = await DataHelper.load_json_file("data/maps.json") or {}
-
-        if not self.operators or not self.maps:
-            raise ValueError("Missing game data")
-
         self.r6_group = self.bot.create_group("r6", "Rainbow Six Siege commands")
 
         @self.r6_group.command(name="stats", description="Look up R6 player stats")
