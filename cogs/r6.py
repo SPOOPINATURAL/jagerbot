@@ -227,6 +227,7 @@ class R6Cog(commands.Cog):
                 headers={"TRN-Api-Key": TRACKER_API_KEY}
             )
             await self.load_game_data()
+            self.bot.tree.add_command(self.r6_group)
             logger.info("R6Cog loaded and commands synced")
         except Exception as e:
             if self.session and not self.session.closed:
