@@ -219,7 +219,6 @@ class R6Cog(commands.Cog):
             except Exception as e:
                 logger.error(f"Error fetching R6 news: {e}")
                 await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
-        bot.tree.add_command(self.r6_group)
 
     async def cog_load(self):
         try:
