@@ -1964,3 +1964,23 @@ AttributeError: 'CommandTree' object has no attribute 'walk_application_commands
 2025-06-18 17:08:48,208 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 7157398579dd97e5104b5cf717675f4a).
 2025-06-18 17:08:48,209 - bot - INFO - Connected to Discord
 2025-06-18 17:08:50,266 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 17:13:10,994 - bot - INFO - bot.py is running
+2025-06-18 17:13:10,996 - __main__ - INFO - main() is running
+2025-06-18 17:13:10,996 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 17:13:10,997 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 17:13:10,998 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 17:13:10,999 - __main__ - INFO - Loaded extension: cogs.test
+2025-06-18 17:13:10,999 - __main__ - ERROR - Error syncing commands: Client has not been properly initialised. Please use the login method or asynchronous context manager before calling this method
+2025-06-18 17:13:10,999 - __main__ - INFO - Starting bot...
+2025-06-18 17:13:10,999 - discord.client - INFO - logging in using static token
+2025-06-18 17:13:12,135 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 24715b0170bd9ee38ef2436673278d02).
+2025-06-18 17:13:12,135 - bot - INFO - Connected to Discord
+2025-06-18 17:13:14,191 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 17:13:14,383 - bot - INFO - Synced 0 slash commands with Discord.
