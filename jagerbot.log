@@ -2157,3 +2157,23 @@ AttributeError: 'CommandTree' object has no attribute 'walk_application_commands
 2025-06-18 17:54:12,308 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 17:54:12,309 - bot - INFO - Commands registered in tree before start: 0
 2025-06-18 17:54:12,309 - bot - INFO - Commands registered in tree at on_ready: 0
+2025-06-18 18:10:00,891 - bot - INFO - bot.py is running
+2025-06-18 18:10:00,893 - __main__ - INFO - main() is running
+2025-06-18 18:10:00,893 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 18:10:00,894 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 18:10:00,894 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 18:10:00,895 - __main__ - INFO - Loaded extension: cogs.test
+2025-06-18 18:10:00,895 - __main__ - INFO - Starting bot...
+2025-06-18 18:10:00,895 - discord.client - INFO - logging in using static token
+2025-06-18 18:10:01,824 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: df321dcb634a0a9704454bcd9ddaa50a).
+2025-06-18 18:10:01,826 - bot - INFO - Connected to Discord
+2025-06-18 18:10:03,891 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 18:10:03,891 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 18:10:03,892 - bot - INFO - Commands registered in tree at on_ready: 0
