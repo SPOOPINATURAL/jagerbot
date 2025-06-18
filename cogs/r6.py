@@ -235,13 +235,6 @@ class R6Cog(commands.Cog):
         self.bot.tree.add_command(self.r6_group)
         logger.info("R6Cog loaded and slash commands registered")
 
-    async def cog_unload(self):
-        if self.session and not self.session.closed:
-            await self.session.close()
-        if self.cache:
-            self.cache.cleanup_expired(CACHE_DURATION)
-        logger.info("R6Cog unloaded")
-
     async def load_game_data(self):
         operators_data = await DataHelper.load_json_file("data/operators.json")
         maps_data = await DataHelper.load_json_file("data/maps.json")

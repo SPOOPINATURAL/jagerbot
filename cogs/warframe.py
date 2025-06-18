@@ -200,13 +200,6 @@ class WarframeCog(commands.Cog):
                 logger.error(f"Error fetching streams: {e}")
                 await ctx.followup.send("❌ Error fetching stream data.", ephemeral=True)
 
-    async def cog_load(self) -> None:
-        self.session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30))
-
-    async def cog_unload(self) -> None:
-        if self.session and not self.session.closed:
-            await self.session.close()
-
     async def get_cached_data(self, endpoint: str, max_age: int = CACHE_DURATION) -> Optional[dict]:
         cache_key = f"wf_{endpoint}"
         cached = self.cache.get(cache_key)

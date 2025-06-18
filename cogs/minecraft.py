@@ -227,12 +227,6 @@ class MinecraftCog(commands.Cog):
                     return src
         return None
 
-    async def cog_load(self) -> None:
-        self.session = aiohttp.ClientSession(timeout=self.session_timeout)
-
-    async def cog_unload(self) -> None:
-        if self.session and not self.session.closed:
-            await self.session.close()
 
 def setup(bot: commands.Bot):
     bot.add_cog(MinecraftCog(bot))
