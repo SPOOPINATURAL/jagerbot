@@ -19,7 +19,6 @@ def create_bot() -> JagerBot:
         intents=discord.Intents.all()
     )
     return bot
-bot = discord.Bot()
 async def main():
     logger.info("main() is running")
     data = load_data()
@@ -44,6 +43,13 @@ async def main():
                 logger.info(f"Loaded extension: cogs.{filename[:-3]}")
             except Exception as e:
                 logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}")
+    
+    try:
+        await bot.wait_until_ready()
+        await bot.tree.sync()
+        logger.info("Slash commands synced successfully.")
+    except Exception as e:
+        logger.error(f"Error syncing commands: {e}")
     try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
@@ -51,9 +57,5 @@ async def main():
         logger.info("Received keyboard interrupt, shutting down...")
         await bot.close()
         logger.info("Bot closed cleanly.")
-
-@bot.command(description="Sends the bot's latency.") # this decorator makes a slash command
-async def ping(ctx): # a slash command will be created with the name "ping"
-    await ctx.respond(f"Pong! Latency is {bot.latency}")
 if __name__ == "__main__":
     asyncio.run(main())
