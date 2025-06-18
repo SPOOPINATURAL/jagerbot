@@ -5,6 +5,7 @@ import feedparser
 import logging
 from typing import Dict, Any, List
 from discord.ext import commands
+from discord.commands import slash_command
 from datetime import datetime, timedelta
 
 from utils.base_cog import BaseCog

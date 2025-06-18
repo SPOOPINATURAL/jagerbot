@@ -6,6 +6,8 @@ from typing import Dict, Optional
 import aiohttp
 import discord
 from discord.ext import commands
+from discord.commands import Option
+from discord.commands import slash_command
 
 from config import SCORES_FILE
 from utils.embed_builder import EmbedBuilder
@@ -44,13 +46,6 @@ class Fun(commands.Cog):
         self.trivia_manager = TriviaManager(SCORES_FILE)
         self.session = None
         super().__init__()
-
-    async def cog_load(self) -> None:
-        self.session = aiohttp.ClientSession()
-
-    async def cog_unload(self) -> None:
-        if self.session and not self.session.closed:
-            await self.session.close()
 
     @commands.slash_command(name='quote', description="Get a random Jäger quote")
     async def quote(self, ctx: discord.ApplicationContext):
