@@ -43,6 +43,8 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
+            logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
+
             for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
             for cmd in self.commands:

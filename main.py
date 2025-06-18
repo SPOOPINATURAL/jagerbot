@@ -43,23 +43,12 @@ async def main():
                 logger.info(f"Loaded extension: cogs.{filename[:-3]}")
             except Exception as e:
                 logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}")
-
-    @bot.event
-    async def on_application_command_error(ctx, error):
-        import traceback
-        logger.error(f"Slash command error: {error}")
-        logger.error(traceback.format_exc())
-        await ctx.respond(f"Error: {error}", ephemeral=True)
-
-    await bot.login(config.DISCORD_TOKEN)
-    await bot.connect()
-
     try:
-        synced = await bot.tree.sync()
-        logger.info(f"Synced {len(synced)} slash commands after connect.")
-    except Exception as e:
-        logger.error(f"Error syncing commands after connect: {e}")
-
-    await bot.wait_until_close()
+        logger.info("Starting bot...")
+        await bot.start(config.DISCORD_TOKEN)
+    except KeyboardInterrupt:
+        logger.info("Received keyboard interrupt, shutting down...")
+        await bot.close()
+        logger.info("Bot closed cleanly.")
 if __name__ == "__main__":
     asyncio.run(main())
