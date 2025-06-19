@@ -220,7 +220,6 @@ class R6Cog(commands.Cog):
                 logger.error(f"Error fetching R6 news: {e}")
                 await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
         
-        self.bot.tree.add_command(self.r6_group)
         logger.info("R6Cog loaded and slash commands registered")
 
     async def load_game_data(self):
