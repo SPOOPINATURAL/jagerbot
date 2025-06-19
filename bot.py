@@ -51,10 +51,10 @@ class JagerBot(commands.Bot):
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
 
-    async def on_connect() -> None:
+    async def on_connect(self) -> None:
         logger.info("Connected to Discord")
 
-    async def on_disconnect() -> None:
+    async def on_disconnect(self) -> None:
         logger.warning("Disconnected from Discord")
 
     async def on_error(self, event_method: str, *args, **kwargs) -> None:
