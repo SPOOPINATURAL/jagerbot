@@ -48,11 +48,6 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
-            try:
-                synced = await self.tree.sync()
-                logger.info(f"Synced {len(synced)} slash commands")
-            except Exception as e:
-                logger.error(f"Failed to sync slash commands in on_ready: {e}", exc_info=True)
             logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
             for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
