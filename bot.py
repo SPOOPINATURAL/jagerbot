@@ -48,6 +48,8 @@ class JagerBot(commands.Bot):
                     name="everything"
                 )
             )
+            synced = await self.bot.sync_commands()
+            logger.info(f"Synced {len(synced)} commands")
             logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
             for cmd in self.tree.walk_commands():
                 logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
