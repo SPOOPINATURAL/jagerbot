@@ -32,7 +32,12 @@ class JagerBot(commands.Bot):
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
         self.config = config
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
+    async def on_connect(self) -> None:
+        logger.info("Connected to Discord")
 
+    async def on_disconnect(self) -> None:
+        logger.warning("Disconnected from Discord")
+        
     async def on_ready(self) -> None:
         try:
             logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
@@ -50,12 +55,6 @@ class JagerBot(commands.Bot):
                 logger.info(f"Loaded prefix command: {cmd.qualified_name}")
         except Exception as e:
             logger.error(f"Error in on_ready: {e}", exc_info=True)
-
-    async def on_connect(self) -> None:
-        logger.info("Connected to Discord")
-
-    async def on_disconnect(self) -> None:
-        logger.warning("Disconnected from Discord")
 
     async def on_error(self, event_method: str, *args, **kwargs) -> None:
         logger.error(f"Unhandled error in {event_method}", exc_info=True)

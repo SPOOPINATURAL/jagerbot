@@ -42,6 +42,12 @@ async def main():
         except Exception as e:
             logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
     try:
+        logger.info("Syncing slash commands with Discord...")
+        await bot.tree.sync()
+        logger.info("Slash commands synced!")
+    except Exception as e:
+        logger.error(f"Failed to sync slash commands: {e}", exc_info=True)
+    try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
     except KeyboardInterrupt:
