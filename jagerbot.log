@@ -2441,3 +2441,29 @@ TypeError: JagerBot.on_connect() takes 0 positional arguments but 1 was given
 2025-06-18 19:19:56,843 - bot - INFO - Connected to Discord
 2025-06-18 19:19:58,900 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 19:19:58,901 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 19:29:28,689 - bot - INFO - bot.py is running
+2025-06-18 19:29:28,691 - __main__ - INFO - main() is running
+2025-06-18 19:29:28,691 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 19:29:28,692 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 19:29:28,693 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 19:29:28,693 - __main__ - INFO - Syncing slash commands with Discord...
+2025-06-18 19:29:28,693 - __main__ - ERROR - Failed to sync slash commands: Client does not have an application_id set. Either the function was called before on_ready was called or application_id was not passed to the Client constructor.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 46, in main
+    await bot.tree.sync()
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1117, in sync
+    raise MissingApplicationID
+discord.errors.MissingApplicationID: Client does not have an application_id set. Either the function was called before on_ready was called or application_id was not passed to the Client constructor.
+2025-06-18 19:29:28,694 - __main__ - INFO - Starting bot...
+2025-06-18 19:29:28,694 - discord.client - INFO - logging in using static token
+2025-06-18 19:29:29,547 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0fa91d31f36bac6f65dfbbcb9f1f0cb2).
+2025-06-18 19:29:29,548 - bot - INFO - Connected to Discord
+2025-06-18 19:29:31,603 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 19:29:31,604 - bot - INFO - Commands registered in tree before start: 0
