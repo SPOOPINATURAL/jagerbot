@@ -2497,3 +2497,22 @@ AttributeError: '_MissingSentinel' object has no attribute 'is_set'
 2025-06-18 19:51:55,768 - bot - INFO - Connected to Discord
 2025-06-18 19:51:57,838 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 19:51:57,838 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 19:54:23,695 - bot - INFO - bot.py is running
+2025-06-18 19:54:23,696 - __main__ - INFO - main() is running
+2025-06-18 19:54:23,697 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 19:54:23,697 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 19:54:23,698 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 19:54:23,699 - __main__ - INFO - Starting bot...
+2025-06-18 19:54:23,699 - discord.client - INFO - logging in using static token
+2025-06-18 19:54:24,759 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 75f0cfe7e26aab250949c9a5a00be076).
+2025-06-18 19:54:24,760 - bot - INFO - Connected to Discord
+2025-06-18 19:54:26,822 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 19:54:26,973 - bot - INFO - Synced 0 slash commands
+2025-06-18 19:54:26,973 - bot - INFO - Commands registered in tree before start: 0
