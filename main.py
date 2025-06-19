@@ -56,11 +56,12 @@ async def main():
     intents = discord.Intents.all()
     bot = JagerBot(command_prefix="$", help_command=None, intents=intents, application_id=1376008090968657990)
 
-    try:
-        bot.load_extension("cogs.test")
-        logger.info("Loaded extension cogs.test")
-    except Exception as e:
-        logger.error(f"Failed to load cogs.test: {e}", exc_info=True)
+    for ext in bot.initial_extensions:
+        try:
+            bot.load_extension(ext)
+            logger.info(f"Loaded extension: {ext}")
+        except Exception as e:
+            logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
 
     try:
         logger.info("Starting bot...")
