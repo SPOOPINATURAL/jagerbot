@@ -2423,3 +2423,21 @@ Traceback (most recent call last):
 TypeError: JagerBot.on_connect() takes 0 positional arguments but 1 was given
 2025-06-18 19:17:56,077 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 19:17:56,077 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 19:19:55,970 - bot - INFO - bot.py is running
+2025-06-18 19:19:55,972 - __main__ - INFO - main() is running
+2025-06-18 19:19:55,973 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 19:19:55,973 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 19:19:55,974 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 19:19:55,975 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 19:19:55,975 - __main__ - INFO - Starting bot...
+2025-06-18 19:19:55,975 - discord.client - INFO - logging in using static token
+2025-06-18 19:19:56,843 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 2b064c12965309afbf9c9a855ba4b3ae).
+2025-06-18 19:19:56,843 - bot - INFO - Connected to Discord
+2025-06-18 19:19:58,900 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 19:19:58,901 - bot - INFO - Commands registered in tree before start: 0
