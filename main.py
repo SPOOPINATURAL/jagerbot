@@ -35,7 +35,18 @@ class JagerBot(commands.Bot):
         )
         logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
         for cmd in self.tree.walk_commands():
-            logger.info(f"Loaded slash command: /{cmd.qualified_name} (type: {cmd.type})")
+            logger.info(f"Slash command: /{cmd.qualified_name} | Type: {cmd.type} | Default permission: {cmd.default_permission}")
+    
+            if cmd.default_permission is False:
+                logger.warning(f"Command /{cmd.qualified_name} is disabled by default")
+    
+            if hasattr(cmd, 'guild_ids') and cmd.guild_ids:
+                logger.info(f"Restricted to guilds: {cmd.guild_ids}")
+
+            if hasattr(cmd, 'commands') and cmd.commands:
+                for subcmd in cmd.commands:
+                    logger.info(f"Subcommand: {subcmd.name} | Default permission: {subcmd.default_permission}")
+
         for cmd in self.commands:
             logger.info(f"Loaded prefix command: {cmd.qualified_name}")
 
