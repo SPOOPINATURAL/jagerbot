@@ -15,6 +15,7 @@ def create_bot() -> JagerBot:
         command_prefix="$",
         help_command=None,
         intents=discord.Intents.all()
+        application_id=1376008090968657990
     )
     return bot
 
