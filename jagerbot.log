@@ -2467,3 +2467,33 @@ discord.errors.MissingApplicationID: Client does not have an application_id set.
 2025-06-18 19:29:29,548 - bot - INFO - Connected to Discord
 2025-06-18 19:29:31,603 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 19:29:31,604 - bot - INFO - Commands registered in tree before start: 0
+2025-06-18 19:51:54,931 - bot - INFO - bot.py is running
+2025-06-18 19:51:54,932 - __main__ - INFO - main() is running
+2025-06-18 19:51:54,933 - __main__ - INFO - Loaded data from JSON.
+2025-06-18 19:51:54,933 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.r6
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.minecraft
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.warframe
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.fun
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.alerts
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.alert_cmd
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.core
+2025-06-18 19:51:54,934 - __main__ - INFO - Loaded extension: cogs.frost
+2025-06-18 19:51:54,934 - __main__ - INFO - Syncing slash commands with Discord...
+2025-06-18 19:51:54,934 - __main__ - ERROR - Failed to sync slash commands: '_MissingSentinel' object has no attribute 'is_set'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 47, in main
+    await bot.tree.sync()
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/app_commands/tree.py", line 1129, in sync
+    data = await self._http.bulk_upsert_global_commands(self.client.application_id, payload=payload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 622, in request
+    if not self._global_over.is_set():
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: '_MissingSentinel' object has no attribute 'is_set'
+2025-06-18 19:51:54,935 - __main__ - INFO - Starting bot...
+2025-06-18 19:51:54,936 - discord.client - INFO - logging in using static token
+2025-06-18 19:51:55,768 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 3e2c6baeb20bf05cc2c81e21daf9dfdd).
+2025-06-18 19:51:55,768 - bot - INFO - Connected to Discord
+2025-06-18 19:51:57,838 - bot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 19:51:57,838 - bot - INFO - Commands registered in tree before start: 0
