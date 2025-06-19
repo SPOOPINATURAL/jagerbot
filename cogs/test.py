@@ -13,5 +13,5 @@ class TestCog(commands.Cog):
         await ctx.respond("Pong!")
 
 def setup(bot):
-    bot.add_cog(TestCog(bot))
     logger.info("✅ Loaded TestCog")
+    bot.add_cog(TestCog(bot))
