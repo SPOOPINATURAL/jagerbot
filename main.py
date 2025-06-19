@@ -2,8 +2,6 @@ import asyncio
 import logging
 from bot import JagerBot
 import config
-import os
-import discord
 from discord.ext import commands
 from utils.setup import load_data
 
@@ -37,13 +35,12 @@ async def main():
         logger.error(traceback.format_exc())
         await ctx.respond(f"Error: {error}", ephemeral=True)
     
-    for filename in os.listdir("./cogs"):
-        if filename.endswith(".py") and filename != "__init__.py":
-            try:
-                bot.load_extension(f"cogs.{filename[:-3]}")
-                logger.info(f"Loaded extension: cogs.{filename[:-3]}")
-            except Exception as e:
-                logger.error(f"Failed to load extension cogs.{filename[:-3]}: {e}")
+    for ext in config.INITIAL_EXTENSIONS:
+        try:
+            bot.load_extension(ext)
+            logger.info(f"Loaded extension: {ext}")
+        except Exception as e:
+            logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
     try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
