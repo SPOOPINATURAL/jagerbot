@@ -2679,3 +2679,11 @@ AttributeError: 'JagerBot' object has no attribute 'sync_commands'
 2025-06-18 20:35:31,099 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 6e944908f33deaf0e074cd66e8c493a8).
 2025-06-18 20:35:33,146 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-06-18 20:35:33,146 - jagerbot - INFO - Commands registered in tree before start: 0
+2025-06-18 20:39:39,292 - jagerbot - INFO - main() is running
+2025-06-18 20:39:39,292 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-06-18 20:39:39,293 - jagerbot - INFO - Loaded extension cogs.test
+2025-06-18 20:39:39,293 - jagerbot - INFO - Starting bot...
+2025-06-18 20:39:39,293 - discord.client - INFO - logging in using static token
+2025-06-18 20:39:40,205 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 97ae9bbb9af45f6bc305a29d19eaca4a).
+2025-06-18 20:39:42,282 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-06-18 20:39:42,282 - jagerbot - INFO - Commands registered in tree before start: 0
