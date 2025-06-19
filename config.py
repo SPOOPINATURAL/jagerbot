@@ -42,6 +42,7 @@ INITIAL_EXTENSIONS = [
     #'cogs.error_handler',
     # 'cogs.owner',
     'cogs.frost',
+    'cogs.test'
 ]
 
 
