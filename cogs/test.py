@@ -22,3 +22,4 @@ class TestCog(commands.Cog):
 
 def setup(bot):
     bot.add_cog(TestCog(bot))
+    logger.info("✅ Loaded TestCog")
