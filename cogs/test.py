@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 class TestCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        logger.info("TestCog initialized")
 
     @discord.slash_command(name="ping", description="Ping command")
     async def ping(self, ctx):
