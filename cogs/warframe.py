@@ -1,9 +1,7 @@
 import discord
-import aiohttp
 import logging
 from typing import Optional
 from discord.ext import commands
-from discord import Options
 from discord.ui import View, Button
 from config import (
     WF_API_BASE,

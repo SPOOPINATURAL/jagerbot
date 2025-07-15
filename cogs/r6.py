@@ -1,17 +1,13 @@
 import discord
 import random
-import aiohttp
 import feedparser
 import logging
 from typing import Dict, Any, List
 from discord.ext import commands
-from discord import Option, SlashCommandGroup
-from datetime import datetime, timedelta
+from datetime import datetime
 
-from utils.base_cog import BaseCog
-from utils.autocomplete import AutocompleteMixin
 from utils.views import PaginationView
-from utils.helpers import DataHelper, FileHelper
+from utils.helpers import DataHelper
 from config import (
     TRACKER_API_KEY,
     R6_API_BASE,

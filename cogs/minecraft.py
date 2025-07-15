@@ -5,7 +5,6 @@ import aiohttp
 import discord
 from bs4 import BeautifulSoup
 from discord.ext import commands
-from discord import Option, SlashCommandGroup
 
 from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
