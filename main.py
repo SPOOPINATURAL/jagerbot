@@ -5,7 +5,6 @@ import asyncio
 from typing import List
 import discord
 from discord.ext import commands
-from discord import SlashCommandGroup, Option
 from dotenv import load_dotenv
 import config
 
@@ -21,7 +20,8 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger("jagerbot")
-
+logger.info(f"discord imported from: {discord.__file__}")
+logger.info(f"discord version: {discord.__version__}")
 class JagerBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

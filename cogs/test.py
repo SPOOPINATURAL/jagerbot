@@ -9,7 +9,7 @@ class TestCog(commands.Cog):
         self.bot = bot
         logger.info("TestCog initialized")
 
-    @discord.slash_command(name="ping", description="Ping command")
+    @commands.slash_command(name="ping", description="Ping command")
     async def ping(self, ctx):
         await ctx.respond("Pong!")
 

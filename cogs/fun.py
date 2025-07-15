@@ -44,29 +44,29 @@ class Fun(commands.Cog):
         self.session = None
         super().__init__()
 
-    @discord.slash_command(name='quote', description="Get a random Jäger quote")
+    @commands.slash_command(name='quote', description="Get a random Jäger quote")
     async def quote(self, ctx: discord.ApplicationContext):
         selected_quotes = random.choice(self.bot.config.quotes)
         await ctx.respond(selected_quotes)
 
-    @discord.slash_command(name='image', description="Get a random image")
+    @commands.slash_command(name='image', description="Get a random image")
     async def image(self, ctx: discord.ApplicationContext):
         images_url = random.choice(self.bot.config.image_urls)
         await ctx.respond(images_url)
 
-    @discord.slash_command(name='clancy', description="Obtain a random Clancy image")
+    @commands.slash_command(name='clancy', description="Obtain a random Clancy image")
     async def clancy(self, ctx: discord.ApplicationContext):
         clancy_image = random.choice(self.bot.config.clancy_images)
         await ctx.respond(clancy_image)
 
-    @discord.slash_command(name='longo', description="longo")
+    @commands.slash_command(name='longo', description="longo")
     async def longo(self, ctx: discord.ApplicationContext):
         image_url = "https://i.imgur.com/J1P7g5f.jpeg"
         embed = discord.Embed(title="longo")
         embed.set_image(url=image_url)
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="8ball", description="Ask the magic 8ball a question")
+    @commands.slash_command(name="8ball", description="Ask the magic 8ball a question")
     async def eight_ball(
         self,
         ctx: discord.ApplicationContext,
@@ -94,7 +94,7 @@ class Fun(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="xkcd", description="Get a random XKCD comic")
+    @commands.slash_command(name="xkcd", description="Get a random XKCD comic")
     async def random_xkcd(self, ctx: discord.ApplicationContext):
         async with aiohttp.ClientSession() as session:
             async with session.get("https://c.xkcd.com/random/comic/", allow_redirects=False) as resp:
@@ -122,7 +122,7 @@ class Fun(commands.Cog):
         embed.set_footer(text=f"Comic #{comic['num']}")
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="d20", description="Roll d20")
+    @commands.slash_command(name="d20", description="Roll d20")
     async def roll_d20(self, ctx: discord.ApplicationContext):
         result = random.randint(1, 20)
         embed = discord.Embed(
@@ -132,7 +132,7 @@ class Fun(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="rps", description="Play Rock, Paper, Scissors")
+    @commands.slash_command(name="rps", description="Play Rock, Paper, Scissors")
     @commands.cooldown(1, 5.0, commands.BucketType.user)
     async def rps_command(self, ctx: discord.ApplicationContext):
         try:
@@ -150,7 +150,7 @@ class Fun(commands.Cog):
                 ephemeral=True
             )
 
-    @discord.slash_command(name='trivia', description="Get a trivia question, multiple choice answers")
+    @commands.slash_command(name='trivia', description="Get a trivia question, multiple choice answers")
     @commands.cooldown(1, 30.0, commands.BucketType.user)
     async def trivia(self, ctx: discord.ApplicationContext):
         try:
@@ -223,7 +223,7 @@ class Fun(commands.Cog):
         embed.set_footer(text="Click the button that matches your answer.")
         return embed
 
-    @discord.slash_command(name='score', description="Get your trivia score")
+    @commands.slash_command(name='score', description="Get your trivia score")
     async def score(self, ctx: discord.ApplicationContext):
         score = self.trivia_manager.get_score(ctx.user.id)
         await ctx.respond(

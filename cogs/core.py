@@ -115,7 +115,7 @@ class CoreCog(commands.Cog):
         if self.session and not self.session.closed:
             await self.session.close()
 
-    @discord.slash_command(name='weather', description="Get the current weather in a city")
+    @commands.slash_command(name='weather', description="Get the current weather in a city")
     async def weather(
         self,
         ctx: discord.ApplicationContext,
@@ -151,7 +151,7 @@ class CoreCog(commands.Cog):
             except Exception:
                 logger.error("Failed to send followup message after weather error")
 
-    @discord.slash_command(name="currency", description="Convert currency using exchangerate.host")
+    @commands.slash_command(name="currency", description="Convert currency using exchangerate.host")
     async def currency(
         self,
         ctx: discord.ApplicationContext,
@@ -196,7 +196,7 @@ class CoreCog(commands.Cog):
             except Exception:
                 logger.error("Failed to send followup message after currency error")
 
-    @discord.slash_command(name="timezones", description="List supported timezones")
+    @commands.slash_command(name="timezones", description="List supported timezones")
     async def timezones(self, ctx: discord.ApplicationContext):
         logger.info("timezones command invoked")
 
@@ -217,7 +217,7 @@ class CoreCog(commands.Cog):
             except Exception:
                 logger.error("Failed to send error message after timezones command failure")
 
-    @discord.slash_command(name="tzconvert", description="Convert time between timezones")
+    @commands.slash_command(name="tzconvert", description="Convert time between timezones")
     async def tzconvert(
         self,
         ctx: discord.ApplicationContext,
@@ -269,7 +269,7 @@ class CoreCog(commands.Cog):
                 ephemeral=True
             )
 
-    @discord.slash_command(name="credits", description="Credits for this bot")
+    @commands.slash_command(name="credits", description="Credits for this bot")
     async def credits(self, ctx: discord.ApplicationContext):
         embed = discord.Embed(title="Bot Credits", description="Made by **SPOOPINATURAL**", color=0x8B0000)
         embed.set_thumbnail(url="https://i.imgur.com/BxmePJZ.png")
@@ -284,7 +284,7 @@ class CoreCog(commands.Cog):
 
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="date", description="Get the current date and time")
+    @commands.slash_command(name="date", description="Get the current date and time")
     async def date(
         self,
         ctx: discord.ApplicationContext,
@@ -311,7 +311,7 @@ class CoreCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="plane", description="Get a random WW1 plane")
+    @commands.slash_command(name="plane", description="Get a random WW1 plane")
     async def plane(self, ctx: discord.ApplicationContext):
         planes = self.bot.planes or []
         if not planes:
@@ -336,7 +336,7 @@ class CoreCog(commands.Cog):
         embed.set_image(url=plane.get("image", ""))
         await ctx.respond(embed=embed)
 
-    @discord.slash_command(name="info", description="Command list")
+    @commands.slash_command(name="info", description="Command list")
     async def info(self, ctx: discord.ApplicationContext):
         guild_id = ctx.guild.id if ctx.guild else 0
         view = InfoPages(guild_id)
