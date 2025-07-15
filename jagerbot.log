@@ -6405,3 +6405,25 @@ discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.test' raised an err
 2025-07-15 00:13:08,269 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 0a9ae68cd621dee9ffbdf15d2a538ba1).
 2025-07-15 00:13:10,299 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-07-15 00:13:10,299 - jagerbot - INFO - Commands registered in tree before start: 0
+2025-07-15 01:58:52,611 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-15 01:58:52,612 - jagerbot - INFO - discord version: 2.6.1
+2025-07-15 01:58:52,612 - jagerbot - INFO - main() is running
+2025-07-15 01:58:52,613 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-15 01:58:52,613 - jagerbot - INFO - Starting bot...
+2025-07-15 01:58:52,613 - discord.client - INFO - logging in using static token
+2025-07-15 01:58:53,017 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-15 01:58:53,142 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-bq6w",{"micros":81453,"calls":["id_created",{"micros":618,"calls":[]},"session_lookup_time",{"micros":323,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"discord-sessions-prd-2-20",{"micros":80195,"calls":["start_session",{"micros":71827,"calls":["discord-api-rpc-859bdf98c5-jkdt7",{"micros":54264,"calls":["get_user",{"micros":7106},"get_guilds",{"micros":13891},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":7648},"apex_experiments",{"micros":1649},"user_activities",{"micros":5},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":29,"calls":[]},"presence_started",{"micros":7889,"calls":[]},"guilds_started",{"micros":113,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":320,"calls":[]},"connect_finished",{"micros":323,"calls":[]},"build_ready",{"micros":11,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 20a76eafa3a9282799b38650afee9634).
+2025-07-15 01:58:55,215 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-15 04:38:23,020 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-15 04:38:23,259 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-15 04:38:23,313 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 20a76eafa3a9282799b38650afee9634 under trace ["gateway-prd-us-east1-c-w758",{"micros":550,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":243,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-20",{"micros":16}]}].
+2025-07-15 07:58:50,397 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-07-15 07:58:50,401 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-15 07:58:50,632 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-15 07:58:50,680 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 20a76eafa3a9282799b38650afee9634 under trace ["gateway-prd-us-east1-c-g46j",{"micros":2863,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":1839,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-20",{"micros":33}]}].
+2025-07-15 09:34:26,927 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-15 09:34:27,193 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-15 09:34:27,249 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 20a76eafa3a9282799b38650afee9634 under trace ["gateway-prd-us-east1-c-p3dk",{"micros":474,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":225,"calls":[]},"session_lookup_finished",{"micros":9,"calls":[]},"discord-sessions-prd-2-20",{"micros":13}]}].
+2025-07-15 10:13:27,910 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-15 10:13:28,188 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-15 10:13:28,237 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 20a76eafa3a9282799b38650afee9634 under trace ["gateway-prd-us-east1-b-0kjf",{"micros":525,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":278,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-20",{"micros":31}]}].
