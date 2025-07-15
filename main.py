@@ -27,6 +27,14 @@ class JagerBot(commands.Bot):
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
+    async def setup_hook(self):
+        for ext in self.initial_extensions:
+            try:
+                await self.load_extension(ext)
+                logger.info(f"Loaded extension: {ext}")
+            except Exception as e:
+                logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
+
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
         await self.change_presence(
@@ -36,13 +44,10 @@ class JagerBot(commands.Bot):
         logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
         for cmd in self.tree.walk_commands():
             logger.info(f"Slash command: /{cmd.qualified_name} | Type: {cmd.type} | Default permission: {cmd.default_permission}")
-    
             if cmd.default_permission is False:
                 logger.warning(f"Command /{cmd.qualified_name} is disabled by default")
-    
             if hasattr(cmd, 'guild_ids') and cmd.guild_ids:
                 logger.info(f"Restricted to guilds: {cmd.guild_ids}")
-
             if hasattr(cmd, 'commands') and cmd.commands:
                 for subcmd in cmd.commands:
                     logger.info(f"Subcommand: {subcmd.name} | Default permission: {subcmd.default_permission}")
@@ -52,17 +57,13 @@ class JagerBot(commands.Bot):
 
 async def main():
     logger.info("main() is running")
-
     intents = discord.Intents.all()
-    bot = JagerBot(command_prefix="$", help_command=None, intents=intents, application_id=1376008090968657990)
-
-    for ext in config.INITIAL_EXTENSIONS:
-        try:
-            bot.load_extension(ext)
-            logger.info(f"Loaded extension: {ext}")
-        except Exception as e:
-            logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
-
+    bot = JagerBot(
+        command_prefix="$",
+        help_command=None,
+        intents=intents,
+        application_id=1376008090968657990
+    )
     try:
         logger.info("Starting bot...")
         await bot.start(config.DISCORD_TOKEN)
