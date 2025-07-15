@@ -24,6 +24,7 @@ class MinecraftCog(commands.Cog):
 
     @mc_group.command(name="wiki", description="Search Minecraft Wiki")
     async def mc_wiki(
+        self,
         ctx: discord.ApplicationContext,
         query: discord.Option(str, "The wiki page to search")
     ):
@@ -35,6 +36,7 @@ class MinecraftCog(commands.Cog):
 
     @mc_group.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
     async def mc_recipe(
+        self,
         ctx: discord.ApplicationContext,
         item: discord.Option(str, "The item to get recipe for")
     ):
@@ -120,6 +122,7 @@ class MinecraftCog(commands.Cog):
 
     @mc_group.command(name="player", description="Get Minecraft player info")
     async def mc_player(
+        self,
         ctx: discord.ApplicationContext,
         username: discord.Option(str, "Minecraft IGN")
     ):
@@ -150,7 +153,7 @@ class MinecraftCog(commands.Cog):
             await ctx.followup.send(f"❌ Error: `{e}`")
 
     @mc_group.command(name="serverstatus", description="Get the status of the VDSMP")
-    async def mc_serverstatus(ctx: discord.ApplicationContext):
+    async def mc_serverstatus(self, ctx: discord.ApplicationContext):
         if ctx.guild and ctx.guild.id not in ALLOWED_GUILD_IDS:
             await ctx.respond(
                 "❌ This command is not available in this server.",
