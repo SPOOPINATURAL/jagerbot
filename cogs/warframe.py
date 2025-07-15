@@ -58,13 +58,13 @@ class BaroPaginator(View):
         return embed
 
 class WarframeCog(commands.Cog):
+    wf_group = discord.SlashCommandGroup("wf", "Warframe related commands")
     def __init__(self, bot):
         self.bot = bot
         self.session = None
         self.cache = {}
         super().__init__()
 
-        self.wf_group = bot.create_group("wf", "Warframe related commands")
 
         @self.wf_group.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
         async def baro(ctx: discord.ApplicationContext):
@@ -222,4 +222,6 @@ class WarframeCog(commands.Cog):
             return None
 
 def setup(bot: commands.Bot):
-    bot.add_cog(WarframeCog(bot))
+    cog = WarframeCog(bot)
+    bot.add_cog(cog)
+    bot.add_application_command(cog.wf_group)
