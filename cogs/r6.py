@@ -14,7 +14,6 @@ from config import (
     R6_STEAM_RSS,
     R6_VIEW_TIMEOUT,
     CACHE_DURATION,
-    API_TIMEOUT
 )
 
 logger = logging.getLogger(__name__)
@@ -312,4 +311,4 @@ class R6Cog(commands.Cog):
 def setup(bot: commands.Bot):
     cog = R6Cog(bot)
     bot.add_cog(cog)
-    bot.add_application_command(cog.mc_group)
+    bot.add_application_command(cog.r6_group)
