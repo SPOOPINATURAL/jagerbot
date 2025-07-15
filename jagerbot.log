@@ -6205,3 +6205,5 @@ discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.test' raised an err
 2025-07-14 20:46:12,613 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: dfba829bfc5391542490476df3e6b05c).
 2025-07-14 20:46:14,673 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-07-14 20:46:14,673 - jagerbot - INFO - Commands registered in tree before start: 0
+2025-07-14 21:12:01,073 - discord.gateway - INFO - Shard ID None has successfully RESUMED session dfba829bfc5391542490476df3e6b05c.
+2025-07-14 21:39:48,047 - discord.gateway - INFO - Shard ID None has successfully RESUMED session dfba829bfc5391542490476df3e6b05c.
