@@ -3,6 +3,7 @@ import sys
 import logging
 import asyncio
 from typing import List
+import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import config
