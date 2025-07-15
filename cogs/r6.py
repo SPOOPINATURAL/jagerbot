@@ -310,4 +310,6 @@ class R6Cog(commands.Cog):
         return embed
 
 def setup(bot: commands.Bot):
-    bot.add_cog(R6Cog(bot))
+    cog = R6Cog(bot)
+    bot.add_cog(cog)
+    bot.add_application_command(cog.mc_group)
