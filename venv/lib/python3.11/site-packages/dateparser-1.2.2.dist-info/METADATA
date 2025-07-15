@@ -1,6 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: dateparser
-Version: 1.2.1
+Version: 1.2.2
 Summary: Date parsing library designed to parse dates from HTML pages
 Home-page: https://github.com/scrapinghub/dateparser
 Author: Scrapinghub
@@ -24,7 +24,7 @@ License-File: LICENSE
 License-File: AUTHORS.rst
 Requires-Dist: python-dateutil>=2.7.0
 Requires-Dist: pytz>=2024.2
-Requires-Dist: regex!=2019.02.19,!=2021.8.27,>=2015.06.24
+Requires-Dist: regex>=2024.9.11
 Requires-Dist: tzlocal>=0.2
 Provides-Extra: calendars
 Requires-Dist: convertdate>=2.2.1; extra == "calendars"
@@ -41,6 +41,7 @@ Dynamic: description
 Dynamic: home-page
 Dynamic: keywords
 Dynamic: license
+Dynamic: license-file
 Dynamic: project-url
 Dynamic: provides-extra
 Dynamic: requires-dist
@@ -317,6 +318,19 @@ To be able to use them you need to install the `calendar` extra by typing:
 
 History
 =======
+
+1.2.2 (2025-06-26)
+------------------
+
+Fixes:
+
+- Handle the Russian preposition “с” (#1261)
+- Fix weekday search (#1274)
+
+Improvements:
+
+- Add Python 3.14 support (#1273)
+- Cache timezone offsets to improve import time (#1250)
 
 1.2.1 (2025-02-05)
 ------------------

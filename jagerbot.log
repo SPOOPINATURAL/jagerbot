@@ -5606,3 +5606,602 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host gatewa
 2025-07-14 14:07:54,375 - discord.gateway - INFO - Shard ID None has successfully RESUMED session d59ec6c52d59cdae0e6097f184f7e5a9.
 2025-07-14 15:20:22,378 - discord.gateway - INFO - Shard ID None has successfully RESUMED session d59ec6c52d59cdae0e6097f184f7e5a9.
 2025-07-14 16:56:38,241 - discord.gateway - INFO - Shard ID None has successfully RESUMED session d59ec6c52d59cdae0e6097f184f7e5a9.
+2025-07-14 20:11:12,972 - discord.gateway - WARNING - Can't keep up, shard ID None websocket is 41.9s behind.
+2025-07-14 20:16:57,169 - discord.gateway - WARNING - Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 75, in <module>
+    if __name__ == "__main__":
+  File "/usr/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+  File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 640, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 607, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1922, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/selectors.py", line 481, in select
+    return ready
+
+2025-07-14 20:16:57,766 - discord.client - ERROR - Attempting a reconnect in 0.26s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 704, in connect
+    await self.ws.poll_event()
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 627, in poll_event
+    await self.received_message(msg.data)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 532, in received_message
+    await self.send_as_json(beat)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 663, in send_as_json
+    await self.send(utils._to_json(data))
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 659, in send
+    await self.socket.send_str(data)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client_ws.py", line 245, in send_str
+    await self._writer.send_frame(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/_websocket/writer.py", line 126, in send_frame
+    raise ClientConnectionResetError("Cannot write to closing transport")
+aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing transport
+2025-07-14 20:17:14,194 - discord.gateway - INFO - Shard ID None has successfully RESUMED session d59ec6c52d59cdae0e6097f184f7e5a9.
+2025-07-14 20:18:08,775 - discord.gateway - WARNING - Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 75, in <module>
+    if __name__ == "__main__":
+  File "/usr/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+  File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 640, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 607, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1922, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 765, in call_soon
+    handle = self._call_soon(callback, args, context)
+
+2025-07-14 20:30:39,223 - discord.gateway - WARNING - Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 75, in <module>
+    if __name__ == "__main__":
+  File "/usr/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+  File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 640, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 607, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1922, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/usr/lib/python3.11/asyncio/selector_events.py", line 952, in _read_ready
+    self._read_ready_cb()
+  File "/usr/lib/python3.11/asyncio/selector_events.py", line 984, in _read_ready__get_buffer
+    self._protocol.buffer_updated(nbytes)
+  File "/usr/lib/python3.11/asyncio/sslproto.py", line 438, in buffer_updated
+    self._do_read()
+  File "/usr/lib/python3.11/asyncio/sslproto.py", line 732, in _do_read
+    self._do_read__copied()
+  File "/usr/lib/python3.11/asyncio/sslproto.py", line 777, in _do_read__copied
+    chunk = self._sslobj.read(self.max_size)
+  File "/usr/lib/python3.11/ssl.py", line 922, in read
+    return v
+
+2025-07-14 20:31:47,135 - discord.gateway - WARNING - Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/presences.py", line 148, in <genexpr>
+    self.activities: Tuple[ActivityTypes, ...] = tuple(create_activity(d, state) for d in data['activities'])
+
+2025-07-14 20:32:05,767 - discord.client - ERROR - Attempting a reconnect in 3.36s
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 704, in connect
+    await self.ws.poll_event()
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 627, in poll_event
+    await self.received_message(msg.data)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 532, in received_message
+    await self.send_as_json(beat)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 663, in send_as_json
+    await self.send(utils._to_json(data))
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 659, in send
+    await self.socket.send_str(data)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client_ws.py", line 245, in send_str
+    await self._writer.send_frame(
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/_websocket/writer.py", line 126, in send_frame
+    raise ClientConnectionResetError("Cannot write to closing transport")
+aiohttp.client_exceptions.ClientConnectionResetError: Cannot write to closing transport
+2025-07-14 20:36:32,867 - discord.client - ERROR - Attempting a reconnect in 4.19s
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 490, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1061, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 622, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1189, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1512, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1128, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 492, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+2025-07-14 20:39:56,305 - discord.client - ERROR - Attempting a reconnect in 11.37s
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 490, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/gateway.py", line 375, in from_client
+    socket = await client.http.ws_connect(str(url))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/http.py", line 554, in ws_connect
+    return await self.__session.ws_connect(url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 1061, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 770, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 725, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 622, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1189, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1530, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/connector.py", line 1248, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohappyeyeballs/impl.py", line 87, in start_connection
+    sock, _, _ = await _staggered.staggered_race(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohappyeyeballs/_staggered.py", line 165, in staggered_race
+    done = await _wait_one(
+           ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohappyeyeballs/_staggered.py", line 46, in _wait_one
+    return await wait_next
+           ^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/client.py", line 701, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/tasks.py", line 492, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+2025-07-14 20:43:48,589 - jagerbot - INFO - main() is running
+2025-07-14 20:43:48,593 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-14 20:43:48,593 - jagerbot - INFO - Starting bot...
+2025-07-14 20:43:48,594 - discord.client - INFO - logging in using static token
+2025-07-14 20:43:50,016 - jagerbot - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/r6.py", line 8, in <module>
+    from discord.commands import slash_command
+ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.r6' raised an error: ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+2025-07-14 20:43:50,580 - jagerbot - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+          ^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 232, in setup
+    bot.add_cog(MinecraftCog(bot))
+                ^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 22, in __init__
+    self.mc_group = bot.create_group("mc", "Minecraft related commands")
+                    ^^^^^^^^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'create_group'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.minecraft' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+2025-07-14 20:43:50,594 - jagerbot - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+          ^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 225, in setup
+    bot.add_cog(WarframeCog(bot))
+                ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 67, in __init__
+    self.wf_group = bot.create_group("wf", "Warframe related commands")
+                    ^^^^^^^^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'create_group'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.warframe' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+2025-07-14 20:43:50,610 - jagerbot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/fun.py", line 9, in <module>
+    from discord.commands import Option
+ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.fun' raised an error: ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+2025-07-14 20:43:50,664 - jagerbot - ERROR - Failed to load extension cogs.alerts: Extension 'cogs.alerts' raised an error: TypeError: object NoneType can't be used in 'await' expression
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.alerts' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-07-14 20:43:51,807 - jagerbot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/alert_cmd.py", line 19, in <module>
+    class AlertCommands(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/alert_cmd.py", line 161, in AlertCommands
+    @commands.slash_command(name="alert", description="Set an alert via interactive modal")
+     ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.alert_cmd' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+2025-07-14 20:43:51,828 - jagerbot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/core.py", line 99, in <module>
+    class CoreCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/core.py", line 118, in CoreCog
+    @commands.slash_command(name='weather', description="Get the current weather in a city")
+     ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.core' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+2025-07-14 20:43:51,836 - jagerbot - ERROR - Failed to load extension cogs.frost: Extension 'cogs.frost' raised an error: TypeError: object NoneType can't be used in 'await' expression
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-07-14 20:43:51,841 - jagerbot - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: module 'discord' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/test.py", line 7, in <module>
+    class TestCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/test.py", line 12, in TestCog
+    @discord.slash_command(name="ping", description="Ping command")
+     ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.test' raised an error: AttributeError: module 'discord' has no attribute 'slash_command'
+2025-07-14 20:43:52,557 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: 662dd995c3c5897cc4b268897c58185b).
+2025-07-14 20:44:25,435 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-14 20:44:25,435 - jagerbot - INFO - Commands registered in tree before start: 0
+2025-07-14 20:46:11,130 - jagerbot - INFO - main() is running
+2025-07-14 20:46:11,131 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-14 20:46:11,131 - jagerbot - INFO - Starting bot...
+2025-07-14 20:46:11,131 - discord.client - INFO - logging in using static token
+2025-07-14 20:46:11,924 - jagerbot - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/r6.py", line 8, in <module>
+    from discord.commands import slash_command
+ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.r6' raised an error: ImportError: cannot import name 'slash_command' from 'discord.commands' (unknown location)
+2025-07-14 20:46:12,073 - jagerbot - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+          ^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 232, in setup
+    bot.add_cog(MinecraftCog(bot))
+                ^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 22, in __init__
+    self.mc_group = bot.create_group("mc", "Minecraft related commands")
+                    ^^^^^^^^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'create_group'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.minecraft' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+2025-07-14 20:46:12,078 - jagerbot - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+          ^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 225, in setup
+    bot.add_cog(WarframeCog(bot))
+                ^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 67, in __init__
+    self.wf_group = bot.create_group("wf", "Warframe related commands")
+                    ^^^^^^^^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'create_group'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.warframe' raised an error: AttributeError: 'JagerBot' object has no attribute 'create_group'
+2025-07-14 20:46:12,082 - jagerbot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/fun.py", line 9, in <module>
+    from discord.commands import Option
+ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.fun' raised an error: ImportError: cannot import name 'Option' from 'discord.commands' (unknown location)
+2025-07-14 20:46:12,095 - jagerbot - ERROR - Failed to load extension cogs.alerts: Extension 'cogs.alerts' raised an error: TypeError: object NoneType can't be used in 'await' expression
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.alerts' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-07-14 20:46:12,241 - jagerbot - ERROR - Failed to load extension cogs.alert_cmd: Extension 'cogs.alert_cmd' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/alert_cmd.py", line 19, in <module>
+    class AlertCommands(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/alert_cmd.py", line 161, in AlertCommands
+    @commands.slash_command(name="alert", description="Set an alert via interactive modal")
+     ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.alert_cmd' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+2025-07-14 20:46:12,247 - jagerbot - ERROR - Failed to load extension cogs.core: Extension 'cogs.core' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/core.py", line 99, in <module>
+    class CoreCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/core.py", line 118, in CoreCog
+    @commands.slash_command(name='weather', description="Get the current weather in a city")
+     ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.core' raised an error: AttributeError: module 'discord.ext.commands' has no attribute 'slash_command'
+2025-07-14 20:46:12,249 - jagerbot - ERROR - Failed to load extension cogs.frost: Extension 'cogs.frost' raised an error: TypeError: object NoneType can't be used in 'await' expression
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-07-14 20:46:12,251 - jagerbot - ERROR - Failed to load extension cogs.test: Extension 'cogs.test' raised an error: AttributeError: module 'discord' has no attribute 'slash_command'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 951, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/test.py", line 7, in <module>
+    class TestCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/test.py", line 12, in TestCog
+    @discord.slash_command(name="ping", description="Ping command")
+     ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord' has no attribute 'slash_command'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 33, in setup_hook
+    await self.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/commands/bot.py", line 954, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'cogs.test' raised an error: AttributeError: module 'discord' has no attribute 'slash_command'
+2025-07-14 20:46:12,613 - discord.gateway - INFO - Shard ID None has connected to Gateway (Session ID: dfba829bfc5391542490476df3e6b05c).
+2025-07-14 20:46:14,673 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-14 20:46:14,673 - jagerbot - INFO - Commands registered in tree before start: 0
