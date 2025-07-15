@@ -5,6 +5,7 @@ import asyncio
 from typing import List
 import discord
 from discord.ext import commands
+from discord.commands import SlashCommandGroup, Option
 from dotenv import load_dotenv
 import config
 
