@@ -4,7 +4,7 @@ import logging
 import asyncio
 from typing import List
 import discord
-from discord.ext import commands
+from discord.ext import commands, bridge
 from dotenv import load_dotenv
 import config
 
@@ -38,6 +38,11 @@ class JagerBot(commands.Bot):
 
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+        try:
+            synced = await self.tree.sync()
+            logger.info(f"Successfully synced {len(synced)} application commands.")
+        except Exception as e:
+            logger.error(f"Failed to sync application commands: {e}", exc_info=True)
         await self.change_presence(
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
