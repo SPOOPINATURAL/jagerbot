@@ -4,7 +4,7 @@ import traceback
 import aiohttp
 import discord
 from bs4 import BeautifulSoup
-from discord.ext import commands
+from discord.ext import commands, bridge
 
 from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
@@ -12,7 +12,7 @@ from utils.embed_builder import EmbedBuilder
 logger = logging.getLogger(__name__)
 
 class MinecraftCog(commands.Cog):
-    mc_group = discord.SlashCommandGroup("mc", "Minecraft related commands")
+    mc_group = bridge.bridge_group("mc", "Minecraft related commands")
     def __init__(self, bot):
         self.bot = bot
         self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)

@@ -3,7 +3,7 @@ import random
 import feedparser
 import logging
 from typing import Dict, Any, List
-from discord.ext import commands
+from discord.ext import bridge, commands
 from datetime import datetime
 
 from utils.views import PaginationView
@@ -34,7 +34,7 @@ class MapFloorView(PaginationView):
 
 
 class R6Cog(commands.Cog):
-    r6_group = discord.SlashCommandGroup("r6", "Rainbow Six Siege commands")
+    r6_group = bridge.bridge_group("r6", "Rainbow Six Siege commands")
     def __init__(self, bot):
         super().__init__()
         self.bot = bot

@@ -1,7 +1,7 @@
 import discord
 import logging
 from typing import Optional
-from discord.ext import commands
+from discord.ext import commands, bridge
 from discord.ui import View, Button
 from config import (
     WF_API_BASE,
@@ -57,7 +57,7 @@ class BaroPaginator(View):
         return embed
 
 class WarframeCog(commands.Cog):
-    wf_group = discord.SlashCommandGroup("wf", "Warframe related commands")
+    wf_group = bridge.bridge_group("wf", "Warframe commands")
     def __init__(self, bot):
         self.bot = bot
         self.session = None

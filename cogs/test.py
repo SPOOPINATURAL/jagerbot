@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands,bridge
 import logging
 
 logger = logging.getLogger(__name__)
@@ -9,7 +9,7 @@ class TestCog(commands.Cog):
         self.bot = bot
         logger.info("TestCog initialized")
 
-    @discord.slash_command(name="ping", description="Ping command")
+    @bridge.bridge_command(name="ping", description="Ping command")
     async def ping(self, ctx):
         await ctx.respond("Pong!")
 
