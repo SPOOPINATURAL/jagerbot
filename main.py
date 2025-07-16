@@ -38,6 +38,10 @@ class JagerBot(bridge.Bot):
 
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+        await self.change_presence(
+            status=discord.Status.online,
+            activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
+        )
         logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
         for cmd in self.tree.walk_commands():
             logger.info(f"Slash command: /{cmd.qualified_name} | Type: {cmd.type} | Default permission: {cmd.default_permission}")
