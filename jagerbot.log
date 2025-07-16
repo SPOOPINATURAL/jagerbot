@@ -6500,3 +6500,18 @@ Traceback (most recent call last):
     synced = await self.tree.sync()
                    ^^^^^^^^^
 AttributeError: 'JagerBot' object has no attribute 'tree'
+2025-07-15 20:23:07,774 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-15 20:23:07,774 - jagerbot - INFO - discord version: 2.6.1
+2025-07-15 20:23:07,775 - jagerbot - INFO - main() is running
+2025-07-15 20:23:07,775 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-15 20:23:07,776 - jagerbot - INFO - Starting bot...
+2025-07-15 20:23:07,776 - discord.client - INFO - logging in using static token
+2025-07-15 20:23:08,178 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-15 20:23:08,372 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-fl60",{"micros":132613,"calls":["id_created",{"micros":480,"calls":[]},"session_lookup_time",{"micros":3748,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-19",{"micros":127662,"calls":["start_session",{"micros":123843,"calls":["discord-api-rpc-6479df56c-86bzn",{"micros":104693,"calls":["get_user",{"micros":9128},"get_guilds",{"micros":3351},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":6398},"apex_experiments",{"micros":3795},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":50,"calls":[]},"presence_started",{"micros":411,"calls":[]},"guilds_started",{"micros":67,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":3271,"calls":[]},"connect_finished",{"micros":3275,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 99797898adafd4e19bc811436a707186).
+2025-07-15 20:23:10,400 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-15 20:23:10,400 - jagerbot - ERROR - Failed to sync application commands: 'JagerBot' object has no attribute 'tree'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 42, in on_ready
+    synced = await self.tree.sync()
+                   ^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'tree'
