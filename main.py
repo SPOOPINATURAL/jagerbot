@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger("jagerbot")
 logger.info(f"discord imported from: {discord.__file__}")
 logger.info(f"discord version: {discord.__version__}")
-class JagerBot(commands.Bot):
+class JagerBot(discord.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.initial_extensions: List[str] = config.INITIAL_EXTENSIONS
