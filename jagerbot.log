@@ -6515,3 +6515,12 @@ Traceback (most recent call last):
     synced = await self.tree.sync()
                    ^^^^^^^^^
 AttributeError: 'JagerBot' object has no attribute 'tree'
+2025-07-15 20:26:14,898 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-15 20:26:14,898 - jagerbot - INFO - discord version: 2.6.1
+2025-07-15 20:26:14,899 - jagerbot - INFO - main() is running
+2025-07-15 20:26:14,899 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-15 20:26:14,900 - jagerbot - INFO - Starting bot...
+2025-07-15 20:26:14,900 - discord.client - INFO - logging in using static token
+2025-07-15 20:26:15,287 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-15 20:26:15,435 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-6br5",{"micros":93609,"calls":["id_created",{"micros":598,"calls":[]},"session_lookup_time",{"micros":984,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-131",{"micros":91544,"calls":["start_session",{"micros":71752,"calls":["discord-api-rpc-6479df56c-dq4hm",{"micros":43749,"calls":["get_user",{"micros":6030},"get_guilds",{"micros":5001},"send_scheduled_deletion_message",{"micros":18},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":8887},"apex_experiments",{"micros":8167},"user_activities",{"micros":3},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":64,"calls":[]},"presence_started",{"micros":13504,"calls":[]},"guilds_started",{"micros":98,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":6100,"calls":[]},"connect_finished",{"micros":6105,"calls":[]},"build_ready",{"micros":17,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: c835e2adc5254e7c76b9c5d53ba148ab).
+2025-07-15 20:26:17,465 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
