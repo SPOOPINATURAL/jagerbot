@@ -197,7 +197,7 @@ class AlertCommands(commands.Cog):
 
         return active_alerts
 
-    @commands.slash_command(name="listalerts", description="List your active alerts with controls")
+    @discord.slash_command(name="listalerts", description="List your active alerts with controls")
     async def listalerts(self, ctx: discord.ApplicationContext):
         await ctx.defer(ephemeral=True)
         user_id = str(ctx.author.id)
@@ -222,7 +222,7 @@ class AlertCommands(commands.Cog):
         for embed, view in active_alerts:
             await ctx.followup.send(embed=embed, view=view)
 
-    @commands.slash_command(name="cancelalerts", description="Cancel all your active alerts")
+    @discord.slash_command(name="cancelalerts", description="Cancel all your active alerts")
     async def cancelalerts(self, ctx: discord.ApplicationContext):
         user_id = str(ctx.author.id)
         if user_id in alerts:
@@ -281,5 +281,5 @@ class AlertCommands(commands.Cog):
             ephemeral=True
         )
 
-def setup(bot: commands.Bot):
-    bot.add_cog(AlertCommands(bot))
+async def setup(bot: commands.Bot):
+    await bot.add_cog(AlertCommands(bot))

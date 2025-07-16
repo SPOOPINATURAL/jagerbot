@@ -108,5 +108,5 @@ class AlertCog(commands.Cog):
     async def before_check_alerts(self):
         await self.bot.wait_until_ready()
 
-def setup(bot: commands.Bot):
-    bot.add_cog(AlertCog(bot))
+async def setup(bot: commands.Bot):
+    await bot.add_cog(AlertCog(bot))
