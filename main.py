@@ -39,7 +39,11 @@ class JagerBot(bridge.Bot):
 
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
-
+        try:
+            synced = await self.sync_commands()
+            logger.info(f"Synced {len(synced)} slash commands.")
+        except Exception as e:
+            logger.error(f"Failed to sync commands: {e}", exc_info=True)
         logger.info("Slash commands:")
         for cmd in self.application_commands:
             logger.info(f"/{cmd.name} - {cmd.description}")
@@ -52,7 +56,6 @@ class JagerBot(bridge.Bot):
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
         )
-
 async def main():
     logger.info("main() is running")
     intents = discord.Intents.all()
