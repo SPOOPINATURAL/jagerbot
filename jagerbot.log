@@ -8696,3 +8696,20 @@ AttributeError: 'JagerBot' object has no attribute 'tree'
 2025-07-17 20:39:53,093 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-07-17 20:39:53,093 - jagerbot - INFO - Slash commands:
 2025-07-17 20:39:53,093 - jagerbot - INFO - Prefix commands:
+2025-07-17 20:46:06,608 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 20:46:06,608 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 20:46:06,609 - jagerbot - INFO - main() is running
+2025-07-17 20:46:06,609 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 20:46:06,609 - jagerbot - INFO - Starting bot...
+2025-07-17 20:46:06,609 - discord.client - INFO - logging in using static token
+2025-07-17 20:46:06,971 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 20:46:07,106 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-0p50",{"micros":86162,"calls":["id_created",{"micros":924,"calls":[]},"session_lookup_time",{"micros":2296,"calls":[]},"session_lookup_finished",{"micros":10,"calls":[]},"discord-sessions-prd-2-135",{"micros":82369,"calls":["start_session",{"micros":61167,"calls":["discord-api-rpc-6c4bcb84bb-s2tq9",{"micros":43493,"calls":["get_user",{"micros":6865},"get_guilds",{"micros":3008},"send_scheduled_deletion_message",{"micros":18},"guild_join_requests",{"micros":867},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":8537},"apex_experiments",{"micros":919},"user_activities",{"micros":13},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":76,"calls":[]},"presence_started",{"micros":11961,"calls":[]},"guilds_started",{"micros":86,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":9060,"calls":[]},"connect_finished",{"micros":9064,"calls":[]},"build_ready",{"micros":11,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 1bfa09c5f09e448bdd258bb129e9cc34).
+2025-07-17 20:46:09,172 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 20:46:09,311 - jagerbot - ERROR - Failed to sync commands: object of type 'NoneType' has no len()
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 44, in on_ready
+    logger.info(f"Synced {len(synced)} slash commands.")
+                          ^^^^^^^^^^^
+TypeError: object of type 'NoneType' has no len()
+2025-07-17 20:46:09,312 - jagerbot - INFO - Slash commands:
+2025-07-17 20:46:09,312 - jagerbot - INFO - Prefix commands:
