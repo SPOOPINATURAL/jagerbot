@@ -40,20 +40,13 @@ class JagerBot(bridge.Bot):
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
 
-        if config.ALLOWED_GUILD_IDS:
-            for gid in config.ALLOWED_GUILD_IDS:
-                guild = discord.Object(id=gid)
-                try:
-                    synced = await self.tree.sync(guild=guild)
-                    logger.info(f"Synced {len(synced)} commands to guild {gid}")
-                except Exception as e:
-                    logger.error(f"Failed to sync commands to guild {gid}: {e}", exc_info=True)
-        else:
-            try:
-                synced = await self.tree.sync()
-                logger.info(f"Synced {len(synced)} global commands")
-            except Exception as e:
-                logger.error(f"Failed to sync global commands: {e}", exc_info=True)
+        logger.info("Slash commands:")
+        for cmd in self.application_commands:
+            logger.info(f"/{cmd.name} - {cmd.description}")
+
+        logger.info("Prefix commands:")
+        for cmd in self.commands:
+            logger.info(f"{self.command_prefix}{cmd.name}")
 
         await self.change_presence(
             status=discord.Status.online,
