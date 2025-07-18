@@ -8870,3 +8870,76 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-17 21:14:01,391 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
 2025-07-17 21:14:01,391 - jagerbot - INFO - Slash commands:
 2025-07-17 21:14:01,391 - jagerbot - INFO - Prefix commands:
+2025-07-17 21:45:48,516 - discord.client - INFO - Cleaning up tasks.
+2025-07-17 21:45:48,516 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-17 21:45:48,517 - discord.client - INFO - All tasks finished cancelling.
+2025-07-17 21:45:48,518 - discord.client - INFO - Closing the event loop.
+2025-07-17 21:45:59,808 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 21:45:59,808 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 21:45:59,809 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 21:45:59,819 - jagerbot - INFO - Loaded cog: alerts
+2025-07-17 21:45:59,832 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-17 21:45:59,833 - jagerbot - INFO - Loaded cog: fun
+2025-07-17 21:45:59,837 - jagerbot - ERROR - Failed to load cog warframe: Extension 'cogs.warframe' raised an error: TypeError: Callback must be a coroutine.
+2025-07-17 21:46:00,014 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-17 21:46:00,074 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-17 21:46:00,076 - jagerbot - ERROR - Failed to load cog r6: Extension 'cogs.r6' raised an error: TypeError: Callback must be a coroutine.
+2025-07-17 21:46:00,086 - jagerbot - INFO - Loaded cog: core
+2025-07-17 21:46:00,256 - jagerbot - ERROR - Failed to load cog minecraft: Extension 'cogs.minecraft' raised an error: TypeError: Callback must be a coroutine.
+2025-07-17 21:46:00,258 - jagerbot - INFO - Loaded cog: frost
+2025-07-17 21:46:00,260 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-17 21:46:00,260 - cogs.test - INFO - TestCog initialized
+2025-07-17 21:46:00,260 - jagerbot - INFO - Loaded cog: test
+2025-07-17 21:46:00,260 - jagerbot - INFO - Starting bot...
+2025-07-17 21:46:00,261 - discord.client - INFO - logging in using static token
+2025-07-17 21:46:00,649 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 21:46:00,772 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-ltvw",{"micros":73928,"calls":["id_created",{"micros":385,"calls":[]},"session_lookup_time",{"micros":317,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-68",{"micros":72835,"calls":["start_session",{"micros":71137,"calls":["discord-api-rpc-b57696bc7-l9tsw",{"micros":52479,"calls":["get_user",{"micros":5863},"get_guilds",{"micros":7303},"send_scheduled_deletion_message",{"micros":21},"guild_join_requests",{"micros":11},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":8339},"apex_experiments",{"micros":2477},"user_activities",{"micros":6},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":24,"calls":[]},"presence_started",{"micros":280,"calls":[]},"guilds_started",{"micros":109,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":1266,"calls":[]},"connect_finished",{"micros":1269,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 4bf1838869df9ef3ca55591cc47a4ec1).
+2025-07-17 21:46:02,819 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 21:46:02,819 - jagerbot - INFO - Slash cmds:
+2025-07-17 21:46:02,820 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-17 21:46:02,820 - jagerbot - INFO - /image - Get a random image
+2025-07-17 21:46:02,820 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-17 21:46:02,820 - jagerbot - INFO - /longo - longo
+2025-07-17 21:46:02,820 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-17 21:46:02,820 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-17 21:46:02,820 - jagerbot - INFO - /d20 - Roll d20
+2025-07-17 21:46:02,820 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-17 21:46:02,820 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-17 21:46:02,820 - jagerbot - INFO - /score - Get your trivia score
+2025-07-17 21:46:02,820 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-17 21:46:02,820 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-17 21:46:02,820 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-17 21:46:02,820 - jagerbot - INFO - /weather - Get the current weather in a city
+2025-07-17 21:46:02,820 - jagerbot - INFO - /currency - Convert currency using exchangerate.host
+2025-07-17 21:46:02,820 - jagerbot - INFO - /timezones - List supported timezones
+2025-07-17 21:46:02,820 - jagerbot - INFO - /tzconvert - Convert time between timezones
+2025-07-17 21:46:02,820 - jagerbot - INFO - /credits - Credits for this bot
+2025-07-17 21:46:02,820 - jagerbot - INFO - /date - Get the current date and time
+2025-07-17 21:46:02,820 - jagerbot - INFO - /plane - Get a random WW1 plane
+2025-07-17 21:46:02,820 - jagerbot - INFO - /info - Command list
+2025-07-17 21:46:02,820 - jagerbot - INFO - /frost - No description provided
+2025-07-17 21:46:02,820 - jagerbot - INFO - /ping - Ping command
+2025-07-17 21:46:02,820 - jagerbot - INFO - Prefix cmds:
+2025-07-17 21:46:02,821 - jagerbot - INFO - $weather
+2025-07-17 21:46:02,821 - jagerbot - INFO - $date
+2025-07-17 21:46:02,821 - jagerbot - INFO - $listalerts
+2025-07-17 21:46:02,821 - jagerbot - INFO - $xkcd
+2025-07-17 21:46:02,821 - jagerbot - INFO - $timezones
+2025-07-17 21:46:02,821 - jagerbot - INFO - $frost
+2025-07-17 21:46:02,821 - jagerbot - INFO - $clancy
+2025-07-17 21:46:02,821 - jagerbot - INFO - $rps
+2025-07-17 21:46:02,821 - jagerbot - INFO - $quote
+2025-07-17 21:46:02,821 - jagerbot - INFO - $score
+2025-07-17 21:46:02,821 - jagerbot - INFO - $tzconvert
+2025-07-17 21:46:02,821 - jagerbot - INFO - $8ball
+2025-07-17 21:46:02,821 - jagerbot - INFO - $d20
+2025-07-17 21:46:02,821 - jagerbot - INFO - $currency
+2025-07-17 21:46:02,821 - jagerbot - INFO - $cancelalerts
+2025-07-17 21:46:02,821 - jagerbot - INFO - $ping
+2025-07-17 21:46:02,821 - jagerbot - INFO - $image
+2025-07-17 21:46:02,821 - jagerbot - INFO - $info
+2025-07-17 21:46:02,821 - jagerbot - INFO - $plane
+2025-07-17 21:46:02,821 - jagerbot - INFO - $longo
+2025-07-17 21:46:02,821 - jagerbot - INFO - $credits
+2025-07-17 21:46:02,821 - jagerbot - INFO - $alert
+2025-07-17 21:46:02,821 - jagerbot - INFO - $trivia
