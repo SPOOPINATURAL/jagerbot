@@ -40,24 +40,25 @@ class JagerBot(bridge.Bot):
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
 
-        try:
-            if config.ALLOWED_GUILD_IDS:
-                guild = discord.Object(id=int(config.ALLOWED_GUILD_IDS))
-                synced = await self.tree.sync(guild=guild)
-                logger.info(f"Synced {len(synced)} commands to guild {config.ALLOWED_GUILD_IDS}")
-            else:
+        if config.ALLOWED_GUILD_IDS:
+            for gid in config.ALLOWED_GUILD_IDS:
+                guild = discord.Object(id=gid)
+                try:
+                    synced = await self.tree.sync(guild=guild)
+                    logger.info(f"Synced {len(synced)} commands to guild {gid}")
+                except Exception as e:
+                    logger.error(f"Failed to sync commands to guild {gid}: {e}", exc_info=True)
+        else:
+            try:
                 synced = await self.tree.sync()
-                logger.info(f"Synced {len(synced)} global slash commands.")
-        except Exception as e:
-            logger.error(f"Failed to sync application commands: {e}", exc_info=True)
+                logger.info(f"Synced {len(synced)} global commands")
+            except Exception as e:
+                logger.error(f"Failed to sync global commands: {e}", exc_info=True)
 
         await self.change_presence(
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
         )
-
-        logger.info(f"Prefix commands: {[cmd.name for cmd in self.commands]}")
-        logger.info(f"Slash commands: {[cmd.name for cmd in self.tree.walk_commands()]}")
 
 async def main():
     logger.info("main() is running")
