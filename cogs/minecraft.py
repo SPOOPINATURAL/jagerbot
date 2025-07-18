@@ -4,6 +4,7 @@ import discord
 import aiohttp
 from bs4 import BeautifulSoup
 from discord.ext import commands, bridge
+from discord import Option
 
 from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
@@ -16,12 +17,11 @@ class MinecraftCog(commands.Cog):
         self.wiki_base_url = MINECRAFT_WIKI_BASE
         super().__init__()
 
-
     @mc.command(name="wiki", description="Search Minecraft Wiki")
     async def mc_wiki(
         self,
         ctx: discord.ApplicationContext,
-        query: discord.Option(str, "The wiki page to search")
+        query: str = Option(str, "The wiki page to search")
     ):
         embed = self.create_wiki_embed(
             f"📖 Minecraft Wiki: {query.title()}",
@@ -30,7 +30,7 @@ class MinecraftCog(commands.Cog):
         await ctx.respond(embed=embed)
 
     @mc.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
-    async def mc_recipe(self, ctx: discord.ApplicationContext, item: discord.Option(str, "The item to get recipe for")):
+    async def mc_recipe(self, ctx: discord.ApplicationContext, item: str = Option(str, "The item to get recipe for")):
         await ctx.defer()
         item_name = item.replace(" ", "_").title()
         wiki_url = f"{self.wiki_base_url}/{item_name}"
@@ -65,7 +65,7 @@ class MinecraftCog(commands.Cog):
     async def mc_advancement(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Advancement name")
+        name: str = Option(str, "Advancement name")
     ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
@@ -79,7 +79,7 @@ class MinecraftCog(commands.Cog):
     async def mc_enchant(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Enchantment name")
+        name: str = Option(str, "Enchantment name")
     ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
@@ -93,7 +93,7 @@ class MinecraftCog(commands.Cog):
     async def mc_biome(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Biome name")
+        name: str = Option(str, "Biome name")
     ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
@@ -107,7 +107,7 @@ class MinecraftCog(commands.Cog):
     async def mc_structure(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Structure name")
+        name: str = Option(str, "Structure name")
     ):
         url = f"https://minecraft.wiki/w/{name.replace(' ', '_')}"
         embed = discord.Embed(
@@ -121,7 +121,7 @@ class MinecraftCog(commands.Cog):
     async def mc_player(
         self,
         ctx: discord.ApplicationContext,
-        username: discord.Option(str, "Minecraft IGN")
+        username: str = Option(str, "Minecraft IGN")
     ):
         await ctx.defer()
         try:

@@ -3,6 +3,7 @@ import random
 import aiohttp
 import feedparser
 import logging
+from discord import Option
 from typing import Dict, Any, List
 from discord.ext import bridge, commands
 from datetime import datetime
@@ -54,8 +55,8 @@ class R6Cog(commands.Cog):
     async def stats(
         self,
         ctx: discord.ApplicationContext,
-        platform: discord.Option(str, "uplay / psn / xbl", autocomplete=lambda ctx: ["uplay", "psn", "xbl"]),
-        username: discord.Option(str, "Player username")
+        platform: str = Option(str, "uplay / psn / xbl", autocomplete=lambda ctx: ["uplay", "psn", "xbl"]),
+        username: str = Option(str, "Player username")
     ):
         await ctx.defer()
         url = f"{R6_API_BASE}/profile/{platform}/{username}"
@@ -105,7 +106,7 @@ class R6Cog(commands.Cog):
     async def map_lookup(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Name of the map", autocomplete=True)
+        name: str = Option(str, "Name of the map", autocomplete=True)
     ):
         await ctx.defer()
         map_data = DataHelper.find_match(self.maps, name)
@@ -126,7 +127,7 @@ class R6Cog(commands.Cog):
     async def op_command(
         self,
         ctx: discord.ApplicationContext,
-        name: discord.Option(str, "Name of the operator", autocomplete=True)
+        name: str = Option(str, "Name of the operator", autocomplete=True)
     ):
         await ctx.defer()
         op_data = DataHelper.find_match(self.operators, name)
@@ -140,8 +141,9 @@ class R6Cog(commands.Cog):
     async def oprandom(
         self,
         ctx: discord.ApplicationContext,
-        role: discord.Option(str, "Optional: attacker or defender", required=False) = None
+        role: str = Option(str, "Attacker or Defender", required=False)
     ):
+        
         await ctx.defer()
         role_val = role.lower() if role else None
         filtered = [op for op in self.operators.values() if not role_val or op["role"].lower() == role_val]

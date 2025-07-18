@@ -1,5 +1,6 @@
 import discord
 import logging
+from discord import Option
 from typing import Optional
 from discord.ext import commands, bridge
 from discord.ui import View, Button
@@ -133,7 +134,7 @@ class WarframeCog(commands.Cog):
     async def wfprice(
         self,
         ctx: discord.ApplicationContext,
-        item: discord.Option(str, "Item name to check prices for")
+        item: str = Option(str, "Item name to check prices for")
     ):
         await ctx.defer()
         item_url = item.replace(" ", "_").lower()
