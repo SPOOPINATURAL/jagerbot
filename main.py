@@ -29,6 +29,7 @@ class JagerBot(bridge.Bot):
         self._dev_mode = os.getenv("BOT_ENV", "prod").lower() == "dev"
 
     async def setup_hook(self):
+        logger.info("setup_hook: loading extensions...")
         for ext in self.initial_extensions:
             try:
                 await self.load_extension(ext)
@@ -38,23 +39,25 @@ class JagerBot(bridge.Bot):
 
     async def on_ready(self):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+
+        try:
+            if DEV_GUILD_ID:
+                guild = discord.Object(id=int(DEV_GUILD_ID))
+                synced = await self.tree.sync(guild=guild)
+                logger.info(f"Synced {len(synced)} commands to guild {DEV_GUILD_ID}")
+            else:
+                synced = await self.tree.sync()
+                logger.info(f"Synced {len(synced)} global slash commands.")
+        except Exception as e:
+            logger.error(f"Failed to sync application commands: {e}", exc_info=True)
+
         await self.change_presence(
             status=discord.Status.online,
             activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
         )
-        logger.info(f"Commands registered in tree before start: {len(list(self.tree.walk_commands()))}")
-        for cmd in self.tree.walk_commands():
-            logger.info(f"Slash command: /{cmd.qualified_name} | Type: {cmd.type} | Default permission: {cmd.default_permission}")
-            if cmd.default_permission is False:
-                logger.warning(f"Command /{cmd.qualified_name} is disabled by default")
-            if hasattr(cmd, 'guild_ids') and cmd.guild_ids:
-                logger.info(f"Restricted to guilds: {cmd.guild_ids}")
-            if hasattr(cmd, 'commands') and cmd.commands:
-                for subcmd in cmd.commands:
-                    logger.info(f"Subcommand: {subcmd.name} | Default permission: {subcmd.default_permission}")
 
-        for cmd in self.commands:
-            logger.info(f"Loaded prefix command: {cmd.qualified_name}")
+        logger.info(f"Prefix commands: {[cmd.name for cmd in self.commands]}")
+        logger.info(f"Slash commands: {[cmd.name for cmd in self.tree.walk_commands()]}")
 
 async def main():
     logger.info("main() is running")
