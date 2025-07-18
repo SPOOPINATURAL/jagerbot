@@ -41,10 +41,10 @@ class JagerBot(bridge.Bot):
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
 
         try:
-            if DEV_GUILD_ID:
-                guild = discord.Object(id=int(DEV_GUILD_ID))
+            if config.ALLOWED_GUILD_IDS:
+                guild = discord.Object(id=int(config.ALLOWED_GUILD_IDS))
                 synced = await self.tree.sync(guild=guild)
-                logger.info(f"Synced {len(synced)} commands to guild {DEV_GUILD_ID}")
+                logger.info(f"Synced {len(synced)} commands to guild {config.ALLOWED_GUILD_IDS}")
             else:
                 synced = await self.tree.sync()
                 logger.info(f"Synced {len(synced)} global slash commands.")
