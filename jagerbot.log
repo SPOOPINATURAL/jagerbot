@@ -8632,3 +8632,35 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-07-17 20:11:52,022 - discord.client - INFO - Got a request to RESUME the websocket.
 2025-07-17 20:11:52,866 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
 2025-07-17 20:11:52,963 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 2cc197ab8b90f9b9acd92a13aca9711d under trace ["gateway-prd-us-east1-c-n1cj",{"micros":520,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":216,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-63",{"micros":17}]}].
+2025-07-17 20:28:27,389 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 20:28:27,389 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 20:28:27,389 - jagerbot - INFO - main() is running
+2025-07-17 20:28:27,390 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 20:28:27,390 - jagerbot - INFO - Starting bot...
+2025-07-17 20:28:27,390 - discord.client - INFO - logging in using static token
+2025-07-17 20:28:27,826 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 20:28:27,951 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-kjct",{"micros":77464,"calls":["id_created",{"micros":460,"calls":[]},"session_lookup_time",{"micros":1330,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-90",{"micros":74515,"calls":["start_session",{"micros":62086,"calls":["discord-api-rpc-6c4bcb84bb-vkgc6",{"micros":47560,"calls":["get_user",{"micros":14554},"get_guilds",{"micros":6912},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":12},"pending_payments",{"micros":6994},"apex_experiments",{"micros":649},"user_activities",{"micros":4},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":50,"calls":[]},"presence_started",{"micros":285,"calls":[]},"guilds_started",{"micros":81,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":11992,"calls":[]},"connect_finished",{"micros":11995,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 9ebb5a9a72c19eed62f039038c4adb03).
+2025-07-17 20:28:29,998 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 20:28:29,999 - jagerbot - ERROR - Failed to sync application commands: name 'DEV_GUILD_ID' is not defined
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 44, in on_ready
+    if DEV_GUILD_ID:
+       ^^^^^^^^^^^^
+NameError: name 'DEV_GUILD_ID' is not defined
+2025-07-17 20:28:29,999 - jagerbot - INFO - Prefix commands: []
+2025-07-17 20:30:31,678 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 20:30:31,678 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 20:30:31,679 - jagerbot - INFO - main() is running
+2025-07-17 20:30:31,679 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 20:30:31,680 - jagerbot - INFO - Starting bot...
+2025-07-17 20:30:31,680 - discord.client - INFO - logging in using static token
+2025-07-17 20:30:32,190 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 20:30:32,343 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-6hsx",{"micros":98981,"calls":["id_created",{"micros":701,"calls":[]},"session_lookup_time",{"micros":1818,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-94",{"micros":95750,"calls":["start_session",{"micros":74833,"calls":["discord-api-rpc-6c4bcb84bb-wsb5q",{"micros":53041,"calls":["get_user",{"micros":6906},"get_guilds",{"micros":5709},"send_scheduled_deletion_message",{"micros":20},"guild_join_requests",{"micros":527},"authorized_ip_coro",{"micros":21},"pending_payments",{"micros":11585},"apex_experiments",{"micros":1178},"user_activities",{"micros":5},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":74,"calls":[]},"presence_started",{"micros":9535,"calls":[]},"guilds_started",{"micros":91,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":11199,"calls":[]},"connect_finished",{"micros":11202,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 0f0abb12813cbd9ff6fdd27c04bcbb60).
+2025-07-17 20:30:34,409 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 20:30:34,410 - jagerbot - ERROR - Failed to sync application commands: int() argument must be a string, a bytes-like object or a real number, not 'set'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 45, in on_ready
+    guild = discord.Object(id=int(config.ALLOWED_GUILD_IDS))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'set'
+2025-07-17 20:30:34,423 - jagerbot - INFO - Prefix commands: []
