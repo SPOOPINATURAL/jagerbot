@@ -59,7 +59,6 @@ wf = bridge.BridgeCommandGroup("wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.session = None
         self.cache = {}
         super().__init__()
 

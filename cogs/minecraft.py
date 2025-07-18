@@ -1,7 +1,5 @@
 import logging
 import traceback
-
-import aiohttp
 import discord
 from bs4 import BeautifulSoup
 from discord.ext import commands, bridge
@@ -12,12 +10,9 @@ from utils.embed_builder import EmbedBuilder
 logger = logging.getLogger(__name__)
 mc = bridge.BridgeCommandGroup("mc", description="Minecraft commands")
 class MinecraftCog(commands.Cog):
-
     def __init__(self, bot):
         self.bot = bot
-        self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
         self.wiki_base_url = MINECRAFT_WIKI_BASE
-        self.session = None
         super().__init__()
 
 

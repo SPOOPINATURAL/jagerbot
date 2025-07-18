@@ -37,7 +37,6 @@ class R6Cog(commands.Cog):
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        self.session = None
         self.cache = {}
         self.operators: Dict[str, Any] = {}
         self.maps: Dict[str, Any] = {}
