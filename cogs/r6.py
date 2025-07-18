@@ -33,7 +33,8 @@ class MapFloorView(PaginationView):
             description=f"Floor {index + 1}/{len(self.floors)}",
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
-
+async def platform_autocomplete(ctx: discord.AutocompleteContext):
+        return ["uplay", "psn", "xbl"]
 r6 = bridge.BridgeCommandGroup("r6", description="Rainbow Six Siege commands")
 class R6Cog(commands.Cog):
     def __init__(self, bot):
@@ -55,7 +56,7 @@ class R6Cog(commands.Cog):
     async def stats(
         self,
         ctx: discord.ApplicationContext,
-        platform: str = Option(str, "uplay / psn / xbl", autocomplete=lambda ctx: ["uplay", "psn", "xbl"]),
+        platform: str = Option(str, "uplay / psn / xbl", autocomplete=platform_autocomplete),
         username: str = Option(str, "Player username")
     ):
         await ctx.defer()
@@ -101,12 +102,11 @@ class R6Cog(commands.Cog):
         except Exception as e:
             logger.error(f"Error fetching R6 stats for {username}: {e}")
             await ctx.followup.send("❌ Error fetching stats.")
-
     @r6.command(name="map", description="Look up map information")
     async def map_lookup(
         self,
         ctx: discord.ApplicationContext,
-        name: str = Option(str, "Name of the map", autocomplete=True)
+        name: str = Option(str, "Name of the map")
     ):
         await ctx.defer()
         map_data = DataHelper.find_match(self.maps, name)
@@ -127,7 +127,7 @@ class R6Cog(commands.Cog):
     async def op_command(
         self,
         ctx: discord.ApplicationContext,
-        name: str = Option(str, "Name of the operator", autocomplete=True)
+        name: str = Option(str, "Name of the operator")
     ):
         await ctx.defer()
         op_data = DataHelper.find_match(self.operators, name)
@@ -222,6 +222,13 @@ class R6Cog(commands.Cog):
             await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
         
     logger.info("R6Cog loaded and slash commands registered")
+    @map_lookup.autocomplete("name")
+    async def map_name_autocomplete(self, ctx: discord.AutocompleteContext):
+        return await self.map_autocomplete_callback(ctx)
+
+    @op_command.autocomplete("name")
+    async def operator_name_autocomplete(self, ctx: discord.AutocompleteContext):
+        return await self.operator_autocomplete_callback(ctx)
 
     async def load_game_data(self):
         operators_data = await DataHelper.load_json_file("data/operators.json")
@@ -237,7 +244,7 @@ class R6Cog(commands.Cog):
 
         self._build_lookups()
 
-    def _build_lookups(self):
+    async def _build_lookups(self):
         self._operator_names = {op["name"].lower(): op["name"] for op in self.operators.values()}
         self._operator_aliases = {
             alias.lower(): op["name"]

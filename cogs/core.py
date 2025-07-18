@@ -6,6 +6,7 @@ import pytz
 import random
 from datetime import datetime, timezone, timedelta
 from typing import Optional, Dict, Any
+from discord import Option
 from pytz.exceptions import UnknownTimeZoneError
 
 from config import WEATHER_API_KEY, SUPPORTED_TZ, EXCHANGE_API_KEY
@@ -119,7 +120,7 @@ class CoreCog(commands.Cog):
     async def weather(
         self,
         ctx: discord.ApplicationContext,
-        city: discord.Option(str, "Name of the city (e.g. London, Tokyo)")
+        city: str = Option(str, "Name of the city (e.g. London, Tokyo)")
     ):
         logger.info(f"weather command invoked with city={city}")
 
@@ -155,9 +156,9 @@ class CoreCog(commands.Cog):
     async def currency(
         self,
         ctx: discord.ApplicationContext,
-        amount: discord.Option(float, "Amount to convert"),
-        from_currency: discord.Option(str, "Currency to convert from"),
-        to_currency: discord.Option(str, "Currency to convert to")
+        amount: str = Option(float, "Amount to convert"),
+        from_currency: str = Option(str, "Currency to convert from"),
+        to_currency: str = Option(str, "Currency to convert to")
     ):
         logger.info(f"currency command invoked: {amount} {from_currency} -> {to_currency}")
 
@@ -221,9 +222,9 @@ class CoreCog(commands.Cog):
     async def tzconvert(
         self,
         ctx: discord.ApplicationContext,
-        time: discord.Option(str, "e.g. 14:00 or now"),
-        from_tz: discord.Option(str, "From timezone"),
-        to_tz: discord.Option(str, "To timezone")
+        time: str = Option(str, "e.g. 14:00 or now"),
+        from_tz: str = Option(str, "From timezone"),
+        to_tz: str = Option(str, "To timezone")
     ):
         logger.info(f"tzconvert command invoked: {time} {from_tz} -> {to_tz}")
 
@@ -288,7 +289,7 @@ class CoreCog(commands.Cog):
     async def date(
         self,
         ctx: discord.ApplicationContext,
-        tz: discord.Option(str, "Timezone name or abbreviation (e.g., CST, PST, UTC)") = None
+        tz: str = Option(str, "Timezone name or abbreviation (e.g., CST, PST, UTC)")
     ):
         if tz:
             tz_upper = tz.strip().upper()

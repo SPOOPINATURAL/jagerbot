@@ -8,6 +8,7 @@ import discord
 from discord.ext import commands, bridge
 from config import SCORES_FILE, image_urls, clancy_images, quotes
 from utils.embed_builder import EmbedBuilder
+from discord import Option
 from utils.helpers import FileHelper
 from views.rps import RPSView
 from views.trivia import TriviaView
@@ -74,7 +75,7 @@ class Fun(commands.Cog):
     async def eight_ball(
         self,
         ctx: discord.ApplicationContext,
-        question: discord.Option(str, "Your yes/no question")
+        question: str = Option(str, "Your yes/no question")
     ):
         responses = [
             "🎱 Yes, definitely.",
