@@ -26,7 +26,7 @@ bot = bridge.Bot(
     command_prefix="$",
     help_command=None,
     intents=intents,
-    application_id=1376008090968657990
+    application_id=1376008090968657990,
     sync_commands=True
 )
 
