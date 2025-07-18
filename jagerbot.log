@@ -9304,3 +9304,10 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-17 23:05:06,930 - jagerbot - INFO - $weather
 2025-07-17 23:05:06,930 - jagerbot - INFO - $tzconvert
 2025-07-17 23:05:06,930 - jagerbot - INFO - $xkcd
+2025-07-17 23:47:57,025 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-07-17 23:47:57,026 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-17 23:47:57,259 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-17 23:47:57,312 - discord.gateway - INFO - Shard ID None has successfully RESUMED session ca0e83ab18021f213c6979ad4fd9b730 under trace ["gateway-prd-us-east1-b-4mqf",{"micros":2255,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":1944,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-1",{"micros":17}]}].
+2025-07-18 01:28:52,433 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-18 01:28:52,692 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-18 01:28:52,741 - discord.gateway - INFO - Shard ID None has successfully RESUMED session ca0e83ab18021f213c6979ad4fd9b730 under trace ["gateway-prd-us-east1-b-w3pq",{"micros":484,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":259,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-1",{"micros":18}]}].
