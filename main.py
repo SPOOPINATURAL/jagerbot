@@ -27,6 +27,7 @@ bot = bridge.Bot(
     help_command=None,
     intents=intents,
     application_id=1376008090968657990
+    sync_commands=True
 )
 
 @bot.event
