@@ -33,7 +33,8 @@ bot = bridge.Bot(
 @bot.event
 async def on_ready():
     logger.info(f"Logged in as {bot.user} (ID: {bot.user.id})")
-
+    synced = await bot.sync_commands()
+    logger.info(f"Synced {len(synced)} global command(s).")
     logger.info("Slash cmds:")
     for cmd in bot.application_commands:
         logger.info(f"/{cmd.name} - {cmd.description}")

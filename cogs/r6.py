@@ -51,6 +51,8 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
+        r6.get_command("map").autocomplete("name")(self.map_name_autocomplete)
+        r6.get_command("op").autocomplete("name")(self.operator_name_autocomplete)
 
     @r6.command(name="stats", description="Look up R6 player stats")
     async def stats(
@@ -222,11 +224,11 @@ class R6Cog(commands.Cog):
             await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
         
     logger.info("R6Cog loaded and slash commands registered")
-    @map_lookup.autocomplete("name")
+ 
     async def map_name_autocomplete(self, ctx: discord.AutocompleteContext):
         return await self.map_autocomplete_callback(ctx)
 
-    @op_command.autocomplete("name")
+
     async def operator_name_autocomplete(self, ctx: discord.AutocompleteContext):
         return await self.operator_autocomplete_callback(ctx)
 

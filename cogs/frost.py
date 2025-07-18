@@ -10,7 +10,7 @@ class FrostCog(commands.Cog):
     @bridge.bridge_command(name="frost", description="Frosty L's")
     async def frost(self, ctx: discord.ApplicationContext):
         frostl = random.randint(1, 1_000_000)
-        await ctx.send(f"frosty took another L — he's at {frostl:,} L's now")
+        await ctx.respond(f"frosty took another L — he's at {frostl:,} L's now")
 
 def setup(bot: commands.Bot):
     bot.add_cog(FrostCog(bot))
