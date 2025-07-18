@@ -6,7 +6,7 @@ from typing import Dict, Optional
 import aiohttp
 import discord
 from discord.ext import commands, bridge
-from config import SCORES_FILE
+from config import SCORES_FILE, image_urls, clancy_images, quotes
 from utils.embed_builder import EmbedBuilder
 from utils.helpers import FileHelper
 from views.rps import RPSView
@@ -46,17 +46,21 @@ class Fun(commands.Cog):
 
     @bridge.bridge_command(name='quote', description="Get a random Jäger quote")
     async def quote(self, ctx: discord.ApplicationContext):
-        selected_quotes = random.choice(self.bot.config.quotes)
+        selected_quotes = random.choice(quotes)
         await ctx.respond(selected_quotes)
 
     @bridge.bridge_command(name='image', description="Get a random image")
     async def image(self, ctx: discord.ApplicationContext):
-        images_url = random.choice(self.bot.config.image_urls)
-        await ctx.respond(images_url)
+        try:
+            images_url = random.choice(image_urls)
+            await ctx.respond(images_url)
+        except Exception as e:
+            logger.error(f"Error in image command: {e}")
+            await ctx.respond("❌ Error getting image.", ephemeral=True)
 
     @bridge.bridge_command(name='clancy', description="Obtain a random Clancy image")
     async def clancy(self, ctx: discord.ApplicationContext):
-        clancy_image = random.choice(self.bot.config.clancy_images)
+        clancy_image = random.choice(clancy_images)
         await ctx.respond(clancy_image)
 
     @bridge.bridge_command(name='longo', description="longo")

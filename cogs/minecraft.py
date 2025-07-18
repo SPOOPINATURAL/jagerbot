@@ -10,7 +10,7 @@ from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
-@bridge.bridge_group(name="mc", deescription="Minecraft related commands")
+mc = bridge.BridgeCommandGroup("mc", "Minecraft commands")
 class MinecraftCog(commands.Cog):
 
     def __init__(self, bot):
@@ -21,7 +21,7 @@ class MinecraftCog(commands.Cog):
         super().__init__()
 
 
-    @bridge.bridge_command(name="wiki", description="Search Minecraft Wiki")
+    @mc.command(name="wiki", description="Search Minecraft Wiki")
     async def mc_wiki(
         self,
         ctx: discord.ApplicationContext,
@@ -33,7 +33,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
+    @mc.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
     async def mc_recipe(
         self,
         ctx: discord.ApplicationContext,
@@ -67,8 +67,9 @@ class MinecraftCog(commands.Cog):
             embed.set_footer(text="Recipe image not found, please check the wiki page link.")
         await ctx.followup.send(embed=embed)
 
-    @bridge.bridge_command(name="advancement", description="Get advancement info from Minecraft Wiki")
+    @mc.command(name="advancement", description="Get advancement info from Minecraft Wiki")
     async def mc_advancement(
+        self,
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Advancement name")
     ):
@@ -80,8 +81,9 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="enchant", description="Get enchantment info from Minecraft Wiki")
+    @mc.command(name="enchant", description="Get enchantment info from Minecraft Wiki")
     async def mc_enchant(
+        self,
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Enchantment name")
     ):
@@ -93,8 +95,9 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="biome", description="Get biome info from Minecraft Wiki")
+    @mc.command(name="biome", description="Get biome info from Minecraft Wiki")
     async def mc_biome(
+        self,
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Biome name")
     ):
@@ -106,8 +109,9 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="structure", description="Get structure info from Minecraft Wiki")
+    @mc.command(name="structure", description="Get structure info from Minecraft Wiki")
     async def mc_structure(
+        self,
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Structure name")
     ):
@@ -119,7 +123,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="player", description="Get Minecraft player info")
+    @mc.command(name="player", description="Get Minecraft player info")
     async def mc_player(
         self,
         ctx: discord.ApplicationContext,
@@ -151,7 +155,7 @@ class MinecraftCog(commands.Cog):
         except Exception as e:
             await ctx.followup.send(f"❌ Error: `{e}`")
 
-    @bridge.bridge_command(name="serverstatus", description="Get the status of the VDSMP")
+    @mc.command(name="serverstatus", description="Get the status of the VDSMP")
     async def mc_serverstatus(self, ctx: discord.ApplicationContext):
         if ctx.guild and ctx.guild.id not in ALLOWED_GUILD_IDS:
             await ctx.respond(

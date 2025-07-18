@@ -55,7 +55,7 @@ class BaroPaginator(View):
                 inline=True
             )
         return embed
-@bridge.bridge_group(name="wf", desription="Warframe commands")
+@bridge.bridge_group(name="wf", description="Warframe commands")
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

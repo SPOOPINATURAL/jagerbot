@@ -6,7 +6,7 @@ class FrostCog(commands.Cog):
         self.bot = bot
         super().__init__()
 
-    @bridge.bridge_command(name="frost")
+    @bridge.bridge_command(name="frost", desctiption="Frosty L's")
     async def frost(self, ctx, level: str):
         frostl = random.randint(1, 1_000_000)
         await ctx.send(f"frosty took another L — he's at {frostl:,} L's now")
