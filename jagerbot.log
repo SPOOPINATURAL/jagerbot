@@ -8685,3 +8685,14 @@ Traceback (most recent call last):
     synced = await self.tree.sync(guild=guild)
                    ^^^^^^^^^
 AttributeError: 'JagerBot' object has no attribute 'tree'
+2025-07-17 20:39:50,499 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 20:39:50,499 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 20:39:50,500 - jagerbot - INFO - main() is running
+2025-07-17 20:39:50,501 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 20:39:50,501 - jagerbot - INFO - Starting bot...
+2025-07-17 20:39:50,501 - discord.client - INFO - logging in using static token
+2025-07-17 20:39:50,883 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 20:39:51,035 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-kmsj",{"micros":68224,"calls":["id_created",{"micros":555,"calls":[]},"session_lookup_time",{"micros":617,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-66",{"micros":66682,"calls":["start_session",{"micros":53549,"calls":["discord-api-rpc-6c4bcb84bb-67h48",{"micros":38438,"calls":["get_user",{"micros":6207},"get_guilds",{"micros":4719},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":493},"authorized_ip_coro",{"micros":12},"pending_payments",{"micros":6869},"apex_experiments",{"micros":1062},"user_activities",{"micros":5},"played_application_ids",{"micros":10}]}]},"starting_guild_connect",{"micros":52,"calls":[]},"presence_started",{"micros":4662,"calls":[]},"guilds_started",{"micros":112,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":8286,"calls":[]},"connect_finished",{"micros":8290,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: cfb8c6616c6c9cbd64714db154014e90).
+2025-07-17 20:39:53,093 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 20:39:53,093 - jagerbot - INFO - Slash commands:
+2025-07-17 20:39:53,093 - jagerbot - INFO - Prefix commands:
