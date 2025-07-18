@@ -8664,3 +8664,24 @@ Traceback (most recent call last):
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: int() argument must be a string, a bytes-like object or a real number, not 'set'
 2025-07-17 20:30:34,423 - jagerbot - INFO - Prefix commands: []
+2025-07-17 20:36:10,729 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 20:36:10,730 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 20:36:10,730 - jagerbot - INFO - main() is running
+2025-07-17 20:36:10,731 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 20:36:10,731 - jagerbot - INFO - Starting bot...
+2025-07-17 20:36:10,731 - discord.client - INFO - logging in using static token
+2025-07-17 20:36:11,125 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 20:36:11,339 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-prcg",{"micros":156206,"calls":["id_created",{"micros":442,"calls":[]},"session_lookup_time",{"micros":1202,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-2",{"micros":154188,"calls":["start_session",{"micros":101376,"calls":["discord-api-rpc-6c4bcb84bb-9wqdm",{"micros":60156,"calls":["get_user",{"micros":7467},"get_guilds",{"micros":10846},"send_scheduled_deletion_message",{"micros":13},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":10409},"apex_experiments",{"micros":1779},"user_activities",{"micros":4},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":48,"calls":[]},"presence_started",{"micros":16036,"calls":[]},"guilds_started",{"micros":86,"calls":[]},"lobbies_started",{"micros":0,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":36630,"calls":[]},"connect_finished",{"micros":36633,"calls":[]},"build_ready",{"micros":7,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: e04d4da098210dd162aad50b76ceef6f).
+2025-07-17 20:36:13,379 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 20:36:13,379 - jagerbot - ERROR - Failed to sync commands to guild 899978176355266580: 'JagerBot' object has no attribute 'tree'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 47, in on_ready
+    synced = await self.tree.sync(guild=guild)
+                   ^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'tree'
+2025-07-17 20:36:13,380 - jagerbot - ERROR - Failed to sync commands to guild 989558855023362110: 'JagerBot' object has no attribute 'tree'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 47, in on_ready
+    synced = await self.tree.sync(guild=guild)
+                   ^^^^^^^^^
+AttributeError: 'JagerBot' object has no attribute 'tree'
