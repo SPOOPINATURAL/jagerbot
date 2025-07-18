@@ -9455,3 +9455,27 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-18 02:23:10,950 - jagerbot - INFO - $longo
 2025-07-18 02:23:10,950 - jagerbot - INFO - $xkcd
 2025-07-18 02:23:10,950 - jagerbot - INFO - $timezones
+2025-07-18 02:32:12,303 - discord.client - INFO - Cleaning up tasks.
+2025-07-18 02:32:12,304 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-18 02:32:12,305 - discord.client - INFO - All tasks finished cancelling.
+2025-07-18 02:32:12,305 - discord.client - INFO - Closing the event loop.
+2025-07-18 02:32:23,288 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-18 02:32:23,288 - jagerbot - INFO - discord version: 2.6.1
+2025-07-18 02:32:23,289 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-18 02:32:23,298 - jagerbot - INFO - Loaded cog: alerts
+2025-07-18 02:32:23,310 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-18 02:32:23,310 - jagerbot - INFO - Loaded cog: fun
+2025-07-18 02:32:23,313 - jagerbot - ERROR - Failed to load cog warframe: Extension 'cogs.warframe' raised an error: TypeError: Callback must be a coroutine.
+2025-07-18 02:32:23,486 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-18 02:32:23,540 - jagerbot - ERROR - Failed to load cog r6: Extension 'cogs.r6' raised an error: TypeError: Callback must be a coroutine.
+2025-07-18 02:32:23,549 - jagerbot - INFO - Loaded cog: core
+2025-07-18 02:32:23,677 - jagerbot - ERROR - Failed to load cog minecraft: Extension 'cogs.minecraft' raised an error: TypeError: Callback must be a coroutine.
+2025-07-18 02:32:23,679 - jagerbot - INFO - Loaded cog: frost
+2025-07-18 02:32:23,680 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-18 02:32:23,680 - cogs.test - INFO - TestCog initialized
+2025-07-18 02:32:23,681 - jagerbot - INFO - Loaded cog: test
+2025-07-18 02:32:23,681 - jagerbot - INFO - Starting bot...
+2025-07-18 02:32:23,682 - discord.client - INFO - logging in using static token
+2025-07-18 02:32:24,035 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-18 02:32:24,199 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-5c6w",{"micros":113877,"calls":["id_created",{"micros":374,"calls":[]},"session_lookup_time",{"micros":283,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-70",{"micros":112742,"calls":["start_session",{"micros":71039,"calls":["discord-api-rpc-b57696bc7-8g6mn",{"micros":50123,"calls":["get_user",{"micros":10978},"get_guilds",{"micros":2964},"send_scheduled_deletion_message",{"micros":10},"guild_join_requests",{"micros":1962},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":6269},"apex_experiments",{"micros":5399},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":24,"calls":[]},"presence_started",{"micros":15333,"calls":[]},"guilds_started",{"micros":116,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":26206,"calls":[]},"connect_finished",{"micros":26210,"calls":[]},"build_ready",{"micros":16,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: b0ebaf9b22c1f5b8e8444c98c1d614e5).
+2025-07-18 02:32:26,238 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
