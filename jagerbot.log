@@ -8713,3 +8713,160 @@ Traceback (most recent call last):
 TypeError: object of type 'NoneType' has no len()
 2025-07-17 20:46:09,312 - jagerbot - INFO - Slash commands:
 2025-07-17 20:46:09,312 - jagerbot - INFO - Prefix commands:
+2025-07-17 21:13:58,299 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-17 21:13:58,299 - jagerbot - INFO - discord version: 2.6.1
+2025-07-17 21:13:58,300 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-17 21:13:58,398 - jagerbot - ERROR - Failed to load extension cogs.r6: Extension 'cogs.r6' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 784, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/r6.py", line 36, in <module>
+    class R6Cog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/r6.py", line 37, in R6Cog
+    r6_group = bridge.bridge_group("r6", "Rainbow Six Siege commands")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bridge_group() takes 0 positional arguments but 2 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 35, in <module>
+    bot.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 918, in load_extension
+    self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 787, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.errors.ExtensionFailed: Extension 'cogs.r6' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+2025-07-17 21:13:58,576 - jagerbot - ERROR - Failed to load extension cogs.minecraft: Extension 'cogs.minecraft' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 784, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 14, in <module>
+    class MinecraftCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/minecraft.py", line 15, in MinecraftCog
+    mc_group = bridge.bridge_group("mc", "Minecraft related commands")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bridge_group() takes 0 positional arguments but 2 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 35, in <module>
+    bot.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 918, in load_extension
+    self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 787, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.errors.ExtensionFailed: Extension 'cogs.minecraft' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+2025-07-17 21:13:58,580 - jagerbot - ERROR - Failed to load extension cogs.warframe: Extension 'cogs.warframe' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 784, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 59, in <module>
+    class WarframeCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/warframe.py", line 60, in WarframeCog
+    wf_group = bridge.bridge_group("wf", "Warframe commands")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bridge_group() takes 0 positional arguments but 2 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 35, in <module>
+    bot.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 918, in load_extension
+    self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 787, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.errors.ExtensionFailed: Extension 'cogs.warframe' raised an error: TypeError: bridge_group() takes 0 positional arguments but 2 were given
+2025-07-17 21:13:58,588 - jagerbot - ERROR - Failed to load extension cogs.fun: Extension 'cogs.fun' raised an error: AttributeError: 'function' object has no attribute 'cooldown'
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 784, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/fun.py", line 40, in <module>
+    class Fun(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/fun.py", line 136, in Fun
+    @bridge.bridge_command.cooldown(1, 5.0, commands.BucketType.user)
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'function' object has no attribute 'cooldown'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 35, in <module>
+    bot.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 918, in load_extension
+    self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 787, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.errors.ExtensionFailed: Extension 'cogs.fun' raised an error: AttributeError: 'function' object has no attribute 'cooldown'
+2025-07-17 21:13:58,599 - jagerbot - INFO - Loaded extension: cogs.alerts
+2025-07-17 21:13:58,796 - jagerbot - INFO - Loaded extension: cogs.alert_cmd
+2025-07-17 21:13:58,805 - jagerbot - INFO - Loaded extension: cogs.core
+2025-07-17 21:13:58,807 - jagerbot - ERROR - Failed to load extension cogs.frost: Extension 'cogs.frost' raised an error: TypeError: Invalid class <class 'discord.ext.commands.context.Context'> used as an input type for an Option
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 784, in _load_from_module_spec
+    spec.loader.exec_module(lib)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/spoopinatural/jagerbot/cogs/frost.py", line 4, in <module>
+    class FrostCog(commands.Cog):
+  File "/home/spoopinatural/jagerbot/cogs/frost.py", line 9, in FrostCog
+    @bridge.bridge_command(name="frost")
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/bridge/core.py", line 448, in decorator
+    return BridgeCommand(callback, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/bridge/core.py", line 191, in __init__
+    ) or BridgeSlashCommand(callback, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/ext/bridge/core.py", line 84, in __init__
+    super().__init__(func, **kwargs)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 762, in __init__
+    self._validate_parameters()
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 780, in _validate_parameters
+    self.options = self._parse_options(params)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 838, in _parse_options
+    option = Option(option)
+             ^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/options.py", line 243, in __init__
+    raise exc
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/options.py", line 238, in __init__
+    self.input_type = SlashCommandOptionType.from_datatype(input_type)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/enums.py", line 852, in from_datatype
+    raise TypeError(
+TypeError: Invalid class <class 'discord.ext.commands.context.Context'> used as an input type for an Option
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 35, in <module>
+    bot.load_extension(ext)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 918, in load_extension
+    self._load_from_module_spec(spec, name)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/cog.py", line 787, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeError: Invalid class <class 'discord.ext.commands.context.Context'> used as an input type for an Option
+2025-07-17 21:13:58,810 - jagerbot - INFO - Loaded extension: cogs.test
+2025-07-17 21:13:58,810 - jagerbot - INFO - Starting bot...
+2025-07-17 21:13:58,810 - discord.client - INFO - logging in using static token
+2025-07-17 21:13:59,196 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-17 21:13:59,347 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-kjp9",{"micros":100082,"calls":["id_created",{"micros":363,"calls":[]},"session_lookup_time",{"micros":351,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-52",{"micros":99049,"calls":["start_session",{"micros":74148,"calls":["discord-api-rpc-56ddf745cb-8bvb4",{"micros":47593,"calls":["get_user",{"micros":6721},"get_guilds",{"micros":5425},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":9029},"apex_experiments",{"micros":8097},"user_activities",{"micros":6},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":62,"calls":[]},"presence_started",{"micros":3198,"calls":[]},"guilds_started",{"micros":124,"calls":[]},"lobbies_started",{"micros":0,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":21499,"calls":[]},"connect_finished",{"micros":21503,"calls":[]},"build_ready",{"micros":12,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: b4297c5b18fe6d749762bc8a730b7266).
+2025-07-17 21:14:01,391 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-17 21:14:01,391 - jagerbot - INFO - Slash commands:
+2025-07-17 21:14:01,391 - jagerbot - INFO - Prefix commands:
