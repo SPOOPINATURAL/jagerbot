@@ -55,13 +55,14 @@ class BaroPaginator(View):
                 inline=True
             )
         return embed
+
 wf = bridge.BridgeCommandGroup("wf", description="Warframe commands")
+
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.cache = {}
         super().__init__()
-
 
     @wf.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def baro(self, ctx: discord.ApplicationContext):
@@ -139,7 +140,8 @@ class WarframeCog(commands.Cog):
         url = f"{WF_MARKET_API}/items/{item_url}/orders"
 
         try:
-            async with self.session.get(url) as resp:
+            session = self.bot.http._HTTPClient__session  # get internal aiohttp session
+            async with session.get(url) as resp:
                 if resp.status != 200:
                     await ctx.followup.send("❌ Item not found.", ephemeral=True)
                     return
@@ -169,10 +171,11 @@ class WarframeCog(commands.Cog):
     async def streams(self, ctx: discord.ApplicationContext):
         await ctx.defer(thinking=True)
         try:
-            async with self.session.get(f"{WF_STREAMS_API}/streams/upcoming") as resp:
+            session = self.bot.http._HTTPClient__session
+            async with session.get(f"{WF_STREAMS_API}/streams/upcoming") as resp:
                 upcoming = await resp.json() if resp.status == 200 else []
 
-            async with self.session.get(f"{WF_STREAMS_API}/streams/active") as resp:
+            async with session.get(f"{WF_STREAMS_API}/streams/active") as resp:
                 active = await resp.json() if resp.status == 200 else []
 
             embed = discord.Embed(title="Warframe Streams", color=WF_COLOR)
@@ -208,7 +211,8 @@ class WarframeCog(commands.Cog):
 
         url = f"{WF_API_BASE}/{endpoint}"
         try:
-            async with self.session.get(url) as resp:
+            session = self.bot.http._HTTPClient__session
+            async with session.get(url) as resp:
                 if resp.status != 200:
                     logger.error(f"API error for {endpoint}: {resp.status}")
                     return None
@@ -220,5 +224,4 @@ class WarframeCog(commands.Cog):
             return None
 
 def setup(bot: commands.Bot):
-    cog = WarframeCog(bot)
-    bot.add_cog(cog)
+    bot.add_cog(WarframeCog(bot))

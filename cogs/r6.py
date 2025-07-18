@@ -1,5 +1,6 @@
 import discord
 import random
+import aiohttp
 import feedparser
 import logging
 from typing import Dict, Any, List
@@ -63,11 +64,12 @@ class R6Cog(commands.Cog):
             "Accept": "application/json"
         }
         try:
-            async with self.session.get(url, headers=headers) as resp:
-                if resp.status != 200:
-                    await ctx.followup.send(f"❌ Could not find stats for `{username}` on `{platform}`.")
-                    return
-                data = await resp.json()
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url, headers=headers) as resp:
+                    if resp.status != 200:
+                        await ctx.followup.send(f"❌ Could not find stats for `{username}` on `{platform}`.")
+                        return
+                    data = await resp.json()
 
             stats = data["data"]["segments"][0]["stats"]
             metadata = data["data"]["segments"][0]["metadata"]
@@ -76,9 +78,9 @@ class R6Cog(commands.Cog):
             kd = stats.get("kd", {}).get("displayValue", "—")
             wl = stats.get("wlPercentage", {}).get("displayValue", "—")
             avg_kills = stats.get("killsPerMatch", {}).get("displayValue") or stats.get("averageKills", {}).get(
-                "displayValue", "—")
+            "displayValue", "—")
             headshot_pct = stats.get("headshotPct", {}).get("displayValue") or stats.get("headshotPercentage", {}).get(
-                "displayValue", "—")
+            "displayValue", "—")
             rank_icon = metadata.get("rankImageUrl") or metadata.get("iconUrl")
 
             embed = discord.Embed(

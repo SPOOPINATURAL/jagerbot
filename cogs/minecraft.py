@@ -1,6 +1,7 @@
 import logging
 import traceback
 import discord
+import aiohttp
 from bs4 import BeautifulSoup
 from discord.ext import commands, bridge
 
@@ -29,24 +30,22 @@ class MinecraftCog(commands.Cog):
         await ctx.respond(embed=embed)
 
     @mc.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
-    async def mc_recipe(
-        self,
-        ctx: discord.ApplicationContext,
-        item: discord.Option(str, "The item to get recipe for")
-    ):
+    async def mc_recipe(self, ctx: discord.ApplicationContext, item: discord.Option(str, "The item to get recipe for")):
         await ctx.defer()
         item_name = item.replace(" ", "_").title()
         wiki_url = f"{self.wiki_base_url}/{item_name}"
 
         recipe_image_url = None
         try:
-            async with self.session.get(wiki_url) as resp:
-                if resp.status != 200:
-                    await ctx.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
-                    return
-                html = await resp.text()
-                soup = BeautifulSoup(html, "html.parser")
-                recipe_image_url = self._find_recipe_image(soup)
+            timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(wiki_url) as resp:
+                    if resp.status != 200:
+                        await ctx.followup.send(f"❌ Could not fetch wiki page for `{item}`.")
+                        return
+                    html = await resp.text()
+                    soup = BeautifulSoup(html, "html.parser")
+                    recipe_image_url = self._find_recipe_image(soup)
         except Exception:
             recipe_image_url = None
 

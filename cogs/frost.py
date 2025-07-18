@@ -1,4 +1,5 @@
 import random
+import discord
 from discord.ext import commands,bridge
 
 class FrostCog(commands.Cog):
@@ -7,7 +8,7 @@ class FrostCog(commands.Cog):
         super().__init__()
 
     @bridge.bridge_command(name="frost", description="Frosty L's")
-    async def frost(self, ctx):
+    async def frost(self, ctx: discord.ApplicationContext):
         frostl = random.randint(1, 1_000_000)
         await ctx.send(f"frosty took another L — he's at {frostl:,} L's now")
 
