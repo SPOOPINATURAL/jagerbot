@@ -10,7 +10,7 @@ from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
-mc = bridge.BridgeCommandGroup("mc", "Minecraft commands")
+mc = bridge.BridgeCommandGroup("mc", description="Minecraft commands")
 class MinecraftCog(commands.Cog):
 
     def __init__(self, bot):

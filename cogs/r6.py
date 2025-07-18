@@ -32,7 +32,7 @@ class MapFloorView(PaginationView):
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
 
-@bridge.bridge_group(name="r6", description="Rainbow Six Siege commands")
+r6 = bridge.BridgeCommandGroup("r6", description="Rainbow Six Siege commands")
 class R6Cog(commands.Cog):
     def __init__(self, bot):
         super().__init__()
@@ -50,7 +50,7 @@ class R6Cog(commands.Cog):
             "timestamp": None,
         }
 
-    @bridge.bridge_command(name="stats", description="Look up R6 player stats")
+    @r6.command(name="stats", description="Look up R6 player stats")
     async def stats(
         self,
         ctx: discord.ApplicationContext,
@@ -100,7 +100,7 @@ class R6Cog(commands.Cog):
             logger.error(f"Error fetching R6 stats for {username}: {e}")
             await ctx.followup.send("❌ Error fetching stats.")
 
-    @bridge.bridge_command(name="map", description="Look up map information")
+    @r6.command(name="map", description="Look up map information")
     async def map_lookup(
         self,
         ctx: discord.ApplicationContext,
@@ -121,7 +121,7 @@ class R6Cog(commands.Cog):
         await ctx.followup.send(embed=view.create_embed(0), view=view)
         view.message = await ctx.original_response()
 
-    @bridge.bridge_command(name="op", description="Look up operator information")
+    @r6.command(name="op", description="Look up operator information")
     async def op_command(
         self,
         ctx: discord.ApplicationContext,
@@ -135,7 +135,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await ctx.followup.send(embed=embed)
 
-    @bridge.bridge_command(name="oprandom", description="Get a random operator")
+    @r6.command(name="oprandom", description="Get a random operator")
     async def oprandom(
         self,
         ctx: discord.ApplicationContext,
@@ -151,7 +151,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await ctx.followup.send(embed=embed)
 
-    @bridge.bridge_command(name="oplist", description="List all operators")
+    @r6.command(name="oplist", description="List all operators")
     async def oplist(self, ctx: discord.ApplicationContext):
         attackers = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "attacker"])
         defenders = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "defender"])
@@ -166,7 +166,7 @@ class R6Cog(commands.Cog):
 
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="maplist", description="List all maps")
+    @r6.command(name="maplist", description="List all maps")
     async def maplist(self, ctx: discord.ApplicationContext):
         names = sorted(m["name"] for m in self.maps.values())
         half = len(names) // 2
@@ -179,7 +179,7 @@ class R6Cog(commands.Cog):
         embed.add_field(name="Maps N–Z", value="\n".join(names[half:]) or "—", inline=True)
         await ctx.respond(embed=embed)
 
-    @bridge.bridge_command(name="news", description="Get latest R6 news")
+    @r6.command(name="news", description="Get latest R6 news")
     async def news(self, ctx: discord.ApplicationContext):
         await ctx.defer()
 
