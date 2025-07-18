@@ -133,7 +133,7 @@ class Fun(commands.Cog):
         await ctx.respond(embed=embed)
 
     @bridge.bridge_command(name="rps", description="Play Rock, Paper, Scissors")
-    @bridge.bridge_command.cooldown(1, 5.0, commands.BucketType.user)
+    @commands.cooldown(1, 5.0, commands.BucketType.user)
     async def rps_command(self, ctx: discord.ApplicationContext):
         try:
             view = RPSView(player_id=ctx.user.id)
@@ -151,7 +151,7 @@ class Fun(commands.Cog):
             )
 
     @bridge.bridge_command(name='trivia', description="Get a trivia question, multiple choice answers")
-    @bridge.bridge_command.cooldown(1, 30.0, commands.BucketType.user)
+    @commands.cooldown(1, 30.0, commands.BucketType.user)
     async def trivia(self, ctx: discord.ApplicationContext):
         try:
             question_data = await self._fetch_trivia_question()

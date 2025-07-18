@@ -10,9 +10,9 @@ from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
-
+@bridge.bridge_group(name="mc", deescription="Minecraft related commands")
 class MinecraftCog(commands.Cog):
-    mc_group = bridge.bridge_group("mc", "Minecraft related commands")
+
     def __init__(self, bot):
         self.bot = bot
         self.session_timeout = aiohttp.ClientTimeout(total=API_TIMEOUT)
@@ -21,7 +21,7 @@ class MinecraftCog(commands.Cog):
         super().__init__()
 
 
-    @mc_group.command(name="wiki", description="Search Minecraft Wiki")
+    @bridge.bridge_command(name="wiki", description="Search Minecraft Wiki")
     async def mc_wiki(
         self,
         ctx: discord.ApplicationContext,
@@ -33,7 +33,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @mc_group.command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
+    @bridge.bridge_command(name="recipe", description="Get crafting recipe from Minecraft Wiki")
     async def mc_recipe(
         self,
         ctx: discord.ApplicationContext,
@@ -67,7 +67,7 @@ class MinecraftCog(commands.Cog):
             embed.set_footer(text="Recipe image not found, please check the wiki page link.")
         await ctx.followup.send(embed=embed)
 
-    @mc_group.command(name="advancement", description="Get advancement info from Minecraft Wiki")
+    @bridge.bridge_command(name="advancement", description="Get advancement info from Minecraft Wiki")
     async def mc_advancement(
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Advancement name")
@@ -80,7 +80,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @mc_group.command(name="enchant", description="Get enchantment info from Minecraft Wiki")
+    @bridge.bridge_command(name="enchant", description="Get enchantment info from Minecraft Wiki")
     async def mc_enchant(
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Enchantment name")
@@ -93,7 +93,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @mc_group.command(name="biome", description="Get biome info from Minecraft Wiki")
+    @bridge.bridge_command(name="biome", description="Get biome info from Minecraft Wiki")
     async def mc_biome(
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Biome name")
@@ -106,7 +106,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @mc_group.command(name="structure", description="Get structure info from Minecraft Wiki")
+    @bridge.bridge_command(name="structure", description="Get structure info from Minecraft Wiki")
     async def mc_structure(
         ctx: discord.ApplicationContext,
         name: discord.Option(str, "Structure name")
@@ -119,7 +119,7 @@ class MinecraftCog(commands.Cog):
         )
         await ctx.respond(embed=embed)
 
-    @mc_group.command(name="player", description="Get Minecraft player info")
+    @bridge.bridge_command(name="player", description="Get Minecraft player info")
     async def mc_player(
         self,
         ctx: discord.ApplicationContext,
@@ -151,7 +151,7 @@ class MinecraftCog(commands.Cog):
         except Exception as e:
             await ctx.followup.send(f"❌ Error: `{e}`")
 
-    @mc_group.command(name="serverstatus", description="Get the status of the VDSMP")
+    @bridge.bridge_command(name="serverstatus", description="Get the status of the VDSMP")
     async def mc_serverstatus(self, ctx: discord.ApplicationContext):
         if ctx.guild and ctx.guild.id not in ALLOWED_GUILD_IDS:
             await ctx.respond(
@@ -230,8 +230,7 @@ class MinecraftCog(commands.Cog):
                     return src
         return None
 
-async def setup(bot: commands.Bot):
+def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
-    await bot.add_cog(cog)
-    bot.add_application_command(cog.mc_group)
+    bot.add_cog(cog)
     

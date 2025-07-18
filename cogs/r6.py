@@ -32,9 +32,8 @@ class MapFloorView(PaginationView):
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
 
-
+@bridge.bridge_group(name="r6", description="Rainbow Six Siege commands")
 class R6Cog(commands.Cog):
-    r6_group = bridge.bridge_group("r6", "Rainbow Six Siege commands")
     def __init__(self, bot):
         super().__init__()
         self.bot = bot
@@ -51,7 +50,7 @@ class R6Cog(commands.Cog):
             "timestamp": None,
         }
 
-    @r6_group.command(name="stats", description="Look up R6 player stats")
+    @bridge.bridge_command(name="stats", description="Look up R6 player stats")
     async def stats(
         self,
         ctx: discord.ApplicationContext,
@@ -101,7 +100,7 @@ class R6Cog(commands.Cog):
             logger.error(f"Error fetching R6 stats for {username}: {e}")
             await ctx.followup.send("❌ Error fetching stats.")
 
-    @r6_group.command(name="map", description="Look up map information")
+    @bridge.bridge_command(name="map", description="Look up map information")
     async def map_lookup(
         self,
         ctx: discord.ApplicationContext,
@@ -122,7 +121,7 @@ class R6Cog(commands.Cog):
         await ctx.followup.send(embed=view.create_embed(0), view=view)
         view.message = await ctx.original_response()
 
-    @r6_group.command(name="op", description="Look up operator information")
+    @bridge.bridge_command(name="op", description="Look up operator information")
     async def op_command(
         self,
         ctx: discord.ApplicationContext,
@@ -136,7 +135,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await ctx.followup.send(embed=embed)
 
-    @r6_group.command(name="oprandom", description="Get a random operator")
+    @bridge.bridge_command(name="oprandom", description="Get a random operator")
     async def oprandom(
         self,
         ctx: discord.ApplicationContext,
@@ -152,7 +151,7 @@ class R6Cog(commands.Cog):
         embed = self.create_op_embed(op_data)
         await ctx.followup.send(embed=embed)
 
-    @r6_group.command(name="oplist", description="List all operators")
+    @bridge.bridge_command(name="oplist", description="List all operators")
     async def oplist(self, ctx: discord.ApplicationContext):
         attackers = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "attacker"])
         defenders = sorted([op["name"] for op in self.operators.values() if op["role"].lower() == "defender"])
@@ -167,7 +166,7 @@ class R6Cog(commands.Cog):
 
         await ctx.respond(embed=embed)
 
-    @r6_group.command(name="maplist", description="List all maps")
+    @bridge.bridge_command(name="maplist", description="List all maps")
     async def maplist(self, ctx: discord.ApplicationContext):
         names = sorted(m["name"] for m in self.maps.values())
         half = len(names) // 2
@@ -180,7 +179,7 @@ class R6Cog(commands.Cog):
         embed.add_field(name="Maps N–Z", value="\n".join(names[half:]) or "—", inline=True)
         await ctx.respond(embed=embed)
 
-    @r6_group.command(name="news", description="Get latest R6 news")
+    @bridge.bridge_command(name="news", description="Get latest R6 news")
     async def news(self, ctx: discord.ApplicationContext):
         await ctx.defer()
 
@@ -308,7 +307,6 @@ class R6Cog(commands.Cog):
         embed.set_footer(text="Source: Steam News")
         return embed
 
-async def setup(bot: commands.Bot):
+def setup(bot: commands.Bot):
     cog = R6Cog(bot)
-    await bot.add_cog(cog)
-    bot.add_application_command(cog.r6_group)
+    bot.add_cog(cog)

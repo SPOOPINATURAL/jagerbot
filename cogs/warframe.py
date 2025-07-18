@@ -55,9 +55,8 @@ class BaroPaginator(View):
                 inline=True
             )
         return embed
-
+@bridge.bridge_group(name="wf", desription="Warframe commands")
 class WarframeCog(commands.Cog):
-    wf_group = bridge.bridge_group("wf", "Warframe commands")
     def __init__(self, bot):
         self.bot = bot
         self.session = None
@@ -65,7 +64,7 @@ class WarframeCog(commands.Cog):
         super().__init__()
 
 
-    @wf_group.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
+    @bridge.bridge_command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def baro(self, ctx: discord.ApplicationContext):
         await ctx.defer()
         data = await self.get_cached_data("voidTrader")
@@ -90,7 +89,7 @@ class WarframeCog(commands.Cog):
             embed.description = f"Next visit: {data.get('startString', 'Unknown')}\nLocation: {data.get('location', 'Unknown')}"
             await ctx.followup.send(embed=embed)
 
-    @wf_group.command(name="news", description="Show latest Warframe news")
+    @bridge.bridge_command(name="news", description="Show latest Warframe news")
     async def wfnews(self, ctx: discord.ApplicationContext):
         await ctx.defer()
         try:
@@ -110,7 +109,7 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error in news command: {e}")
             await ctx.followup.send("❌ Error fetching news.", ephemeral=True)
 
-    @wf_group.command(name="nightwave", description="Show current Nightwave challenges")
+    @bridge.bridge_command(name="nightwave", description="Show current Nightwave challenges")
     async def nightwave(self, ctx: discord.ApplicationContext):
         await ctx.defer()
         try:
@@ -130,7 +129,7 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error in nightwave command: {e}")
             await ctx.followup.send("❌ Error fetching Nightwave data.", ephemeral=True)
 
-    @wf_group.command(name="price", description="Check item prices from warframe.market")
+    @bridge.bridge_command(name="price", description="Check item prices from warframe.market")
     async def wfprice(
         self,
         ctx: discord.ApplicationContext,
@@ -167,7 +166,7 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error fetching price for {item}: {e}")
             await ctx.followup.send("❌ Error fetching prices.", ephemeral=True)
 
-    @wf_group.command(name="streams", description="Show current and upcoming Warframe streams")
+    @bridge.bridge_command(name="streams", description="Show current and upcoming Warframe streams")
     async def streams(self, ctx: discord.ApplicationContext):
         await ctx.defer(thinking=True)
         try:
@@ -221,7 +220,6 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error fetching {endpoint}: {e}")
             return None
 
-async def setup(bot: commands.Bot):
+def setup(bot: commands.Bot):
     cog = WarframeCog(bot)
-    await bot.add_cog(cog)
-    bot.add_application_command(cog.wf_group)
+    bot.add_cog(cog)

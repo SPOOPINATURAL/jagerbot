@@ -13,6 +13,6 @@ class TestCog(commands.Cog):
     async def ping(self, ctx):
         await ctx.respond("Pong!")
 
-async def setup(bot):
+def setup(bot: commands.Bot):
     logger.info("✅ Loaded TestCog")
-    await bot.add_cog(TestCog(bot))
+    bot.add_cog(TestCog(bot))

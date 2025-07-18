@@ -1,12 +1,11 @@
 import os
 import sys
 import logging
+import traceback
 import discord
 from discord.ext import bridge
 from dotenv import load_dotenv
 import config
-
-load_dotenv()
 
 log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(
@@ -30,22 +29,15 @@ bot = bridge.Bot(
     application_id=1376008090968657990
 )
 
-for ext in config.INITIAL_EXTENSIONS:
-    try:
-        bot.load_extension(ext)
-        logger.info(f"Loaded extension: {ext}")
-    except Exception as e:
-        logger.error(f"Failed to load extension {ext}: {e}", exc_info=True)
-
 @bot.event
 async def on_ready():
     logger.info(f"Logged in as {bot.user} (ID: {bot.user.id})")
 
-    logger.info("Slash commands:")
+    logger.info("Slash cmds:")
     for cmd in bot.application_commands:
         logger.info(f"/{cmd.name} - {cmd.description}")
 
-    logger.info("Prefix commands:")
+    logger.info("Prefix cmds:")
     for cmd in bot.commands:
         logger.info(f"{bot.command_prefix}{cmd.name}")
 
@@ -55,8 +47,17 @@ async def on_ready():
     )
 
 if __name__ == "__main__":
+    for filename in os.listdir("cogs"):
+        if filename.endswith(".py") and not filename.startswith("_"):
+            try:
+                bot.load_extension(f"cogs.{filename[:-3]}")
+                logger.info(f"Loaded cog: {filename[:-3]}")
+            except Exception as e:
+                logger.error(f"Failed to load cog {filename[:-3]}: {e}")
+                traceback.print_exc()
     try:
         logger.info("Starting bot...")
+        load_dotenv()
         bot.run(config.DISCORD_TOKEN)
     except KeyboardInterrupt:
         logger.info("Received keyboard interrupt, shutting down...")
