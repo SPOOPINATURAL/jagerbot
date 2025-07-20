@@ -317,10 +317,10 @@ class R6Cog(commands.Cog):
         embed.set_footer(text="Source: Steam News")
         return embed
 
-async def setup(self, bot: commands.Bot):
+async def setup(bot: commands.Bot):
     cog = R6Cog(bot)
     await bot.add_cog(cog)
-    await bot.add_application_command(r6)
+    bot.add_command(r6)
 
-    r6.get_command("map").autocomplete("name")(self.map_name_autocomplete)
-    r6.get_command("op").autocomplete("name")(self.operator_name_autocomplete)
+    r6.get_command("map").autocomplete("name")(cog.map_name_autocomplete)
+    r6.get_command("op").autocomplete("name")(cog.operator_name_autocomplete)

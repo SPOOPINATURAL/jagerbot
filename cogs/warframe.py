@@ -14,7 +14,7 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
-def chunk_list(lst, n):
+async def chunk_list(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
 
@@ -226,4 +226,4 @@ class WarframeCog(commands.Cog):
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(WarframeCog(bot))
-    await bot.add_application_command(wf)
+    await bot.add_command(wf)

@@ -231,5 +231,5 @@ class MinecraftCog(commands.Cog):
 async def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
     await bot.add_cog(cog)
-    await bot.add_application_command(mc)
+    bot.add_command(mc)
     
