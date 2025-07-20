@@ -226,3 +226,4 @@ class WarframeCog(commands.Cog):
 
 def setup(bot: commands.Bot):
     bot.add_cog(WarframeCog(bot))
+    bot.add_application_command(wf)

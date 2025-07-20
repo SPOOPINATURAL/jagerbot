@@ -51,8 +51,6 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
-        r6.get_command("map").autocomplete("name")(self.map_name_autocomplete)
-        r6.get_command("op").autocomplete("name")(self.operator_name_autocomplete)
 
     @r6.command(name="stats", description="Look up R6 player stats")
     async def stats(
@@ -319,6 +317,10 @@ class R6Cog(commands.Cog):
         embed.set_footer(text="Source: Steam News")
         return embed
 
-def setup(bot: commands.Bot):
+def setup(self, bot: commands.Bot):
     cog = R6Cog(bot)
     bot.add_cog(cog)
+    bot.add_application_command(r6)
+
+    r6.get_command("map").autocomplete("name")(self.map_name_autocomplete)
+    r6.get_command("op").autocomplete("name")(self.operator_name_autocomplete)

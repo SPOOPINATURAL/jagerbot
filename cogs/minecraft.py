@@ -231,4 +231,5 @@ class MinecraftCog(commands.Cog):
 def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
     bot.add_cog(cog)
+    bot.add_application_command(mc)
     
