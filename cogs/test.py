@@ -9,13 +9,13 @@ class TestCog(commands.Cog):
         logger.info("TestCog initialized")
     
     @bridge.bridge_group()
-    async def test(self, ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send("Use a subcommand like `/test hello`")
-
-    @test.command(name="ping", description="Ping command")
+    def test(self, ctx):
+        pass
+    
+    @bridge.bridge_group()
+    @bridge.map_to(name="ping", description="test cmd")
     async def ping(self, ctx):
-        await ctx.respond("Pong!")
+        await ctx.respond("balls")
 
 def setup(bot: commands.Bot):
     logger.info("✅ Loaded TestCog")
