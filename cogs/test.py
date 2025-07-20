@@ -9,10 +9,10 @@ class TestCog(commands.Cog):
         logger.info("TestCog initialized")
     
     @bridge.bridge_group()
-    def test(self, ctx):
+    async def test(self, ctx):
         pass
     
-    @bridge.bridge_group()
+
     @bridge.map_to(name="ping", description="test cmd")
     async def ping(self, ctx):
         await ctx.respond("balls")
