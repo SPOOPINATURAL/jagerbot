@@ -10615,3 +10615,82 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-20 15:38:31,551 - jagerbot - INFO - $test
 2025-07-20 15:38:31,551 - jagerbot - INFO - $rps
 2025-07-20 15:38:31,551 - jagerbot - INFO - $8ball
+2025-07-20 16:03:10,490 - discord.client - INFO - Cleaning up tasks.
+2025-07-20 16:03:10,491 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-20 16:03:10,492 - discord.client - INFO - All tasks finished cancelling.
+2025-07-20 16:03:10,492 - discord.client - INFO - Closing the event loop.
+2025-07-20 16:03:21,489 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 16:03:21,489 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 16:03:21,490 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 16:03:21,499 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 16:03:21,511 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 16:03:21,511 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 16:03:21,516 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 16:03:21,688 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 16:03:21,747 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-20 16:03:21,749 - jagerbot - INFO - Loaded cog: r6
+2025-07-20 16:03:21,757 - jagerbot - INFO - Loaded cog: core
+2025-07-20 16:03:21,891 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 16:03:21,892 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 16:03:21,894 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 16:03:21,894 - cogs.test - INFO - TestCog initialized
+2025-07-20 16:03:21,894 - jagerbot - INFO - Loaded cog: test
+2025-07-20 16:03:21,894 - jagerbot - INFO - Starting bot...
+2025-07-20 16:03:21,895 - discord.client - INFO - logging in using static token
+2025-07-20 16:03:22,335 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 16:03:22,492 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-wxhq",{"micros":103728,"calls":["id_created",{"micros":600,"calls":[]},"session_lookup_time",{"micros":264,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-101",{"micros":102465,"calls":["start_session",{"micros":87718,"calls":["discord-api-prd-canary-rpc-746cc78444-m6kjv",{"micros":69500,"calls":["get_user",{"micros":6494},"get_guilds",{"micros":31375},"send_scheduled_deletion_message",{"micros":26},"guild_join_requests",{"micros":4},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":7991},"apex_experiments",{"micros":1389},"user_activities",{"micros":5},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":67,"calls":[]},"presence_started",{"micros":464,"calls":[]},"guilds_started",{"micros":120,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":14074,"calls":[]},"connect_finished",{"micros":14079,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 749d2456c02ef061d6c64504be1f280c).
+2025-07-20 16:03:24,526 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 16:03:24,526 - jagerbot - INFO - Slash cmds:
+2025-07-20 16:03:24,526 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-20 16:03:24,526 - jagerbot - INFO - /image - Get a random image
+2025-07-20 16:03:24,526 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-20 16:03:24,526 - jagerbot - INFO - /longo - longo
+2025-07-20 16:03:24,526 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-20 16:03:24,526 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-20 16:03:24,526 - jagerbot - INFO - /d20 - Roll d20
+2025-07-20 16:03:24,526 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-20 16:03:24,526 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-20 16:03:24,526 - jagerbot - INFO - /score - Get your trivia score
+2025-07-20 16:03:24,526 - jagerbot - INFO - /wf - Warframe commands
+2025-07-20 16:03:24,526 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-20 16:03:24,526 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-20 16:03:24,526 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-20 16:03:24,526 - jagerbot - INFO - /r6 - Rainbow Six Siege commands
+2025-07-20 16:03:24,526 - jagerbot - INFO - /weather - Get the current weather in a city
+2025-07-20 16:03:24,526 - jagerbot - INFO - /currency - Convert currency using exchangerate.host
+2025-07-20 16:03:24,526 - jagerbot - INFO - /timezones - List supported timezones
+2025-07-20 16:03:24,526 - jagerbot - INFO - /tzconvert - Convert time between timezones
+2025-07-20 16:03:24,526 - jagerbot - INFO - /credits - Credits for this bot
+2025-07-20 16:03:24,526 - jagerbot - INFO - /date - Get the current date and time
+2025-07-20 16:03:24,527 - jagerbot - INFO - /plane - Get a random WW1 plane
+2025-07-20 16:03:24,527 - jagerbot - INFO - /info - Command list
+2025-07-20 16:03:24,527 - jagerbot - INFO - /mc - Minecraft commands
+2025-07-20 16:03:24,527 - jagerbot - INFO - /frost - Frosty L's
+2025-07-20 16:03:24,527 - jagerbot - INFO - /test - testcmds
+2025-07-20 16:03:24,527 - jagerbot - INFO - Prefix cmds:
+2025-07-20 16:03:24,527 - jagerbot - INFO - $alert
+2025-07-20 16:03:24,527 - jagerbot - INFO - $8ball
+2025-07-20 16:03:24,527 - jagerbot - INFO - $mc
+2025-07-20 16:03:24,527 - jagerbot - INFO - $test
+2025-07-20 16:03:24,527 - jagerbot - INFO - $d20
+2025-07-20 16:03:24,527 - jagerbot - INFO - $quote
+2025-07-20 16:03:24,527 - jagerbot - INFO - $date
+2025-07-20 16:03:24,527 - jagerbot - INFO - $listalerts
+2025-07-20 16:03:24,527 - jagerbot - INFO - $currency
+2025-07-20 16:03:24,527 - jagerbot - INFO - $xkcd
+2025-07-20 16:03:24,527 - jagerbot - INFO - $longo
+2025-07-20 16:03:24,527 - jagerbot - INFO - $trivia
+2025-07-20 16:03:24,527 - jagerbot - INFO - $info
+2025-07-20 16:03:24,527 - jagerbot - INFO - $image
+2025-07-20 16:03:24,527 - jagerbot - INFO - $weather
+2025-07-20 16:03:24,527 - jagerbot - INFO - $timezones
+2025-07-20 16:03:24,527 - jagerbot - INFO - $score
+2025-07-20 16:03:24,527 - jagerbot - INFO - $r6
+2025-07-20 16:03:24,527 - jagerbot - INFO - $wf
+2025-07-20 16:03:24,527 - jagerbot - INFO - $clancy
+2025-07-20 16:03:24,527 - jagerbot - INFO - $frost
+2025-07-20 16:03:24,527 - jagerbot - INFO - $credits
+2025-07-20 16:03:24,527 - jagerbot - INFO - $rps
+2025-07-20 16:03:24,527 - jagerbot - INFO - $plane
+2025-07-20 16:03:24,527 - jagerbot - INFO - $cancelalerts
+2025-07-20 16:03:24,527 - jagerbot - INFO - $tzconvert
