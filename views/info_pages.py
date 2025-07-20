@@ -9,7 +9,7 @@ class InfoPages(ui.View):
         self.pages: list[discord.Embed] = []
         self.current: int = 0
         self.guild_id = guild_id
-        self.message = discord.Message | None = None
+        self.message: discord.Message | None = None
         self.create_pages()
 
     def create_pages(self):

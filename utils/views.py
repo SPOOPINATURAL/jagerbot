@@ -7,7 +7,7 @@ class PaginationView(View):
         super().__init__(timeout=timeout)
         self.current_page = 0
         self.total_pages = page_count
-        self.message = discord.Message | None = None
+        self.message: discord.Message | None = None
 
     def create_embed(self, index: int) -> Embed:
         raise NotImplementedError
