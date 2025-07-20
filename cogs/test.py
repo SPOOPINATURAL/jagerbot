@@ -3,7 +3,6 @@ from discord.ext import commands,bridge
 import logging
 
 logger = logging.getLogger(__name__)
-test = bridge.BridgeCommandGroup("test", description="Test commands")
 class TestCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -11,7 +10,6 @@ class TestCog(commands.Cog):
     
     @bridge.group()
     async def test(self, ctx):
-        """Main group command"""
         if ctx.invoked_subcommand is None:
             await ctx.send("Use a subcommand like `/test hello`")
 
