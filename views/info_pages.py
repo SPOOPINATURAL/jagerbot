@@ -1,19 +1,20 @@
 import discord
 import config
-from discord import ButtonStyle
+from discord import ButtonStyle, Interaction, ui
 
 # info
-class InfoPages(discord.ui.View):
+class InfoPages(ui.View):
     def __init__(self, guild_id):
         super().__init__(timeout=120)
-        self.pages = []
-        self.current = 0
+        self.pages: list[discord.Embed] = []
+        self.current: int = 0
         self.guild_id = guild_id
-        self.message = None
+        self.message = discord.Message | None = None
         self.create_pages()
 
     def create_pages(self):
-        # Page 1: R6 Siege
+        self.pages.clear()
+        # r6
         embed1 = discord.Embed(
             title="JägerBot Commands List (Page 1/5)",
             description="**R6 Siege Commands**",
@@ -29,7 +30,7 @@ class InfoPages(discord.ui.View):
         embed1.add_field(name="/r6 news", value="Latest R6 Siege news", inline=False)
         self.pages.append(embed1)
 
-        # Page 2: Minecraft
+        # mc
         embed2 = discord.Embed(
             title="JägerBot Commands List (Page 2/5)",
             description="**Minecraft Commands**",
@@ -46,7 +47,7 @@ class InfoPages(discord.ui.View):
             embed2.add_field(name="/mc serverstatus", value="Check VDSMP server status.", inline=False)
         self.pages.append(embed2)
 
-        # Page 3: Fun
+        # fun
         embed3 = discord.Embed(
             title="JägerBot Commands List (Page 3/5)",
             description="**Fun / Stupid Stuff**",
@@ -63,7 +64,7 @@ class InfoPages(discord.ui.View):
         embed3.add_field(name="/rps", value="Play Rock, Paper, Scissors.", inline=False)
         embed3.add_field(name="/plane", value="Gives a random WW1 plane with specs.", inline=False)
         self.pages.append(embed3)
-        # Page 4: Utility
+        # util
         embed4 = discord.Embed(
             title="JägerBot Commands List (Page 4/5)",
             description="**Utility Commands**",
@@ -80,7 +81,7 @@ class InfoPages(discord.ui.View):
         embed4.add_field(name="/credits", value="See who made / helped with the bot.", inline=False)
         self.pages.append(embed4)
 
-        # Page 5: Warframe
+        # wf
         embed5 = discord.Embed(
             title="JägerBot Commands List (Page 5/5)",
             description="**Warframe Commands**",
@@ -93,23 +94,26 @@ class InfoPages(discord.ui.View):
         embed5.add_field(name="/wf streams", value="Upcoming and current Warframe streams/drops on Twitch", inline=False)
         self.pages.append(embed5)
 
-    async def update_message(self, interaction):
-        await interaction.response.edit_message(embed=self.pages[self.current], view=self)
-
-    @discord.ui.button(label="⬅️", style = ButtonStyle.secondary)
+    @ui.button(label="⬅️", style = ButtonStyle.secondary)
     async def previous(self, interaction: discord.Interaction, _button: discord.ui.Button):
         self.current = (self.current - 1) % len(self.pages)
         await self.update_message(interaction)
 
-    @discord.ui.button(label="➡️", style = ButtonStyle.secondary)
+    @ui.button(label="➡️", style = ButtonStyle.secondary)
     async def next(self, interaction: discord.Interaction, _button: discord.ui.Button):
         self.current = (self.current + 1) % len(self.pages)
         await self.update_message(interaction)
+    async def update_message(self, interaction: Interaction):
+        if self.message:
+            await self.message.edit(embed=self.pages[self.current], view=self)
+        else:
+            await interaction.response.edit_message(embed=self.pages[self.current], view=self)
 
     async def on_timeout(self):
         for child in self.children:
             child.disabled = True
-        try:
-            await self.message.edit(view=self)
-        except Exception:
-            pass
+        if self.message:
+            try:
+                await self.message.edit(view=self)
+            except Exception:
+                pass

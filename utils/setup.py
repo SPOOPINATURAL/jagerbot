@@ -9,7 +9,7 @@ def setup_logging() -> None:
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler('discord.log', encoding='utf-8'),
+            logging.FileHandler('jagerbot.log', encoding='utf-8'),
             logging.StreamHandler(stream=open(os.devnull, 'w')
 )
         ]

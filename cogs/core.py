@@ -314,7 +314,7 @@ class CoreCog(commands.Cog):
 
     @bridge.bridge_command(name="plane", description="Get a random WW1 plane")
     async def plane(self, ctx: discord.ApplicationContext):
-        planes = self.bot.planes or []
+        planes = getattr(self.bot, "planes", [] )
         if not planes:
             await ctx.respond("❌ No plane data loaded.")
             return
@@ -334,14 +334,17 @@ class CoreCog(commands.Cog):
             ),
             color=discord.Color.red()
         )
-        embed.set_image(url=plane.get("image", ""))
+        image_url = plane.get("image")
+        if image_url:
+            embed.set_image(url=image_url)
         await ctx.respond(embed=embed)
 
     @bridge.bridge_command(name="info", description="Command list")
     async def info(self, ctx: discord.ApplicationContext):
         guild_id = ctx.guild.id if ctx.guild else 0
         view = InfoPages(guild_id)
-        view.message = await ctx.respond(embed=view.pages[0], view=view)
+        response = await ctx.respond(embed=view.pages[0], view=view)
+        view.message = await response.original_response()
 
 def setup(bot: commands.Bot):
     bot.add_cog(CoreCog(bot))

@@ -51,7 +51,6 @@ class RPSButton(Button):
             )
 
 class RPSView(View):
-
     def __init__(self, player_id: int):
         super().__init__(timeout=15.0)
         self.player_id = player_id
@@ -66,7 +65,9 @@ class RPSView(View):
         self,
         user_choice: RPSChoice,
         bot_choice: RPSChoice,
-        result: str
+        result: str,
+        color: int = 0x8B0000
+
     ) -> discord.Embed:
         return discord.Embed(
             title="🎮 Rock Paper Scissors",
@@ -75,7 +76,7 @@ class RPSView(View):
                 f"**Bot:** {bot_choice.emoji} {bot_choice.name.title()}\n\n"
                 f"**{result}**"
             ),
-            color=0x2F3136
+            color=color
         )
 
     async def on_timeout(self) -> None:
@@ -103,16 +104,21 @@ class RPSView(View):
                 )
                 return
 
-            bot_choice = RPSChoice(random.choice([c.value for c in RPSChoice]))
+            bot_choice = random.choice(list(RPSChoice))
             
             if user_choice == bot_choice:
                 result = "It's a draw! 🤝"
+                color = 0xFAA61A
             elif user_choice.beats(bot_choice):
                 result = "You win! 🎉"
+                color = 0x57F287
             else:
                 result = "You lose! 😢"
+                color = 0xED4245
 
             embed = self._create_result_embed(user_choice, bot_choice, result)
+            for item in self.children:
+                item.disabled = True
             await interaction.response.edit_message(embed=embed, view=None)
 
         except Exception as e:

@@ -142,11 +142,11 @@ class Fun(commands.Cog):
     async def rps_command(self, ctx: discord.ApplicationContext):
         try:
             view = RPSView(player_id=ctx.user.id)
-            await ctx.respond(
+            response = await ctx.respond(
                 "🎮 Choose your move:",
                 view=view
             )
-            view.message = await ctx.interaction.original_response()
+            view.message = await response.original_response()
 
         except Exception as e:
             logger.error(f"Error starting RPS game: {e}", exc_info=True)
@@ -178,8 +178,8 @@ class Fun(commands.Cog):
                 answer_callback=self.trivia_manager.update_score
             )
 
-            await ctx.respond(embed=embed, view=view)
-            view.message = await ctx.interaction.original_response()
+            response = await ctx.respond(embed=embed, view=view)
+            view.message = await response.original_response()
             await view.wait()
 
         except Exception as e:

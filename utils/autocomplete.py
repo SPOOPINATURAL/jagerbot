@@ -1,4 +1,4 @@
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional
 import discord
 
 class AutocompleteMixin:
@@ -6,7 +6,7 @@ class AutocompleteMixin:
         self,
         current: str,
         primary_dict: Dict[str, str],
-        alias_dict: Dict[str, str] = None,
+        alias_dict: Optional[Dict[str, str]] = None,
         max_results: int = 25,
         cache_prefix: str = ""
     ) -> List[discord.OptionChoice]:
@@ -23,10 +23,12 @@ class AutocompleteMixin:
         suggestions = []
 
         for name, full_name in primary_dict.items():
-            if current in name:
+            if current in name.lower():
                 suggestions.append(discord.OptionChoice(name=full_name, value=full_name))
+                if len(suggestions) >= max_results:
+                    break
 
-
+        #alias match
         if alias_dict and len(suggestions) < max_results:
             for alias, name in alias_dict.items():
                 if current in alias.lower() and len(suggestions) < max_results:
@@ -34,7 +36,8 @@ class AutocompleteMixin:
                         name=f"{alias} (alias for {name})",
                         value=name
                     ))
+                    if len(suggestions) >= max_results:
+                        break
 
-        suggestions = suggestions[:max_results]
         self.autocomplete_cache.set(cache_key, suggestions)
         return suggestions

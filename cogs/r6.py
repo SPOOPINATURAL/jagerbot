@@ -327,6 +327,6 @@ class R6Cog(commands.Cog):
         embed.set_footer(text="Source: Steam News")
         return embed
 
-async def setup(bot: commands.Bot):
+def setup(bot: commands.Bot):
     cog = R6Cog(bot)
-    await bot.add_cog(cog)
+    bot.add_cog(cog)

@@ -231,5 +231,5 @@ class WarframeCog(commands.Cog):
             logger.error(f"Error fetching {endpoint}: {e}")
             return None
 
-async def setup(bot: commands.Bot):
-    await bot.add_cog(WarframeCog(bot))
+def setup(bot: commands.Bot):
+    bot.add_cog(WarframeCog(bot))

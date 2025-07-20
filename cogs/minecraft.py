@@ -236,7 +236,7 @@ class MinecraftCog(commands.Cog):
                     return src
         return None
 
-async def setup(bot: commands.Bot):
+def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
-    await bot.add_cog(cog)
+    bot.add_cog(cog)
     
