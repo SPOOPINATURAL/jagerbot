@@ -35,7 +35,7 @@ class MapFloorView(PaginationView):
         ).set_image(url=floor.get("image", ""))
 async def platform_autocomplete(ctx: discord.AutocompleteContext):
         return ["uplay", "psn", "xbl"]
-r6 = bridge.BridgeCommandGroup("r6", description="Rainbow Six Siege commands")
+
 class R6Cog(commands.Cog):
     def __init__(self, bot):
         super().__init__()
@@ -51,7 +51,17 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
-
+    @bridge.bridge_group(name='r6', description="Rainbow Six Siege commands")
+    async def r6(self, ctx: discord.ApplicationContext):
+        if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title="R6 Siege Commands",
+                description="Use `/r6 <command>` to get help on a specific command.",
+                color=0x8B0000
+            )
+            embed.add_field(name="Available Commands", value="`stats`, `op`, `oplist`, `oprandom`, `map`, `maplist`, `news`", inline=False)
+            await ctx.respond(embed=embed)
+    
     @r6.command(name="stats", description="Look up R6 player stats")
     async def stats(
         self,
@@ -320,7 +330,3 @@ class R6Cog(commands.Cog):
 async def setup(bot: commands.Bot):
     cog = R6Cog(bot)
     await bot.add_cog(cog)
-    bot.add_command(r6)
-
-    r6.get_command("map").autocomplete("name")(cog.map_name_autocomplete)
-    r6.get_command("op").autocomplete("name")(cog.operator_name_autocomplete)

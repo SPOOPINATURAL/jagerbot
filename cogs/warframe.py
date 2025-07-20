@@ -57,14 +57,21 @@ class BaroPaginator(View):
             )
         return embed
 
-wf = bridge.BridgeCommandGroup("wf", description="Warframe commands")
-
 class WarframeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.cache = {}
         super().__init__()
-
+    @bridge.bridge_group(name="wf", description="Warframe commands")
+    async def wf(self, ctx: discord.ApplicationContext):
+        if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title="Warframe Commands",
+                description="Use `/wf <command>` to get help on a specific command.",
+                color=WF_COLOR
+            )
+            embed.add_field(name="Available Commands", value="`baro`, `news`, `nightwave`, `price`, `streams`", inline=False)
+            await ctx.respond(embed=embed)  
     @wf.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def baro(self, ctx: discord.ApplicationContext):
         await ctx.defer()
@@ -226,4 +233,3 @@ class WarframeCog(commands.Cog):
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(WarframeCog(bot))
-    await bot.add_command(wf)

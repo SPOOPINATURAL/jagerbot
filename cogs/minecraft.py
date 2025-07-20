@@ -10,13 +10,21 @@ from config import ALLOWED_GUILD_IDS, API_TIMEOUT, MINECRAFT_WIKI_BASE
 from utils.embed_builder import EmbedBuilder
 
 logger = logging.getLogger(__name__)
-mc = bridge.BridgeCommandGroup("mc", description="Minecraft commands")
 class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.wiki_base_url = MINECRAFT_WIKI_BASE
         super().__init__()
-
+    @bridge.bridge_group(name="mc", description="Minecraft commands")
+    async def mc(self, ctx: discord.ApplicationContext):
+        if ctx.invoked_subcommand is None:
+            embed = discord.Embed(
+                title="Minecraft Commands",
+                description="Use `/mc <command>` to get help on a specific command.",
+                color=0x8B0000
+            )
+            embed.add_field(name="Available Commands", value="`wiki`, `recipe`, `advancement`, `enchant`, `biome`, `structure`, `player`, `serverstatus`", inline=False)
+            await ctx.respond(embed=embed)
     @mc.command(name="wiki", description="Search Minecraft Wiki")
     async def mc_wiki(
         self,
@@ -231,5 +239,4 @@ class MinecraftCog(commands.Cog):
 async def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
     await bot.add_cog(cog)
-    bot.add_command(mc)
     
