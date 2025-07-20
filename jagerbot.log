@@ -10694,3 +10694,6 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-20 16:03:24,527 - jagerbot - INFO - $plane
 2025-07-20 16:03:24,527 - jagerbot - INFO - $cancelalerts
 2025-07-20 16:03:24,527 - jagerbot - INFO - $tzconvert
+2025-07-20 18:20:30,543 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 18:20:30,835 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 18:20:30,884 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 749d2456c02ef061d6c64504be1f280c under trace ["gateway-prd-us-east1-c-zjnp",{"micros":1990,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":1054,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-101",{"micros":14}]}].
