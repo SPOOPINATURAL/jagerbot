@@ -8,7 +8,7 @@ class TestCog(commands.Cog):
         self.bot = bot
         logger.info("TestCog initialized")
     
-    @bridge.bridge_group()
+    @bridge.bridge_group(name='test', description="testcmds")
     async def test(self, ctx):
         pass
     
