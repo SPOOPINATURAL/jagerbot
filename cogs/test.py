@@ -8,7 +8,7 @@ class TestCog(commands.Cog):
         self.bot = bot
         logger.info("TestCog initialized")
     
-    @bridge.group()
+    @bridge.bridge_group()
     async def test(self, ctx):
         if ctx.invoked_subcommand is None:
             await ctx.send("Use a subcommand like `/test hello`")
