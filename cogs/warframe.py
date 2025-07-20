@@ -46,7 +46,7 @@ class BaroPaginator(View):
         self.current_page = (self.current_page + 1) % self.total_pages
         await interaction.response.edit_message(embed=self.create_embed(), view=self)
 
-    def create_embed(self) -> discord.Embed:
+    async def create_embed(self) -> discord.Embed:
         embed = discord.Embed(title=f"Baro Ki'Teer at {self.location}", color=WF_COLOR)
         embed.description = f"Leaving in {self.end_str}\n\nPage {self.current_page + 1} / {self.total_pages}"
         for item in self.pages[self.current_page]:

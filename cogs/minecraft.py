@@ -205,7 +205,7 @@ class MinecraftCog(commands.Cog):
             tb = traceback.format_exc()
             await ctx.followup.send(f"❌ Error in mcserverstatus:\n```\n{tb}\n```")
 
-    def create_wiki_embed(self, title: str, page: str) -> discord.Embed:
+    async def create_wiki_embed(self, title: str, page: str) -> discord.Embed:
         url = f"{self.wiki_base_url}/{page}"
         return EmbedBuilder.info(
             title=title,
@@ -213,7 +213,7 @@ class MinecraftCog(commands.Cog):
             color=0x55a630
         )
 
-    def _find_recipe_image(self, soup: BeautifulSoup) -> str:
+    async def _find_recipe_image(self, soup: BeautifulSoup) -> str:
         for selector in [("table", "crafting-table"), ("div", "crafting"), ("img", None)]:
             tag, class_name = selector
             element = soup.find(tag, class_=class_name) if class_name else soup.find(tag)
