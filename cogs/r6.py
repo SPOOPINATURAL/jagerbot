@@ -51,7 +51,7 @@ class R6Cog(commands.Cog):
             "data": None,
             "timestamp": None,
         }
-    @bridge.bridge_group(name='r6', description="Rainbow Six Siege commands")
+    @bridge.bridge_group(name="r6", description="Rainbow Six Siege commands")
     async def r6(self, ctx: discord.ApplicationContext):
         if ctx.invoked_subcommand is None:
             embed = discord.Embed(
