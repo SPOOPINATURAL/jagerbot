@@ -10467,3 +10467,91 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-19 21:52:32,469 - jagerbot - INFO - $longo
 2025-07-19 21:52:32,469 - jagerbot - INFO - $xkcd
 2025-07-19 21:52:32,469 - jagerbot - INFO - $test
+2025-07-19 23:46:52,509 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-19 23:46:52,761 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-19 23:46:52,811 - discord.gateway - INFO - Shard ID None has successfully RESUMED session cfee11a4eba2ad4559d235958e4b4f03 under trace ["gateway-prd-us-east1-d-p6kt",{"micros":552,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":298,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-72",{"micros":18}]}].
+2025-07-20 00:43:35,632 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 00:43:41,795 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 00:43:41,979 - discord.gateway - INFO - Shard ID None has successfully RESUMED session cfee11a4eba2ad4559d235958e4b4f03 under trace ["gateway-prd-us-east1-c-jgd0",{"micros":41024,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":289,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-72",{"micros":21}]}].
+2025-07-20 01:28:30,705 - discord.client - INFO - Cleaning up tasks.
+2025-07-20 01:28:30,705 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-20 01:28:30,706 - discord.client - INFO - All tasks finished cancelling.
+2025-07-20 01:28:30,706 - discord.client - INFO - Closing the event loop.
+2025-07-20 01:28:41,700 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 01:28:41,700 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 01:28:41,700 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 01:28:41,710 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 01:28:41,722 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 01:28:41,722 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 01:28:41,727 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 01:28:41,898 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 01:28:41,953 - jagerbot - ERROR - Failed to load cog r6: Extension 'cogs.r6' raised an error: SyntaxError: cannot assign to expression (views.py, line 10)
+2025-07-20 01:28:41,959 - jagerbot - ERROR - Failed to load cog core: Extension 'cogs.core' raised an error: SyntaxError: cannot assign to expression (info_pages.py, line 12)
+2025-07-20 01:28:42,092 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 01:28:42,093 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 01:28:42,095 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 01:28:42,095 - cogs.test - INFO - TestCog initialized
+2025-07-20 01:28:42,095 - jagerbot - INFO - Loaded cog: test
+2025-07-20 01:28:42,095 - jagerbot - INFO - Starting bot...
+2025-07-20 01:28:42,096 - discord.client - INFO - logging in using static token
+2025-07-20 01:28:42,426 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 01:28:42,542 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-8q3d",{"micros":67955,"calls":["id_created",{"micros":564,"calls":[]},"session_lookup_time",{"micros":290,"calls":[]},"session_lookup_finished",{"micros":20,"calls":[]},"discord-sessions-prd-2-136",{"micros":65331,"calls":["start_session",{"micros":51291,"calls":["discord-api-rpc-576ff9f8dd-lkfsz",{"micros":34079,"calls":["get_user",{"micros":5557},"get_guilds",{"micros":3564},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":9076},"apex_experiments",{"micros":867},"user_activities",{"micros":5},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":27,"calls":[]},"presence_started",{"micros":230,"calls":[]},"guilds_started",{"micros":117,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":13645,"calls":[]},"connect_finished",{"micros":13647,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 7f6f76d785f738f3ae8a20a77eeae466).
+2025-07-20 01:28:44,582 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 01:28:44,582 - jagerbot - INFO - Slash cmds:
+2025-07-20 01:28:44,582 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-20 01:28:44,582 - jagerbot - INFO - /image - Get a random image
+2025-07-20 01:28:44,582 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-20 01:28:44,582 - jagerbot - INFO - /longo - longo
+2025-07-20 01:28:44,582 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-20 01:28:44,582 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-20 01:28:44,582 - jagerbot - INFO - /d20 - Roll d20
+2025-07-20 01:28:44,582 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-20 01:28:44,582 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-20 01:28:44,582 - jagerbot - INFO - /score - Get your trivia score
+2025-07-20 01:28:44,582 - jagerbot - INFO - /wf - Warframe commands
+2025-07-20 01:28:44,582 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-20 01:28:44,582 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-20 01:28:44,582 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-20 01:28:44,582 - jagerbot - INFO - /mc - Minecraft commands
+2025-07-20 01:28:44,582 - jagerbot - INFO - /frost - Frosty L's
+2025-07-20 01:28:44,582 - jagerbot - INFO - /test - testcmds
+2025-07-20 01:28:44,582 - jagerbot - INFO - Prefix cmds:
+2025-07-20 01:28:44,582 - jagerbot - INFO - $clancy
+2025-07-20 01:28:44,582 - jagerbot - INFO - $cancelalerts
+2025-07-20 01:28:44,582 - jagerbot - INFO - $trivia
+2025-07-20 01:28:44,582 - jagerbot - INFO - $xkcd
+2025-07-20 01:28:44,582 - jagerbot - INFO - $test
+2025-07-20 01:28:44,582 - jagerbot - INFO - $quote
+2025-07-20 01:28:44,582 - jagerbot - INFO - $longo
+2025-07-20 01:28:44,582 - jagerbot - INFO - $wf
+2025-07-20 01:28:44,582 - jagerbot - INFO - $rps
+2025-07-20 01:28:44,582 - jagerbot - INFO - $mc
+2025-07-20 01:28:44,582 - jagerbot - INFO - $alert
+2025-07-20 01:28:44,583 - jagerbot - INFO - $8ball
+2025-07-20 01:28:44,583 - jagerbot - INFO - $score
+2025-07-20 01:28:44,583 - jagerbot - INFO - $listalerts
+2025-07-20 01:28:44,583 - jagerbot - INFO - $frost
+2025-07-20 01:28:44,583 - jagerbot - INFO - $d20
+2025-07-20 01:28:44,583 - jagerbot - INFO - $image
+2025-07-20 03:56:09,188 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 03:56:09,402 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 03:56:09,454 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-d-validation-npqp",{"micros":485,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":253,"calls":[]},"session_lookup_finished",{"micros":8,"calls":[]},"discord-sessions-prd-2-136",{"micros":28}]}].
+2025-07-20 05:23:30,636 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 05:23:30,861 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 05:23:30,902 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-c-lx9l",{"micros":555,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":298,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-136",{"micros":15}]}].
+2025-07-20 06:29:09,843 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 06:29:10,069 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 06:29:10,121 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-b-q1qs",{"micros":3472,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":254,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-136",{"micros":30}]}].
+2025-07-20 09:00:13,029 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 09:00:13,302 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 09:00:13,358 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-d-lr3s",{"micros":571,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":289,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-136",{"micros":15}]}].
+2025-07-20 10:18:11,671 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-07-20 10:18:11,671 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 10:18:11,921 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 10:18:11,973 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-d-kjct",{"micros":5709,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":4581,"calls":[]},"session_lookup_finished",{"micros":16,"calls":[]},"discord-sessions-prd-2-136",{"micros":47}]}].
+2025-07-20 13:18:38,459 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 13:18:38,699 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 13:18:38,748 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-c-mnf7",{"micros":743,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":426,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-136",{"micros":20}]}].
+2025-07-20 14:53:37,399 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 14:53:37,620 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 14:53:37,670 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7f6f76d785f738f3ae8a20a77eeae466 under trace ["gateway-prd-us-east1-b-qm5r",{"micros":1606,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":312,"calls":[]},"session_lookup_finished",{"micros":18,"calls":[]},"discord-sessions-prd-2-136",{"micros":35}]}].
