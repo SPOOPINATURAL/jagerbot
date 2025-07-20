@@ -13,7 +13,7 @@ class TestCog(commands.Cog):
         pass
     
 
-    @bridge.map_to(name="ping", description="test cmd")
+    @test.command(name="ping", description="test cmd")
     async def ping(self, ctx):
         await ctx.respond("balls")
 
