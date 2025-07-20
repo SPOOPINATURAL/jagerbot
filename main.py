@@ -1,9 +1,10 @@
 import os
 import sys
+import json
 import logging
 import traceback
 import discord
-from discord.ext import bridge
+from discord.ext import bridge, commands
 from dotenv import load_dotenv
 import config
 
@@ -29,7 +30,9 @@ bot = bridge.Bot(
     application_id=1376008090968657990,
     sync_commands=True
 )
-
+def load_json(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 @bot.event
 async def on_ready():
     logger.info(f"Logged in as {bot.user} (ID: {bot.user.id})")
@@ -47,6 +50,14 @@ async def on_ready():
     )
 
 if __name__ == "__main__":
+    try:
+        bot.maps = load_json("data/maps.json")
+        bot.operators = load_json("data/operators.json")
+        bot.planes = load_json("data/planes.json")
+        logger.info("Loaded map, operator, and plane data.")
+    except Exception as e:
+        logger.exception("Failed to load JSON data.")
+        sys.exit(1)
     for filename in os.listdir("cogs"):
         if filename.endswith(".py") and not filename.startswith("_"):
             try:

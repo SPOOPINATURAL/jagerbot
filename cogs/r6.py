@@ -1,12 +1,14 @@
 import discord
 import random
 import aiohttp
+import json
 import feedparser
 import logging
 from discord import Option
 from typing import Dict, Any, List
 from discord.ext import bridge, commands
 from datetime import datetime
+from pathlib import Path
 
 from utils.views import PaginationView
 from utils.helpers import DataHelper
@@ -47,10 +49,15 @@ class R6Cog(commands.Cog):
         self._operator_aliases: Dict[str, str] = {}
         self._map_names: Dict[str, str] = {}
         self._map_aliases: Dict[str, str] = {}
+        self.maps = bot.maps
+        self.operators = bot.operators
         self._news_cache = {
             "data": None,
             "timestamp": None,
         }
+    def load_json(self, path):
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
     @bridge.bridge_group(name="r6", description="Rainbow Six Siege commands")
     async def r6(self, ctx: discord.ApplicationContext):
         if ctx.invoked_subcommand is None:

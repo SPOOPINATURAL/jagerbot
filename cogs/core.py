@@ -103,6 +103,7 @@ class CoreCog(commands.Cog):
         self.session: Optional[aiohttp.ClientSession] = None
         self.weather_service = WeatherService()
         self.currency_service = CurrencyService()
+        self.planes = bot.planes
         super().__init__()
 
     async def cog_load(self) -> None:
@@ -314,12 +315,11 @@ class CoreCog(commands.Cog):
 
     @bridge.bridge_command(name="plane", description="Get a random WW1 plane")
     async def plane(self, ctx: discord.ApplicationContext):
-        planes = getattr(self.bot, "planes", [] )
-        if not planes:
+        if not self.planes:
             await ctx.respond("❌ No plane data loaded.")
             return
 
-        plane = random.choice(planes)
+        plane = random.choice(self.planes)
         specs = plane.get("specs", {})
         embed = discord.Embed(
             title=plane.get("name", "Unknown"),
