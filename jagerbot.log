@@ -12672,3 +12672,60 @@ client_session: <aiohttp.client.ClientSession object at 0x7fff0e0cc110>
 2025-07-21 00:18:28,440 - discord.client - INFO - Got a request to RESUME the websocket.
 2025-07-21 00:18:28,679 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
 2025-07-21 00:18:28,739 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 649b3b548e34629b63a67b876b811bc9 under trace ["gateway-prd-us-east1-d-93k9",{"micros":6633,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":5556,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-174",{"micros":19}]}].
+2025-07-21 01:07:01,357 - discord.client - INFO - Cleaning up tasks.
+2025-07-21 01:07:01,357 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-21 01:07:01,358 - discord.client - INFO - All tasks finished cancelling.
+2025-07-21 01:07:01,358 - discord.client - INFO - Closing the event loop.
+2025-07-21 01:07:01,465 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7fff4796ced0>
+2025-07-21 01:07:12,539 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-21 01:07:12,539 - jagerbot - INFO - discord version: 2.6.1
+2025-07-21 01:07:12,540 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-21 01:07:12,543 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-21 01:07:12,554 - jagerbot - INFO - Loaded cog: alerts
+2025-07-21 01:07:12,566 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-21 01:07:12,566 - jagerbot - INFO - Loaded cog: fun
+2025-07-21 01:07:12,571 - jagerbot - INFO - Loaded cog: warframe
+2025-07-21 01:07:12,741 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-21 01:07:12,798 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-21 01:07:12,800 - jagerbot - INFO - Loaded cog: r6
+2025-07-21 01:07:12,809 - jagerbot - INFO - Loaded cog: core
+2025-07-21 01:07:13,673 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-21 01:07:13,675 - jagerbot - INFO - Loaded cog: frost
+2025-07-21 01:07:13,676 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-21 01:07:13,676 - cogs.test - INFO - TestCog initialized
+2025-07-21 01:07:13,676 - jagerbot - INFO - Loaded cog: test
+2025-07-21 01:07:13,676 - jagerbot - INFO - Starting bot...
+2025-07-21 01:07:13,677 - discord.client - INFO - logging in using static token
+2025-07-21 01:07:14,032 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-21 01:07:14,205 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-kjp9",{"micros":119108,"calls":["id_created",{"micros":514,"calls":[]},"session_lookup_time",{"micros":306,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-115",{"micros":117067,"calls":["start_session",{"micros":114228,"calls":["discord-api-rpc-576ff9f8dd-22dtc",{"micros":89262,"calls":["get_user",{"micros":8718},"get_guilds",{"micros":5687},"send_scheduled_deletion_message",{"micros":25},"guild_join_requests",{"micros":4},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":9844},"apex_experiments",{"micros":3943},"user_activities",{"micros":4},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":32,"calls":[]},"presence_started",{"micros":293,"calls":[]},"guilds_started",{"micros":91,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":2399,"calls":[]},"connect_finished",{"micros":2404,"calls":[]},"build_ready",{"micros":16,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 167f8a5770764f2b76ab655c9ea12cae).
+2025-07-21 01:07:14,206 - jagerbot - INFO - aiohttp session initialized.
+2025-07-21 01:07:16,283 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-21 01:07:16,283 - jagerbot - INFO - Slash cmds:
+2025-07-21 01:07:16,283 - jagerbot - INFO - Prefix cmds:
+2025-07-21 01:07:16,283 - jagerbot - INFO - $date
+2025-07-21 01:07:16,283 - jagerbot - INFO - $rps
+2025-07-21 01:07:16,283 - jagerbot - INFO - $listalerts
+2025-07-21 01:07:16,283 - jagerbot - INFO - $score
+2025-07-21 01:07:16,283 - jagerbot - INFO - $clancy
+2025-07-21 01:07:16,283 - jagerbot - INFO - $info
+2025-07-21 01:07:16,284 - jagerbot - INFO - $quote
+2025-07-21 01:07:16,284 - jagerbot - INFO - $8ball
+2025-07-21 01:07:16,284 - jagerbot - INFO - $d20
+2025-07-21 01:07:16,284 - jagerbot - INFO - $wf
+2025-07-21 01:07:16,284 - jagerbot - INFO - $weather
+2025-07-21 01:07:16,284 - jagerbot - INFO - $timezones
+2025-07-21 01:07:16,284 - jagerbot - INFO - $test
+2025-07-21 01:07:16,284 - jagerbot - INFO - $image
+2025-07-21 01:07:16,284 - jagerbot - INFO - $r6
+2025-07-21 01:07:16,284 - jagerbot - INFO - $credits
+2025-07-21 01:07:16,284 - jagerbot - INFO - $plane
+2025-07-21 01:07:16,284 - jagerbot - INFO - $trivia
+2025-07-21 01:07:16,284 - jagerbot - INFO - $cancelalerts
+2025-07-21 01:07:16,284 - jagerbot - INFO - $mc
+2025-07-21 01:07:16,284 - jagerbot - INFO - $longo
+2025-07-21 01:07:16,284 - jagerbot - INFO - $xkcd
+2025-07-21 01:07:16,284 - jagerbot - INFO - $currency
+2025-07-21 01:07:16,284 - jagerbot - INFO - $tzconvert
+2025-07-21 01:07:16,284 - jagerbot - INFO - $frost
+2025-07-21 01:07:16,284 - jagerbot - INFO - $alert
