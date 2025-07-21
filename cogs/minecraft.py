@@ -157,9 +157,9 @@ class MinecraftCog(commands.Cog):
             )
             embed.set_image(url=skin_url)
             embed.set_thumbnail(url=head_url)
-            await ctx.followup.send(embed=embed)
+            await ctx.respond(embed=embed)
         except Exception as e:
-            await ctx.followup.send(f"❌ Error: `{e}`")
+            await ctx.respond(f"❌ Error: `{e}`")
     
     @mc.command(name="dynmap", description="Get the VDSMP dynmap")
     @commands.cooldown(1, 30, commands.BucketType.guild)
