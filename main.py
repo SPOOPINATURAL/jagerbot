@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import aiohttp
 import logging
 import traceback
 import discord
@@ -55,6 +56,7 @@ if __name__ == "__main__":
         bot.operators = load_json("data/operators.json")
         bot.planes = load_json("data/planes.json")
         logger.info("Loaded map, operator, and plane data.")
+        bot.session = aiohttp.ClientSession()
     except Exception as e:
         logger.exception("Failed to load JSON data.")
         sys.exit(1)
