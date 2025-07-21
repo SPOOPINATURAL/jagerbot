@@ -1,6 +1,7 @@
 import html
 import logging
 import random
+import asyncio
 from typing import Dict, Optional
 
 import aiohttp
@@ -190,16 +191,31 @@ class Fun(commands.Cog):
             )
 
     async def _fetch_trivia_question(self) -> Optional[dict]:
-        try:
-            async with self.session.get(
-                    "https://opentdb.com/api.php?amount=1&type=multiple"
-            ) as resp:
-                if resp.status == 200:
+        for _ in range(2):
+            try:
+                async with self.session.get(
+                        "https://opentdb.com/api.php?amount=1&type=multiple"
+                ) as resp:
+                    if resp.status != 200:
+                        return None
+
                     data = await resp.json()
-                    return data["results"][0]
-        except Exception as e:
-            logger.error(f"Failed to fetch trivia: {e}")
-        return None
+                    logger.info(f"Trivia API response: {data}")
+
+                    if data.get("response_code") != 0:
+                        logger.warning(f"Trivia API returned non-zero response_code: {data.get('response_code')}")
+                        return None
+
+                    results = data.get("results", [])
+                    if not results:
+                        logger.warning("Trivia API returned empty results.")
+                        return None
+
+                return results[0]
+            except Exception as e:
+                logger.error(f"Failed to fetch trivia: {e}")
+            await asyncio.sleep(1)
+            return None
 
     @staticmethod
     def _prepare_question(data: dict) -> tuple[str, str, dict]:
