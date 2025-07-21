@@ -2,6 +2,10 @@ import logging
 import traceback
 import discord
 import aiohttp
+import asyncio
+import io
+import undetected_chromedriver.v2 as uc
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from discord.ext import commands, bridge
 from discord import Option
@@ -156,6 +160,35 @@ class MinecraftCog(commands.Cog):
             await ctx.followup.send(embed=embed)
         except Exception as e:
             await ctx.followup.send(f"❌ Error: `{e}`")
+    
+    @mc.command(name="dynmap", description="Get the VDSMP dynmap")
+    @commands.cooldown(1, 30, commands.BucketType.guild)
+    async def dynmap (self, ctx: discord.ApplicationContext):
+        if ctx.guild and ctx.guild.id not in ALLOWED_GUILD_IDS:
+            await ctx.respond(
+                "❌ This command is not available in this server.",
+                ephemeral=True
+            )
+            return
+        await ctx.defer()
+        try:
+            file = await self.get_dynmap_screenshot()
+            embed = discord.Embed(
+                title="🌍 VDSMP Dynmap",
+                description="[LIVE DYNMAP](http://vdsmp.mc.gg:8809/)",
+                color=0x8B0000
+            )
+            embed.set_image(url="attachment://dynmap.png")
+            await ctx.respond(embed=embed, file=file)
+        except Exception as e:
+            tb = traceback.format_exc()
+            await ctx.respond(f"❌ Error in dynmap command:\n```\n{tb}\n```")
+    @dynmap.error
+    async def dynmap_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            await ctx.respond(f"⏳ This command is on cooldown. Try again in {round(error.retry_after, 1)} seconds.")
+        else:
+            await ctx.respond(f"⚠️ Error: {error}")
 
     @mc.command(name="serverstatus", description="Get the status of the VDSMP")
     async def mc_serverstatus(self, ctx: discord.ApplicationContext):
@@ -195,11 +228,11 @@ class MinecraftCog(commands.Cog):
             version = data.get("version", "Unknown")
 
             embed = discord.Embed(
-                title="🌐 Minecraft Server Status",
-                description="The server is **online** ✅",
+                title="🌐 VDSMP Server Status",
+                description="VDSMP is **online** ✅",
                 color=0x00cc66
             )
-            embed.add_field(name="📃 MOTD", value=motd, inline=False)
+            embed.add_field(name="📃 Description", value=motd, inline=False)
             embed.add_field(name="👥 Players", value=f"{online}/{max_players}", inline=True)
             embed.add_field(name="🛠 Version", value=version, inline=True)
 
@@ -236,6 +269,30 @@ class MinecraftCog(commands.Cog):
                     return src
         return None
 
+    async def get_dynmap_screenshot(self) -> discord.File:
+        def capture():
+            options = uc.ChromeOptions()
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--window-size=1920,1080")
+
+            driver = uc.Chrome(
+                driver_executable_path=ChromeDriverManager().install(),
+                options=options
+            )
+            try:
+                driver.get("http://vdsmp.mc.gg:8809/")
+                driver.implicitly_wait(10)
+                return driver.get_screenshot_as_png()
+            finally:
+                driver.quit()
+
+        loop = asyncio.get_event_loop()
+        screenshot = await loop.run_in_executor(None, capture)
+        image = io.BytesIO(screenshot)
+        image.seek(0)
+        return discord.File(fp=image, filename="dynmap.png")
 def setup(bot: commands.Bot):
     cog = MinecraftCog(bot)
     bot.add_cog(cog)
