@@ -8,3 +8,5 @@ python-dateutil
 flask
 feedparser
 psutil
+undetected-chromedriver
+webdriver-manager

@@ -4,7 +4,7 @@ import discord
 import aiohttp
 import asyncio
 import io
-import undetected_chromedriver.v2 as uc
+import undetected_chromedriver as uc
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from discord.ext import commands, bridge
