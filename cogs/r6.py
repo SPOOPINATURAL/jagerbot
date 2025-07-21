@@ -35,7 +35,7 @@ class MapFloorView(PaginationView):
             description=f"Floor {index + 1}/{len(self.floors)}",
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
-async def platform_autocomplete(ctx: discord.AutocompleteContext):
+def platform_autocomplete(ctx: discord.AutocompleteContext):
         return ["uplay", "psn", "xbl"]
 
 class R6Cog(commands.Cog):
