@@ -40,7 +40,7 @@ async def on_ready():
     logger.info("Slash cmds:")
     for cmd in bot.application_commands:
         logger.info(f"/{cmd.name} - {cmd.description}")
-
+    bot.session = aiohttp.ClientSession()
     logger.info("Prefix cmds:")
     for cmd in bot.commands:
         logger.info(f"{bot.command_prefix}{cmd.name}")
@@ -50,13 +50,17 @@ async def on_ready():
         activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
     )
 
+@bot.event
+async def on_close():
+    if hasattr(bot, "session"):
+        await bot.session.close()
+
 if __name__ == "__main__":
     try:
         bot.maps = load_json("data/maps.json")
         bot.operators = load_json("data/operators.json")
         bot.planes = load_json("data/planes.json")
         logger.info("Loaded map, operator, and plane data.")
-        bot.session = aiohttp.ClientSession()
     except Exception as e:
         logger.exception("Failed to load JSON data.")
         sys.exit(1)
