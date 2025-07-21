@@ -131,20 +131,28 @@ class R6Cog(commands.Cog):
         ctx: discord.ApplicationContext,
         name: str
     ):
-        await ctx.defer()
-        map_data = DataHelper.find_match(self.maps, name)
-        if not map_data:
-            await ctx.followup.send(f"❌ Map `{name}` not found.")
-            return
+        try:
+            await ctx.defer()
+            if not self.maps:
+                await ctx.followup.send("❌ No map data available.", ephemeral=True)
+                return
+            map_data = DataHelper.find_match(self.maps, name)
+            if not map_data:
+                await ctx.followup.send(f"❌ Map `{name}` not found.")
+                return
 
-        floors = map_data.get("floors", [])
-        if not floors:
-            await ctx.followup.send("❌ No floor data available.")
-            return
+            floors = map_data.get("floors", [])
+            if not floors:
+                await ctx.followup.send("❌ No floor data available.")
+                return
 
-        view = MapFloorView(floors=floors, map_name=map_data['name'])
-        await ctx.followup.send(embed=view.create_embed(0), view=view)
-        view.message = await ctx.original_response()
+            view = MapFloorView(floors=floors, map_name=map_data['name'])
+            message = await ctx.followup.send(embed=view.create_embed(0), view=view)
+            view.message = message
+    
+        except Exception as e:
+            logger.error(f"Error in R6 map command: {e}")
+            await ctx.followup.send("❌ Error while processing.", ephemeral=True)
 
     @r6.command(name="op", description="Look up operator information")
     @discord.option(
