@@ -205,7 +205,7 @@ class MinecraftCog(commands.Cog):
         server_ip = "vdsmp.mc.gg"
 
         try:
-            async with self.bot.session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
+            async with self.session.get(f"https://api.mcsrvstat.us/2/{server_ip}") as resp:
                 if resp.status != 200:
                     await ctx.followup.send("❌ Error contacting the status API.")
                     return
