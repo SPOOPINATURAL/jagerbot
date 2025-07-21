@@ -1,5 +1,6 @@
 import discord
 import logging
+import asyncio
 from discord import Option
 from typing import Optional
 from discord.ext import commands, bridge
@@ -75,16 +76,29 @@ class WarframeCog(commands.Cog):
     @wf.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def baro(self, ctx: discord.ApplicationContext):
         await ctx.defer()
+        logger.info("[/wf baro] Deferred response")
         data = await self.get_cached_data("voidTrader")
         if not data:
             await ctx.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
             return
+        try:
+            data = await asyncio.wait_for(self.get_cached_data("voidTrader"), timeout=10)
+            logger.info(f"[/baro] Fetched data: {data}")
+        except asyncio.TimeoutError:
+            logger.error("[/baro] Data fetch timed out")
+            await ctx.followup.send("❌ Timed out while fetching data.", ephemeral=True)
+            return
+        except Exception as e:
+            logger.exception("[/wf baro] Exception while fetching data")
+            await ctx.followup.send("❌ An error occurred while fetching data.", ephemeral=True)
+            return
 
+        if not data:
+            logger.warning("[/wf baro] No data returned")
+            await ctx.followup.send("❌ Failed to fetch data.", ephemeral=True)
+            return
         if data.get("active"):
             inventory = data.get("inventory", [])
-            if not inventory:
-                await ctx.followup.send("Baro has no inventory currently.", ephemeral=True)
-                return
             paginator = BaroPaginator(
                 items=inventory,
                 location=data.get("location", "Unknown"),
@@ -148,7 +162,7 @@ class WarframeCog(commands.Cog):
         url = f"{WF_MARKET_API}/items/{item_url}/orders"
 
         try:
-            session = self.bot.http._HTTPClient__session  # get internal aiohttp session
+            session = self.bot.http._HTTPClient__session
             async with session.get(url) as resp:
                 if resp.status != 200:
                     await ctx.followup.send("❌ Item not found.", ephemeral=True)

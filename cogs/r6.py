@@ -178,7 +178,7 @@ class R6Cog(commands.Cog):
 
         embed = discord.Embed(
             title="Operators by Role",
-            description="Use `/r6 op [name]` to view detailed info.",
+            description="Use `/r6 op [name]` to view detailed info or /r6 oprandom for a random operator.",
             color=0x8B0000
         )
         embed.add_field(name="Attackers", value="\n".join(attackers) or "—", inline=True)
