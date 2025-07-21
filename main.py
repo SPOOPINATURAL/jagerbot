@@ -40,7 +40,6 @@ async def on_ready():
     logger.info("Slash cmds:")
     for cmd in bot.application_commands:
         logger.info(f"/{cmd.name} - {cmd.description}")
-    bot.session = aiohttp.ClientSession()
     logger.info("Prefix cmds:")
     for cmd in bot.commands:
         logger.info(f"{bot.command_prefix}{cmd.name}")
@@ -49,11 +48,16 @@ async def on_ready():
         status=discord.Status.online,
         activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
     )
-
 @bot.event
-async def on_close():
+async def on_connect():
+    if not hasattr(bot, "session"):
+        bot.session = aiohttp.ClientSession()
+        logger.info("aiohttp session initialized.")
+@bot.event
+async def on_shutdown():
     if hasattr(bot, "session"):
         await bot.session.close()
+        logger.info("aiohttp session closed.")
 
 if __name__ == "__main__":
     try:
