@@ -120,10 +120,16 @@ class R6Cog(commands.Cog):
             logger.error(f"Error fetching R6 stats for {username}: {e}")
             await ctx.followup.send("❌ Error fetching stats.")
     @r6.command(name="map", description="Look up map information")
+    @discord.option(
+        "name",
+        str,
+        description="Name of the map",
+        autocomplete=lambda ctx: ctx.cog.map_name_autocomplete(ctx)
+    )
     async def map_lookup(
         self,
         ctx: discord.ApplicationContext,
-        name: str = Option(str, "Name of the map")
+        name: str
     ):
         await ctx.defer()
         map_data = DataHelper.find_match(self.maps, name)
@@ -141,10 +147,16 @@ class R6Cog(commands.Cog):
         view.message = await ctx.original_response()
 
     @r6.command(name="op", description="Look up operator information")
+    @discord.option(
+        "name",
+        str,
+        description="Name of the operator",
+        autocomplete=lambda ctx: ctx.cog.operator_name_autocomplete(ctx)
+    )
     async def op_command(
         self,
         ctx: discord.ApplicationContext,
-        name: str = Option(str, "Name of the operator")
+        name: str
     ):
         await ctx.defer()
         op_data = DataHelper.find_match(self.operators, name)
@@ -276,32 +288,34 @@ class R6Cog(commands.Cog):
         }
 
     async def map_autocomplete_callback(self, ctx: discord.AutocompleteContext):
-        current = ctx.value.lower()
-        choices = []
+        user_input = ctx.value.lower()
+        matches = []
 
-        for name in self._map_names.values():
-            if current in name.lower():
-                choices.append(name)
+        for map_data in self.maps.values():
+            name = map_data.get("name", "")
+            aliases = map_data.get("aliases",[])
+            all_terms = [name] + aliases
+            for term in all_terms:
+                if user_input in term.lower():
+                    matches.append(term)
+                    break
 
-        for alias, name in self._map_aliases.items():
-            if current in alias.lower():
-                choices.append(f"{name} ({alias})")
-
-        return choices[:25]
+        return matches[:25]
 
     async def operator_autocomplete_callback(self, ctx: discord.AutocompleteContext):
-        current = ctx.value.lower()
-        choices = []
+        user_input = ctx.value.lower()
+        results = []
 
-        for name_lower, name in self._operator_names.items():
-            if current in name_lower:
-                choices.append(name)
+        for op in self.operators.values():
+            name = op.get("name","")
+            aliases = op.get("aliases", [])
+            all_terms = [name] + aliases
+            for term in all_terms:
+                if user_input in term.lower():
+                    results.append(term)
+                    break
 
-        for alias_lower, name in self._operator_aliases.items():
-            if current in alias_lower:
-                choices.append(f"{name} ({alias_lower})")
-
-        return choices[:25]
+        return results[:25]
 
     @staticmethod
     def create_op_embed(op_data: dict) -> discord.Embed:

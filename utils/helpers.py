@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import config
 from typing import Dict, List, Tuple, Optional, Any, Union, Callable
 from collections import defaultdict
+from difflib import get_close_matches
 
 AlertsDict = Dict[str, List[Dict[str, Any]]]
 CooldownKey = Tuple[int, str]
@@ -173,8 +174,20 @@ class DataHelper:
         for item in data_dict.values():
             if item.get('name', '').lower() == search_term:
                 return item
-            if search_term in (alias.lower() for alias in item.get('aliases', [])):
-                return item
+            for item in data_dict.values():
+                aliases = item.get('aliases', [])
+                if any(search_term == alias.lower() for alias in aliases):
+                    return item
+        names = [(item.get('name', ''), item) for item in data_dict.values()]
+        aliases = [(alias, item) for item in data_dict.values() for alias in item.get('aliases', [])]
+        
+        all_candidates = names + aliases
+        match_names = [name.lower() for name, _ in all_candidates]
+        close = get_close_matches(search_term, match_names, n=1, cutoff=0.6)
+        if close:
+            for name, item in all_candidates:
+                if name.lower() == close[0]:
+                    return item
         return None
 
     @staticmethod
