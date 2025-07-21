@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.session = aiohttp.ClientSession()
         self.wiki_base_url = MINECRAFT_WIKI_BASE
         super().__init__()
     @bridge.bridge_group(name="mc", description="Minecraft commands")
@@ -278,8 +279,10 @@ class MinecraftCog(commands.Cog):
             options.add_argument("--window-size=1920,1080")
 
             driver = uc.Chrome(
-                driver_executable_path=ChromeDriverManager().install(),
-                options=options
+                browser_executable_path="/usr/bin/chromium-browser",
+                driver_executable_path="/usr/bin/chromedriver",
+                options=options,
+                use_subprocess=True
             )
             try:
                 driver.get("http://vdsmp.mc.gg:8809/")
