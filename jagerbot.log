@@ -11099,3 +11099,215 @@ discord.errors.ExtensionFailed: Extension 'cogs.frost' raised an error: TypeErro
 2025-07-20 20:18:02,819 - jagerbot - INFO - $timezones
 2025-07-20 20:18:02,819 - jagerbot - INFO - $weather
 2025-07-20 20:18:02,819 - jagerbot - INFO - $d20
+2025-07-20 20:42:28,699 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-63' coro=<ApplicationCommandMixin.on_application_command_auto_complete.<locals>.callback() done, defined at /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py:876> exception=TypeError("'coroutine' object is not iterable")>
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py", line 879, in callback
+    return await command.invoke_autocomplete_callback(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1492, in invoke_autocomplete_callback
+    await command.invoke_autocomplete_callback(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1107, in invoke_autocomplete_callback
+    choices = [
+              ^
+TypeError: 'coroutine' object is not iterable
+2025-07-20 20:42:30,132 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-66' coro=<ApplicationCommandMixin.on_application_command_auto_complete.<locals>.callback() done, defined at /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py:876> exception=TypeError("'coroutine' object is not iterable")>
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py", line 879, in callback
+    return await command.invoke_autocomplete_callback(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1492, in invoke_autocomplete_callback
+    await command.invoke_autocomplete_callback(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1107, in invoke_autocomplete_callback
+    choices = [
+              ^
+TypeError: 'coroutine' object is not iterable
+2025-07-20 20:42:31,260 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-69' coro=<ApplicationCommandMixin.on_application_command_auto_complete.<locals>.callback() done, defined at /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py:876> exception=TypeError("'coroutine' object is not iterable")>
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py", line 879, in callback
+    return await command.invoke_autocomplete_callback(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1492, in invoke_autocomplete_callback
+    await command.invoke_autocomplete_callback(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1107, in invoke_autocomplete_callback
+    choices = [
+              ^
+TypeError: 'coroutine' object is not iterable
+2025-07-20 20:42:34,261 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-72' coro=<ApplicationCommandMixin.on_application_command_auto_complete.<locals>.callback() done, defined at /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py:876> exception=TypeError("'coroutine' object is not iterable")>
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/bot.py", line 879, in callback
+    return await command.invoke_autocomplete_callback(ctx)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1492, in invoke_autocomplete_callback
+    await command.invoke_autocomplete_callback(ctx)
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/commands/core.py", line 1107, in invoke_autocomplete_callback
+    choices = [
+              ^
+TypeError: 'coroutine' object is not iterable
+2025-07-20 20:50:03,273 - discord.client - INFO - Cleaning up tasks.
+2025-07-20 20:50:03,273 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-20 20:50:03,274 - discord.client - INFO - All tasks finished cancelling.
+2025-07-20 20:50:03,274 - discord.client - INFO - Closing the event loop.
+2025-07-20 20:50:14,275 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 20:50:14,275 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 20:50:14,276 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 20:50:14,277 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 20:50:14,288 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 20:50:14,299 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 20:50:14,300 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 20:50:14,304 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 20:50:14,502 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 20:50:14,563 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-20 20:50:14,565 - jagerbot - INFO - Loaded cog: r6
+2025-07-20 20:50:14,575 - jagerbot - INFO - Loaded cog: core
+2025-07-20 20:50:14,716 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 20:50:14,717 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 20:50:14,718 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 20:50:14,718 - cogs.test - INFO - TestCog initialized
+2025-07-20 20:50:14,718 - jagerbot - INFO - Loaded cog: test
+2025-07-20 20:50:14,718 - jagerbot - INFO - Starting bot...
+2025-07-20 20:50:14,719 - discord.client - INFO - logging in using static token
+2025-07-20 20:50:15,119 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 20:50:15,268 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-b9zp",{"micros":90743,"calls":["id_created",{"micros":390,"calls":[]},"session_lookup_time",{"micros":286,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-19",{"micros":89615,"calls":["start_session",{"micros":55403,"calls":["discord-api-rpc-576ff9f8dd-4cm4t",{"micros":39876,"calls":["get_user",{"micros":5862},"get_guilds",{"micros":4785},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":6710},"apex_experiments",{"micros":2001},"user_activities",{"micros":5},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":66,"calls":[]},"presence_started",{"micros":10627,"calls":[]},"guilds_started",{"micros":100,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":23400,"calls":[]},"connect_finished",{"micros":23405,"calls":[]},"build_ready",{"micros":11,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: b73b6e98b8119b1b40b06cf8ebd874ea).
+2025-07-20 20:50:17,297 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 20:50:17,297 - jagerbot - INFO - Slash cmds:
+2025-07-20 20:50:17,297 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-20 20:50:17,297 - jagerbot - INFO - /image - Get a random image
+2025-07-20 20:50:17,297 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-20 20:50:17,297 - jagerbot - INFO - /longo - longo
+2025-07-20 20:50:17,297 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-20 20:50:17,298 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-20 20:50:17,298 - jagerbot - INFO - /d20 - Roll d20
+2025-07-20 20:50:17,298 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-20 20:50:17,298 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-20 20:50:17,298 - jagerbot - INFO - /score - Get your trivia score
+2025-07-20 20:50:17,298 - jagerbot - INFO - /wf - Warframe commands
+2025-07-20 20:50:17,298 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-20 20:50:17,298 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-20 20:50:17,298 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-20 20:50:17,298 - jagerbot - INFO - /r6 - Rainbow Six Siege commands
+2025-07-20 20:50:17,298 - jagerbot - INFO - /weather - Get the current weather in a city
+2025-07-20 20:50:17,298 - jagerbot - INFO - /currency - Convert currency using exchangerate.host
+2025-07-20 20:50:17,298 - jagerbot - INFO - /timezones - List supported timezones
+2025-07-20 20:50:17,298 - jagerbot - INFO - /tzconvert - Convert time between timezones
+2025-07-20 20:50:17,298 - jagerbot - INFO - /credits - Credits for this bot
+2025-07-20 20:50:17,298 - jagerbot - INFO - /date - Get the current date and time
+2025-07-20 20:50:17,298 - jagerbot - INFO - /plane - Get a random WW1 plane
+2025-07-20 20:50:17,298 - jagerbot - INFO - /info - Command list
+2025-07-20 20:50:17,298 - jagerbot - INFO - /mc - Minecraft commands
+2025-07-20 20:50:17,298 - jagerbot - INFO - /frost - Frosty L's
+2025-07-20 20:50:17,298 - jagerbot - INFO - /test - testcmds
+2025-07-20 20:50:17,298 - jagerbot - INFO - Prefix cmds:
+2025-07-20 20:50:17,298 - jagerbot - INFO - $8ball
+2025-07-20 20:50:17,298 - jagerbot - INFO - $cancelalerts
+2025-07-20 20:50:17,298 - jagerbot - INFO - $wf
+2025-07-20 20:50:17,298 - jagerbot - INFO - $alert
+2025-07-20 20:50:17,298 - jagerbot - INFO - $date
+2025-07-20 20:50:17,298 - jagerbot - INFO - $trivia
+2025-07-20 20:50:17,298 - jagerbot - INFO - $longo
+2025-07-20 20:50:17,298 - jagerbot - INFO - $image
+2025-07-20 20:50:17,298 - jagerbot - INFO - $xkcd
+2025-07-20 20:50:17,298 - jagerbot - INFO - $d20
+2025-07-20 20:50:17,298 - jagerbot - INFO - $listalerts
+2025-07-20 20:50:17,298 - jagerbot - INFO - $timezones
+2025-07-20 20:50:17,298 - jagerbot - INFO - $info
+2025-07-20 20:50:17,298 - jagerbot - INFO - $clancy
+2025-07-20 20:50:17,298 - jagerbot - INFO - $weather
+2025-07-20 20:50:17,298 - jagerbot - INFO - $rps
+2025-07-20 20:50:17,299 - jagerbot - INFO - $score
+2025-07-20 20:50:17,299 - jagerbot - INFO - $frost
+2025-07-20 20:50:17,299 - jagerbot - INFO - $mc
+2025-07-20 20:50:17,299 - jagerbot - INFO - $credits
+2025-07-20 20:50:17,299 - jagerbot - INFO - $test
+2025-07-20 20:50:17,299 - jagerbot - INFO - $quote
+2025-07-20 20:50:17,299 - jagerbot - INFO - $r6
+2025-07-20 20:50:17,299 - jagerbot - INFO - $plane
+2025-07-20 20:50:17,299 - jagerbot - INFO - $tzconvert
+2025-07-20 20:50:17,299 - jagerbot - INFO - $currency
+2025-07-20 20:52:20,528 - discord.gateway - INFO - Websocket closed with 1006, attempting a reconnect.
+2025-07-20 20:52:20,528 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 20:52:20,777 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 20:52:20,826 - discord.gateway - INFO - Shard ID None has successfully RESUMED session b73b6e98b8119b1b40b06cf8ebd874ea under trace ["gateway-prd-us-east1-b-2f84",{"micros":1619,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":285,"calls":[]},"session_lookup_finished",{"micros":20,"calls":[]},"discord-sessions-prd-2-19",{"micros":59}]}].
+2025-07-20 20:54:04,565 - discord.client - INFO - Cleaning up tasks.
+2025-07-20 20:54:04,565 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-20 20:54:04,566 - discord.client - INFO - All tasks finished cancelling.
+2025-07-20 20:54:04,567 - discord.client - INFO - Closing the event loop.
+2025-07-20 20:54:15,564 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 20:54:15,564 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 20:54:15,565 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 20:54:15,566 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 20:54:15,577 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 20:54:15,589 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 20:54:15,589 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 20:54:15,594 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 20:54:15,772 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 20:54:15,852 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-20 20:54:15,854 - jagerbot - INFO - Loaded cog: r6
+2025-07-20 20:54:15,865 - jagerbot - INFO - Loaded cog: core
+2025-07-20 20:54:16,024 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 20:54:16,026 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 20:54:16,027 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 20:54:16,027 - cogs.test - INFO - TestCog initialized
+2025-07-20 20:54:16,028 - jagerbot - INFO - Loaded cog: test
+2025-07-20 20:54:16,028 - jagerbot - INFO - Starting bot...
+2025-07-20 20:54:16,029 - discord.client - INFO - logging in using static token
+2025-07-20 20:54:16,465 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 20:54:16,614 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-dshl",{"micros":96528,"calls":["id_created",{"micros":815,"calls":[]},"session_lookup_time",{"micros":432,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-6",{"micros":94923,"calls":["start_session",{"micros":58870,"calls":["discord-api-rpc-576ff9f8dd-zjrz9",{"micros":40431,"calls":["get_user",{"micros":6137},"get_guilds",{"micros":4537},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":6401},"apex_experiments",{"micros":880},"user_activities",{"micros":3},"played_application_ids",{"micros":1}]}]},"starting_guild_connect",{"micros":59,"calls":[]},"presence_started",{"micros":792,"calls":[]},"guilds_started",{"micros":91,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":35087,"calls":[]},"connect_finished",{"micros":35092,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 98461454c3d514c80a8c57cc3575d47d).
+2025-07-20 20:54:18,651 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 20:54:18,651 - jagerbot - INFO - Slash cmds:
+2025-07-20 20:54:18,651 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-20 20:54:18,651 - jagerbot - INFO - /image - Get a random image
+2025-07-20 20:54:18,651 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-20 20:54:18,651 - jagerbot - INFO - /longo - longo
+2025-07-20 20:54:18,651 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-20 20:54:18,651 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-20 20:54:18,651 - jagerbot - INFO - /d20 - Roll d20
+2025-07-20 20:54:18,651 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-20 20:54:18,651 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-20 20:54:18,651 - jagerbot - INFO - /score - Get your trivia score
+2025-07-20 20:54:18,651 - jagerbot - INFO - /wf - Warframe commands
+2025-07-20 20:54:18,651 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-20 20:54:18,651 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-20 20:54:18,651 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-20 20:54:18,651 - jagerbot - INFO - /r6 - Rainbow Six Siege commands
+2025-07-20 20:54:18,651 - jagerbot - INFO - /weather - Get the current weather in a city
+2025-07-20 20:54:18,651 - jagerbot - INFO - /currency - Convert currency using exchangerate.host
+2025-07-20 20:54:18,651 - jagerbot - INFO - /timezones - List supported timezones
+2025-07-20 20:54:18,651 - jagerbot - INFO - /tzconvert - Convert time between timezones
+2025-07-20 20:54:18,652 - jagerbot - INFO - /credits - Credits for this bot
+2025-07-20 20:54:18,652 - jagerbot - INFO - /date - Get the current date and time
+2025-07-20 20:54:18,652 - jagerbot - INFO - /plane - Get a random WW1 plane
+2025-07-20 20:54:18,652 - jagerbot - INFO - /info - Command list
+2025-07-20 20:54:18,652 - jagerbot - INFO - /mc - Minecraft commands
+2025-07-20 20:54:18,652 - jagerbot - INFO - /frost - Frosty L's
+2025-07-20 20:54:18,652 - jagerbot - INFO - /test - testcmds
+2025-07-20 20:54:18,652 - jagerbot - INFO - Prefix cmds:
+2025-07-20 20:54:18,652 - jagerbot - INFO - $8ball
+2025-07-20 20:54:18,652 - jagerbot - INFO - $cancelalerts
+2025-07-20 20:54:18,652 - jagerbot - INFO - $wf
+2025-07-20 20:54:18,652 - jagerbot - INFO - $alert
+2025-07-20 20:54:18,652 - jagerbot - INFO - $credits
+2025-07-20 20:54:18,652 - jagerbot - INFO - $plane
+2025-07-20 20:54:18,652 - jagerbot - INFO - $trivia
+2025-07-20 20:54:18,652 - jagerbot - INFO - $r6
+2025-07-20 20:54:18,652 - jagerbot - INFO - $longo
+2025-07-20 20:54:18,652 - jagerbot - INFO - $currency
+2025-07-20 20:54:18,652 - jagerbot - INFO - $tzconvert
+2025-07-20 20:54:18,652 - jagerbot - INFO - $image
+2025-07-20 20:54:18,652 - jagerbot - INFO - $xkcd
+2025-07-20 20:54:18,652 - jagerbot - INFO - $timezones
+2025-07-20 20:54:18,652 - jagerbot - INFO - $d20
+2025-07-20 20:54:18,652 - jagerbot - INFO - $listalerts
+2025-07-20 20:54:18,652 - jagerbot - INFO - $frost
+2025-07-20 20:54:18,652 - jagerbot - INFO - $date
+2025-07-20 20:54:18,652 - jagerbot - INFO - $clancy
+2025-07-20 20:54:18,652 - jagerbot - INFO - $test
+2025-07-20 20:54:18,652 - jagerbot - INFO - $rps
+2025-07-20 20:54:18,652 - jagerbot - INFO - $score
+2025-07-20 20:54:18,652 - jagerbot - INFO - $mc
+2025-07-20 20:54:18,652 - jagerbot - INFO - $info
+2025-07-20 20:54:18,652 - jagerbot - INFO - $quote
+2025-07-20 20:54:18,652 - jagerbot - INFO - $weather
