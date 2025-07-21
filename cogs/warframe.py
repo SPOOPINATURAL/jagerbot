@@ -47,7 +47,7 @@ class BaroPaginator(View):
         self.current_page = (self.current_page + 1) % self.total_pages
         await interaction.response.edit_message(embed=self.create_embed(), view=self)
 
-    async def create_embed(self) -> discord.Embed:
+    def create_embed(self) -> discord.Embed:
         embed = discord.Embed(title=f"Baro Ki'Teer at {self.location}", color=WF_COLOR)
         embed.description = f"Leaving in {self.end_str}\n\nPage {self.current_page + 1} / {self.total_pages}"
         for item in self.pages[self.current_page]:
@@ -79,13 +79,13 @@ class WarframeCog(commands.Cog):
         logger.info("[/wf baro] Deferred response")
         data = await self.get_cached_data("voidTrader")
         if not data:
-            await ctx.followup.send("❌ Failed to fetch Baro data.", ephemeral=True)
+            await ctx.followup.send("❌ Failed to fetch data.", ephemeral=True)
             return
         try:
             data = await asyncio.wait_for(self.get_cached_data("voidTrader"), timeout=10)
-            logger.info(f"[/baro] Fetched data: {data}")
+            logger.info(f"[/wf baro] Fetched data: {data}")
         except asyncio.TimeoutError:
-            logger.error("[/baro] Data fetch timed out")
+            logger.error("[/wf baro] Data fetch timed out")
             await ctx.followup.send("❌ Timed out while fetching data.", ephemeral=True)
             return
         except Exception as e:
