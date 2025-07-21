@@ -12267,3 +12267,183 @@ Traceback (most recent call last):
     loop = loop or asyncio.get_running_loop()
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
 RuntimeError: no running event loop
+2025-07-20 21:35:29,334 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:35:29,334 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:35:29,335 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:35:29,336 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:35:29,336 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:35:49,818 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:35:49,818 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:35:49,819 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:35:49,820 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:35:49,820 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:36:10,328 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:36:10,329 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:36:10,329 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:36:10,331 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:36:10,331 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:36:30,816 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:36:30,817 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:36:30,818 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:36:30,818 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:36:30,819 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:36:51,330 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:36:51,331 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:36:51,331 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:36:51,332 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:36:51,332 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:37:11,803 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:37:11,804 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:37:11,804 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:37:11,805 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:37:11,805 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:37:32,322 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:37:32,322 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:37:32,323 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:37:32,324 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:37:32,324 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:37:52,806 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:37:52,806 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:37:52,806 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:37:52,807 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:37:52,807 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 59, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-20 21:38:11,405 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 21:38:11,405 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 21:38:11,406 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 21:38:11,407 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 21:38:11,418 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 21:38:11,430 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 21:38:11,431 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 21:38:11,437 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 21:38:11,622 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 21:38:11,702 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-20 21:38:11,705 - jagerbot - INFO - Loaded cog: r6
+2025-07-20 21:38:11,715 - jagerbot - INFO - Loaded cog: core
+2025-07-20 21:38:11,861 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 21:38:11,862 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 21:38:11,863 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 21:38:11,863 - cogs.test - INFO - TestCog initialized
+2025-07-20 21:38:11,864 - jagerbot - INFO - Loaded cog: test
+2025-07-20 21:38:11,864 - jagerbot - INFO - Starting bot...
+2025-07-20 21:38:11,865 - discord.client - INFO - logging in using static token
+2025-07-20 21:38:12,275 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 21:38:12,405 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-2m1k",{"micros":76762,"calls":["id_created",{"micros":572,"calls":[]},"session_lookup_time",{"micros":368,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-96",{"micros":74401,"calls":["start_session",{"micros":61509,"calls":["discord-api-rpc-576ff9f8dd-xcvbr",{"micros":44091,"calls":["get_user",{"micros":6597},"get_guilds",{"micros":5546},"send_scheduled_deletion_message",{"micros":16},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":14},"pending_payments",{"micros":8798},"apex_experiments",{"micros":835},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":30,"calls":[]},"presence_started",{"micros":438,"calls":[]},"guilds_started",{"micros":139,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":12266,"calls":[]},"connect_finished",{"micros":12272,"calls":[]},"build_ready",{"micros":11,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 0f4d4e9672bc1e57ac998d166413457b).
+2025-07-20 21:38:14,445 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 21:38:14,445 - jagerbot - INFO - Slash cmds:
+2025-07-20 21:38:14,445 - jagerbot - INFO - /quote - Get a random Jäger quote
+2025-07-20 21:38:14,445 - jagerbot - INFO - /image - Get a random image
+2025-07-20 21:38:14,445 - jagerbot - INFO - /clancy - Obtain a random Clancy image
+2025-07-20 21:38:14,445 - jagerbot - INFO - /longo - longo
+2025-07-20 21:38:14,445 - jagerbot - INFO - /8ball - Ask the magic 8ball a question
+2025-07-20 21:38:14,445 - jagerbot - INFO - /xkcd - Get a random XKCD comic
+2025-07-20 21:38:14,445 - jagerbot - INFO - /d20 - Roll d20
+2025-07-20 21:38:14,445 - jagerbot - INFO - /rps - Play Rock, Paper, Scissors
+2025-07-20 21:38:14,445 - jagerbot - INFO - /trivia - Get a trivia question, multiple choice answers
+2025-07-20 21:38:14,446 - jagerbot - INFO - /score - Get your trivia score
+2025-07-20 21:38:14,446 - jagerbot - INFO - /wf - Warframe commands
+2025-07-20 21:38:14,446 - jagerbot - INFO - /alert - Set an alert via interactive modal
+2025-07-20 21:38:14,446 - jagerbot - INFO - /listalerts - List your active alerts with controls
+2025-07-20 21:38:14,446 - jagerbot - INFO - /cancelalerts - Cancel all your active alerts
+2025-07-20 21:38:14,446 - jagerbot - INFO - /r6 - Rainbow Six Siege commands
+2025-07-20 21:38:14,446 - jagerbot - INFO - /weather - Get the current weather in a city
+2025-07-20 21:38:14,446 - jagerbot - INFO - /currency - Convert currency using exchangerate.host
+2025-07-20 21:38:14,446 - jagerbot - INFO - /timezones - List supported timezones
+2025-07-20 21:38:14,446 - jagerbot - INFO - /tzconvert - Convert time between timezones
+2025-07-20 21:38:14,446 - jagerbot - INFO - /credits - Credits for this bot
+2025-07-20 21:38:14,446 - jagerbot - INFO - /date - Get the current date and time
+2025-07-20 21:38:14,446 - jagerbot - INFO - /plane - Get a random WW1 plane
+2025-07-20 21:38:14,446 - jagerbot - INFO - /info - Command list
+2025-07-20 21:38:14,446 - jagerbot - INFO - /mc - Minecraft commands
+2025-07-20 21:38:14,446 - jagerbot - INFO - /frost - Frosty L's
+2025-07-20 21:38:14,446 - jagerbot - INFO - /test - testcmds
+2025-07-20 21:38:14,446 - jagerbot - INFO - Prefix cmds:
+2025-07-20 21:38:14,446 - jagerbot - INFO - $listalerts
+2025-07-20 21:38:14,446 - jagerbot - INFO - $tzconvert
+2025-07-20 21:38:14,446 - jagerbot - INFO - $date
+2025-07-20 21:38:14,446 - jagerbot - INFO - $test
+2025-07-20 21:38:14,446 - jagerbot - INFO - $image
+2025-07-20 21:38:14,446 - jagerbot - INFO - $trivia
+2025-07-20 21:38:14,446 - jagerbot - INFO - $wf
+2025-07-20 21:38:14,446 - jagerbot - INFO - $longo
+2025-07-20 21:38:14,446 - jagerbot - INFO - $xkcd
+2025-07-20 21:38:14,446 - jagerbot - INFO - $info
+2025-07-20 21:38:14,446 - jagerbot - INFO - $weather
+2025-07-20 21:38:14,446 - jagerbot - INFO - $timezones
+2025-07-20 21:38:14,446 - jagerbot - INFO - $frost
+2025-07-20 21:38:14,446 - jagerbot - INFO - $quote
+2025-07-20 21:38:14,446 - jagerbot - INFO - $r6
+2025-07-20 21:38:14,446 - jagerbot - INFO - $rps
+2025-07-20 21:38:14,446 - jagerbot - INFO - $score
+2025-07-20 21:38:14,447 - jagerbot - INFO - $cancelalerts
+2025-07-20 21:38:14,447 - jagerbot - INFO - $clancy
+2025-07-20 21:38:14,447 - jagerbot - INFO - $credits
+2025-07-20 21:38:14,447 - jagerbot - INFO - $plane
+2025-07-20 21:38:14,447 - jagerbot - INFO - $mc
+2025-07-20 21:38:14,447 - jagerbot - INFO - $alert
+2025-07-20 21:38:14,447 - jagerbot - INFO - $currency
+2025-07-20 21:38:14,447 - jagerbot - INFO - $8ball
+2025-07-20 21:38:14,447 - jagerbot - INFO - $d20
