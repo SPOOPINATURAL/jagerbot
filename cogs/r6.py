@@ -28,7 +28,7 @@ class MapFloorView(PaginationView):
         self.floors = floors
         self.map_name = map_name
 
-    async def create_embed(self, index: int) -> discord.Embed:
+    def create_embed(self, index: int) -> discord.Embed:
         floor = self.floors[index]
         return discord.Embed(
             title=f"{self.map_name} – {floor['name']}",
@@ -304,7 +304,7 @@ class R6Cog(commands.Cog):
         return choices[:25]
 
     @staticmethod
-    async def create_op_embed(op_data: dict) -> discord.Embed:
+    def create_op_embed(op_data: dict) -> discord.Embed:
         embed = discord.Embed(
             title=f"Operator: {op_data['name']}",
             description=op_data.get("bio", ""),
@@ -323,7 +323,7 @@ class R6Cog(commands.Cog):
         return embed
 
     @staticmethod
-    async def _build_news_embed(news_data):
+    def _build_news_embed(news_data):
         embed = discord.Embed(title="📰 Rainbow Six Siege News", color=0x8B0000)
         for entry in news_data:
             embed.add_field(
