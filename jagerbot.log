@@ -12609,3 +12609,66 @@ client_session: <aiohttp.client.ClientSession object at 0x7fff975baad0>
 2025-07-20 22:31:57,655 - jagerbot - INFO - $wf
 2025-07-20 22:31:57,655 - jagerbot - INFO - $trivia
 2025-07-20 22:31:57,655 - jagerbot - INFO - $mc
+2025-07-20 22:34:36,581 - discord.client - INFO - Cleaning up tasks.
+2025-07-20 22:34:36,583 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-20 22:34:36,583 - discord.client - INFO - All tasks finished cancelling.
+2025-07-20 22:34:36,584 - discord.client - INFO - Closing the event loop.
+2025-07-20 22:34:36,690 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7fff0e0cc110>
+2025-07-20 22:34:47,676 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-20 22:34:47,677 - jagerbot - INFO - discord version: 2.6.1
+2025-07-20 22:34:47,677 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-20 22:34:47,678 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-20 22:34:47,689 - jagerbot - INFO - Loaded cog: alerts
+2025-07-20 22:34:47,700 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-20 22:34:47,700 - jagerbot - INFO - Loaded cog: fun
+2025-07-20 22:34:47,705 - jagerbot - INFO - Loaded cog: warframe
+2025-07-20 22:34:47,876 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-20 22:34:47,932 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-20 22:34:47,935 - jagerbot - INFO - Loaded cog: r6
+2025-07-20 22:34:47,943 - jagerbot - INFO - Loaded cog: core
+2025-07-20 22:34:48,797 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-20 22:34:48,799 - jagerbot - INFO - Loaded cog: frost
+2025-07-20 22:34:48,800 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-20 22:34:48,800 - cogs.test - INFO - TestCog initialized
+2025-07-20 22:34:48,801 - jagerbot - INFO - Loaded cog: test
+2025-07-20 22:34:48,801 - jagerbot - INFO - Starting bot...
+2025-07-20 22:34:48,801 - discord.client - INFO - logging in using static token
+2025-07-20 22:34:49,201 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-20 22:34:49,382 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-kvwf",{"micros":125612,"calls":["id_created",{"micros":1077,"calls":[]},"session_lookup_time",{"micros":351,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-174",{"micros":123890,"calls":["start_session",{"micros":82123,"calls":["discord-api-rpc-576ff9f8dd-8bb88",{"micros":55073,"calls":["get_user",{"micros":8040},"get_guilds",{"micros":10577},"send_scheduled_deletion_message",{"micros":20},"guild_join_requests",{"micros":4},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":9073},"apex_experiments",{"micros":4458},"user_activities",{"micros":7},"played_application_ids",{"micros":4}]}]},"starting_guild_connect",{"micros":45,"calls":[]},"presence_started",{"micros":4967,"calls":[]},"guilds_started",{"micros":88,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":36647,"calls":[]},"connect_finished",{"micros":36650,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 649b3b548e34629b63a67b876b811bc9).
+2025-07-20 22:34:49,383 - jagerbot - INFO - aiohttp session initialized.
+2025-07-20 22:34:51,469 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-20 22:34:51,469 - jagerbot - INFO - Slash cmds:
+2025-07-20 22:34:51,469 - jagerbot - INFO - Prefix cmds:
+2025-07-20 22:34:51,470 - jagerbot - INFO - $timezones
+2025-07-20 22:34:51,470 - jagerbot - INFO - $8ball
+2025-07-20 22:34:51,470 - jagerbot - INFO - $d20
+2025-07-20 22:34:51,470 - jagerbot - INFO - $cancelalerts
+2025-07-20 22:34:51,470 - jagerbot - INFO - $quote
+2025-07-20 22:34:51,470 - jagerbot - INFO - $credits
+2025-07-20 22:34:51,470 - jagerbot - INFO - $plane
+2025-07-20 22:34:51,470 - jagerbot - INFO - $wf
+2025-07-20 22:34:51,470 - jagerbot - INFO - $currency
+2025-07-20 22:34:51,470 - jagerbot - INFO - $tzconvert
+2025-07-20 22:34:51,470 - jagerbot - INFO - $trivia
+2025-07-20 22:34:51,470 - jagerbot - INFO - $r6
+2025-07-20 22:34:51,470 - jagerbot - INFO - $xkcd
+2025-07-20 22:34:51,470 - jagerbot - INFO - $longo
+2025-07-20 22:34:51,470 - jagerbot - INFO - $image
+2025-07-20 22:34:51,470 - jagerbot - INFO - $listalerts
+2025-07-20 22:34:51,470 - jagerbot - INFO - $date
+2025-07-20 22:34:51,470 - jagerbot - INFO - $clancy
+2025-07-20 22:34:51,470 - jagerbot - INFO - $mc
+2025-07-20 22:34:51,470 - jagerbot - INFO - $rps
+2025-07-20 22:34:51,470 - jagerbot - INFO - $score
+2025-07-20 22:34:51,470 - jagerbot - INFO - $frost
+2025-07-20 22:34:51,470 - jagerbot - INFO - $test
+2025-07-20 22:34:51,470 - jagerbot - INFO - $info
+2025-07-20 22:34:51,470 - jagerbot - INFO - $weather
+2025-07-20 22:34:51,471 - jagerbot - INFO - $alert
+2025-07-20 23:27:01,606 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-20 23:27:01,885 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-20 23:27:01,937 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 649b3b548e34629b63a67b876b811bc9 under trace ["gateway-prd-us-east1-b-5fw0",{"micros":551,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":300,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-174",{"micros":31}]}].
+2025-07-21 00:18:28,440 - discord.client - INFO - Got a request to RESUME the websocket.
+2025-07-21 00:18:28,679 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
+2025-07-21 00:18:28,739 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 649b3b548e34629b63a67b876b811bc9 under trace ["gateway-prd-us-east1-d-93k9",{"micros":6633,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":5556,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-174",{"micros":19}]}].
