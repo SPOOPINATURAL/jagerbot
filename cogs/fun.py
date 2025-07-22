@@ -166,7 +166,7 @@ class Fun(commands.Cog):
                     "❌ Failed to fetch trivia question. Try again later.",
                     ephemeral=True
                 )
-                logger.error(f"Error in trivia command: {e}")
+                logger.error(f"Error in trivia command")
                 return
 
             question, correct, answers = self._prepare_question(question_data)
@@ -197,26 +197,16 @@ class Fun(commands.Cog):
                 async with self.session.get(
                         "https://opentdb.com/api.php?amount=1&type=multiple"
                 ) as resp:
-                    if resp.status != 200:
-                        return None
+                    if resp.status == 200:
+                        data = await resp.json()
+                        return data.get("results", [None])[0]
+                    else:
+                        logger.error(f"Trivia API returned HTTP: {resp.status}")
 
-                    data = await resp.json()
-                    logger.info(f"Trivia API response: {data}")
 
-                    if data.get("response_code") != 0:
-                        logger.warning(f"Trivia API returned non-zero response_code: {data.get('response_code')}")
-                        return None
-
-                    results = data.get("results", [])
-                    if not results:
-                        logger.warning("Trivia API returned empty results.")
-                        return None
-
-                return results[0]
             except Exception as e:
                 logger.error(f"Failed to fetch trivia: {e}")
-            await asyncio.sleep(1)
-            return None
+        return None
 
     @staticmethod
     def _prepare_question(data: dict) -> tuple[str, str, dict]:
