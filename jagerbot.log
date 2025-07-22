@@ -13440,3 +13440,22 @@ client_session: <aiohttp.client.ClientSession object at 0x7fff00b05d10>
 2025-07-22 15:33:06,915 - jagerbot - INFO - $8ball
 2025-07-22 15:33:06,915 - jagerbot - INFO - $d20
 2025-07-22 15:33:06,916 - jagerbot - INFO - $quote
+2025-07-22 16:18:42,749 - discord.client - INFO - Cleaning up tasks.
+2025-07-22 16:18:42,750 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-22 16:18:42,751 - discord.client - INFO - All tasks finished cancelling.
+2025-07-22 16:18:42,751 - discord.client - INFO - Closing the event loop.
+2025-07-22 16:18:42,854 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7fff2048a950>
+2025-07-22 16:18:53,826 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:18:53,826 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:18:53,827 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:18:53,828 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:18:53,828 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
