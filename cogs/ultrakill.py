@@ -2,10 +2,10 @@ import discord
 import feedparser
 import config
 import logging
+import utils.helpers
 from discord.ext import bridge, commands
 from utils.embed_builder import EmbedBuilder
-from utils.helpers import FileHelper, Datahelper
-from datetime import datetime, timedelta
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ class Ultracog(commands.Cog):
     )
     async def prank(self, ctx: discord.ApplicationContext, name: str):
         await ctx.defer()
-        level_info = Datahelper.find_match(self.ukranks, name)
+        level_info = utils.helpers.Datahelper.find_match(self.ukranks, name)
         if not level_info:
             embed = EmbedBuilder.error_embed("Invalid level number.")
             return
@@ -56,7 +56,7 @@ class Ultracog(commands.Cog):
     )
     async def weapon(self, ctx: discord.ApplicationContext, name: str):
         await ctx.defer()
-        weapon_info = Datahelper.find_match(self.ukweapons, name)
+        weapon_info = utils.helpers.Datahelper.find_match(self.ukweapons, name)
         if not weapon_info:
             embed = EmbedBuilder.error_embed("Invalid weapon name.")
             return
