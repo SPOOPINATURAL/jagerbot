@@ -13384,3 +13384,59 @@ aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host discor
 2025-07-22 14:48:59,064 - discord.client - INFO - Got a request to RESUME the websocket.
 2025-07-22 14:48:59,297 - discord.gateway - INFO - Shard ID None has sent the RESUME payload.
 2025-07-22 14:48:59,357 - discord.gateway - INFO - Shard ID None has successfully RESUMED session 7c92782ea403ffab81cb1f80ec0bc798 under trace ["gateway-prd-us-east1-c-9pzf",{"micros":3020,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":1458,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-161",{"micros":17}]}].
+2025-07-22 15:32:51,538 - discord.client - INFO - Cleaning up tasks.
+2025-07-22 15:32:51,538 - discord.client - INFO - Cleaning up after 1 tasks.
+2025-07-22 15:32:51,539 - discord.client - INFO - All tasks finished cancelling.
+2025-07-22 15:32:51,539 - discord.client - INFO - Closing the event loop.
+2025-07-22 15:32:51,714 - asyncio - ERROR - Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x7fff00b05d10>
+2025-07-22 15:33:02,845 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 15:33:02,845 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 15:33:02,846 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:33:02,849 - jagerbot - INFO - Loaded map, operator, and plane data.
+2025-07-22 15:33:02,864 - jagerbot - INFO - Loaded cog: alerts
+2025-07-22 15:33:02,878 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-22 15:33:02,879 - jagerbot - INFO - Loaded cog: fun
+2025-07-22 15:33:02,884 - jagerbot - INFO - Loaded cog: warframe
+2025-07-22 15:33:03,087 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-22 15:33:03,159 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-22 15:33:03,162 - jagerbot - INFO - Loaded cog: r6
+2025-07-22 15:33:03,171 - jagerbot - INFO - Loaded cog: core
+2025-07-22 15:33:04,202 - jagerbot - ERROR - Failed to load cog minecraft: Extension 'cogs.minecraft' raised an error: AttributeError: 'Bot' object has no attribute 'session'
+2025-07-22 15:33:04,205 - jagerbot - INFO - Loaded cog: frost
+2025-07-22 15:33:04,210 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-22 15:33:04,211 - cogs.test - INFO - TestCog initialized
+2025-07-22 15:33:04,211 - jagerbot - INFO - Loaded cog: test
+2025-07-22 15:33:04,211 - jagerbot - INFO - Starting bot...
+2025-07-22 15:33:04,212 - discord.client - INFO - logging in using static token
+2025-07-22 15:33:04,718 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-22 15:33:04,835 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-j1z0",{"micros":66849,"calls":["id_created",{"micros":680,"calls":[]},"session_lookup_time",{"micros":298,"calls":[]},"session_lookup_finished",{"micros":26,"calls":[]},"discord-sessions-prd-2-50",{"micros":65605,"calls":["start_session",{"micros":61448,"calls":["discord-api-rpc-77d8bd7754-96t6w",{"micros":41793,"calls":["get_user",{"micros":6993},"get_guilds",{"micros":6555},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":9254},"apex_experiments",{"micros":2080},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":31,"calls":[]},"presence_started",{"micros":319,"calls":[]},"guilds_started",{"micros":81,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":3692,"calls":[]},"connect_finished",{"micros":3708,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: b77d7f808b54e9f712fea7d215eef1d4).
+2025-07-22 15:33:04,836 - jagerbot - INFO - aiohttp session initialized.
+2025-07-22 15:33:06,915 - jagerbot - INFO - Logged in as JägerBot#6929 (ID: 1376008090968657990)
+2025-07-22 15:33:06,915 - jagerbot - INFO - Slash cmds:
+2025-07-22 15:33:06,915 - jagerbot - INFO - Prefix cmds:
+2025-07-22 15:33:06,915 - jagerbot - INFO - $info
+2025-07-22 15:33:06,915 - jagerbot - INFO - $timezones
+2025-07-22 15:33:06,915 - jagerbot - INFO - $weather
+2025-07-22 15:33:06,915 - jagerbot - INFO - $trivia
+2025-07-22 15:33:06,915 - jagerbot - INFO - $image
+2025-07-22 15:33:06,915 - jagerbot - INFO - $xkcd
+2025-07-22 15:33:06,915 - jagerbot - INFO - $longo
+2025-07-22 15:33:06,915 - jagerbot - INFO - $credits
+2025-07-22 15:33:06,915 - jagerbot - INFO - $plane
+2025-07-22 15:33:06,915 - jagerbot - INFO - $cancelalerts
+2025-07-22 15:33:06,915 - jagerbot - INFO - $tzconvert
+2025-07-22 15:33:06,915 - jagerbot - INFO - $wf
+2025-07-22 15:33:06,915 - jagerbot - INFO - $currency
+2025-07-22 15:33:06,915 - jagerbot - INFO - $frost
+2025-07-22 15:33:06,915 - jagerbot - INFO - $alert
+2025-07-22 15:33:06,915 - jagerbot - INFO - $rps
+2025-07-22 15:33:06,915 - jagerbot - INFO - $score
+2025-07-22 15:33:06,915 - jagerbot - INFO - $date
+2025-07-22 15:33:06,915 - jagerbot - INFO - $clancy
+2025-07-22 15:33:06,915 - jagerbot - INFO - $r6
+2025-07-22 15:33:06,915 - jagerbot - INFO - $test
+2025-07-22 15:33:06,915 - jagerbot - INFO - $listalerts
+2025-07-22 15:33:06,915 - jagerbot - INFO - $8ball
+2025-07-22 15:33:06,915 - jagerbot - INFO - $d20
+2025-07-22 15:33:06,916 - jagerbot - INFO - $quote
