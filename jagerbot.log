@@ -13459,3 +13459,220 @@ Traceback (most recent call last):
     loop = loop or asyncio.get_running_loop()
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
 RuntimeError: no running event loop
+2025-07-22 16:19:14,425 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:19:14,425 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:19:14,426 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:19:14,427 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:19:14,427 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:19:34,916 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:19:34,916 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:19:34,917 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:19:34,918 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:19:34,918 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:19:55,389 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:19:55,389 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:19:55,390 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:19:55,391 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:19:55,391 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:20:15,910 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:20:15,910 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:20:15,911 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:20:15,912 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:20:15,912 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:20:36,428 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:20:36,428 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:20:36,429 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:20:36,430 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:20:36,430 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:20:56,924 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:20:56,924 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:20:56,924 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:20:56,926 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:20:56,926 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:21:17,428 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:21:17,428 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:21:17,429 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:21:17,430 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:21:17,430 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:21:37,926 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:21:37,926 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:21:37,927 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:21:37,929 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:21:37,929 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:21:58,421 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:21:58,421 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:21:58,422 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:21:58,423 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:21:58,423 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:22:18,926 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:22:18,927 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:22:18,928 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:22:18,929 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:22:18,930 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:22:39,391 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:22:39,391 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:22:39,392 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:22:39,393 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:22:39,393 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:22:59,909 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:22:59,909 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:22:59,910 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:22:59,911 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:22:59,911 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:23:20,403 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:23:20,403 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:23:20,404 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:23:20,405 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:23:20,405 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:23:40,933 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:23:40,933 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:23:40,934 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:23:40,936 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:23:40,936 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:24:01,416 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:24:01,417 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:24:01,418 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:24:01,419 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:24:01,419 - jagerbot - ERROR - Failed to load JSON data.
+Traceback (most recent call last):
+  File "/home/spoopinatural/jagerbot/main.py", line 66, in <module>
+    bot.session = aiohttp.ClientSession()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/aiohttp/client.py", line 316, in __init__
+    loop = loop or asyncio.get_running_loop()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: no running event loop
+2025-07-22 16:24:30,880 - jagerbot - INFO - discord imported from: /home/spoopinatural/jagerbot/venv/lib/python3.11/site-packages/discord/__init__.py
+2025-07-22 16:24:30,881 - jagerbot - INFO - discord version: 2.6.1
+2025-07-22 16:24:30,882 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 16:24:30,883 - jagerbot - INFO - Loaded json data.
+2025-07-22 16:24:30,894 - jagerbot - INFO - Loaded cog: alerts
+2025-07-22 16:24:30,907 - cogs.fun - INFO - Loaded 1 trivia scores
+2025-07-22 16:24:30,907 - jagerbot - INFO - Loaded cog: fun
+2025-07-22 16:24:30,912 - jagerbot - INFO - Loaded cog: warframe
+2025-07-22 16:24:31,094 - jagerbot - INFO - Loaded cog: alert_cmd
+2025-07-22 16:24:31,156 - cogs.r6 - INFO - R6Cog loaded and slash commands registered
+2025-07-22 16:24:31,158 - jagerbot - INFO - Loaded cog: r6
+2025-07-22 16:24:31,161 - jagerbot - ERROR - Failed to load cog ultrakill: Extension 'cogs.ultrakill' raised an error: ImportError: cannot import name 'Datahelper' from 'utils.helpers' (/home/spoopinatural/jagerbot/utils/helpers.py)
+2025-07-22 16:24:31,171 - jagerbot - INFO - Loaded cog: core
+2025-07-22 16:24:32,094 - jagerbot - INFO - Loaded cog: minecraft
+2025-07-22 16:24:32,096 - jagerbot - INFO - Loaded cog: frost
+2025-07-22 16:24:32,097 - cogs.test - INFO - ✅ Loaded TestCog
+2025-07-22 16:24:32,097 - cogs.test - INFO - TestCog initialized
+2025-07-22 16:24:32,097 - jagerbot - INFO - Loaded cog: test
+2025-07-22 16:24:32,097 - jagerbot - INFO - Starting bot...
+2025-07-22 16:24:32,097 - discord.client - INFO - logging in using static token
+2025-07-22 16:24:32,549 - discord.gateway - INFO - Shard ID None has sent the IDENTIFY payload.
+2025-07-22 16:24:32,983 - discord.gateway - INFO - Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-dshl",{"micros":383433,"calls":["id_created",{"micros":719,"calls":[]},"session_lookup_time",{"micros":950,"calls":[]},"session_lookup_finished",{"micros":19,"calls":[]},"discord-sessions-prd-2-117",{"micros":381369,"calls":["start_session",{"micros":361389,"calls":["discord-api-rpc-77d8bd7754-p8v7j",{"micros":331295,"calls":["get_user",{"micros":42985},"get_guilds",{"micros":53191},"send_scheduled_deletion_message",{"micros":16},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":15},"pending_payments",{"micros":11001},"apex_experiments",{"micros":4453},"user_activities",{"micros":5},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":34,"calls":[]},"presence_started",{"micros":1716,"calls":[]},"guilds_started",{"micros":95,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":18108,"calls":[]},"connect_finished",{"micros":18112,"calls":[]},"build_ready",{"micros":19,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 7296b41d524d4e38a4f8b7d041506138).
