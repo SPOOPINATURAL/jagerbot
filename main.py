@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import aiohttp
+import asyncio
 import logging
 import traceback
 import discord
@@ -54,8 +55,8 @@ async def on_shutdown():
     if hasattr(bot, "session"):
         await bot.session.close()
         logger.info("aiohttp session closed.")
-
-if __name__ == "__main__":
+async def main():
+    load_dotenv()
     try:
         bot.maps = load_json("data/maps.json")
         bot.operators = load_json("data/operators.json")
@@ -77,9 +78,9 @@ if __name__ == "__main__":
                 traceback.print_exc()
     try:
         logger.info("Starting bot...")
-        load_dotenv()
-        bot.run(config.DISCORD_TOKEN)
+        await bot.start(config.DISCORD_TOKEN)
     except KeyboardInterrupt:
         logger.info("Received keyboard interrupt, shutting down...")
         logger.info("Bot closed cleanly.")
-
+if __name__ == "__main__":
+    asyncio.run(main())
