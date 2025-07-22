@@ -353,7 +353,7 @@ class R6Cog(commands.Cog):
                 value=f"{entry['summary']}\n[Read more]({entry['link']})",
                 inline=False
             )
-        embed.set_footer(text="Source: Steam News")
+        embed.set_footer(text="Source: Steam")
         return embed
 
 def setup(bot: commands.Bot):

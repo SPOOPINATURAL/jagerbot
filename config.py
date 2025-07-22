@@ -29,6 +29,7 @@ WF_API_BASE = "https://api.warframestat.us/pc"
 WF_MARKET_API = "https://api.warframe.market/v1"
 WF_STREAMS_API = "https://api.warframestreams.lol/v1"
 WF_COLOR = 0x00aff0
+UK_STEAM_RSS = "https://steamcommunity.com/games/1229490/rss/"
 
 INITIAL_EXTENSIONS = [
     'cogs.r6',
@@ -39,7 +40,8 @@ INITIAL_EXTENSIONS = [
     'cogs.alert_cmd',
     'cogs.core',
     'cogs.frost',
-    'cogs.test'
+    'cogs.test',
+    'cogs.ultrakill'
 ]
 
 
