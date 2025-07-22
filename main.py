@@ -48,11 +48,7 @@ async def on_ready():
         status=discord.Status.online,
         activity=discord.Activity(type=discord.ActivityType.watching, name="everything")
     )
-@bot.event
-async def on_connect():
-    if not hasattr(bot, "session"):
-        bot.session = aiohttp.ClientSession()
-        logger.info("aiohttp session initialized.")
+
 @bot.event
 async def on_shutdown():
     if hasattr(bot, "session"):
@@ -64,7 +60,10 @@ if __name__ == "__main__":
         bot.maps = load_json("data/maps.json")
         bot.operators = load_json("data/operators.json")
         bot.planes = load_json("data/planes.json")
-        logger.info("Loaded map, operator, and plane data.")
+        bot.ukranks = load_json("data/ukranks.json")
+        bot.ukweapons = load_json("data/ukweapons.json")
+        logger.info("Loaded json data.")
+        bot.session = aiohttp.ClientSession()
     except Exception as e:
         logger.exception("Failed to load JSON data.")
         sys.exit(1)
