@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 class MapFloorView(PaginationView):
     def __init__(self, floors: List[dict], map_name: str):
-        super().__init__(timeout=R6_VIEW_TIMEOUT)
+        super().__init__(page_count=len(floors),timeout=R6_VIEW_TIMEOUT)
         self.floors = floors
         self.map_name = map_name
 
