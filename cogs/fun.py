@@ -166,6 +166,7 @@ class Fun(commands.Cog):
                     "❌ Failed to fetch trivia question. Try again later.",
                     ephemeral=True
                 )
+                logger.error(f"Error in trivia command: {e}")
                 return
 
             question, correct, answers = self._prepare_question(question_data)
