@@ -184,6 +184,7 @@ class MinecraftCog(commands.Cog):
         except Exception as e:
             tb = traceback.format_exc()
             await ctx.respond(f"❌ Error in dynmap command:\n```\n{tb}\n```")
+            logger.error(f"Error in dynmap command: {e}", exc_info=True)
     @dynmap.error
     async def dynmap_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
