@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 class MinecraftCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.session = aiohttp.ClientSession()
+        self.session = bot.session
         self.wiki_base_url = MINECRAFT_WIKI_BASE
         super().__init__()
     @bridge.bridge_group(name="mc", description="Minecraft commands")
