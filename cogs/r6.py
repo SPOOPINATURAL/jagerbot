@@ -35,7 +35,7 @@ class MapFloorView(PaginationView):
             description=f"Floor {index + 1}/{len(self.floors)}",
             color=0x8B0000
         ).set_image(url=floor.get("image", ""))
-def platform_autocomplete(ctx: discord.AutocompleteContext):
+async def platform_autocomplete(ctx: discord.AutocompleteContext):
         return ["uplay", "psn", "xbl"]
 
 class R6Cog(commands.Cog):
@@ -70,11 +70,13 @@ class R6Cog(commands.Cog):
             await ctx.respond(embed=embed)
     
     @r6.command(name="stats", description="Look up R6 player stats")
+    @discord.option("platform", str, description="uplay / psn / xbl", autocomplete=platform_autocomplete)
+    @discord.option("username", str, description="Player username")
     async def stats(
         self,
         ctx: discord.ApplicationContext,
-        platform: str = Option(str, "uplay / psn / xbl", autocomplete=platform_autocomplete),
-        username: str = Option(str, "Player username")
+        platform: str,
+        username: str
     ):
         await ctx.defer()
         url = f"{R6_API_BASE}/profile/{platform}/{username}"
@@ -123,8 +125,7 @@ class R6Cog(commands.Cog):
     @discord.option(
         "name",
         str,
-        description="Name of the map",
-        autocomplete=lambda ctx: ctx.cog.map_name_autocomplete(ctx)
+        description="Name of the map"
     )
     async def map_lookup(
         self,
@@ -158,8 +159,7 @@ class R6Cog(commands.Cog):
     @discord.option(
         "name",
         str,
-        description="Name of the operator",
-        autocomplete=lambda ctx: ctx.cog.operator_name_autocomplete(ctx)
+        description="Name of the operator"
     )
     async def op_command(
         self,
@@ -259,13 +259,6 @@ class R6Cog(commands.Cog):
             await ctx.followup.send("❌ Error fetching news. Please try again later.", ephemeral=True)
         
     logger.info("R6Cog loaded and slash commands registered")
- 
-    async def map_name_autocomplete(self, ctx: discord.AutocompleteContext):
-        return await self.map_autocomplete_callback(ctx)
-
-
-    async def operator_name_autocomplete(self, ctx: discord.AutocompleteContext):
-        return await self.operator_autocomplete_callback(ctx)
 
     async def load_game_data(self):
         operators_data = await DataHelper.load_json_file("data/operators.json")
@@ -295,7 +288,8 @@ class R6Cog(commands.Cog):
             for alias in m.get("aliases", [])
         }
 
-    def map_autocomplete_callback(self, ctx: discord.AutocompleteContext):
+    @map_lookup.autocomplete("name")
+    async def map_name_autocomplete(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         matches = []
 
@@ -310,7 +304,8 @@ class R6Cog(commands.Cog):
 
         return matches[:25]
 
-    def operator_autocomplete_callback(self, ctx: discord.AutocompleteContext):
+    @op_command.autocomplete("name")
+    async def operator_name_autocomplete(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []
 

@@ -343,8 +343,12 @@ class CoreCog(commands.Cog):
     async def info(self, ctx: discord.ApplicationContext):
         guild_id = ctx.guild.id if ctx.guild else 0
         view = InfoPages(guild_id)
-        response = await ctx.respond(embed=view.pages[0], view=view)
-        view.message = await response.original_response()
+        try:
+            response = await ctx.respond(embed=view.pages[0], view=view)
+            view.message = await response.original_response()
+        except Exception as e:
+            logger.error(f"Info Pages error: {e}", exec_info=True)
+            await ctx.respong("Info Pages Error", ephermeral=True)
 
 def setup(bot: commands.Bot):
     bot.add_cog(CoreCog(bot))

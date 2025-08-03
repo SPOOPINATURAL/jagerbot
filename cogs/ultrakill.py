@@ -44,6 +44,7 @@ class Ultracog(commands.Cog):
         level_info = utils.helpers.Datahelper.find_match(self.ukranks, name)
         if not level_info:
             embed = EmbedBuilder.error_embed("Invalid level number.")
+            await ctx.respond(embed=embed)
             return
         embed = self.create_prank_embed(level_info)
         await ctx.respond(embed=embed)
@@ -137,7 +138,8 @@ class Ultracog(commands.Cog):
         embed.add_field(name="Time", value="\n".join(level_info.get('time')), inline=False)
         embed.add_field(name="Style", value="\n".join(level_info.get('style')), inline=False)
         return embed
-    def prank_autocomplete_callback(self, ctx: discord.AutocompleteContext):
+    @prank.autocomplete("name")
+    async def prank_autocomplete_callback(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []
 
@@ -169,7 +171,8 @@ class Ultracog(commands.Cog):
             embed.add_field(name="Aliases", value=", ".join(aliases), inline=False)
 
         return embed
-    def weapon_autocomplete_callback(self, ctx: discord.AutocompleteContext):
+    @weapon.autocomplete("name")
+    async def weapon_autocomplete_callback(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []
 

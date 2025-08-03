@@ -183,6 +183,8 @@ class Fun(commands.Cog):
             response = await ctx.respond(embed=embed, view=view)
             view.message = await response.original_response()
             await view.wait()
+            if view.timed_out:
+                await ctx.send ("Time is up! You didn't answer in time.", ephemeral=True)
 
         except Exception as e:
             logger.error(f"Error in trivia command: {e}")
@@ -194,15 +196,13 @@ class Fun(commands.Cog):
     async def _fetch_trivia_question(self) -> Optional[dict]:
         for _ in range(2):
             try:
-                async with self.session.get(
-                        "https://opentdb.com/api.php?amount=1&type=multiple"
-                ) as resp:
-                    if resp.status == 200:
-                        data = await resp.json()
-                        return data.get("results", [None])[0]
-                    else:
-                        logger.error(f"Trivia API returned HTTP: {resp.status}")
-
+                async with aiohttp.ClientSession() as session:
+                    async with session.get("https://opentdb.com/api.php?amount=1&type=multiple") as resp:
+                        if resp.status == 200:
+                            data = await resp.json()
+                            return data.get("results", [None])[0]
+                        else:
+                            logger.error(f"Trivia API returned HTTP: {resp.status}")
 
             except Exception as e:
                 logger.error(f"Failed to fetch trivia: {e}")
@@ -215,8 +215,10 @@ class Fun(commands.Cog):
         incorrect = [html.unescape(ans) for ans in data["incorrect_answers"]]
 
         all_answers = incorrect + [correct]
+        if len(all_answers) < 2:
+            raise ValueError("Not enough answer options")
+        
         random.shuffle(all_answers)
-
         answers = dict(zip(['A', 'B', 'C', 'D'], all_answers))
         return question, correct, answers
 
