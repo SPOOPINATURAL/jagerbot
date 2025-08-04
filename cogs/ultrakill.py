@@ -138,7 +138,7 @@ class Ultracog(commands.Cog):
         embed.add_field(name="Time", value="\n".join(level_info.get('time')), inline=False)
         embed.add_field(name="Style", value="\n".join(level_info.get('style')), inline=False)
         return embed
-    @prank.autocomplete("name")
+
     async def prank_autocomplete_callback(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []
@@ -171,7 +171,7 @@ class Ultracog(commands.Cog):
             embed.add_field(name="Aliases", value=", ".join(aliases), inline=False)
 
         return embed
-    @weapon.autocomplete("name")
+
     async def weapon_autocomplete_callback(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []

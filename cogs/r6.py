@@ -288,7 +288,6 @@ class R6Cog(commands.Cog):
             for alias in m.get("aliases", [])
         }
 
-    @map_lookup.autocomplete("name")
     async def map_name_autocomplete(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         matches = []
@@ -304,7 +303,6 @@ class R6Cog(commands.Cog):
 
         return matches[:25]
 
-    @op_command.autocomplete("name")
     async def operator_name_autocomplete(self, ctx: discord.AutocompleteContext):
         user_input = ctx.value.lower()
         results = []
