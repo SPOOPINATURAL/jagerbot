@@ -1,6 +1,8 @@
 py-cord
+Pillow
 python-dotenv
 aiohttp
+flask
 pytz
 dateparser
 beautifulsoup4

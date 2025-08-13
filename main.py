@@ -6,7 +6,7 @@ import asyncio
 import logging
 import traceback
 import discord
-from discord.ext import bridge, commands
+from discord.ext import bridge
 from dotenv import load_dotenv
 import config
 

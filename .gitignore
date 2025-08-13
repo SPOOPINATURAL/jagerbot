@@ -6,3 +6,7 @@ __pycache__/
 /.idea
 /.vs
 jagerbot.log
+/api
+api.py
+utils/image_converter.py
+cogs/display.py

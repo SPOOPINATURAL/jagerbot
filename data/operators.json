@@ -11,7 +11,7 @@
     "primary_gadget": "S.E.L.M.A. Aqua Breacher",
     "secondary_gadgets": ["Soft Breach Charges", "Claymores"],
     "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/a6/Ace_-_Full_Body.png/revision/latest?cb=20200519185439",
-    "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/86/AceIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202734"
+    "icon_url": "https://r6operators.marcopixel.eu/icons/svg/ace.svg"
   },
 
   "lion": {
@@ -26,7 +26,7 @@
     "primary_gadget": "EE-ONE-D",
     "secondary_gadgets": ["Flashbangs", "Claymores", "Frag Grenades"],
     "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/0f/Lion_-_Profile.png/revision/latest?cb=20180523163003",
-    "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/c/cc/LionIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033142"
+    "icon_url": "https://r6operators.marcopixel.eu/icons/svg/lion.svg"
   },
 
   "rauora": {
@@ -41,7 +41,7 @@
     "primary_gadget": "DOM Panel Launcher",
     "secondary_gadgets": ["Smoke Grenades", "Soft Breach Charges"],
     "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8d/RAUORA_FULL_PORTRAIT.png/revision/latest/scale-to-width-down/1000?cb=20250305122751",
-    "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/12/RAUORA_ICON_HIGH_RES.png/revision/latest?cb=20250305122833"
+    "icon_url": "https://r6operators.marcopixel.eu/icons/svg/rauora.svg"
   },
   "brava": {
   "name": "Brava",
@@ -55,7 +55,7 @@
   "primary_gadget": "Kludge Drone",
   "secondary_gadgets": ["Smoke Grenades", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/63/Brava_-_Full_Body.png/revision/latest?cb=20230221180138",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/88/Brava_icon.png/revision/latest?cb=20230221171640"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/brava.svg"
 },
   "fuze": {
   "name": "Fuze",
@@ -69,7 +69,7 @@
   "primary_gadget": "Cluster Charge",
   "secondary_gadgets": ["Soft Breach Charges", "Hard Breach Charges", "Smoke Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/ea/Fuze_-_Full_Body.png/revision/latest?cb=20200324004809",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/92/FuzeIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085028"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/fuze.svg"
 },
   "maverick": {
   "name": "Maverick",
@@ -84,7 +84,7 @@
   "primary_gadget": "Breaching Torch",
   "secondary_gadgets": ["Claymores", "Smoke Grenades", "Flashbangs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d3/Maverick_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180823044337",
-   "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/0c/MaverickIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033127"
+   "icon_url": "https://r6operators.marcopixel.eu/icons/svg/maverick.svg"
 },
   "ash": {
   "name": "Ash",
@@ -98,7 +98,7 @@
   "primary_gadget": "Breaching Round",
   "secondary_gadgets": ["Soft Breach Charges", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/42/Ash_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180224040849",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/25/AshIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085039"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/ash.svg"
 },
   "thermite": {
   "name": "Thermite",
@@ -113,7 +113,7 @@
   "primary_gadget": "Exothermic Charge",
   "secondary_gadgets": ["Smoke Grenades", "Flashbangs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/68/Thermite_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200325001654",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/40/ThermiteIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085020"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/thermite.svg"
 },
   "glaz": {
   "name": "Glaz",
@@ -127,7 +127,7 @@
   "primary_gadget": "Flip Sight",
   "secondary_gadgets": ["Smoke Grenades", "Frag Grenades", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f0/Glaz_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323111814",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/32/GlazIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085024"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/glaz.svg"
 },
   "finka": {
   "name": "Finka",
@@ -141,7 +141,7 @@
   "primary_gadget": "Adrenal Surge",
   "secondary_gadgets": ["Frag Grenades", "Smoke Grenades", "Flashbangs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/a2/Finka_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180224044503",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d8/FinkaIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033148"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/finka.svg"
 },
   "iq": {
   "name": "IQ",
@@ -155,7 +155,7 @@
   "primary_gadget": "Electronics Detector",
   "secondary_gadgets": ["Soft Breach Charges", "Frag Grenades", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8c/IQ_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180110054100",
-   "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/5a/IqIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085044"
+   "icon_url": "https://r6operators.marcopixel.eu/icons/svg/iq.svg"
 },
   "blitz": {
   "name": "Blitz",
@@ -169,7 +169,7 @@
   "primary_gadget": "G52-tactical Shield",
   "secondary_gadgets": ["Smoke Grenades", "Soft Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/6c/Large-blitz.2e74d4b8.png/revision/latest?cb=20220226223235",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/5f/BlitzIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085034"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/blitz.svg"
 },
   "twitch": {
   "name": "Twitch",
@@ -183,7 +183,7 @@
   "primary_gadget": "Shock Drone",
   "secondary_gadgets": ["Smoke Grenades", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f5/Twitch_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323110648",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/46/TwitchIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085014"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/twitch.svg"
 },
   "montagne": {
   "name": "Montagne",
@@ -198,7 +198,7 @@
   "primary_gadget": "Le Roc Shield",
   "secondary_gadgets": ["Hard Breach Charges", "Smoke Grenades", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/04/Montagne_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323112250",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d7/MontagneIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706085012"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/montagne.svg"
 },
   "thatcher": {
   "name": "Thatcher",
@@ -212,7 +212,7 @@
   "primary_gadget": "EMP Grenade",
   "secondary_gadgets": ["Soft Breach Charges", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/09/Thatcher_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180210071159",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8f/ThatcherNewestIcon.png/revision/latest/scale-to-width-down/1000?cb=20240706084349"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/thatcher.svg"
 },
   "sledge": {
   "name": "Sledge",
@@ -226,7 +226,7 @@
   "primary_gadget": "Breaching Hammer",
   "secondary_gadgets": ["Frag Grenades", "Flashbangs", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/55/Sledge_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180210051516",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/c/c2/SledgeNewestIcon.png/revision/latest/scale-to-width-down/1000?cb=20240706083927"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/sledge.svg"
 },
   "buck": {
   "name": "Buck",
@@ -240,7 +240,7 @@
   "primary_gadget": "Skeleton Key",
   "secondary_gadgets": ["Flashbangs", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d1/Buck_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180208034939",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/fd/BADGE_Buck_L.png/revision/latest/scale-to-width-down/1000?cb=20240706082108"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/buck.svg"
 },
 "blackbeard": {
   "name": "Blackbeard",
@@ -255,7 +255,7 @@
   "primary_gadget": "HULL Adaptable Shield",
   "secondary_gadgets": ["Claymores", "Frag Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3e/Blackbeard_Rework_-_Full.png/revision/latest/scale-to-width-down/1000?cb=20241129195812",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/60/BlackbeardIconN.png/revision/latest/scale-to-width-down/1000?cb=20240712042222"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/blackbeard.svg"
 },
 "capitao": {
   "name": "Capitão",
@@ -269,7 +269,7 @@
   "primary_gadget": "Tactical Crossbow",
   "secondary_gadgets": ["Claymore", "Hard Breach Charges", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/96/Large-capitao.984e75b7.png/revision/latest?cb=20220226222127",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/2a/CapitaoIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713041308"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/capitao.svg"
 },
 "hibana": {
   "name": "Hibana",
@@ -283,7 +283,7 @@
   "primary_gadget": "X-Kairos",
   "secondary_gadgets": ["Flashbangs", "Soft Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/37/Hibana_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323110132",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3e/HibanaIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713041258"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/hibana.svg"
 },
   "jackal": {
   "name": "Jackal",
@@ -297,7 +297,7 @@
   "primary_gadget": "Eyenox Model III",
   "secondary_gadgets": ["Claymores", "Smoke Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/05/Large-jackal.e7ec96e6.png/revision/latest?cb=20240713080211",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/fb/JackalIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075943"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/jackal.svg"
 },
   "ying": {
   "name": "Ying",
@@ -311,7 +311,7 @@
   "primary_gadget": "Candela",
   "secondary_gadgets": ["Hard Breach Charges", "Smoke Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/27/Ying_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180409014805",
-  "icon_irl": "https://static.wikia.nocookie.net/rainbowsix/images/7/70/YingIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075936"
+  "icon_irl": "https://r6operators.marcopixel.eu/icons/svg/ying.svg"
 },
 "zofia": {
   "name": "Zofia",
@@ -326,11 +326,11 @@
   "primary_gadget": "KS79 Lifeline",
   "secondary_gadgets": ["Claymores", "Hard Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/a8/Large-zofia.f9f7568b.png/revision/latest?cb=20220217201800",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/28/ZofiaIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075926"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/zofia.svg"
 },
   "dokkaebi": {
   "name": "Dokkaebi",
-  "aliases": ["doki","dokka","dokki","doka"],
+  "aliases": ["doki","dokka","dokki","doka","dokk"],
   "role": "Attacker",
   "health": "1",
   "speed": "3",
@@ -341,7 +341,7 @@
   "primary_gadget": "Logic Bomb",
   "secondary_gadgets": ["Smoke Grenades", "Flashbangs", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/9a/Dokkaebi_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180110054756",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/2b/DokkaebiIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075919"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/dokkaebi.svg"
 },
   "nomad": {
   "name": "Nomad",
@@ -355,7 +355,7 @@
   "primary_gadget": "Airjab launcher",
   "secondary_gadgets": ["Soft breach Charges", "Flashbangs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/7d/Nomad_-_Full_body.png/revision/latest?cb=20220226223910",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4f/NomadIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033121"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/nomad.svg"
 },
   "gridlock": {
   "name": "Gridlock",
@@ -370,7 +370,7 @@
   "primary_gadget": "Trax Stingers",
   "secondary_gadgets": ["Smoke Grenades", "Frag Grenades", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/6d/Gridlock_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20190526230241",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/7e/GridlockIconN.png/revision/latest/scale-to-width-down/1000?cb=20240803112316"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/gridlock.svg"
 },
   "nokk": {
   "name": "Nøkk",
@@ -384,7 +384,7 @@
   "primary_gadget": "HEL Presence reduction",
   "secondary_gadgets": ["Hard Breach Charges", "Frag Grenades", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/81/N%C3%B8kk_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20190612000127",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/b/b9/NokkIconN.png/revision/latest/scale-to-width-down/1000?cb=20240804124641"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/nokk.svg"
 },
   "amaru": {
   "name": "Amaru",
@@ -398,7 +398,7 @@
   "primary_gadget": "Garra Hook",
   "secondary_gadgets": ["Flashbangs", "Hard Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/b/b9/Amaru.png/revision/latest/scale-to-width-down/1000?cb=20190823091315",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3d/AmaruIconN.png/revision/latest/scale-to-width-down/1000?cb=20240821102712"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/amaru.svg"
 },
   "kali": {
   "name": "Kali",
@@ -412,7 +412,7 @@
   "primary_gadget": "LV Explosive Lance",
   "secondary_gadgets": ["Soft Breach Charges", "Smoke Grenades", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/fd/Kali_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323111231",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4c/KaliIconN.png/revision/latest/scale-to-width-down/1000?cb=20240821102739"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/kali.svg"
 },
   "iana": {
   "name": "Iana",
@@ -426,7 +426,7 @@
   "primary_gadget": "Gemini Replicator",
   "secondary_gadgets": ["Impact EMPs", "Smoke Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/81/Iana_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200312084426",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/23/IanaIconN.png/revision/latest?cb=20250202202730"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/iana.svg"
 },
   "zero": {
   "name": "Zero",
@@ -440,7 +440,7 @@
   "primary_gadget": "ARGUS Launcher",
   "secondary_gadgets": ["Hard Breach Charges", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/c/c1/Zero_Full.png/revision/latest/scale-to-width-down/1000?cb=20200827193747",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d6/ZeroIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202733"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/zero.svg"
 },
   "flores": {
   "name": "Flores",
@@ -454,7 +454,7 @@
   "primary_gadget": "RCE-RATERO Charge",
   "secondary_gadgets": ["Flashbangs", "Claymores"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8a/Flores_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20210222210112",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d2/FloresIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202727"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/flores.svg"
 },
   "osa": {
   "name": "Osa",
@@ -468,7 +468,7 @@
   "primary_gadget": "Talon-8 Clear Shield",
   "secondary_gadgets": ["Claymores", "Frag Grenades", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d6/Osa_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20210818174223",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/17/Osa_Icon_Small.png/revision/latest/scale-to-width-down/1000?cb=20240714075712"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/osa.svg"
 },
   "grim": {
   "name": "Grim",
@@ -482,7 +482,7 @@
   "primary_gadget": "Kawan Hive Launcher",
   "secondary_gadgets": ["Claymores", "Hard Breach Charges", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/51/Grim_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20220914182448",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/34/Grim_Icon.png/revision/latest/scale-to-width-down/1000?cb=20240706094930"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/grim.svg"
 },
   "sens": {
   "name": "Sens",
@@ -496,7 +496,7 @@
   "primary_gadget": "ROU Projector System",
   "secondary_gadgets": ["Claymores", "Frag Grenades", "Hard Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/31/Sens_-_Full_Body.png/revision/latest?cb=20220614193822",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/60/Sens_Icon.png/revision/latest/scale-to-width-down/1000?cb=20240714075600"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/sens.svg"
 },
   "ram": {
   "name": "Ram",
@@ -510,7 +510,7 @@
   "primary_gadget": "BU-GI Auto Breacher",
   "secondary_gadgets": ["Smoke Grenades", "Flashbangs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/ea/Ram_R6_render.png/revision/latest/scale-to-width-down/1000?cb=20240908113105",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/e2/Y8S3_-_RAM_ICON.png/revision/latest?cb=20230813195002"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/ram.svg"
 },
   "deimos": {
   "name": "Deimos",
@@ -524,7 +524,7 @@
   "primary_gadget": "Deathmark Tracker",
   "secondary_gadgets": ["Frag Grenades", "Hard Breach Charges"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/55/R6S_Deimos_Full_Render.png/revision/latest/scale-to-width-down/1000?cb=20240303164226",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3a/R6S_Y9S1_Deimos_Icon.png/revision/latest/scale-to-width-down/1000?cb=20240821091851"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/deimos.svg"
 },
   "striker": {
   "name": "Striker",
@@ -538,7 +538,7 @@
   "primary_gadget": "Gadget Kit",
   "secondary_gadgets": ["Soft breach Charges", "Claymores", "Frag Grenades", "Hard Breach Charges", "Flashbangs", "Smoke Grenades", "Impact EMPs"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3a/Striker_Portrait.png/revision/latest/scale-to-width-down/1000?cb=20240528155627",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/13/Striker_Icon.png/revision/latest?cb=20240910014241"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/striker.svg"
 },
   "jager": {
   "name": "Jäger",
@@ -552,7 +552,7 @@
   "primary_gadget": "Active Defense",
   "secondary_gadgets": ["Bulletproof Camera", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4a/Large-jager.edd9f749.png/revision/latest?cb=20211217055955",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f3/JagerIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091142"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/jager.svg"
 },
   "bandit": {
   "name": "Bandit",
@@ -566,7 +566,7 @@
   "primary_gadget": "Shock Wire",
   "secondary_gadgets": ["Barbed Wire", "C4"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/0a/Large-bandit.463ee829.png/revision/latest?cb=20220728050957",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/77/BanditIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091135"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/bandit.svg"
 },
   "kapkan": {
   "name": "Kapkan",
@@ -580,7 +580,7 @@
   "primary_gadget": "Entry Denial Device",
   "secondary_gadgets": ["Barbed Wire", "Bulletproof Camera"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/fa/Kapkan_-_Full_Body.png/revision/latest?cb=20200324005209",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d4/KapkanIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091155"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/kapkan.svg"
 },
   "tachanka": {
   "name": "Tachanka",
@@ -595,7 +595,7 @@
   "primary_gadget": "Shumikha Launcher",
   "secondary_gadgets": ["Barbed Wire", "Proximity Alarms", "Deployable Shield"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/12/Tachanka_Rework_Fullbody.png/revision/latest/scale-to-width-down/1000?cb=20201008180844",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/92/BADGE_Tachanka_L.png/revision/latest/scale-to-width-down/1000?cb=20240706092105"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/tachanka.svg"
 },
   "rook": {
   "name": "Rook",
@@ -609,7 +609,7 @@
   "primary_gadget": "Armor Pack",
   "secondary_gadgets": ["Proximity Alarms", "Impact Grenades", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8d/Rook_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200325002109",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/30/RookIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091130"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/rook.svg"
 },
   "doc": {
   "name": "Doc",
@@ -623,7 +623,7 @@
   "primary_gadget": "Stim Pistol",
   "secondary_gadgets": ["Bulletproof Camera", "Barbed Wire"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/88/Doc_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200325001932",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/5/5c/DocIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091126"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/doc.svg"
 },
   "pulse": {
   "name": "Pulse",
@@ -637,7 +637,7 @@
   "primary_gadget": "Cardiac Sensor",
   "secondary_gadgets": ["C4", "Deployable Shield", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/61/Pulse_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200325001743",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8f/PulseIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091122"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/pulse.svg"
 },
   "castle": {
   "name": "Castle",
@@ -651,7 +651,7 @@
   "primary_gadget": "Armor Panel",
   "secondary_gadgets": ["Proximity Alarms", "Bulletproof Camera"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d4/Castle_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180323011330",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/93/CastleIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091209"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/castle.svg"
 },
   "smoke": {
   "name": "Smoke",
@@ -665,7 +665,7 @@
   "primary_gadget": "Remote Gas Grenade",
   "secondary_gadgets": ["Barbed Wire", "Proximity Alarms"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/0d/Smoke_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180211234355",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/36/SmokeIconN.png/revision/latest?cb=20240706091151"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/smoke.svg"
 },
   "mute": {
   "name": "Mute",
@@ -679,7 +679,7 @@
   "primary_gadget": "Signal Disruptor",
   "secondary_gadgets": ["Bulletproof Camera", "C4"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/7e/Mute_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180213232125",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/87/MuteIconN.png/revision/latest/scale-to-width-down/1000?cb=20240706091146"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/mute.svg"
 },
   "frost": {
   "name": "Frost",
@@ -693,11 +693,11 @@
   "primary_gadget": "Welcome Mat",
   "secondary_gadgets": ["Deployable Shield", "Bulletproof Camera"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f8/Frost_Fullbody.png/revision/latest?cb=20240706090205",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f8/Frost_Fullbody.png/revision/latest?cb=20240706090205"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/frost.svg"
 },
   "valkyrie": {
   "name": "Valkyrie",
-  "aliases": ["valk"],
+  "aliases": ["valk", "valky"],
   "role": "Defender",
   "health": "2",
   "speed": "2",
@@ -708,7 +708,7 @@
   "primary_gadget": "Black Eye",
   "secondary_gadgets": ["C4", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/66/Large-valkyrie.c1f143fb.png/revision/latest?cb=20220227051613",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f0/ValkyrieIconN.png/revision/latest/scale-to-width-down/1000?cb=20240712042218"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/valkyrie.svg"
 },
   "caveira": {
   "name": "Caveira",
@@ -723,7 +723,7 @@
   "primary_gadget": "Silent Step",
   "secondary_gadgets": ["Proximity Alarms", "Impact Grenades", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/ac/Large-caveira.e4d82365.png/revision/latest?cb=20220221104346",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/6d/CaveiraIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713041304"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/caveira.svg"
 },
   "echo": {
   "name": "Echo",
@@ -737,7 +737,7 @@
   "primary_gadget": "Yokai",
   "secondary_gadgets": ["Impact Grenades", "Deployable Shield"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d7/Echo_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180110071312",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/09/EchoIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713041252"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/echo.svg"
 },
   "mira": {
   "name": "Mira",
@@ -751,7 +751,7 @@
   "primary_gadget": "Black Mirror",
   "secondary_gadgets": ["Proximity Alarms", "C4"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/e4/Large-mira.0c9e3bd8.png/revision/latest?cb=20220205223816",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4b/MiraIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075940"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/mira.svg"
 },
   "lesion": {
   "name": "Lesion",
@@ -765,7 +765,7 @@
   "primary_gadget": "Gu",
   "secondary_gadgets": ["Observation Blockers", "Bulletproof Camera"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d1/Large-lesion.d48d6d33.png/revision/latest?cb=20220226223646",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/fa/LesionIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075930"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/lesion.svg"
 },
   "ela": {
   "name": "Ela",
@@ -779,7 +779,7 @@
   "primary_gadget": "Grzmot Mine",
   "secondary_gadgets": ["Barbed Wire", "Deployable Shield", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/20/Large-ela.a50c192d.png/revision/latest?cb=20220201093902",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/64/ElaIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075922"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/ela.svg"
 },
   "vigil": {
   "name": "Vigil",
@@ -793,7 +793,7 @@
   "primary_gadget": "ERC-7",
   "secondary_gadgets": ["Bulletproof Camera", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/41/Vigil_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180110053507",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/b/b9/VigilIconN.png/revision/latest/scale-to-width-down/1000?cb=20240713075914"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/vigil.svg"
 },
   "alibi": {
   "name": "Alibi",
@@ -807,7 +807,7 @@
   "primary_gadget": "Prisma",
   "secondary_gadgets": ["Proximity Alarms", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f1/Alibi_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20180522223051",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/0/08/AlibiIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033133"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/alibi.svg"
 },
   "maestro": {
   "name": "Maestro",
@@ -821,7 +821,7 @@
   "primary_gadget": "Evil Eye",
   "secondary_gadgets": ["Barbed Wire", "Impact Grenades", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/43/Maestrorender2.png/revision/latest/scale-to-width-down/1000?cb=20241019010729",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4b/MaestroIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033136"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/maestro.svg"
 },
   "clash": {
   "name": "Clash",
@@ -834,8 +834,8 @@
   "secondary_weapons": ["P-10C", "SPSMG9", "Supershorty"],
   "primary_gadget": "CCE Shield MK2",
   "secondary_gadgets": ["Barbed Wire", "Impact Grenades"],
-  "image_url": "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/3cQ9OhIQH9Tdg45nOQ0hOh/e58e1a2a4195d8390bdeb6f98142635e/r6s-clash-meta.jpg",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/78/ClashIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033122"
+  "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/10/Clash_new_full_render.png/revision/latest?cb=20250628020402",
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/clash.svg"
 },
   "kaid": {
   "name": "Kaid",
@@ -849,7 +849,7 @@
   "primary_gadget": "RTILA Electroclaw",
   "secondary_gadgets": ["Barbed Wire", "C4", "Observation Blockers"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/c/c5/Kaid_-_Full_body.png/revision/latest?cb=20220226221605",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/31/KaidIconN.png/revision/latest/scale-to-width-down/1000?cb=20240714033119"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/kaid.svg"
 },
   "mozzie": {
   "name": "Mozzie",
@@ -864,7 +864,7 @@
   "primary_gadget": "Pest Launcher",
   "secondary_gadgets": ["Barbed Wire", "C4", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/1/12/Mozzie_-_Full_Body.png/revision/latest?cb=20190526230242",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/a2/MozzieIconN.png/revision/latest/scale-to-width-down/1000?cb=20240803112311"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/mozzie.svg"
 },
   "warden": {
   "name": "Warden",
@@ -878,7 +878,7 @@
   "primary_gadget": "GLANCE Smart Glasses",
   "secondary_gadgets": ["C4", "Deployable Shield"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/ab/Warden_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20190612000128",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/e5/WardenIconN.png/revision/latest/scale-to-width-down/1000?cb=20240821091256"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/warden.svg"
 },
   "goyo": {
   "name": "Goyo",
@@ -892,7 +892,7 @@
   "primary_gadget": "Volcán Canister",
   "secondary_gadgets": ["Proximity Alarms", "Bulletproof Camera", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/72/Goyo.png/revision/latest/scale-to-width-down/1000?cb=20190823091410",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/f/f5/GoyoIconN.png/revision/latest/scale-to-width-down/1000?cb=20240821102732"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/goyo.svg"
 },
   "wamai": {
   "name": "Wamai",
@@ -906,7 +906,7 @@
   "primary_gadget": "Mag-NET System",
   "secondary_gadgets": ["Proximity Alarms", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4a/Wamai_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200323110918",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/91/WamaiIconN.png/revision/latest/scale-to-width-down/1000?cb=20240821102744"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/wamai.svg"
 },
   "oryx": {
   "name": "Oryx",
@@ -920,7 +920,7 @@
   "primary_gadget": "Remah Dash",
   "secondary_gadgets": ["Barbed Wire", "Proximity Alarms"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/8e/Oryx_-_Full_Body.png/revision/latest/scale-to-width-down/1000?cb=20200312084428",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/3/3c/OryxIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202732"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/oryx.svg"
 },
   "melusi": {
   "name": "Melusi",
@@ -935,7 +935,7 @@
   "primary_gadget": "Banshee Sonic Defense",
   "secondary_gadgets": ["Bulletproof Camera", "Impact Grenades"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/94/Melusi_-_Full_Body.png/revision/latest?cb=20200519185449",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/98/MelusiIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202729"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/melusi.svg"
 },
   "aruni": {
   "name": "Aruni",
@@ -949,7 +949,7 @@
   "primary_gadget": "Surya Gate",
   "secondary_gadgets": ["Bulletproof Camera", "Barbed Wire"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/e7/Aruni_Fullbody_cropped_resized_truecolor.png/revision/latest/scale-to-width-down/1000?cb=20201111190424",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/c/c8/AruniIconN.png/revision/latest/scale-to-width-down/1000?cb=20250202202728"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/aruni.svg"
 },
   "thunderbird": {
   "name": "Thunderbird",
@@ -964,7 +964,7 @@
   "primary_gadget": "KÓNA Station",
   "secondary_gadgets": ["Barbed Wire", "Bulletproof Camera", "Deployable Shield"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/ee/Thunderbird_Fullbody.png/revision/latest/scale-to-width-down/1000?cb=20210525164617",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d5/Thunderbird_Icon.png/revision/latest/scale-to-width-down/1000?cb=20210525164233"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/thunderbird.svg"
 },
   "thorn": {
   "name": "Thorn",
@@ -978,7 +978,7 @@
   "primary_gadget": "Razorbloom Shell",
   "secondary_gadgets": ["Deployable Shield", "Barbed Wire"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/7/76/Thorn_full.png/revision/latest/scale-to-width-down/1000?cb=20211109234247",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/a2/Thorn_icon.png/revision/latest/scale-to-width-down/1000?cb=20211202225437"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/thorn.svg"
 },
   "azami": {
   "name": "Azami",
@@ -992,7 +992,7 @@
   "primary_gadget": "kiba Barrier",
   "secondary_gadgets": ["Impact Grenades", "barbed Wire"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/61/Azami_Fullbody.png/revision/latest/scale-to-width-down/1000?cb=20240921073729",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/45/Azami_Icon.png/revision/latest?cb=20220307175227"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/azami.svg"
 },
   "solis": {
   "name": "Solis",
@@ -1006,7 +1006,7 @@
   "primary_gadget": "SPEC-IO Electro-Sensor",
   "secondary_gadgets": ["Bulletproof Camera", "Proximity Alarm"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/9e/Solis_-_Full_Body.png/revision/latest?cb=20221207212916",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/a/aa/Solis_icon.png/revision/latest?cb=20221123113816"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/solis.svg"
 },
   "fenrir": {
   "name": "Fenrir",
@@ -1020,8 +1020,8 @@
   "secondary_weapons": ["5.7 USG", "Bailiff 410"],
   "primary_gadget": "F-NATT Dread Mine",
   "secondary_gadgets": ["Bulletproof Camera", "Observation Blockers"],
-  "image_url": "URL to operator image",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/9/9d/Y8S2_-_FENRIR_ICON_.png/revision/latest/scale-to-width-down/1000?cb=20230529162116"
+  "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/85/Fenrir_-_Full_Body.png/revision/latest?cb=20230529161936",
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/fenrir.svg"
 },
   "tubarao": {
   "name": "Tubarão",
@@ -1036,7 +1036,7 @@
   "primary_gadget": "Zoto Canister",
   "secondary_gadgets": ["C4", "Proximity Alarms"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/8/85/Fenrir_-_Full_Body.png/revision/latest?cb=20230529161936",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/6/63/R6S_Tubar%C3%A3o_Icon.png/revision/latest/scale-to-width-down/1000?cb=20240706094825"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/tubarao.svg"
 },
   "sentry": {
   "name": "Sentry",
@@ -1050,7 +1050,7 @@
   "primary_gadget": "Gadget Kit",
   "secondary_gadgets": ["Barbed Wire", "Bulletproof Camera", "Deployable Shield", "Observation Blockers", "Impact Grenades", "C4", "Proximity Alarms"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/e/e5/Sentry.png/revision/latest/scale-to-width-down/1000?cb=20240528155153",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/2/2a/Sentry_Icon.png/revision/latest?cb=20240910014225"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/sentry.svg"
 },
   "skopos": {
   "name": "Skopós",
@@ -1064,7 +1064,7 @@
   "primary_gadget": "V10 Pantheon Shells",
   "secondary_gadgets": ["Impact Grenades", "Proximity Alarms"],
   "image_url": "https://static.wikia.nocookie.net/rainbowsix/images/4/4c/R6Skopos_render.png/revision/latest?cb=20240826061736",
-  "icon_url": "https://static.wikia.nocookie.net/rainbowsix/images/d/d6/Spok%C3%B3sIcon.png/revision/latest?cb=20240910012500"
+  "icon_url": "https://r6operators.marcopixel.eu/icons/svg/skopos.svg"
 }}
 
 
