@@ -203,4 +203,5 @@ quotes = [
     "Someone owes me a steak dinner!",
     "They said it could not be done. They said it was designed for tanks. They said, I could not make it smaller and more accurate. They were wrong.",
     "One of my better tactical strategies is to stay alive. So far, so good.",
+    "Thatcher, do you think your wife left you because of your job or your boat?",
 ]
