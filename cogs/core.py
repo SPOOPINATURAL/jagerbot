@@ -2,6 +2,7 @@ import logging
 import discord
 from discord.ext import commands, bridge
 import aiohttp
+import os
 import pytz
 import random
 from datetime import datetime, timezone, timedelta
@@ -126,7 +127,7 @@ class CoreCog(commands.Cog):
         logger.info(f"weather command invoked with city={city}")
 
         if not self.session or self.session.closed:
-            await ctx.respond("❌ HTTP session is not ready. Try again later.", ephemeral=True)
+            await ctx.respond("HTTP session is not ready. Try again later.", ephemeral=True)
             logger.error("weather command failed: session not ready")
             return
 
@@ -147,7 +148,7 @@ class CoreCog(commands.Cog):
             logger.error(f"Weather command error: {e}", exc_info=True)
             try:
                 await ctx.followup.send(
-                    "❌ An error occurred while fetching weather data.",
+                    "An error occurred while fetching weather data.",
                     ephemeral=True
                 )
             except Exception:
@@ -164,7 +165,7 @@ class CoreCog(commands.Cog):
         logger.info(f"currency command invoked: {amount} {from_currency} -> {to_currency}")
 
         if not self.session or self.session.closed:
-            await ctx.respond("❌ HTTP session is not ready. Try again later.", ephemeral=True)
+            await ctx.respond("HTTP session is not ready. Try again later.", ephemeral=True)
             logger.error("currency command failed: session not ready")
             return
 
@@ -204,7 +205,7 @@ class CoreCog(commands.Cog):
 
         try:
             if not SUPPORTED_TZ:
-                await ctx.respond("❌ No supported timezones configured.", ephemeral=True)
+                await ctx.respond("No supported timezones configured.", ephemeral=True)
                 logger.error("timezones command failed: SUPPORTED_TZ empty or None")
                 return
 
@@ -215,7 +216,7 @@ class CoreCog(commands.Cog):
         except Exception as e:
             logger.error(f"timezones command error: {e}", exc_info=True)
             try:
-                await ctx.respond("❌ An error occurred while fetching timezones.", ephemeral=True)
+                await ctx.respond("An error occurred while fetching timezones.", ephemeral=True)
             except Exception:
                 logger.error("Failed to send error message after timezones command failure")
 
@@ -316,7 +317,7 @@ class CoreCog(commands.Cog):
     @bridge.bridge_command(name="plane", description="Get a random WW1 plane")
     async def plane(self, ctx: discord.ApplicationContext):
         if not self.planes:
-            await ctx.respond("❌ No plane data loaded.")
+            await ctx.respond("No plane data loaded.")
             return
 
         plane = random.choice(self.planes)
@@ -334,10 +335,18 @@ class CoreCog(commands.Cog):
             ),
             color=discord.Color.red()
         )
-        image_url = plane.get("image")
-        if image_url:
-            embed.set_image(url=image_url)
-        await ctx.respond(embed=embed)
+        image_path_or_url = plane.get("image", "")
+        files = []
+
+        if image_path_or_url.startswith("http://") or image_path_or_url.startswith("https://"):
+            embed.set_image(url=image_path_or_url)
+        else:
+            image_path_or_url = image_path_or_url.replace("\\", "/")
+            if os.path.exists(image_path_or_url):
+                filename = os.path.basename(image_path_or_url)
+                files.append(discord.File(image_path_or_url, filename=filename))
+                embed.set_image(url=f"attachment://{filename}")
+            await ctx.respond(embed=embed)
 
     @bridge.bridge_command(name="info", description="Command list")
     async def info(self, ctx: discord.ApplicationContext):

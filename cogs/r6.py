@@ -2,6 +2,7 @@ import discord
 import random
 import aiohttp
 import json
+import os
 import feedparser
 import logging
 from discord import Option
@@ -30,11 +31,27 @@ class MapFloorView(PaginationView):
 
     def create_embed(self, index: int) -> discord.Embed:
         floor = self.floors[index]
-        return discord.Embed(
+        embed = discord.Embed(
             title=f"{self.map_name} – {floor['name']}",
             description=f"Floor {index + 1}/{len(self.floors)}",
             color=0x8B0000
-        ).set_image(url=floor.get("image", ""))
+        )
+        
+        image_path = floor.get("image", "")
+        file_obj = None
+        
+        if image_path.startswith("http://") or image_path.startswith("https://"):
+            embed.set_image(url=image_path)
+        else:
+            image_path = image_path.replace("\\", "/")
+            if os.path.exists(image_path):
+                filename = os.path.basename(image_path)
+                file_obj = discord.File(image_path, filename=filename)
+                embed.set_image(url=f"attachment://{filename}")
+            else:
+                embed.description += "\n image not found."
+        return embed, file_obj
+        
 async def platform_autocomplete(ctx: discord.AutocompleteContext):
         return ["uplay", "psn", "xbl"]
 
@@ -120,7 +137,7 @@ class R6Cog(commands.Cog):
 
         except Exception as e:
             logger.error(f"Error fetching R6 stats for {username}: {e}")
-            await ctx.followup.send("❌ Error fetching stats.")
+            await ctx.followup.send("Error fetching stats.")
     @r6.command(name="map", description="Look up map information")
     @discord.option(
         "name",
@@ -135,16 +152,16 @@ class R6Cog(commands.Cog):
         try:
             await ctx.defer()
             if not self.maps:
-                await ctx.followup.send("❌ No map data available.", ephemeral=True)
+                await ctx.followup.send("No map data available.", ephemeral=True)
                 return
             map_data = DataHelper.find_match(self.maps, name)
             if not map_data:
-                await ctx.followup.send(f"❌ Map `{name}` not found.")
+                await ctx.followup.send(f" Map `{name}` not found.")
                 return
 
             floors = map_data.get("floors", [])
             if not floors:
-                await ctx.followup.send("❌ No floor data available.")
+                await ctx.followup.send("No floor data available.")
                 return
 
             view = MapFloorView(floors=floors, map_name=map_data['name'])
@@ -153,7 +170,7 @@ class R6Cog(commands.Cog):
     
         except Exception as e:
             logger.error(f"Error in R6 map command: {e}")
-            await ctx.followup.send("❌ Error while processing.", ephemeral=True)
+            await ctx.followup.send("Error while processing.", ephemeral=True)
 
     @r6.command(name="op", description="Look up operator information")
     @discord.option(
@@ -169,7 +186,7 @@ class R6Cog(commands.Cog):
         await ctx.defer()
         op_data = DataHelper.find_match(self.operators, name)
         if not op_data:
-            await ctx.followup.send(f"❌ Operator `{name}` not found.", ephemeral=True)
+            await ctx.followup.send(f"Operator `{name}` not found.", ephemeral=True)
             return
         embed = self.create_op_embed(op_data)
         await ctx.followup.send(embed=embed)
@@ -325,8 +342,28 @@ class R6Cog(commands.Cog):
             description=op_data.get("bio", ""),
             color=0x8B0000
         )
-        embed.set_thumbnail(url=op_data.get("icon_url"))
-        embed.set_image(url=op_data.get("image_url"))
+        files_to_attach = []
+
+        def process_image(path_or_url: str, is_thumbnail=False):
+            nonlocal files_to_attach
+            if not path_or_url:
+                return None
+            if path_or_url.startswith("http://") or path_or_url.startswith("https://"):
+                return path_or_url
+            path_or_url = path_or_url.replace("\\", "/")
+            if os.path.exists(path_or_url):
+                filename = os.path.basename(path_or_url)
+                files_to_attach.append(discord.File(path_or_url, filename=filename))
+                return f"attachment://{filename}"
+            return None
+
+        thumb_url = process_image(op_data.get("icon_url"), is_thumbnail=True)
+        img_url = process_image(op_data.get("image_url"))
+
+        if thumb_url:
+            embed.set_thumbnail(url=thumb_url)
+        if img_url:
+            embed.set_image(url=img_url)
 
         embed.add_field(name="Role", value=op_data.get('role', 'Unknown'), inline=True)
         embed.add_field(name="Squad", value=op_data.get('squad', '—'), inline=True)

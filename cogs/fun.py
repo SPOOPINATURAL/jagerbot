@@ -6,6 +6,7 @@ from typing import Dict, Optional
 
 import aiohttp
 import discord
+import os
 from discord.ext import commands, bridge
 from config import SCORES_FILE, image_urls, clancy_images, quotes
 from utils.embed_builder import EmbedBuilder
@@ -15,6 +16,10 @@ from views.rps import RPSView
 from views.trivia import TriviaView
 
 logger = logging.getLogger(__name__)
+
+RANDOM_IMAGES_DIR = "data/assets/randomimg"
+CLANCY_IMAGES_DIR = "data/assets/clancy"
+LONGO_IMAGE_PATH = "data/assets/longo.jpeg"
 
 class TriviaManager:
     def __init__(self, scores_file: str):
@@ -54,23 +59,45 @@ class Fun(commands.Cog):
     @bridge.bridge_command(name='image', description="Get a random image")
     async def image(self, ctx: discord.ApplicationContext):
         try:
-            images_url = random.choice(image_urls)
-            await ctx.respond(images_url)
+            images_list = [os.path.join(RANDOM_IMAGES_DIR, f) for f in os.listdir(RANDOM_IMAGES_DIR) if os.path.isfile(os.path.join(RANDOM_IMAGES_DIR, f))]
+            if not images_list:
+                await ctx.respond("No images found.")
+                return
+
+            image_path = random.choice(images_list)
+            await ctx.respond(file=discord.File(image_path))
         except Exception as e:
             logger.error(f"Error in image command: {e}")
-            await ctx.respond("❌ Error getting image.", ephemeral=True)
+            await ctx.respond("Error getting image.", ephemeral=True)
 
     @bridge.bridge_command(name='clancy', description="Obtain a random Clancy image")
     async def clancy(self, ctx: discord.ApplicationContext):
-        clancy_image = random.choice(clancy_images)
-        await ctx.respond(clancy_image)
+        try:
+            clancy_list = [os.path.join(CLANCY_IMAGES_DIR, f) for f in os.listdir(CLANCY_IMAGES_DIR) if os.path.isfile(os.path.join(CLANCY_IMAGES_DIR, f))]
+            if not clancy_list:
+                await ctx.respond("No Clancy images found.")
+                return
+
+            image_path = random.choice(clancy_list)
+            await ctx.respond(file=discord.File(image_path))
+        except Exception as e:
+            logger.error(f"Error in clancy command: {e}")
+            await ctx.respond("Error getting Clancy image.", ephemeral=True)
 
     @bridge.bridge_command(name='longo', description="longo")
     async def longo(self, ctx: discord.ApplicationContext):
-        image_url = "https://i.imgur.com/J1P7g5f.jpeg"
-        embed = discord.Embed(title="longo")
-        embed.set_image(url=image_url)
-        await ctx.respond(embed=embed)
+        try:
+            if not os.path.exists(LONGO_IMAGE_PATH):
+                await ctx.respond("Longo not found.")
+                return
+
+            embed = discord.Embed(title="longo")
+            file = discord.File(LONGO_IMAGE_PATH, filename="longo.jpeg")
+            embed.set_image(url="attachment://longo.jpeg")
+            await ctx.respond(file=file, embed=embed)
+        except Exception as e:
+            logger.error(f"Error in longo command: {e}")
+            await ctx.respond("Error sending longo.", ephemeral=True)
 
     @bridge.bridge_command(name="8ball", description="Ask the magic 8ball a question")
     async def eight_ball(

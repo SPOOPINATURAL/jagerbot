@@ -1,6 +1,7 @@
 import discord
 import feedparser
 import config
+import os
 import logging
 import utils.helpers
 from discord.ext import bridge, commands
@@ -160,7 +161,23 @@ class Ultracog(commands.Cog):
             description=weapon_info.get("description", "No description available."),
             color=0x8B0000
         )
-        embed.set_image(url=weapon_info.get("image", "https://example.com/default_image.png"))
+        files_to_attach = []
+
+        def process_image(path_or_url: str):
+            nonlocal files_to_attach
+            if not path_or_url:
+                return None
+            if path_or_url.startswith("http://") or path_or_url.startswith("https://"):
+                return path_or_url
+            path_or_url = path_or_url.replace("\\", "/")
+            if os.path.exists(path_or_url):
+                filename = os.path.basename(path_or_url)
+                files_to_attach.append(discord.File(path_or_url, filename=filename))
+                return f"attachment://{filename}"
+            return None
+
+        img_url = process_image(weapon_info.get("image", "")) or "https://example.com/default_image.png"
+        embed.set_image(url=img_url)
         
         embed.add_field(name="Type", value=weapon_info.get("type", "Unknown"), inline=True)
         embed.add_field(name="Wiki Link", value=weapon_info.get("wiki_link", "Unknown"), inline=True)
