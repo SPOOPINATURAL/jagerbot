@@ -4,7 +4,7 @@
         "description": "Hold Alt Fire to charge a 3-hit beam.",
         "type": "Revolver",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Revolver#Piercer-0>",
-        "image": "https://static.wikia.nocookie.net/ultrakill/images/3/30/PiercerHUDNew.png/revision/latest?cb=20230204024125"
+        "image": "/assets/ultrakillweapons/piercer.png"
     },
 
     "marksman": {
@@ -13,7 +13,7 @@
         "type": "Revolver",
         "tech": ["Railcoin", "Coinadds", "Railcoinpunch", "Deadcoining", "Slabcoining", "Sharpcoining", "Chargeback"],
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Revolver#Marksman-0>",
-        "image": "https://static.wikia.nocookie.net/ultrakill/images/c/cf/MarksmanHUDNew.png/revision/latest?cb=20230204024516"
+        "image": "/assets/ultrakillweapons/marksman.png"
     },
 
     "sharpshooter": {
@@ -22,111 +22,111 @@
         "type": "Revolver",
         "tech": ["Sharpcoining"],
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Revolver#Sharpshooter-0>",
-        "image": "https://static.wikia.nocookie.net/ultrakill/images/6/6c/SharpshooterRevolverHUD.png/revision/latest?cb=20230427055757"
+        "image": "/assets/ultrakillweapons/sharpshooter.png"
     },
     "core_eject": {
         "name": "Core Eject Shotgun",
         "description": "Press Alt Fire to overheat and launch the shotgun's cores. Hold to charge distance. Explodes on impact.",
         "type": "Shotgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Shotgun#Core_Eject-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/c/c5/Standard_Core_Eject_Shotgun.webp/950px-Standard_Core_Eject_Shotgun.webp.png?9a430a"
+        "image": "/assets/ultrakillweapons/coreeject.png"
     },
     "pump_charge":{
         "name": "Pump Charge Shotgun",
         "description": "Press Alt Fire to pump your shotgun, increasing the power and decreasing the accuracy of your next shot. Too many pumps will cause an explosion when fired.",
         "type": "Shotgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Shotgun#Pump_Charge-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/f/f5/Shotgun1.webp/950px-Shotgun1.webp.png?12a3da"
+        "image": "/assets/ultrakillweapons/pumpcharge.png"
     },
     "sawed-on": {
         "name": "Sawed-On Shotgun",
         "description": "Hold Alt Fire to rev chainsaw. Release to launch, piercing enemies and returning back. Can be punches to keep active.",
         "type": "Shotgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Shotgun#Sawed-On-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/9/97/Standard_Sawed-On_Shotgun.webp/950px-Standard_Sawed-On_Shotgun.webp.png?16d011"
+        "image": "/assets/ultrakillweapons/sawedon.png"
     },
     "attractor":{
         "name": "Attractor Nailgun",
         "description": "Alt Fire to shoot a magnet that pulls all nearby nails towards it. Magnets stick to surfactes and enemies and can be broken with hitscan weapons.",
         "type": "Nailgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Nailgun#Attractor-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/f/fc/Nailgun2.webp/1000px-Nailgun2.webp.png?dc1f9c"
+        "image": "/assets/ultrakillweapons/attractor.png"
     },
     "overheat":{
         "name": "Overheat Nailgun",
         "description": "Alt Fire while shooting to overheat for a quick burst of damage at the cost of a heatsink. Heatsinks recharge while not firing.",
         "type": "Nailgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Nailgun#Overheat-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/3/3e/NailgunOverheat.webp/1000px-NailgunOverheat.webp.png?25563c"
+        "image": "/assets/ultrakillweapons/overheat.png"
     },
     "jumpstart":{
         "name": "Jumpstart Nailgun",
         "description": "Press Alt Fire to attach a cable that slowly charges a powerful electric shock. Attached cables persist when switching weapons.",
         "type": "Nailgun",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Nailgun#JumpStart-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/7/70/Standard_JumpStart_Nailgun.webp/1000px-Standard_JumpStart_Nailgun.webp.png?a1afc0"
+        "image": "/assets/ultrakillweapons/jumpstart.png"
     },
     "electric":{
         "name": "Electric Railcannon",
         "description": "A powerful instant piercing shot. Pierces throught all enemies. Pay attention to your positioning to maximize destruction. Don't use in water.",
         "type": "Railcannon",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Railcannon#Electric-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/5/57/Railcannon.webp/1000px-Railcannon.webp.png?dd3822"
+        "image": "/assets/ultrakillweapons/electric.png"
     },
     "screwdriver":{
         "name": "Screwdriver Railcannon",
         "description": "Fires a powerful drill that sticks to an enemy and deals damage over time. The drill causes enemies to bleed continuously with extraq healing range.",
         "type": "Railcannon",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Railcannon#Screwdriver-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/d/d7/Railcannonscrew.webp/1000px-Railcannonscrew.webp.png?222bba"
+        "image": "/assets/ultrakillweapons/screwdriver.png"
     },
     "malicious":{
         "name": "Malicious Railcannon",
         "description": "Fires an instant beam that causes a large explosion on impact, similar to a certain familiar face (Maurice). Wipes out groups of weak enemies with ease.",
         "type": "Railcannon",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Railcannon#Malicious-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/c/c4/Railcannonmalicious.webp/1000px-Railcannonmalicious.webp.png?e73b67"
+        "image": "/assets/ultrakillweapons/malicious.png"
     },
     "freezeframe":{
         "name": "Freezeframe Rocket Launcher",
         "description": "Press Alt Fire to freeze rockets. Frozen rockets have a larger blast radius and will stay frozen even when switching weapons.",
         "type": "Rocket Launcher",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Rocket_Launcher#Freezeframe-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/8/84/Rocketlauncher.webp/1000px-Rocketlauncher.webp.png?1caa10"
+        "image": "/assets/ultrakillweapons/freezeframe.png"
     },
     "srs_cannon":{
         "name": "S.R.S. Cannon Rocket Launcher",
         "description": "Press Alt Fire to launch cannonball. Hold to charge distance. Nobody knows what S.R.S. stands for.",
         "type": "Rocket Launcher",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Rocket_Launcher#S.R.S._Canonon-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/1/10/S.R.S._Cannon.webp/1000px-S.R.S._Cannon.webp.png?2ef68e"
+        "image": "/assets/ultrakillweapons/srscannon"
     },
     "firstarter":{
         "name": "Firstarter Rocket Launcher",
         "description": "Hold Alt Fire to spray gasoline, making non-flammable enemiesw flammable. Can also be sprayed on the environment to create walls of fire.",
         "type": "Rocket Launcher",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Rocket_Launcher#Firstarter-0>",
-        "image": "https://ultrakill.wiki.gg/images/thumb/a/a3/Firestarter_Rocket_Launcher.webp/1000px-Firestarter_Rocket_Launcher.webp.png?75c13a"
+        "image": "/assets/ultrakillweapons/firestarter.png"
     },
     "feedbacker":{
         "name": "Feedbacker Arm",
         "description": "Fast punch with decent damage. Can parry most attacks, includiong shotgun shots and coins.",
         "type": "Arm",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Arm#Feedbacker-0>",
-        "image": "https://ultrakill.wiki.gg/images/3/39/FeedbackerHUDNew.png?7886ee"
+        "image": "/assets/ultrakillweapons/feedbacker.png"
     },
     "knuckleblaster":{
         "name": "Knuckleblaster Arm",
         "description": "Slow punch with high damage and knockback. Hold punch to blast shells inside the knickles, causing a shockwave that knocks surrounding enemies away",
         "type": "Arm",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Arm#Knuckleblaster-0>",
-        "image": "https://ultrakill.wiki.gg/images/a/a6/KnuckleblasterHUDNew.png?5cbb1e"
+        "image": "/assets/ultrakillweapons/knuckleblaster.png"
     },
     "whiplash":{
         "name": "Whiplash Arm",
         "description": "A winch with a spear. Hold to throw, release to pull. Can pull light enemies and items, will get pulled to heavy enemies and Hookpoints.",
         "type": "Arm",
         "wiki_link": "<https://ultrakill.wiki.gg/wiki/Arm#Whiplash-0>",
-        "image": "https://ultrakill.wiki.gg/images/3/39/WhiplashHUDNew.png?fb60db"
+        "image": "/assets/ultrakillweapons/whiplash.png"
     }
 }

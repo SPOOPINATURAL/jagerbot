@@ -3,7 +3,7 @@
     "name": "Fokker Dr.I",
     "nation": "Germany",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Fokker-Dr1_Joachim-Schlichting.jpg",
+    "image": "/assets/planes/fokkerdr1.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "7.19 m (23 ft, 7 in)",
@@ -16,7 +16,7 @@
     "name": "Sopwith Camel",
     "nation": "United Kingdom",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5f/SopwithCamel.jpg",
+    "image": "/assets/planes/sopwithcamel.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "8.53 m (28 ft)",
@@ -29,7 +29,7 @@
     "name": "SPAD S.XIII",
     "nation": "France",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/SPAD_S.XIII_in_flight_c1918.jpg",
+    "image": "/assets/planes/spadxiii.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "8.25 m (27 ft, 1in) or 8.08 m (26.5 ft)",
@@ -42,7 +42,7 @@
     "name": "Albatros D.V",
     "nation": "Germany",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Albatros_D.Va_1917.jpg",
+    "image": "/assets/planes/albatrossdv.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "9.05 m (29 ft, 8 in)",
@@ -55,7 +55,7 @@
     "name": "Nieuport 17",
     "nation": "France",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nieuport_23_C.1.jpg",
+    "image": "/assets/planes/nieuport17.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "8.16 m (26 ft, 9 in)",
@@ -68,7 +68,7 @@
     "name": "Supermarine Nighthawk",
     "nation": "United Kingdom",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Supermarine_P.B.31E_Nighthawk.jpg",
+    "image": "/assets/planes/supermarinenighthawk.jpg",
     "specs": {
       "crew": "4 (2 pilots, 2 gunners)",
       "wingspan": "18.3 m (60 ft)",
@@ -81,7 +81,7 @@
     "name": "Hansa-Brandenburg C.I",
     "nation": "Austria-Hungary",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Albatros_Kampfflugzeug._8.9.17._%28BildID_15602045%29.jpg",
+    "image": "/assets/planes/hansabrandenburgci.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "12.3 m (40 ft, 4 in)",
@@ -94,7 +94,7 @@
     "name": "Vickers Vimy",
     "nation": "United Kingdom",
     "year": 1918,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Vickers_Vimy.jpg",
+    "image": "/assets/planes/vickersvimy.jpg",
     "specs": {
       "crew": "3",
       "wingspan": "20.47 m (67 ft, 2 in)",
@@ -107,7 +107,7 @@
     "name": "Lebed 12",
     "nation": "Russia",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Lebe%C4%8F_XII_%28Rossia%29.jpg",
+    "image": "/assets/planes/lebed12.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "13.15 m (43 ft, 1.75 in)",
@@ -120,7 +120,7 @@
     "name": "SAML S.2",
     "nation": "Italy",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Airplanes_-_Types_-_Airplane_Type._S.A.M.L._motor%2C_Fiat_300_H.P.%2C_Type_1917._Italian_Aviation_Mission_-_NARA_-_17342301.jpg/1200px-Airplanes_-_Types_-_Airplane_Type._S.A.M.L._motor%2C_Fiat_300_H.P.%2C_Type_1917._Italian_Aviation_Mission_-_NARA_-_17342301.jpg",
+    "image": "/assets/planes/samls2.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "12.1 m (39 ft, 8.5 in)",
@@ -133,7 +133,7 @@
     "name": "Standard E-1",
     "nation": "United States",
     "year": 1918,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Standard_E-1_-_NARA_-_55172168.jpg/1920px-Standard_E-1_-_NARA_-_55172168.jpg",
+    "image": "/assets/planes/standarde1.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "7.32 m (24 ft)",
@@ -146,7 +146,7 @@
     "name": "Bristol Scout",
     "nation": "United Kingdom",
     "year": 1915,
-    "image": "https://www.theaerodrome.com/images/aircraft/gbritain/bristol_scout.jpg",
+    "image": "/assets/planes/bristolscout.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "7.49 m (24 ft, 7 in)",
@@ -159,7 +159,7 @@
     "name": "Aviatik D.I",
     "nation": "Austria-Hungary",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/AviatikBergMoFS.JPG/2560px-AviatikBergMoFS.JPG",
+    "image": "/assets/planes/aviatikdi.JPG",
     "specs": {
       "crew": "1",
       "wingspan": "8 m (26 ft, 3 in)",
@@ -172,7 +172,7 @@
     "name": "Thomas-Morse S.4",
     "nation": "United States",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Thomas_Morse_S-4c_Scout.jpg/1920px-Thomas_Morse_S-4c_Scout.jpg",
+    "image": "/assets/planes/thomasmorses4.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "8.98 m (26 ft, 6 in)",
@@ -185,7 +185,7 @@
     "name": "Airco D.H.4",
     "nation": "United Kingdom",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6d/De_Havilland_DH4_ExCC.jpg",
+    "image": "/assets/planes/aircodh4.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "12.92 m (42 ft, 4.5 in)",
@@ -198,7 +198,7 @@
     "name": "Nieuport 11",
     "nation": "France",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nieuport_Ni._11.jpg",
+    "image": "/assets/planes/nieuport11.jpg",
     "specs": {
       "crew": "1",
       "wingspan": "5.5 m (24 ft, 8 in)",
@@ -211,7 +211,7 @@
     "name": "Siemens-Schuckert R.VIII",
     "nation": "Germany",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Riesenflugzeug_Siemens_Schuckert_VIII_1918.jpg",
+    "image": "/assets/planes/siemensschuckertviii.jpg",
     "specs": {
       "crew": "6+",
       "wingspan": "48 m (157 ft, 6 in)",
@@ -224,7 +224,7 @@
     "name": "Linke-Hofmann R.I",
     "nation": "Germany",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/2/25/Linke-Hofmann_R1.png",
+    "image": "/assets/planes/linkehofmannri.png",
     "specs": {
       "crew": "4-5",
       "wingspan": "33.2 m (108 ft, 11.25 in)",
@@ -237,7 +237,7 @@
     "name": "Blackburn Triplane",
     "nation": "United Kingdom",
     "year": 1917,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Blackburn_Triplane.png",
+    "image": "/assets/planes/blackburntriplane.png",
     "specs": {
       "crew": "1",
       "wingspan": "7.32 m (24 ft)",
@@ -250,7 +250,7 @@
     "name": "Ufag C.I",
     "nation": "Austria-Hungary",
     "year": 1918,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/UFAG_C.I_fortepan_132531.jpg/1920px-UFAG_C.I_fortepan_132531.jpg",
+    "image": "/assets/planes/ufagci.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "10.69 m (35 ft, 2 in)",
@@ -263,7 +263,7 @@
     "name": "Voisin 8",
     "nation": "France",
     "year": 1916,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Voisin_VIII_NARA_17342123.jpg/2560px-Voisin_VIII_NARA_17342123.jpg",
+    "image": "/assets/planes/voisin8.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "18 m (59 ft, 1 in)",
@@ -276,7 +276,7 @@
     "name": "Pomilio PE",
     "nation": "Italy",
     "year": 1918,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Pomilio_PE.jpg",
+    "image": "/assets/planes/pomiliope.jpg",
     "specs": {
       "crew": "2",
       "wingspan": "11.78 m (38 ft, 8.5 in)",
