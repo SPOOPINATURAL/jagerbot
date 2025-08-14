@@ -8,7 +8,7 @@ import aiohttp
 import discord
 import os
 from discord.ext import commands, bridge
-from config import SCORES_FILE, image_urls, clancy_images, quotes
+from config import SCORES_FILE, quotes
 from utils.embed_builder import EmbedBuilder
 from discord import Option
 from utils.helpers import FileHelper

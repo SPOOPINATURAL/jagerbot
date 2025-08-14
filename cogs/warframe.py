@@ -73,29 +73,30 @@ class WarframeCog(commands.Cog):
             )
             embed.add_field(name="Available Commands", value="`baro`, `news`, `nightwave`, `price`, `streams`", inline=False)
             await ctx.respond(embed=embed)  
+    
     @wf.command(name="baro", description="Check Baro Ki'Teer's status and inventory")
     async def baro(self, ctx: discord.ApplicationContext):
         await ctx.defer()
         logger.info("[/wf baro] Deferred response")
         data = await self.get_cached_data("voidTrader")
         if not data:
-            await ctx.followup.send("❌ Failed to fetch data.", ephemeral=True)
+            await ctx.followup.send("Failed to fetch data.", ephemeral=True)
             return
         try:
             data = await asyncio.wait_for(self.get_cached_data("voidTrader"), timeout=10)
             logger.info(f"[/wf baro] Fetched data: {data}")
         except asyncio.TimeoutError:
             logger.error("[/wf baro] Data fetch timed out")
-            await ctx.followup.send("❌ Timed out while fetching data.", ephemeral=True)
+            await ctx.followup.send("Timed out while fetching data.", ephemeral=True)
             return
         except Exception as e:
             logger.exception("[/wf baro] Exception while fetching data")
-            await ctx.followup.send("❌ An error occurred while fetching data.", ephemeral=True)
+            await ctx.followup.send("An error occurred while fetching data.", ephemeral=True)
             return
 
         if not data:
             logger.warning("[/wf baro] No data returned")
-            await ctx.followup.send("❌ Failed to fetch data.", ephemeral=True)
+            await ctx.followup.send("Failed to fetch data.", ephemeral=True)
             return
         if data.get("active"):
             inventory = data.get("inventory", [])
@@ -117,7 +118,7 @@ class WarframeCog(commands.Cog):
         try:
             data = await self.get_cached_data("news")
             if not data:
-                await ctx.followup.send("❌ Failed to fetch news.", ephemeral=True)
+                await ctx.followup.send("Failed to fetch news.", ephemeral=True)
                 return
             embed = discord.Embed(title="Warframe News", color=WF_COLOR)
             for news in data[:5]:
@@ -129,7 +130,7 @@ class WarframeCog(commands.Cog):
             await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error in news command: {e}")
-            await ctx.followup.send("❌ Error fetching news.", ephemeral=True)
+            await ctx.followup.send("Error fetching news.", ephemeral=True)
 
     @wf.command(name="nightwave", description="Show current Nightwave challenges")
     async def nightwave(self, ctx: discord.ApplicationContext):
@@ -137,7 +138,7 @@ class WarframeCog(commands.Cog):
         try:
             data = await self.get_cached_data("nightwave")
             if not data:
-                await ctx.followup.send("❌ Failed to fetch Nightwave data.", ephemeral=True)
+                await ctx.followup.send("Failed to fetch Nightwave data.", ephemeral=True)
                 return
             embed = discord.Embed(title="Nightwave Challenges", color=WF_COLOR)
             for challenge in data.get("activeChallenges", []):
@@ -149,7 +150,7 @@ class WarframeCog(commands.Cog):
             await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error in nightwave command: {e}")
-            await ctx.followup.send("❌ Error fetching Nightwave data.", ephemeral=True)
+            await ctx.followup.send("Error fetching Nightwave data.", ephemeral=True)
 
     @wf.command(name="price", description="Check item prices from warframe.market")
     async def wfprice(
@@ -165,7 +166,7 @@ class WarframeCog(commands.Cog):
             session = self.bot.http._HTTPClient__session
             async with session.get(url) as resp:
                 if resp.status != 200:
-                    await ctx.followup.send("❌ Item not found.", ephemeral=True)
+                    await ctx.followup.send("Item not found.", ephemeral=True)
                     return
                 data = await resp.json()
                 sell_orders = [
@@ -173,7 +174,7 @@ class WarframeCog(commands.Cog):
                     if order.get("order_type") == "sell" and order.get("user", {}).get("status") == "ingame"
                 ]
                 if not sell_orders:
-                    await ctx.followup.send("❌ No active sellers found.")
+                    await ctx.followup.send("No active sellers found.")
                     return
 
                 cheapest = sorted(sell_orders, key=lambda x: x.get("platinum", 9999))[:5]
@@ -187,7 +188,7 @@ class WarframeCog(commands.Cog):
                 await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error fetching price for {item}: {e}")
-            await ctx.followup.send("❌ Error fetching prices.", ephemeral=True)
+            await ctx.followup.send("Error fetching prices.", ephemeral=True)
 
     @wf.command(name="streams", description="Show current and upcoming Warframe streams")
     async def streams(self, ctx: discord.ApplicationContext):
@@ -221,7 +222,7 @@ class WarframeCog(commands.Cog):
             await ctx.followup.send(embed=embed)
         except Exception as e:
             logger.error(f"Error fetching streams: {e}")
-            await ctx.followup.send("❌ Error fetching stream data.", ephemeral=True)
+            await ctx.followup.send("Error fetching stream data.", ephemeral=True)
 
     async def get_cached_data(self, endpoint: str, max_age: int = CACHE_DURATION) -> Optional[dict]:
         cache_key = f"wf_{endpoint}"
