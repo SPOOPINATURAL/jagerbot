@@ -1,4 +1,4 @@
-
+#!/bin/zsh
 set -euo pipefail
 cd /mnt/ssd/jagerbot
 PULL_OUTPUT=$(git pull origin main)
