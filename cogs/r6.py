@@ -43,10 +43,19 @@ class MapFloorView(PaginationView):
         if image_path.startswith("http://") or image_path.startswith("https://"):
             embed.set_image(url=image_path)
         else:
+            # Normalize path and attempt to resolve relative to project root
             image_path = image_path.replace("\\", "/")
-            if os.path.exists(image_path):
-                filename = os.path.basename(image_path)
-                file_obj = discord.File(image_path, filename=filename)
+            candidate = Path(image_path)
+            if not candidate.exists():
+                repo_root = Path(__file__).resolve().parents[1]
+                candidate = (repo_root / image_path).resolve()
+
+            if candidate.exists():
+                filename = os.path.basename(str(candidate))
+                # include map name in filename to avoid clashes
+                safe_map = self.map_name.lower().replace(" ", "_")
+                filename = f"{safe_map}_{filename}"
+                file_obj = discord.File(str(candidate), filename=filename)
                 embed.set_image(url=f"attachment://{filename}")
             else:
                 embed.description += "\n image not found."
@@ -163,9 +172,12 @@ class R6Cog(commands.Cog):
             if not floors:
                 await ctx.followup.send("No floor data available.")
                 return
-
             view = MapFloorView(floors=floors, map_name=map_data['name'])
-            message = await ctx.followup.send(embed=view.create_embed(0), view=view)
+            embed, file_obj = view.create_embed(0)
+            if file_obj:
+                message = await ctx.followup.send(embed=embed, file=file_obj, view=view)
+            else:
+                message = await ctx.followup.send(embed=embed, view=view)
             view.message = message
     
         except Exception as e:
@@ -188,8 +200,11 @@ class R6Cog(commands.Cog):
         if not op_data:
             await ctx.followup.send(f"Operator `{name}` not found.", ephemeral=True)
             return
-        embed = self.create_op_embed(op_data)
-        await ctx.followup.send(embed=embed)
+        embed, files = self.create_op_embed(op_data)
+        if files:
+            await ctx.followup.send(embed=embed, files=files)
+        else:
+            await ctx.followup.send(embed=embed)
 
     @r6.command(name="oprandom", description="Get a random operator")
     async def oprandom(
@@ -205,8 +220,11 @@ class R6Cog(commands.Cog):
             await ctx.followup.send("❌ No operators found.")
             return
         op_data = random.choice(filtered)
-        embed = self.create_op_embed(op_data)
-        await ctx.followup.send(embed=embed)
+        embed, files = self.create_op_embed(op_data)
+        if files:
+            await ctx.followup.send(embed=embed, files=files)
+        else:
+            await ctx.followup.send(embed=embed)
 
     @r6.command(name="oplist", description="List all operators")
     async def oplist(self, ctx: discord.ApplicationContext):
@@ -336,7 +354,7 @@ class R6Cog(commands.Cog):
         return results[:25]
 
     @staticmethod
-    def create_op_embed(op_data: dict) -> discord.Embed:
+    def create_op_embed(op_data: dict):
         embed = discord.Embed(
             title=f"Operator: {op_data['name']}",
             description=op_data.get("bio", ""),
@@ -350,10 +368,20 @@ class R6Cog(commands.Cog):
                 return None
             if path_or_url.startswith("http://") or path_or_url.startswith("https://"):
                 return path_or_url
+            # Normalize path and attempt to resolve relative to project root if needed
             path_or_url = path_or_url.replace("\\", "/")
-            if os.path.exists(path_or_url):
-                filename = os.path.basename(path_or_url)
-                files_to_attach.append(discord.File(path_or_url, filename=filename))
+            candidate = Path(path_or_url)
+            if not candidate.exists():
+                # Try resolving relative to repository root (two levels up from this file)
+                repo_root = Path(__file__).resolve().parents[1]
+                candidate = (repo_root / path_or_url).resolve()
+
+            if candidate.exists():
+                # Make filename unique per operator to avoid clashes
+                base_name = candidate.name
+                safe_prefix = op_data.get("name", "op").lower().replace(" ", "_")
+                filename = f"{safe_prefix}_{base_name}"
+                files_to_attach.append(discord.File(str(candidate), filename=filename))
                 return f"attachment://{filename}"
             return None
 
@@ -372,7 +400,7 @@ class R6Cog(commands.Cog):
         embed.add_field(name="Secondary Weapons", value="\n".join(op_data.get('secondary_weapons', [])) or "—", inline=False)
         embed.add_field(name="Primary Gadget", value=op_data.get('primary_gadget', "—") or "—", inline=False)
         embed.add_field(name="Secondary Gadgets", value="\n".join(op_data.get('secondary_gadgets', [])) or "—", inline=False)
-        return embed
+        return embed, files_to_attach
 
     @staticmethod
     def _build_news_embed(news_data):
